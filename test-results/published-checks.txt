@@ -1,0 +1,7 @@
+OK published main commit: df9998de60897979ebf220f9a01a256c4666ceca
+OK published installer version: 1.0.0.beta
+OK real GitHub download and preview: en; one English language question
+OK real GitHub download and preview: es; one English language question
+OK real GitHub download and preview: pt-BR; one English language question
+OK real GitHub language changes: en -> es -> pt-BR; snapshot and hashes verified
+No Panel/Wings/system services were installed. Complete clean-VPS deployment remains untested.

@@ -12,6 +12,7 @@ Date: 21 October 2026.
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
 | Language distributions | Three reproducible packages with one locale each; committed bytes match the shared runtime and translation tables |
 | Menu language change | Only the requested locale fetched; checksum/snapshot enforced; existing locale retained on failure |
+| Published GitHub distribution | **Passed** against commit `df9998de60897979ebf220f9a01a256c4666ceca`: real online bootstrap/download/preview for en/es/pt-BR and verified locale changes; installer version `1.0.0.beta` |
 | Interactive animation | Passed in a real pseudoterminal |
 | Preview | Passed without root in all three languages |
 | Single-file launcher | Built, payload checksum verified, extracted and executed `--version` successfully |
@@ -38,6 +39,6 @@ Package and system-service operations are simulated in the local suite. The game
 
 Game SQL firewall forwarding, boot/Docker restart ordering and full cross-host physical restore still require the clean-VPS procedure. The host registration tests record commands and validate PHP syntax; they do not substitute for an actual Panel installation.
 
-The online bootstrap transport is simulated against the exact expected GitHub URL layout, then the real selected archive/Python preview runs. No files were pushed to GitHub. The public URL must be checked after uploading this project to `main`; a local fixture does not establish publication.
+The local bootstrap suite uses GitHub transport fixtures. After publication to `main`, `python3 tests/published_check.py` also verified the actual public GitHub downloads in all three languages and subsequent verified language changes against commit `df9998de60897979ebf220f9a01a256c4666ceca`. See [published check output](published-checks.txt). These checks run only previews and temporary code; complete service deployment on a clean VPS remains untested.
 
 See [ShellCheck output](shellcheck.txt), [local output](local-tests.txt), [test procedure](../docs/TESTING.md), and [UI previews](../docs/preview-en.txt).
