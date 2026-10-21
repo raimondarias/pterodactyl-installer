@@ -1,0 +1,2152 @@
+{
+  "La API redirige la petición. Introduce la URL final del Panel.": {
+    "en": "The API redirected the request. Enter the Panel's final URL.",
+    "es": "La API redirige la petición. Introduce la URL final del Panel.",
+    "pt-BR": "A API redirecionou a solicitação. Informe a URL final do Painel."
+  },
+  "No se escribe sobre un enlace simbólico: {value1}": {
+    "en": "Refusing to write through a symbolic link: {value1}",
+    "es": "No se escribe sobre un enlace simbólico: {value1}",
+    "pt-BR": "Não é possível gravar por um link simbólico: {value1}"
+  },
+  "Iniciando Docker": {
+    "en": "Starting Docker",
+    "es": "Iniciando Docker",
+    "pt-BR": "Iniciando o Docker"
+  },
+  "Verificando Docker": {
+    "en": "Checking Docker",
+    "es": "Verificando Docker",
+    "pt-BR": "Verificando o Docker"
+  },
+  "Versión de {value1} (auto busca la más reciente compatible)": {
+    "en": "{value1} version (auto finds the latest compatible release)",
+    "es": "Versión de {value1} (auto busca la más reciente compatible)",
+    "pt-BR": "Versão de {value1} (auto busca a versão compatível mais recente)"
+  },
+  "Versión elegida: {value1}": {
+    "en": "Selected release: {value1}",
+    "es": "Versión elegida: {value1}",
+    "pt-BR": "Versão selecionada: {value1}"
+  },
+  "¿Activar HTTPS automático de Let's Encrypt?": {
+    "en": "Enable automatic HTTPS with Let's Encrypt?",
+    "es": "¿Activar HTTPS automático de Let's Encrypt?",
+    "pt-BR": "Ativar HTTPS automático com Let's Encrypt?"
+  },
+  "Correo de administración/Let's Encrypt": {
+    "en": "Administration / Let's Encrypt email",
+    "es": "Correo de administración/Let's Encrypt",
+    "pt-BR": "E-mail de administração / Let's Encrypt"
+  },
+  "Zona horaria": {
+    "en": "Timezone",
+    "es": "Zona horaria",
+    "pt-BR": "Fuso horário"
+  },
+  "IP de escucha (IPv4)": {
+    "en": "Listen IPv4 address",
+    "es": "IP de escucha (IPv4)",
+    "pt-BR": "Endereço IPv4 de escuta"
+  },
+  "¿Configurar correo SMTP ahora?": {
+    "en": "Set up SMTP email now?",
+    "es": "¿Configurar correo SMTP ahora?",
+    "pt-BR": "Configurar o e-mail SMTP agora?"
+  },
+  "INSTALAR PANEL": {
+    "en": "INSTALL PANEL",
+    "es": "INSTALAR PANEL",
+    "pt-BR": "INSTALAR PAINEL"
+  },
+  "Preparando base de datos y Redis": {
+    "en": "Preparing the database and Redis",
+    "es": "Preparando base de datos y Redis",
+    "pt-BR": "Preparando o banco de dados e o Redis"
+  },
+  "Manteniendo el Panel detenido durante las migraciones": {
+    "en": "Keeping the Panel offline during migrations",
+    "es": "Manteniendo el Panel detenido durante las migraciones",
+    "pt-BR": "Mantendo o Painel offline durante as migrações"
+  },
+  "Migraciones y eggs oficiales": {
+    "en": "Running migrations and installing official eggs",
+    "es": "Migraciones y eggs oficiales",
+    "pt-BR": "Executando migrações e instalando os eggs oficiais"
+  },
+  "Iniciando Panel, colas y scheduler": {
+    "en": "Starting the Panel, queue worker and scheduler",
+    "es": "Iniciando Panel, colas y scheduler",
+    "pt-BR": "Iniciando o Painel, a fila e o agendador"
+  },
+  "Panel disponible: {value1}": {
+    "en": "Panel is available: {value1}",
+    "es": "Panel disponible: {value1}",
+    "pt-BR": "Painel disponível: {value1}"
+  },
+  "Guarda fuera del servidor una copia de data/var/.env (APP_KEY y HASHIDS_SALT).": {
+    "en": "Keep an off-server copy of data/var/.env (APP_KEY and HASHIDS_SALT).",
+    "es": "Guarda fuera del servidor una copia de data/var/.env (APP_KEY y HASHIDS_SALT).",
+    "pt-BR": "Guarde fora do servidor uma cópia de data/var/.env (APP_KEY e HASHIDS_SALT)."
+  },
+  "INSTALAR WINGS": {
+    "en": "INSTALL WINGS",
+    "es": "INSTALAR WINGS",
+    "pt-BR": "INSTALAR WINGS"
+  },
+  "Binario Wings instalado y verificado. Falta vincular el nodo.": {
+    "en": "Wings binary installed and verified. Link the node to continue.",
+    "es": "Binario Wings instalado y verificado. Falta vincular el nodo.",
+    "pt-BR": "Binário do Wings instalado e verificado. Vincule o node para continuar."
+  },
+  "¿Vincular Wings al Panel ahora?": {
+    "en": "Link Wings to the Panel now?",
+    "es": "¿Vincular Wings al Panel ahora?",
+    "pt-BR": "Vincular o Wings ao Painel agora?"
+  },
+  "En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration.": {
+    "en": "In the Panel: Admin → Locations → create a location; Nodes → create a node → Configuration.",
+    "es": "En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration.",
+    "pt-BR": "No Painel: Admin → Locations → crie uma localização; Nodes → crie um node → Configuration."
+  },
+  "Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo.": {
+    "en": "Set the domain, API/SFTP ports, memory, disk and allocations using the node's IP.",
+    "es": "Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo.",
+    "pt-BR": "Defina domínio, portas da API/SFTP, memória, disco e allocations com o IP do node."
+  },
+  "El token solicitado es el de Auto-Deploy; se introducirá oculto.": {
+    "en": "Use the Auto-Deploy token. Your input will be hidden.",
+    "es": "El token solicitado es el de Auto-Deploy; se introducirá oculto.",
+    "pt-BR": "Use o token Auto-Deploy. A digitação ficará oculta."
+  },
+  "ID numérico del nodo": {
+    "en": "Numeric node ID",
+    "es": "ID numérico del nodo",
+    "pt-BR": "ID numérico do node"
+  },
+  "Token Auto-Deploy": {
+    "en": "Auto-Deploy token",
+    "es": "Token Auto-Deploy",
+    "pt-BR": "Token Auto-Deploy"
+  },
+  "CONFIGURAR WINGS": {
+    "en": "CONFIGURE WINGS",
+    "es": "CONFIGURAR WINGS",
+    "pt-BR": "CONFIGURAR WINGS"
+  },
+  "Si el Panel usa HTTPS, activa SSL en el nodo y emite su certificado antes de iniciar.": {
+    "en": "If the Panel uses HTTPS, enable SSL on the node and issue its certificate before starting.",
+    "es": "Si el Panel usa HTTPS, activa SSL en el nodo y emite su certificado antes de iniciar.",
+    "pt-BR": "Se o Painel usa HTTPS, ative SSL no node e emita o certificado antes de iniciar."
+  },
+  "¿Emitir certificado SSL para Wings ahora?": {
+    "en": "Issue an HTTPS certificate for Wings now?",
+    "es": "¿Emitir certificado SSL para Wings ahora?",
+    "pt-BR": "Emitir um certificado HTTPS para o Wings agora?"
+  },
+  "Activando Wings": {
+    "en": "Enabling Wings",
+    "es": "Activando Wings",
+    "pt-BR": "Ativando o Wings"
+  },
+  "Iniciando Wings con la configuración actual": {
+    "en": "Starting Wings with its current configuration",
+    "es": "Iniciando Wings con la configuración actual",
+    "pt-BR": "Iniciando o Wings com a configuração atual"
+  },
+  "Wings está activo. Comprueba que el nodo aparece conectado en el Panel.": {
+    "en": "Wings is active. Check that the node is connected in the Panel.",
+    "es": "Wings está activo. Comprueba que el nodo aparece conectado en el Panel.",
+    "pt-BR": "Wings ativo. Verifique se o node está conectado no Painel."
+  },
+  "Dominio de Wings, ej. node.ejemplo.com": {
+    "en": "Wings domain, e.g. node.example.com",
+    "es": "Dominio de Wings, ej. node.ejemplo.com",
+    "pt-BR": "Domínio do Wings, ex.: node.exemplo.com"
+  },
+  "Correo Let's Encrypt": {
+    "en": "Let's Encrypt email",
+    "es": "Correo Let's Encrypt",
+    "pt-BR": "E-mail do Let's Encrypt"
+  },
+  "En Configuration del nodo activa SSL y usa estas rutas:": {
+    "en": "Enable SSL in the node's Configuration and use these paths:",
+    "es": "En Configuration del nodo activa SSL y usa estas rutas:",
+    "pt-BR": "Ative SSL na Configuration do node e use estes caminhos:"
+  },
+  "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem": {
+    "en": "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem",
+    "es": "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem",
+    "pt-BR": "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem"
+  },
+  "El dominio debe apuntar a este host y permitir desafíos HTTP en el puerto 80.": {
+    "en": "The domain must point here and allow HTTP challenges on port 80.",
+    "es": "El dominio debe apuntar a este host y permitir desafíos HTTP en el puerto 80.",
+    "pt-BR": "O domínio deve apontar para este host e permitir desafios HTTP na porta 80."
+  },
+  "EMITIR SSL WINGS": {
+    "en": "ISSUE WINGS SSL",
+    "es": "EMITIR SSL WINGS",
+    "pt-BR": "EMITIR SSL WINGS"
+  },
+  "Actualizando APT": {
+    "en": "Updating APT",
+    "es": "Actualizando APT",
+    "pt-BR": "Atualizando o APT"
+  },
+  "Instalando Certbot": {
+    "en": "Installing Certbot",
+    "es": "Instalando Certbot",
+    "pt-BR": "Instalando o Certbot"
+  },
+  "Certificado emitido. Vuelve a sincronizar la configuración si cambiaste SSL en el Panel.": {
+    "en": "Certificate issued. Synchronize Wings again if you changed SSL in the Panel.",
+    "es": "Certificado emitido. Vuelve a sincronizar la configuración si cambiaste SSL en el Panel.",
+    "pt-BR": "Certificado emitido. Sincronize o Wings novamente se alterou o SSL no Painel."
+  },
+  "Configuración de Wings guardada: {value1}": {
+    "en": "Wings configuration saved: {value1}",
+    "es": "Configuración de Wings guardada: {value1}",
+    "pt-BR": "Configuração do Wings salva: {value1}"
+  },
+  "RESTAURAR PANEL": {
+    "en": "RESTORE PANEL",
+    "es": "RESTAURAR PANEL",
+    "pt-BR": "RESTAURAR PAINEL"
+  },
+  "Panel restaurado. Mantén el dominio/IP original o adapta DNS y configuración.": {
+    "en": "Panel restored. Keep the original domain/IP or update DNS and configuration.",
+    "es": "Panel restaurado. Mantén el dominio/IP original o adapta DNS y configuración.",
+    "pt-BR": "Painel restaurado. Mantenha o domínio/IP original ou atualize o DNS e a configuração."
+  },
+  "ACTUALIZAR PANEL": {
+    "en": "UPDATE PANEL",
+    "es": "ACTUALIZAR PANEL",
+    "pt-BR": "ATUALIZAR PAINEL"
+  },
+  "Deteniendo Panel para actualizar": {
+    "en": "Stopping the Panel for its update",
+    "es": "Deteniendo Panel para actualizar",
+    "pt-BR": "Parando o Painel para atualizar"
+  },
+  "Panel actualizado y comprobado por el healthcheck oficial.": {
+    "en": "Panel updated and checked with the official healthcheck.",
+    "es": "Panel actualizado y comprobado por el healthcheck oficial.",
+    "pt-BR": "Painel atualizado e verificado pelo healthcheck oficial."
+  },
+  "ACTUALIZAR WINGS": {
+    "en": "UPDATE WINGS",
+    "es": "ACTUALIZAR WINGS",
+    "pt-BR": "ATUALIZAR WINGS"
+  },
+  "Wings actualizado; los contenedores de juegos se conservan.": {
+    "en": "Wings updated. Game containers are preserved.",
+    "es": "Wings actualizado; los contenedores de juegos se conservan.",
+    "pt-BR": "Wings atualizado. Os contêineres dos jogos foram preservados."
+  },
+  "¿Borrar también base de datos y archivos del Panel? (antes se crea backup)": {
+    "en": "Also delete the Panel database and files? A backup is created first.",
+    "es": "¿Borrar también base de datos y archivos del Panel? (antes se crea backup)",
+    "pt-BR": "Excluir também o banco e os arquivos do Painel? Um backup será criado antes."
+  },
+  "Eliminando solo contenedores y red de este Panel": {
+    "en": "Removing only this Panel's containers and network",
+    "es": "Eliminando solo contenedores y red de este Panel",
+    "pt-BR": "Removendo apenas os contêineres e a rede deste Painel"
+  },
+  "Panel desinstalado. Backup: {value1}": {
+    "en": "Panel uninstalled. Backup: {value1}",
+    "es": "Panel desinstalado. Backup: {value1}",
+    "pt-BR": "Painel desinstalado. Backup: {value1}"
+  },
+  "Los juegos y sus contenedores seguirán existiendo. Apágalos desde el Panel si lo necesitas.": {
+    "en": "Game files and containers will remain. Stop them from the Panel if needed.",
+    "es": "Los juegos y sus contenedores seguirán existiendo. Apágalos desde el Panel si lo necesitas.",
+    "pt-BR": "Os arquivos e contêineres dos jogos serão mantidos. Desligue-os pelo Painel se necessário."
+  },
+  "Deteniendo y deshabilitando Wings": {
+    "en": "Stopping and disabling Wings",
+    "es": "Deteniendo y deshabilitando Wings",
+    "pt-BR": "Parando e desativando o Wings"
+  },
+  "Wings desinstalado. Archivos de juegos, Docker y certificados conservados.": {
+    "en": "Wings removed. Game files, Docker and certificates are preserved.",
+    "es": "Wings desinstalado. Archivos de juegos, Docker y certificados conservados.",
+    "pt-BR": "Wings removido. Arquivos dos jogos, Docker e certificados foram preservados."
+  },
+  "DESINSTALAR PANEL Y WINGS": {
+    "en": "UNINSTALL PANEL AND WINGS",
+    "es": "DESINSTALAR PANEL Y WINGS",
+    "pt-BR": "DESINSTALAR PAINEL E WINGS"
+  },
+  "Log privado: {value1}": {
+    "en": "Private log: {value1}",
+    "es": "Log privado: {value1}",
+    "pt-BR": "Log privado: {value1}"
+  },
+  "REINICIAR SERVICIOS": {
+    "en": "RESTART SERVICES",
+    "es": "REINICIAR SERVICIOS",
+    "pt-BR": "REINICIAR SERVIÇOS"
+  },
+  "CAMBIAR SMTP": {
+    "en": "CHANGE SMTP",
+    "es": "CAMBIAR SMTP",
+    "pt-BR": "ALTERAR SMTP"
+  },
+  "Aplicando SMTP": {
+    "en": "Applying SMTP settings",
+    "es": "Aplicando SMTP",
+    "pt-BR": "Aplicando as configurações SMTP"
+  },
+  "Permite en el firewall del proveedor y del host:": {
+    "en": "Allow these ports in your provider and host firewalls:",
+    "es": "Permite en el firewall del proveedor y del host:",
+    "pt-BR": "Libere estas portas nos firewalls do provedor e do host:"
+  },
+  "Panel: TCP 80/443. Wings: TCP 8080 (o el puerto del nodo) y TCP 2022 para SFTP.": {
+    "en": "Panel: TCP 80/443. Wings: TCP 8080 (or your node's API port) and TCP 2022 for SFTP.",
+    "es": "Panel: TCP 80/443. Wings: TCP 8080 (o el puerto del nodo) y TCP 2022 para SFTP.",
+    "pt-BR": "Painel: TCP 80/443. Wings: TCP 8080 (ou a porta da API do node) e TCP 2022 para SFTP."
+  },
+  "Juegos: sus allocations TCP/UDP. SSH: conserva tu puerto de administración.": {
+    "en": "Games: their TCP/UDP allocations. Keep your SSH administration port open.",
+    "es": "Juegos: sus allocations TCP/UDP. SSH: conserva tu puerto de administración.",
+    "pt-BR": "Jogos: suas allocations TCP/UDP. Mantenha a porta de administração SSH aberta."
+  },
+  "Docker publica puertos mediante sus propias reglas; usa DOCKER-USER/nftables para restringirlos.": {
+    "en": "Docker publishes ports using its own rules; restrict them with DOCKER-USER/nftables.",
+    "es": "Docker publica puertos mediante sus propias reglas; usa DOCKER-USER/nftables para restringirlos.",
+    "pt-BR": "O Docker publica portas com regras próprias; restrinja-as com DOCKER-USER/nftables."
+  },
+  "No se activan firewalls ni se cambian reglas automáticamente.": {
+    "en": "Firewalls and their rules are not changed automatically.",
+    "es": "No se activan firewalls ni se cambian reglas automáticamente.",
+    "pt-BR": "Os firewalls e suas regras não são alterados automaticamente."
+  },
+  "La API no devolvió una configuración de nodo válida.": {
+    "en": "The API did not return a valid node configuration.",
+    "es": "La API no devolvió una configuración de nodo válida.",
+    "pt-BR": "A API não retornou uma configuração válida do node."
+  },
+  "No se puede leer JSON: {value1}: {value3}": {
+    "en": "Unable to read JSON: {value1}: {value3}",
+    "es": "No se puede leer JSON: {value1}: {value3}",
+    "pt-BR": "Não foi possível ler o JSON: {value1}: {value3}"
+  },
+  "Valor no válido. Inténtalo otra vez.": {
+    "en": "Invalid value. Please try again.",
+    "es": "Valor no válido. Inténtalo otra vez.",
+    "pt-BR": "Valor inválido. Tente novamente."
+  },
+  "Escribe {value1} para continuar": {
+    "en": "Type {value1} to continue",
+    "es": "Escribe {value1} para continuar",
+    "pt-BR": "Digite {value1} para continuar"
+  },
+  "Operación cancelada.": {
+    "en": "Operation cancelled.",
+    "es": "Operación cancelada.",
+    "pt-BR": "Operação cancelada."
+  },
+  "→ {value1}": {
+    "en": "→ {value1}",
+    "es": "→ {value1}",
+    "pt-BR": "→ {value1}"
+  },
+  "La instalación o copia no pertenece a este instalador.": {
+    "en": "This installation or backup does not belong to this installer.",
+    "es": "La instalación o copia no pertenece a este instalador.",
+    "pt-BR": "Esta instalação ou backup não pertence a este instalador."
+  },
+  "Ejecuta con sudo o como root.": {
+    "en": "Run with sudo or as root.",
+    "es": "Ejecuta con sudo o como root.",
+    "pt-BR": "Execute com sudo ou como root."
+  },
+  "Sistemas admitidos: Ubuntu 22.04/24.04/26.04 y Debian 12/13.": {
+    "en": "Supported systems: Ubuntu 22.04/24.04/26.04 and Debian 12/13.",
+    "es": "Sistemas admitidos: Ubuntu 22.04/24.04/26.04 y Debian 12/13.",
+    "pt-BR": "Sistemas compatíveis: Ubuntu 22.04/24.04/26.04 e Debian 12/13."
+  },
+  "Arquitectura admitida: amd64 o arm64.": {
+    "en": "Supported architecture: amd64 or arm64.",
+    "es": "Arquitectura admitida: amd64 o arm64.",
+    "pt-BR": "Arquitetura compatível: amd64 ou arm64."
+  },
+  "Se necesita un VPS/servidor con systemd como sistema de inicio.": {
+    "en": "A server/VPS running systemd is required.",
+    "es": "Se necesita un VPS/servidor con systemd como sistema de inicio.",
+    "pt-BR": "É necessário um servidor/VPS com systemd."
+  },
+  "Se necesitan al menos 4 GiB libres para las imágenes y la instalación.": {
+    "en": "At least 4 GiB of free space is required for images and installation.",
+    "es": "Se necesitan al menos 4 GiB libres para las imágenes y la instalación.",
+    "pt-BR": "São necessários pelo menos 4 GiB livres para imagens e instalação."
+  },
+  "Se instalará Docker Engine/Compose desde el repositorio oficial de Docker.": {
+    "en": "Docker Engine/Compose will be installed from Docker's official repository.",
+    "es": "Se instalará Docker Engine/Compose desde el repositorio oficial de Docker.",
+    "pt-BR": "O Docker Engine/Compose será instalado pelo repositório oficial do Docker."
+  },
+  "Actualizando índices APT": {
+    "en": "Updating APT indexes",
+    "es": "Actualizando índices APT",
+    "pt-BR": "Atualizando os índices do APT"
+  },
+  "Dependencias de Docker": {
+    "en": "Docker prerequisites",
+    "es": "Dependencias de Docker",
+    "pt-BR": "Pré-requisitos do Docker"
+  },
+  "Consultando repositorio Docker": {
+    "en": "Checking the Docker repository",
+    "es": "Consultando repositorio Docker",
+    "pt-BR": "Consultando o repositório do Docker"
+  },
+  "Instalando Docker y Compose": {
+    "en": "Installing Docker and Compose",
+    "es": "Instalando Docker y Compose",
+    "pt-BR": "Instalando o Docker e o Compose"
+  },
+  "GitHub no devolvió una release compatible.": {
+    "en": "GitHub did not return a compatible release.",
+    "es": "GitHub no devolvió una release compatible.",
+    "pt-BR": "O GitHub não retornou uma versão compatível."
+  },
+  "Instalación beta cancelada.": {
+    "en": "Beta installation cancelled.",
+    "es": "Instalación beta cancelada.",
+    "pt-BR": "Instalação beta cancelada."
+  },
+  "La imagen descargada no tiene un digest verificable.": {
+    "en": "The downloaded image does not have a verifiable digest.",
+    "es": "La imagen descargada no tiene un digest verificable.",
+    "pt-BR": "A imagem baixada não tem um digest verificável."
+  },
+  "HTTPS automático requiere un dominio y puerto público 443.": {
+    "en": "Automatic HTTPS requires a domain and public port 443.",
+    "es": "HTTPS automático requiere un dominio y puerto público 443.",
+    "pt-BR": "HTTPS automático exige um domínio e a porta pública 443."
+  },
+  "El dominio debe resolver a este servidor; los puertos TCP 80/443 deben ser accesibles.": {
+    "en": "The domain must resolve to this server; TCP ports 80/443 must be reachable.",
+    "es": "El dominio debe resolver a este servidor; los puertos TCP 80/443 deben ser accesibles.",
+    "pt-BR": "O domínio deve resolver para este servidor; as portas TCP 80/443 devem estar acessíveis."
+  },
+  "El puerto de la URL debe coincidir con el puerto HTTP elegido.": {
+    "en": "The URL port must match the selected HTTP port.",
+    "es": "El puerto de la URL debe coincidir con el puerto HTTP elegido.",
+    "pt-BR": "A porta da URL deve corresponder à porta HTTP selecionada."
+  },
+  "El correo quedará en modo log; configúralo en el menú para enviar recuperaciones.": {
+    "en": "Email is in log mode. Configure SMTP from the menu to send recovery emails.",
+    "es": "El correo quedará en modo log; configúralo en el menú para enviar recuperaciones.",
+    "pt-BR": "O e-mail está no modo log. Configure o SMTP pelo menu para enviar e-mails de recuperação."
+  },
+  "Instalación gestionada existente: {value1}, {value3}.": {
+    "en": "Existing managed installation: {value1}, {value3}.",
+    "es": "Instalación gestionada existente: {value1}, {value3}.",
+    "pt-BR": "Instalação gerenciada existente: {value1}, {value3}."
+  },
+  "REANUDAR PANEL": {
+    "en": "RESUME PANEL",
+    "es": "REANUDAR PANEL",
+    "pt-BR": "RETOMAR PAINEL"
+  },
+  "Crea el administrador en el asistente oficial (elige Yes para administrador).": {
+    "en": "Create an administrator in the official wizard (select Yes for administrator).",
+    "es": "Crea el administrador en el asistente oficial (elige Yes para administrador).",
+    "pt-BR": "Crie um administrador no assistente oficial (selecione Yes para administrador)."
+  },
+  "GitHub no publica un SHA-256 para este binario; se cancela la descarga.": {
+    "en": "GitHub does not publish a SHA-256 for this binary. Download cancelled.",
+    "es": "GitHub no publica un SHA-256 para este binario; se cancela la descarga.",
+    "pt-BR": "O GitHub não publica um SHA-256 para este binário. Download cancelado."
+  },
+  "La descarga de Wings no corresponde al repositorio oficial.": {
+    "en": "The Wings download does not match the official repository.",
+    "es": "La descarga de Wings no corresponde al repositorio oficial.",
+    "pt-BR": "O download do Wings não corresponde ao repositório oficial."
+  },
+  "Comprobando ejecutable Wings": {
+    "en": "Checking the Wings executable",
+    "es": "Comprobando ejecutable Wings",
+    "pt-BR": "Verificando o executável do Wings"
+  },
+  "Instalación de Wings interrumpida: se reparará la versión registrada.": {
+    "en": "Interrupted Wings installation: repairing its recorded version.",
+    "es": "Instalación de Wings interrumpida: se reparará la versión registrada.",
+    "pt-BR": "Instalação do Wings interrompida: reparando a versão registrada."
+  },
+  "Wings queda detenido hasta completar «Configurar Wings».": {
+    "en": "Wings remains stopped until you complete Configure Wings.",
+    "es": "Wings queda detenido hasta completar «Configurar Wings».",
+    "pt-BR": "O Wings ficará parado até concluir Configurar Wings."
+  },
+  "Se genera una configuración nueva. Reaplica tus ajustes manuales desde la copia si los necesitas.": {
+    "en": "A fresh configuration will be generated. Reapply manual host settings from the backup if needed.",
+    "es": "Se genera una configuración nueva. Reaplica tus ajustes manuales desde la copia si los necesitas.",
+    "pt-BR": "Uma nova configuração será gerada. Reaplique os ajustes manuais do host pelo backup se necessário."
+  },
+  "Comprobando estabilidad inicial de Wings": {
+    "en": "Checking initial Wings stability",
+    "es": "Comprobando estabilidad inicial de Wings",
+    "pt-BR": "Verificando a estabilidade inicial do Wings"
+  },
+  "El Panel se pausará brevemente al emitir/renovar este certificado para liberar el puerto 80.": {
+    "en": "The Panel will pause briefly during certificate issuance/renewal to release port 80.",
+    "es": "El Panel se pausará brevemente al emitir/renovar este certificado para liberar el puerto 80.",
+    "pt-BR": "O Painel será pausado brevemente ao emitir/renovar o certificado para liberar a porta 80."
+  },
+  "Emitiendo certificado Wings": {
+    "en": "Issuing the Wings certificate",
+    "es": "Emitiendo certificado Wings",
+    "pt-BR": "Emitindo o certificado do Wings"
+  },
+  "Backup creado: {value1} (contiene secretos; guárdalo fuera del servidor)": {
+    "en": "Backup created: {value1} (contains secrets; keep an off-server copy)",
+    "es": "Backup creado: {value1} (contiene secretos; guárdalo fuera del servidor)",
+    "pt-BR": "Backup criado: {value1} (contém segredos; guarde uma cópia fora do servidor)"
+  },
+  "Ruta absoluta al backup .tar.gz": {
+    "en": "Absolute path to the .tar.gz backup",
+    "es": "Ruta absoluta al backup .tar.gz",
+    "pt-BR": "Caminho absoluto do backup .tar.gz"
+  },
+  "Falta el archivo .sha256 del backup.": {
+    "en": "The backup's .sha256 file is missing.",
+    "es": "Falta el archivo .sha256 del backup.",
+    "pt-BR": "O arquivo .sha256 do backup está ausente."
+  },
+  "El checksum del backup no coincide.": {
+    "en": "Backup checksum does not match.",
+    "es": "El checksum del backup no coincide.",
+    "pt-BR": "O checksum do backup não corresponde."
+  },
+  "El destino debe estar vacío. Desinstala/purga el Panel actual después de respaldarlo.": {
+    "en": "The target must be empty. Back up and uninstall/purge the current Panel first.",
+    "es": "El destino debe estar vacío. Desinstala/purga el Panel actual después de respaldarlo.",
+    "pt-BR": "O destino deve estar vazio. Faça backup e desinstale/remova os dados do Painel atual antes."
+  },
+  "Descargando imágenes originales de la copia": {
+    "en": "Downloading the backup's original images",
+    "es": "Descargando imágenes originales de la copia",
+    "pt-BR": "Baixando as imagens originais do backup"
+  },
+  "Arrancando Panel restaurado": {
+    "en": "Starting the restored Panel",
+    "es": "Arrancando Panel restaurado",
+    "pt-BR": "Iniciando o Painel restaurado"
+  },
+  "Completa/reanuda primero la instalación actual del Panel.": {
+    "en": "Complete/resume the current Panel installation first.",
+    "es": "Completa/reanuda primero la instalación actual del Panel.",
+    "pt-BR": "Conclua/retome a instalação atual do Painel primeiro."
+  },
+  "Ya tienes esa versión.": {
+    "en": "This version is already installed.",
+    "es": "Ya tienes esa versión.",
+    "pt-BR": "Esta versão já está instalada."
+  },
+  "No se permiten downgrades del Panel; restaura un backup de esa versión.": {
+    "en": "Panel downgrades are not allowed. Restore a backup from that version.",
+    "es": "No se permiten downgrades del Panel; restaura un backup de esa versión.",
+    "pt-BR": "Downgrades do Painel não são permitidos. Restaure um backup daquela versão."
+  },
+  "Aplicando migraciones de la versión nueva": {
+    "en": "Applying the new release's migrations",
+    "es": "Aplicando migraciones de la versión nueva",
+    "pt-BR": "Aplicando as migrações da nova versão"
+  },
+  "Verificando nuevo Panel": {
+    "en": "Checking the updated Panel",
+    "es": "Verificando nuevo Panel",
+    "pt-BR": "Verificando o Painel atualizado"
+  },
+  "DESINSTALAR PANEL": {
+    "en": "UNINSTALL PANEL",
+    "es": "DESINSTALAR PANEL",
+    "pt-BR": "DESINSTALAR PAINEL"
+  },
+  "BORRAR PANEL": {
+    "en": "DELETE PANEL",
+    "es": "BORRAR PANEL",
+    "pt-BR": "EXCLUIR PAINEL"
+  },
+  "Datos conservados. «Instalar Panel» permite reactivarlo.": {
+    "en": "Data preserved. Install Panel can reactivate it.",
+    "es": "Datos conservados. «Instalar Panel» permite reactivarlo.",
+    "pt-BR": "Dados preservados. Instalar Painel pode reativá-lo."
+  },
+  "DESINSTALAR WINGS": {
+    "en": "UNINSTALL WINGS",
+    "es": "DESINSTALAR WINGS",
+    "pt-BR": "DESINSTALAR WINGS"
+  },
+  "{value0}: {value2}": {
+    "en": "{value0}: {value2}",
+    "es": "{value0}: {value2}",
+    "pt-BR": "{value0}: {value2}"
+  },
+  "Panel {value1}: {value3}, {value5}": {
+    "en": "Panel {value1}: {value3}, {value5}",
+    "es": "Panel {value1}: {value3}, {value5}",
+    "pt-BR": "Painel {value1}: {value3}, {value5}"
+  },
+  "Wings {value1}: {value3}": {
+    "en": "Wings {value1}: {value3}",
+    "es": "Wings {value1}: {value3}",
+    "pt-BR": "Wings {value1}: {value3}"
+  },
+  "Hay servicios detenidos o comprobaciones fallidas. Revisa «Ver registros».": {
+    "en": "Some services are stopped or checks failed. Open View logs.",
+    "es": "Hay servicios detenidos o comprobaciones fallidas. Revisa «Ver registros».",
+    "pt-BR": "Alguns serviços estão parados ou falharam nas verificações. Abra Ver logs."
+  },
+  "Reiniciando Panel": {
+    "en": "Restarting the Panel",
+    "es": "Reiniciando Panel",
+    "pt-BR": "Reiniciando o Painel"
+  },
+  "\n╔════════════════════════════════════════════╗\n║   PTERODACTYL v2 · PANEL + WINGS           ║\n╚════════════════════════════════════════════╝": {
+    "en": "PTERODACTYL v2 · PANEL + WINGS",
+    "es": "\n╔════════════════════════════════════════════╗\n║   PTERODACTYL v2 · PANEL + WINGS           ║\n╚════════════════════════════════════════════╝",
+    "pt-BR": "PTERODACTYL v2 · PAINEL + WINGS"
+  },
+  "Instalador independiente · interfaz en español · v2 beta": {
+    "en": "Independent installer · Panel v2 beta",
+    "es": "Instalador independiente · interfaz en español · v2 beta",
+    "pt-BR": "Instalador independente · Painel v2 beta"
+  },
+  "Opción": {
+    "en": "Choose an option",
+    "es": "Opción",
+    "pt-BR": "Escolha uma opção"
+  },
+  "\nOperación interrumpida. Conserva el registro y reanuda desde el menú.": {
+    "en": "Interrupted. Keep the log and resume from the menu.",
+    "es": "\nOperación interrumpida. Conserva el registro y reanuda desde el menú.",
+    "pt-BR": "Interrompido. Guarde o log e retome pelo menu."
+  },
+  "Backup con entrada no permitida: {value1}": {
+    "en": "Backup contains a forbidden entry: {value1}",
+    "es": "Backup con entrada no permitida: {value1}",
+    "pt-BR": "O backup contém uma entrada não permitida: {value1}"
+  },
+  "Falló {value1} (código {value3}).\n{value5}": {
+    "en": "Failed: {value1} (exit code {value3}).\n{value5}",
+    "es": "Falló {value1} (código {value3}).\n{value5}",
+    "pt-BR": "Falha: {value1} (código {value3}).\n{value5}"
+  },
+  "Se recomiendan al menos 2 GiB de RAM, más la memoria de tus juegos.": {
+    "en": "At least 2 GiB RAM is recommended, plus memory for your games.",
+    "es": "Se recomiendan al menos 2 GiB de RAM, más la memoria de tus juegos.",
+    "pt-BR": "São recomendados pelo menos 2 GiB de RAM, além da memória dos jogos."
+  },
+  "Wings requiere Docker en un host compatible; virtualización: {value1}.": {
+    "en": "Wings requires Docker on a compatible host; virtualization: {value1}.",
+    "es": "Wings requiere Docker en un host compatible; virtualización: {value1}.",
+    "pt-BR": "O Wings exige Docker em um host compatível; virtualização: {value1}."
+  },
+  "Clave del repositorio Docker no válida.": {
+    "en": "Invalid Docker repository signing key.",
+    "es": "Clave del repositorio Docker no válida.",
+    "pt-BR": "Chave de assinatura inválida do repositório do Docker."
+  },
+  "No se pudo determinar el codename de APT.": {
+    "en": "Unable to detect the APT distribution codename.",
+    "es": "No se pudo determinar el codename de APT.",
+    "pt-BR": "Não foi possível detectar o codinome da distribuição APT."
+  },
+  "Respuesta remota demasiado grande.": {
+    "en": "Remote response is too large.",
+    "es": "Respuesta remota demasiado grande.",
+    "pt-BR": "A resposta remota é grande demais."
+  },
+  "No se pudo descargar {value1}: {value3}": {
+    "en": "Unable to download {value1}: {value3}",
+    "es": "No se pudo descargar {value1}: {value3}",
+    "pt-BR": "Não foi possível baixar {value1}: {value3}"
+  },
+  "No hay releases oficiales compatibles para {value1}.": {
+    "en": "No compatible official releases found for {value1}.",
+    "es": "No hay releases oficiales compatibles para {value1}.",
+    "pt-BR": "Nenhuma versão oficial compatível encontrada para {value1}."
+  },
+  "Versión no válida o de otra rama principal.": {
+    "en": "Invalid version or unsupported major release.",
+    "es": "Versión no válida o de otra rama principal.",
+    "pt-BR": "Versão inválida ou versão principal incompatível."
+  },
+  "Es una versión de pruebas. ¿Continuar?": {
+    "en": "This is a prerelease. Continue?",
+    "es": "Es una versión de pruebas. ¿Continuar?",
+    "pt-BR": "Esta é uma versão de testes. Continuar?"
+  },
+  "Puerto {value1}:{value3} ocupado o no disponible.": {
+    "en": "Port {value1}:{value3} is occupied or unavailable.",
+    "es": "Puerto {value1}:{value3} ocupado o no disponible.",
+    "pt-BR": "A porta {value1}:{value3} está ocupada ou indisponível."
+  },
+  "URL del Panel, ej. https://panel.ejemplo.com": {
+    "en": "Panel URL, e.g. https://panel.example.com",
+    "es": "URL del Panel, ej. https://panel.ejemplo.com",
+    "pt-BR": "URL do Painel, ex.: https://panel.exemplo.com"
+  },
+  "¿DNS y acceso a 80/443 preparados?": {
+    "en": "Are DNS and access to ports 80/443 ready?",
+    "es": "¿DNS y acceso a 80/443 preparados?",
+    "pt-BR": "O DNS e o acesso às portas 80/443 estão prontos?"
+  },
+  "Prepara el dominio antes de emitir el certificado.": {
+    "en": "Prepare the domain before issuing the certificate.",
+    "es": "Prepara el dominio antes de emitir el certificado.",
+    "pt-BR": "Prepare o domínio antes de emitir o certificado."
+  },
+  "Puerto HTTP local": {
+    "en": "Local HTTP port",
+    "es": "Puerto HTTP local",
+    "pt-BR": "Porta HTTP local"
+  },
+  "Host SMTP": {
+    "en": "SMTP host",
+    "es": "Host SMTP",
+    "pt-BR": "Host SMTP"
+  },
+  "Puerto SMTP": {
+    "en": "SMTP port",
+    "es": "Puerto SMTP",
+    "pt-BR": "Porta SMTP"
+  },
+  "Usuario SMTP": {
+    "en": "SMTP username",
+    "es": "Usuario SMTP",
+    "pt-BR": "Usuário SMTP"
+  },
+  "Contraseña SMTP": {
+    "en": "SMTP password",
+    "es": "Contraseña SMTP",
+    "pt-BR": "Senha SMTP"
+  },
+  "Cifrado SMTP (tls/ssl/null)": {
+    "en": "SMTP encryption (tls/ssl/null)",
+    "es": "Cifrado SMTP (tls/ssl/null)",
+    "pt-BR": "Criptografia SMTP (tls/ssl/null)"
+  },
+  "Restauración SQL incompleta. Conserva el backup y repite la restauración en un destino vacío.": {
+    "en": "SQL restore incomplete. Keep the backup and retry in an empty target.",
+    "es": "Restauración SQL incompleta. Conserva el backup y repite la restauración en un destino vacío.",
+    "pt-BR": "Restauração SQL incompleta. Guarde o backup e tente novamente em um destino vazio."
+  },
+  "El Panel ya está instalado. Usa actualizar, reiniciar o configurar SMTP.": {
+    "en": "Panel already installed. Use update, restart or SMTP settings.",
+    "es": "El Panel ya está instalado. Usa actualizar, reiniciar o configurar SMTP.",
+    "pt-BR": "Painel já instalado. Use atualizar, reiniciar ou configurar SMTP."
+  },
+  "El directorio de destino contiene archivos sin registro; no se sobrescriben.": {
+    "en": "The target contains unregistered files. They will not be overwritten.",
+    "es": "El directorio de destino contiene archivos sin registro; no se sobrescriben.",
+    "pt-BR": "O destino contém arquivos não registrados. Eles não serão sobrescritos."
+  },
+  "Descargando y verificando Wings": {
+    "en": "Downloading and verifying Wings",
+    "es": "Descargando y verificando Wings",
+    "pt-BR": "Baixando e verificando o Wings"
+  },
+  "El SHA-256 de Wings no coincide. No se ejecutará el archivo.": {
+    "en": "Wings SHA-256 mismatch. The file will not be executed.",
+    "es": "El SHA-256 de Wings no coincide. No se ejecutará el archivo.",
+    "pt-BR": "O SHA-256 do Wings não corresponde. O arquivo não será executado."
+  },
+  "Wings ya está gestionado ({value1}). Usa configurar o actualizar.": {
+    "en": "Wings is already managed ({value1}). Use configure or update.",
+    "es": "Wings ya está gestionado ({value1}). Usa configurar o actualizar.",
+    "pt-BR": "O Wings já é gerenciado ({value1}). Use configurar ou atualizar."
+  },
+  "Hay una instalación de Wings ajena a este script; no se sobrescribe.": {
+    "en": "An unmanaged Wings installation exists. It will not be overwritten.",
+    "es": "Hay una instalación de Wings ajena a este script; no se sobrescribe.",
+    "pt-BR": "Existe uma instalação do Wings não gerenciada. Ela não será sobrescrita."
+  },
+  "URL del Panel": {
+    "en": "Panel URL",
+    "es": "URL del Panel",
+    "pt-BR": "URL do Painel"
+  },
+  "HTTP transmite el token sin cifrar. ¿Es una red privada de confianza?": {
+    "en": "HTTP sends this token without encryption. Is this a trusted private network?",
+    "es": "HTTP transmite el token sin cifrar. ¿Es una red privada de confianza?",
+    "pt-BR": "HTTP envia o token sem criptografia. Esta é uma rede privada confiável?"
+  },
+  "Utiliza HTTPS para vincular el nodo.": {
+    "en": "Use HTTPS to link the node.",
+    "es": "Utiliza HTTPS para vincular el nodo.",
+    "pt-BR": "Use HTTPS para vincular o node."
+  },
+  "Obteniendo configuración del nodo": {
+    "en": "Fetching the node configuration",
+    "es": "Obteniendo configuración del nodo",
+    "pt-BR": "Obtendo a configuração do node"
+  },
+  "Configuración del nodo demasiado grande.": {
+    "en": "Node configuration is too large.",
+    "es": "Configuración del nodo demasiado grande.",
+    "pt-BR": "A configuração do node é grande demais."
+  },
+  "No se pudo obtener la configuración. Comprueba URL, ID y token Auto-Deploy.": {
+    "en": "Unable to fetch configuration. Check the Panel URL, node ID and Auto-Deploy token.",
+    "es": "No se pudo obtener la configuración. Comprueba URL, ID y token Auto-Deploy.",
+    "pt-BR": "Não foi possível obter a configuração. Verifique a URL do Painel, o ID do node e o token Auto-Deploy."
+  },
+  "Liberando puerto 80 para el certificado del nodo": {
+    "en": "Releasing port 80 for the node certificate",
+    "es": "Liberando puerto 80 para el certificado del nodo",
+    "pt-BR": "Liberando a porta 80 para o certificado do node"
+  },
+  "El archivo no es un backup de Panel.": {
+    "en": "This file is not a Panel backup.",
+    "es": "El archivo no es un backup de Panel.",
+    "pt-BR": "Este arquivo não é um backup do Painel."
+  },
+  "La copia no contiene SQL y claves originales del Panel.": {
+    "en": "The backup is missing SQL or the Panel's original keys.",
+    "es": "La copia no contiene SQL y claves originales del Panel.",
+    "pt-BR": "O backup não contém o SQL ou as chaves originais do Painel."
+  },
+  "Restaurando SQL con sus claves originales": {
+    "en": "Restoring SQL with its original application keys",
+    "es": "Restaurando SQL con sus claves originales",
+    "pt-BR": "Restaurando o SQL com suas chaves originais"
+  },
+  "Actualización incompleta. Panel detenido; copia de recuperación: {value1}": {
+    "en": "Update incomplete. Panel stopped. Recovery backup: {value1}",
+    "es": "Actualización incompleta. Panel detenido; copia de recuperación: {value1}",
+    "pt-BR": "Atualização incompleta. Painel parado. Backup de recuperação: {value1}"
+  },
+  "Ruta de borrado no segura.": {
+    "en": "Unsafe removal path.",
+    "es": "Ruta de borrado no segura.",
+    "pt-BR": "Caminho de remoção inseguro."
+  },
+  "El Panel no está listo; reanuda la instalación/actualización primero.": {
+    "en": "The Panel is not ready. Resume its installation/update first.",
+    "es": "El Panel no está listo; reanuda la instalación/actualización primero.",
+    "pt-BR": "O Painel não está pronto. Retome a instalação/atualização primeiro."
+  },
+  "Backup con enlace externo: {value1}": {
+    "en": "Backup contains an external link: {value1}",
+    "es": "Backup con enlace externo: {value1}",
+    "pt-BR": "O backup contém um link externo: {value1}"
+  },
+  "Backup con hardlink sin archivo original anterior.": {
+    "en": "Backup hardlink does not reference an earlier regular file.",
+    "es": "Backup con hardlink sin archivo original anterior.",
+    "pt-BR": "O hardlink do backup não referencia um arquivo regular anterior."
+  },
+  "Backup con enlace que escapa del destino.": {
+    "en": "Backup contains a link outside the target directory.",
+    "es": "Backup con enlace que escapa del destino.",
+    "pt-BR": "O backup contém um link para fora do diretório de destino."
+  },
+  "Entrada cerrada. No se ha confirmado la operación.": {
+    "en": "Input closed. The operation was not confirmed.",
+    "es": "Entrada cerrada. No se ha confirmado la operación.",
+    "pt-BR": "Entrada fechada. A operação não foi confirmada."
+  },
+  "La operación no se ha completado. Log: {value1}": {
+    "en": "The operation did not complete. Log: {value1}",
+    "es": "La operación no se ha completado. Log: {value1}",
+    "pt-BR": "A operação não foi concluída. Log: {value1}"
+  },
+  "Hay otro instalador en ejecución.": {
+    "en": "Another installer is already running.",
+    "es": "Hay otro instalador en ejecución.",
+    "pt-BR": "Outro instalador já está em execução."
+  },
+  "Backup con ciclo de enlaces.": {
+    "en": "Backup contains a symbolic link cycle.",
+    "es": "Backup con ciclo de enlaces.",
+    "pt-BR": "O backup contém um ciclo de links simbólicos."
+  },
+  "No se pudo ejecutar {value1}: {value3}": {
+    "en": "Unable to execute {value1}: {value3}",
+    "es": "No se pudo ejecutar {value1}: {value3}",
+    "pt-BR": "Não foi possível executar {value1}: {value3}"
+  },
+  "Pausando Panel para una copia consistente": {
+    "en": "Pausing the Panel for a consistent backup",
+    "es": "Pausando Panel para una copia consistente",
+    "pt-BR": "Pausando o Painel para um backup consistente"
+  },
+  "Exportando base de datos": {
+    "en": "Exporting the database",
+    "es": "Exportando base de datos",
+    "pt-BR": "Exportando o banco de dados"
+  },
+  "El dump SQL está vacío; no se acepta la copia.": {
+    "en": "SQL dump is empty; the backup was not accepted.",
+    "es": "El dump SQL está vacío; no se acepta la copia.",
+    "pt-BR": "O dump SQL está vazio; o backup não foi aceito."
+  },
+  "Pausando Redis para guardar las colas": {
+    "en": "Pausing Redis to preserve queued jobs",
+    "es": "Pausando Redis para guardar las colas",
+    "pt-BR": "Pausando o Redis para preservar as tarefas da fila"
+  },
+  "Comprimiendo configuración, claves y datos": {
+    "en": "Compressing configuration, original keys and data",
+    "es": "Comprimiendo configuración, claves y datos",
+    "pt-BR": "Comprimindo a configuração, as chaves originais e os dados"
+  },
+  "P T E R O   /   I N S T A L L E R": {
+    "en": "P T E R O   /   I N S T A L L E R",
+    "es": "P T E R O   /   I N S T A L A D O R",
+    "pt-BR": "P T E R O   /   I N S T A L A D O R"
+  },
+  "Panel v2  ·  Wings  ·  Ubuntu / Debian": {
+    "en": "Panel v2  ·  Wings  ·  Ubuntu / Debian",
+    "es": "Panel v2  ·  Wings  ·  Ubuntu / Debian",
+    "pt-BR": "Painel v2  ·  Wings  ·  Ubuntu / Debian"
+  },
+  "Install. Configure. Maintain.": {
+    "en": "Install. Configure. Maintain.",
+    "es": "Instala. Configura. Mantén.",
+    "pt-BR": "Instale. Configure. Mantenha."
+  },
+  "A guided setup, from the first question to your first server.": {
+    "en": "A guided setup, from the first question to your first server.",
+    "es": "Instalación guiada, desde la primera pregunta hasta tu primer servidor.",
+    "pt-BR": "Instalação guiada, da primeira pergunta ao seu primeiro servidor."
+  },
+  "Input closed. The operation was not confirmed.": {
+    "en": "Input closed. The operation was not confirmed.",
+    "es": "Entrada cerrada. La operación no se ha confirmado.",
+    "pt-BR": "Entrada fechada. A operação não foi confirmada."
+  },
+  "Invalid value. Please try again.": {
+    "en": "Invalid value. Please try again.",
+    "es": "Valor no válido. Inténtalo otra vez.",
+    "pt-BR": "Valor inválido. Tente novamente."
+  },
+  "Type {phrase} to continue": {
+    "en": "Type {phrase} to continue",
+    "es": "Escribe {phrase} para continuar",
+    "pt-BR": "Digite {phrase} para continuar"
+  },
+  "Operation cancelled.": {
+    "en": "Operation cancelled.",
+    "es": "Operación cancelada.",
+    "pt-BR": "Operação cancelada."
+  },
+  "Choose an option": {
+    "en": "Choose an option",
+    "es": "Elige una opción",
+    "pt-BR": "Escolha uma opção"
+  },
+  "First administrator": {
+    "en": "First administrator",
+    "es": "Primer administrador",
+    "pt-BR": "Primeiro administrador"
+  },
+  "Your password is hidden and is never stored in the installer's state.": {
+    "en": "Your password is hidden and is never stored in the installer's state.",
+    "es": "La contraseña se introduce oculta y no se guarda en el estado del instalador.",
+    "pt-BR": "A senha fica oculta e nunca é salva no estado do instalador."
+  },
+  "Administrator email": {
+    "en": "Administrator email",
+    "es": "Correo del administrador",
+    "pt-BR": "E-mail do administrador"
+  },
+  "Administrator username": {
+    "en": "Administrator username",
+    "es": "Nombre de usuario del administrador",
+    "pt-BR": "Nome de usuário do administrador"
+  },
+  "Administrator password (12+ characters; empty generates one)": {
+    "en": "Administrator password (12+ characters; empty generates one)",
+    "es": "Contraseña del administrador (12+ caracteres; vacía genera una)",
+    "pt-BR": "Senha do administrador (12+ caracteres; vazia gera uma)"
+  },
+  "Administrator password (12+ characters)": {
+    "en": "Administrator password (12+ characters)",
+    "es": "Contraseña del administrador (12+ caracteres)",
+    "pt-BR": "Senha do administrador (12+ caracteres)"
+  },
+  "Choose your installation": {
+    "en": "Choose your installation",
+    "es": "Elige tu instalación",
+    "pt-BR": "Escolha sua instalação"
+  },
+  "Setup experience": {
+    "en": "Setup experience",
+    "es": "Tipo de asistente",
+    "pt-BR": "Tipo de assistente"
+  },
+  "Simple (Recommended)": {
+    "en": "Simple (Recommended)",
+    "es": "Simple (Recomendado)",
+    "pt-BR": "Simples (Recomendado)"
+  },
+  "Essential questions, sensible defaults": {
+    "en": "Essential questions, sensible defaults",
+    "es": "Preguntas esenciales y valores predeterminados adecuados",
+    "pt-BR": "Perguntas essenciais e valores padrão adequados"
+  },
+  "Advanced": {
+    "en": "Advanced",
+    "es": "Avanzado",
+    "pt-BR": "Avançado"
+  },
+  "Versions, ports, PHP, email and network settings": {
+    "en": "Versions, ports, PHP, email and network settings",
+    "es": "Versiones, puertos, PHP, correo y opciones de red",
+    "pt-BR": "Versões, portas, PHP, e-mail e configurações de rede"
+  },
+  "Panel deployment": {
+    "en": "Panel deployment",
+    "es": "Instalación del Panel",
+    "pt-BR": "Instalação do Painel"
+  },
+  "Docker (Recommended)": {
+    "en": "Docker (Recommended)",
+    "es": "Docker (Recomendado)",
+    "pt-BR": "Docker (Recomendado)"
+  },
+  "Standalone (Recommended)": {
+    "en": "Standalone (Recommended)",
+    "es": "Standalone (Recomendado)",
+    "pt-BR": "Standalone (Recomendado)"
+  },
+  "Which language would you like to use?": {
+    "en": "Which language would you like to use?",
+    "es": "¿Qué idioma deseas usar?",
+    "pt-BR": "Qual idioma você deseja usar?"
+  },
+  "The language download source is missing. Restart the online installer to choose another language.": {
+    "en": "The language download source is missing. Restart the online installer to choose another language.",
+    "es": "Falta el origen de descarga del idioma. Reinicia el instalador en línea para elegir otro idioma.",
+    "pt-BR": "A origem do download do idioma não está disponível. Reinicie o instalador online para escolher outro idioma."
+  },
+  "The requested language is not in this distribution.": {
+    "en": "The requested language is not in this distribution.",
+    "es": "El idioma solicitado no está en esta distribución.",
+    "pt-BR": "O idioma solicitado não está nesta distribuição."
+  },
+  "The selected language could not be downloaded or verified. Your current language is unchanged.": {
+    "en": "The selected language could not be downloaded or verified. Your current language is unchanged.",
+    "es": "No se pudo descargar o verificar el idioma seleccionado. Se mantiene tu idioma actual.",
+    "pt-BR": "Não foi possível baixar ou verificar o idioma selecionado. Seu idioma atual foi mantido."
+  },
+  "Confirm administrator password": {
+    "en": "Confirm administrator password",
+    "es": "Confirmar contraseña del administrador",
+    "pt-BR": "Confirmar senha do administrador"
+  },
+  "Confirm database host password": {
+    "en": "Confirm database host password",
+    "es": "Confirmar contraseña del host de bases de datos",
+    "pt-BR": "Confirmar senha do host de banco de dados"
+  },
+  "Docker": {
+    "en": "Docker",
+    "es": "Docker",
+    "pt-BR": "Docker"
+  },
+  "Game database host": {
+    "en": "Game database host",
+    "es": "Host de bases de datos para juegos",
+    "pt-BR": "Host de bancos de dados dos jogos"
+  },
+  "One engine selection for Panel and games.": {
+    "en": "One engine selection for Panel and games.",
+    "es": "Una sola elección de motor para el Panel y los juegos.",
+    "pt-BR": "Uma única escolha de mecanismo para o Painel e os jogos."
+  },
+  "Game databases use separate credentials. Each game gets its own database from the Panel.": {
+    "en": "Game databases use separate credentials. Each game gets its own database from the Panel.",
+    "es": "Las bases de juegos usan credenciales separadas. Cada juego obtiene su propia base desde el Panel.",
+    "pt-BR": "Os bancos dos jogos usam credenciais separadas. Cada jogo recebe seu próprio banco pelo Painel."
+  },
+  "Where are the game databases?": {
+    "en": "Where are the game databases?",
+    "es": "¿Dónde estarán las bases de los juegos?",
+    "pt-BR": "Onde ficarão os bancos dos jogos?"
+  },
+  "Local node (isolated Docker database)": {
+    "en": "Local node (isolated Docker database)",
+    "es": "Nodo local (base de datos Docker aislada)",
+    "pt-BR": "Node local (banco de dados Docker isolado)"
+  },
+  "Same machine only; private bridge, no public SQL port": {
+    "en": "Same machine only; private bridge, no public SQL port",
+    "es": "Solo en esta máquina; red privada, sin puerto SQL público",
+    "pt-BR": "Somente nesta máquina; rede privada, sem porta SQL pública"
+  },
+  "Existing database host": {
+    "en": "Existing database host",
+    "es": "Host de bases de datos existente",
+    "pt-BR": "Host de banco de dados existente"
+  },
+  "Register a database server already prepared on another machine": {
+    "en": "Register a database server already prepared on another machine",
+    "es": "Registrar un servidor de bases de datos ya preparado en otra máquina",
+    "pt-BR": "Registrar um servidor de banco de dados já preparado em outra máquina"
+  },
+  "Configure later": {
+    "en": "Configure later",
+    "es": "Configurar después",
+    "pt-BR": "Configurar depois"
+  },
+  "Skip game databases; configure them later from the menu": {
+    "en": "Skip game databases; configure them later from the menu",
+    "es": "Omitir las bases de juegos; configurarlas después desde el menú",
+    "pt-BR": "Pular os bancos dos jogos; configurar depois pelo menu"
+  },
+  "Reusing the local database instance and its saved credentials.": {
+    "en": "Reusing the local database instance and its saved credentials.",
+    "es": "Se reutiliza la instancia local con sus credenciales guardadas.",
+    "pt-BR": "Reutilizando a instância local e suas credenciais salvas."
+  },
+  "The address must be reachable from both the Panel and game containers. Never use localhost for a remote node.": {
+    "en": "The address must be reachable from both the Panel and game containers. Never use localhost for a remote node.",
+    "es": "La dirección debe ser accesible desde el Panel y los contenedores de juegos. Nunca uses localhost para un nodo remoto.",
+    "pt-BR": "O endereço deve ser acessível pelo Painel e pelos contêineres dos jogos. Nunca use localhost para um node remoto."
+  },
+  "Game database hostname / IPv4": {
+    "en": "Game database hostname / IPv4",
+    "es": "Nombre de host / IPv4 de las bases de juegos",
+    "pt-BR": "Hostname / IPv4 do banco dos jogos"
+  },
+  "Game database port": {
+    "en": "Game database port",
+    "es": "Puerto de las bases de juegos",
+    "pt-BR": "Porta do banco dos jogos"
+  },
+  "Database host provisioning username": {
+    "en": "Database host provisioning username",
+    "es": "Usuario del host para crear bases de juegos",
+    "pt-BR": "Usuário do host para criar bancos dos jogos"
+  },
+  "Database host provisioning password": {
+    "en": "Database host provisioning password",
+    "es": "Contraseña del host para crear bases de juegos",
+    "pt-BR": "Senha do host para criar bancos dos jogos"
+  },
+  "Prepare the remote SQL grants, private routing and firewall first; the installer will test the connection before registration.": {
+    "en": "Prepare the remote SQL grants, private routing and firewall first; the installer will test the connection before registration.",
+    "es": "Prepara primero los permisos SQL remotos, la ruta privada y el firewall; el instalador comprobará la conexión antes de registrar el host.",
+    "pt-BR": "Prepare primeiro as permissões SQL remotas, a rota privada e o firewall; o instalador testará a conexão antes de registrar o host."
+  },
+  "Database host display name": {
+    "en": "Database host display name",
+    "es": "Nombre visible del host de bases de datos",
+    "pt-BR": "Nome de exibição do host de banco de dados"
+  },
+  "Database host password (16+ characters; empty generates one)": {
+    "en": "Database host password (16+ characters; empty generates one)",
+    "es": "Contraseña del host (16+ caracteres; vacía genera una)",
+    "pt-BR": "Senha do host (16+ caracteres; deixe vazia para gerar)"
+  },
+  "Existing node ID (0 = global / node not created yet)": {
+    "en": "Existing node ID (0 = global / node not created yet)",
+    "es": "ID del nodo existente (0 = global / nodo aún no creado)",
+    "pt-BR": "ID do node existente (0 = global / node ainda não criado)"
+  },
+  "A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.": {
+    "en": "A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.",
+    "es": "Ya existe una base de juegos local. Reutiliza sus credenciales; cambiar su motor o contraseña requiere una migración aparte.",
+    "pt-BR": "Já existe um banco de jogos local. Reutilize suas credenciais; alterar o mecanismo ou a senha exige uma migração separada."
+  },
+  "The managed game database network is missing.": {
+    "en": "The managed game database network is missing.",
+    "es": "Falta la red gestionada de las bases de juegos.",
+    "pt-BR": "A rede gerenciada dos bancos dos jogos não existe."
+  },
+  "Creating the private game database network": {
+    "en": "Creating the private game database network",
+    "es": "Creando la red privada de las bases de juegos",
+    "pt-BR": "Criando a rede privada dos bancos dos jogos"
+  },
+  "The game database network is not an owned private IPv4 bridge.": {
+    "en": "The game database network is not an owned private IPv4 bridge.",
+    "es": "La red de las bases de juegos no es un bridge IPv4 privado de este instalador.",
+    "pt-BR": "A rede dos bancos dos jogos não é uma bridge IPv4 privada deste instalador."
+  },
+  "Local game databases require Docker's iptables DOCKER-USER chain. Use an existing private SQL host with this Docker firewall backend.": {
+    "en": "Local game databases require Docker's iptables DOCKER-USER chain. Use an existing private SQL host with this Docker firewall backend.",
+    "es": "Las bases de juegos locales requieren la cadena DOCKER-USER de iptables. Con este backend de firewall usa un host SQL privado existente.",
+    "pt-BR": "Os bancos de jogos locais exigem a cadeia DOCKER-USER do iptables. Com este backend de firewall use um host SQL privado existente."
+  },
+  "Restricting game SQL to local container bridges": {
+    "en": "Restricting game SQL to local container bridges",
+    "es": "Restringiendo SQL de juegos a los bridges locales",
+    "pt-BR": "Restringindo SQL dos jogos às bridges locais"
+  },
+  "The private database gateway changed. Restore its original network before proceeding.": {
+    "en": "The private database gateway changed. Restore its original network before proceeding.",
+    "es": "Cambió la puerta de enlace privada de la base de datos. Restaura su red original antes de continuar.",
+    "pt-BR": "O gateway privado do banco mudou. Restaure a rede original antes de continuar."
+  },
+  "Unmanaged game database files exist; nothing was overwritten.": {
+    "en": "Unmanaged game database files exist; nothing was overwritten.",
+    "es": "Existen archivos de bases de juegos ajenos al instalador; no se sobrescribieron.",
+    "pt-BR": "Existem arquivos de bancos de jogos não gerenciados; nada foi sobrescrito."
+  },
+  "Starting the isolated game database": {
+    "en": "Starting the isolated game database",
+    "es": "Iniciando la base de datos aislada para juegos",
+    "pt-BR": "Iniciando o banco de dados isolado dos jogos"
+  },
+  "Registering the game database host in the Panel": {
+    "en": "Registering the game database host in the Panel",
+    "es": "Registrando el host de bases de juegos en el Panel",
+    "pt-BR": "Registrando o host de bancos dos jogos no Painel"
+  },
+  "The Panel did not return a valid database host ID.": {
+    "en": "The Panel did not return a valid database host ID.",
+    "es": "El Panel no devolvió un ID de host de bases de datos válido.",
+    "pt-BR": "O Painel não retornou um ID de host de banco de dados válido."
+  },
+  "The Panel is installed. Database host setup is incomplete; rerun Install Panel to retry, or configure it from the database menu.": {
+    "en": "The Panel is installed. Database host setup is incomplete; rerun Install Panel to retry, or configure it from the database menu.",
+    "es": "El Panel está instalado. Falta completar el host de bases de juegos; vuelve a Instalar Panel para reintentarlo o configúralo desde el menú de bases de datos.",
+    "pt-BR": "O Painel está instalado. A configuração do host de bancos dos jogos está incompleta; execute Instalar Painel para tentar novamente ou configure pelo menu de bancos de dados."
+  },
+  "No registered game database host is saved.": {
+    "en": "No registered game database host is saved.",
+    "es": "No hay ningún host de bases de juegos registrado y guardado.",
+    "pt-BR": "Nenhum host de bancos dos jogos registrado foi salvo."
+  },
+  "No managed local game database exists. Back up remote SQL on its own host.": {
+    "en": "No managed local game database exists. Back up remote SQL on its own host.",
+    "es": "No existe una base de juegos local gestionada. Haz la copia del SQL remoto en su propio servidor.",
+    "pt-BR": "Não existe um banco de jogos local gerenciado. Faça o backup do SQL remoto no próprio servidor."
+  },
+  "Host: {value}": {
+    "en": "Host: {value}",
+    "es": "Host: {value}",
+    "pt-BR": "Host: {value}"
+  },
+  "Port: {value}": {
+    "en": "Port: {value}",
+    "es": "Puerto: {value}",
+    "pt-BR": "Porta: {value}"
+  },
+  "Username: {value}": {
+    "en": "Username: {value}",
+    "es": "Usuario: {value}",
+    "pt-BR": "Usuário: {value}"
+  },
+  "Password: {value}": {
+    "en": "Password: {value}",
+    "es": "Contraseña: {value}",
+    "pt-BR": "Senha: {value}"
+  },
+  "Private credentials file: {value}": {
+    "en": "Private credentials file: {value}",
+    "es": "Archivo privado de credenciales: {value}",
+    "pt-BR": "Arquivo privado de credenciais: {value}"
+  },
+  "Provisioning credentials are for the Panel only. Game users receive separate accounts.": {
+    "en": "Provisioning credentials are for the Panel only. Game users receive separate accounts.",
+    "es": "Las credenciales de gestión son solo para el Panel. Los usuarios de juegos reciben cuentas separadas.",
+    "pt-BR": "As credenciais de gerenciamento são apenas para o Painel. Os usuários dos jogos recebem contas separadas."
+  },
+  "Set each server's database limit above zero in the Panel before creating game databases.": {
+    "en": "Set each server's database limit above zero in the Panel before creating game databases.",
+    "es": "Establece un límite de bases de datos mayor que cero para cada servidor en el Panel antes de crear sus bases.",
+    "pt-BR": "Defina um limite de bancos de dados maior que zero para cada servidor no Painel antes de criar seus bancos."
+  },
+  "This private database address works only for nodes on this machine. Remote nodes need a reachable private database host.": {
+    "en": "This private database address works only for nodes on this machine. Remote nodes need a reachable private database host.",
+    "es": "Esta dirección privada sirve para los nodos de esta máquina. Los nodos remotos necesitan un host privado accesible.",
+    "pt-BR": "Este endereço privado serve para nodes nesta máquina. Nodes remotos precisam de um host privado acessível."
+  },
+  "Game database host is ready": {
+    "en": "Game database host is ready",
+    "es": "El host de bases de juegos está listo",
+    "pt-BR": "O host de bancos dos jogos está pronto"
+  },
+  "The local game database data directory is empty; no backup was created.": {
+    "en": "The local game database data directory is empty; no backup was created.",
+    "es": "El directorio de datos de las bases de juegos está vacío; no se creó una copia.",
+    "pt-BR": "O diretório dos bancos dos jogos está vazio; nenhum backup foi criado."
+  },
+  "Pausing game databases for a consistent physical backup": {
+    "en": "Pausing game databases for a consistent physical backup",
+    "es": "Pausando las bases de juegos para una copia física consistente",
+    "pt-BR": "Pausando os bancos dos jogos para um backup físico consistente"
+  },
+  "Game database backup: {value}": {
+    "en": "Game database backup: {value}",
+    "es": "Copia de las bases de juegos: {value}",
+    "pt-BR": "Backup dos bancos dos jogos: {value}"
+  },
+  "Physical backup: restore only with its original database image and private network; game queries pause during backup.": {
+    "en": "Physical backup: restore only with its original database image and private network; game queries pause during backup.",
+    "es": "Copia física: restaura solo con la imagen de base de datos y la red privada originales; las consultas de juegos se pausan durante la copia.",
+    "pt-BR": "Backup físico: restaure apenas com a imagem do banco e a rede privada originais; as consultas dos jogos pausam durante o backup."
+  },
+  "CONFIGURE DATABASE HOST": {
+    "en": "CONFIGURE DATABASE HOST",
+    "es": "CONFIGURAR HOST DE BASES DE DATOS",
+    "pt-BR": "CONFIGURAR HOST DE BANCO DE DADOS"
+  },
+  "Configure game database host": {
+    "en": "Configure game database host",
+    "es": "Configurar host de bases de juegos",
+    "pt-BR": "Configurar host de bancos dos jogos"
+  },
+  "Show database host credentials": {
+    "en": "Show database host credentials",
+    "es": "Ver credenciales del host de bases de datos",
+    "pt-BR": "Ver credenciais do host de banco de dados"
+  },
+  "Back up local game databases": {
+    "en": "Back up local game databases",
+    "es": "Crear copia de las bases de juegos locales",
+    "pt-BR": "Fazer backup dos bancos dos jogos locais"
+  },
+  "GAME DATABASES": {
+    "en": "GAME DATABASES",
+    "es": "BASES DE DATOS DE JUEGOS",
+    "pt-BR": "BANCOS DE DADOS DOS JOGOS"
+  },
+  "Game database host: {value}": {
+    "en": "Game database host: {value}",
+    "es": "Host de bases de juegos: {value}",
+    "pt-BR": "Host de bancos dos jogos: {value}"
+  },
+  "local": {
+    "en": "local",
+    "es": "local",
+    "pt-BR": "local"
+  },
+  "existing": {
+    "en": "existing",
+    "es": "existente",
+    "pt-BR": "existente"
+  },
+  "later": {
+    "en": "later",
+    "es": "después",
+    "pt-BR": "depois"
+  },
+  "Isolated Panel, database and Redis": {
+    "en": "Isolated Panel, database and Redis",
+    "es": "Panel, base de datos y Redis aislados",
+    "pt-BR": "Painel, banco de dados e Redis isolados"
+  },
+  "Standalone": {
+    "en": "Standalone",
+    "es": "Standalone",
+    "pt-BR": "Standalone"
+  },
+  "Native PHP, NGINX, database and Redis services": {
+    "en": "Native PHP, NGINX, database and Redis services",
+    "es": "Servicios nativos de PHP, NGINX, base de datos y Redis",
+    "pt-BR": "Serviços nativos de PHP, NGINX, banco de dados e Redis"
+  },
+  "Wings still uses Docker to run game servers.": {
+    "en": "Wings still uses Docker to run game servers.",
+    "es": "Wings sigue utilizando Docker para ejecutar los servidores de juegos.",
+    "pt-BR": "O Wings continua usando Docker para executar os servidores de jogos."
+  },
+  "Database engine": {
+    "en": "Database engine",
+    "es": "Motor de base de datos",
+    "pt-BR": "Motor de banco de dados"
+  },
+  "MariaDB (Recommended)": {
+    "en": "MariaDB (Recommended)",
+    "es": "MariaDB (Recomendado)",
+    "pt-BR": "MariaDB (Recomendado)"
+  },
+  "MariaDB 11.4 in Docker; compatible distribution packages natively": {
+    "en": "MariaDB 11.4 in Docker; compatible distribution packages natively",
+    "es": "MariaDB 11.4 en Docker; paquetes compatibles de la distribución en standalone",
+    "pt-BR": "MariaDB 11.4 no Docker; pacotes compatíveis da distribuição no standalone"
+  },
+  "MySQL": {
+    "en": "MySQL",
+    "es": "MySQL",
+    "pt-BR": "MySQL"
+  },
+  "MySQL 8.4 LTS in Docker; MySQL 8.x natively": {
+    "en": "MySQL 8.4 LTS in Docker; MySQL 8.x natively",
+    "es": "MySQL 8.4 LTS en Docker; MySQL 8.x en standalone",
+    "pt-BR": "MySQL 8.4 LTS no Docker; MySQL 8.x no standalone"
+  },
+  "Panel version (auto selects the latest compatible release)": {
+    "en": "Panel version (auto selects the latest compatible release)",
+    "es": "Versión del Panel (auto selecciona la última compatible)",
+    "pt-BR": "Versão do Painel (auto seleciona a compatível mais recente)"
+  },
+  "Panel v2 is a beta release. Continue?": {
+    "en": "Panel v2 is a beta release. Continue?",
+    "es": "Panel v2 es una versión beta. ¿Continuar?",
+    "pt-BR": "O Painel v2 é uma versão beta. Continuar?"
+  },
+  "Beta installation cancelled.": {
+    "en": "Beta installation cancelled.",
+    "es": "Instalación beta cancelada.",
+    "pt-BR": "Instalação beta cancelada."
+  },
+  "Address and connection": {
+    "en": "Address and connection",
+    "es": "Dirección y conexión",
+    "pt-BR": "Endereço e conexão"
+  },
+  "How will you access the Panel?": {
+    "en": "How will you access the Panel?",
+    "es": "¿Cómo accederás al Panel?",
+    "pt-BR": "Como você acessará o Painel?"
+  },
+  "Domain / subdomain (Recommended)": {
+    "en": "Domain / subdomain (Recommended)",
+    "es": "Dominio / subdominio (Recomendado)",
+    "pt-BR": "Domínio / subdomínio (Recomendado)"
+  },
+  "HTTPS with a free Let's Encrypt certificate": {
+    "en": "HTTPS with a free Let's Encrypt certificate",
+    "es": "HTTPS con un certificado gratuito de Let's Encrypt",
+    "pt-BR": "HTTPS com certificado gratuito do Let's Encrypt"
+  },
+  "Public machine IP": {
+    "en": "Public machine IP",
+    "es": "IP pública de la máquina",
+    "pt-BR": "IP público da máquina"
+  },
+  "HTTP only, no SSL certificate": {
+    "en": "HTTP only, no SSL certificate",
+    "es": "Solo HTTP, sin certificado SSL",
+    "pt-BR": "Somente HTTP, sem certificado SSL"
+  },
+  "Domain / subdomain (without http://)": {
+    "en": "Domain / subdomain (without http://)",
+    "es": "Dominio / subdominio (sin http://)",
+    "pt-BR": "Domínio / subdomínio (sem http://)"
+  },
+  "Enable HTTPS (Recommended)?": {
+    "en": "Enable HTTPS (Recommended)?",
+    "es": "¿Activar HTTPS (Recomendado)?",
+    "pt-BR": "Ativar HTTPS (Recomendado)?"
+  },
+  "Detecting the machine's public IPv4 address": {
+    "en": "Detecting the machine's public IPv4 address",
+    "es": "Detectando la dirección IPv4 pública de la máquina",
+    "pt-BR": "Detectando o endereço IPv4 público da máquina"
+  },
+  "Public IPv4 address of this machine": {
+    "en": "Public IPv4 address of this machine",
+    "es": "Dirección IPv4 pública de esta máquina",
+    "pt-BR": "Endereço IPv4 público desta máquina"
+  },
+  "Does DNS point here, with public TCP ports 80 and 443 reachable?": {
+    "en": "Does DNS point here, with public TCP ports 80 and 443 reachable?",
+    "es": "¿El DNS apunta aquí y los puertos TCP públicos 80 y 443 están accesibles?",
+    "pt-BR": "O DNS aponta para cá e as portas TCP públicas 80 e 443 estão acessíveis?"
+  },
+  "Prepare DNS and open the required ports, then run the wizard again.": {
+    "en": "Prepare DNS and open the required ports, then run the wizard again.",
+    "es": "Prepara el DNS y abre los puertos necesarios; después vuelve a ejecutar el asistente.",
+    "pt-BR": "Prepare o DNS e libere as portas necessárias; depois execute o assistente novamente."
+  },
+  "PHP version": {
+    "en": "PHP version",
+    "es": "Versión de PHP",
+    "pt-BR": "Versão do PHP"
+  },
+  "PHP 8.3 (Recommended)": {
+    "en": "PHP 8.3 (Recommended)",
+    "es": "PHP 8.3 (Recomendado)",
+    "pt-BR": "PHP 8.3 (Recomendado)"
+  },
+  "PHP 8.4": {
+    "en": "PHP 8.4",
+    "es": "PHP 8.4",
+    "pt-BR": "PHP 8.4"
+  },
+  "HTTP port": {
+    "en": "HTTP port",
+    "es": "Puerto HTTP",
+    "pt-BR": "Porta HTTP"
+  },
+  "Listen IPv4 address": {
+    "en": "Listen IPv4 address",
+    "es": "Dirección IPv4 de escucha",
+    "pt-BR": "Endereço IPv4 de escuta"
+  },
+  "Timezone": {
+    "en": "Timezone",
+    "es": "Zona horaria",
+    "pt-BR": "Fuso horário"
+  },
+  "Administrator and email": {
+    "en": "Administrator and email",
+    "es": "Administrador y correo",
+    "pt-BR": "Administrador e e-mail"
+  },
+  "Set up SMTP email now?": {
+    "en": "Set up SMTP email now?",
+    "es": "¿Configurar el correo SMTP ahora?",
+    "pt-BR": "Configurar o e-mail SMTP agora?"
+  },
+  "Email delivery is disabled until SMTP is configured from the menu.": {
+    "en": "Email delivery is disabled until SMTP is configured from the menu.",
+    "es": "El envío de correos estará desactivado hasta configurar SMTP desde el menú.",
+    "pt-BR": "O envio de e-mails ficará desativado até configurar o SMTP pelo menu."
+  },
+  "Review your installation": {
+    "en": "Review your installation",
+    "es": "Revisa tu instalación",
+    "pt-BR": "Revise sua instalação"
+  },
+  "Ready to install": {
+    "en": "Ready to install",
+    "es": "Listo para instalar",
+    "pt-BR": "Pronto para instalar"
+  },
+  "Deployment: {value}": {
+    "en": "Deployment: {value}",
+    "es": "Instalación: {value}",
+    "pt-BR": "Instalação: {value}"
+  },
+  "Database: {value}": {
+    "en": "Database: {value}",
+    "es": "Base de datos: {value}",
+    "pt-BR": "Banco de dados: {value}"
+  },
+  "Panel URL: {value}": {
+    "en": "Panel URL: {value}",
+    "es": "URL del Panel: {value}",
+    "pt-BR": "URL do Painel: {value}"
+  },
+  "Release: {value}": {
+    "en": "Release: {value}",
+    "es": "Versión: {value}",
+    "pt-BR": "Versão: {value}"
+  },
+  "Administrator: {value}": {
+    "en": "Administrator: {value}",
+    "es": "Administrador: {value}",
+    "pt-BR": "Administrador: {value}"
+  },
+  "Timezone: {value}": {
+    "en": "Timezone: {value}",
+    "es": "Zona horaria: {value}",
+    "pt-BR": "Fuso horário: {value}"
+  },
+  "INSTALL PANEL": {
+    "en": "INSTALL PANEL",
+    "es": "INSTALAR PANEL",
+    "pt-BR": "INSTALAR PAINEL"
+  },
+  "Save your generated password": {
+    "en": "Save your generated password",
+    "es": "Guarda tu contraseña generada",
+    "pt-BR": "Guarde sua senha gerada"
+  },
+  "Keep it in your password manager. It will not be written to a file.": {
+    "en": "Keep it in your password manager. It will not be written to a file.",
+    "es": "Guárdala en tu gestor de contraseñas. No se escribirá en un archivo.",
+    "pt-BR": "Guarde-a no seu gerenciador de senhas. Ela não será gravada em um arquivo."
+  },
+  "Creating the first administrator": {
+    "en": "Creating the first administrator",
+    "es": "Creando el primer administrador",
+    "pt-BR": "Criando o primeiro administrador"
+  },
+  "Installing standalone dependencies": {
+    "en": "Installing standalone dependencies",
+    "es": "Instalando las dependencias standalone",
+    "pt-BR": "Instalando as dependências standalone"
+  },
+  "Invalid repository signing key.": {
+    "en": "Invalid repository signing key.",
+    "es": "Clave de firma del repositorio no válida.",
+    "pt-BR": "Chave de assinatura do repositório inválida."
+  },
+  "Updating APT indexes": {
+    "en": "Updating APT indexes",
+    "es": "Actualizando los índices de APT",
+    "pt-BR": "Atualizando os índices do APT"
+  },
+  "Adding the PHP repository": {
+    "en": "Adding the PHP repository",
+    "es": "Añadiendo el repositorio de PHP",
+    "pt-BR": "Adicionando o repositório do PHP"
+  },
+  "Updating PHP packages": {
+    "en": "Updating PHP packages",
+    "es": "Actualizando los paquetes de PHP",
+    "pt-BR": "Atualizando os pacotes do PHP"
+  },
+  "Native MySQL on Debian requires amd64. Choose MariaDB or Docker on ARM64.": {
+    "en": "Native MySQL on Debian requires amd64. Choose MariaDB or Docker on ARM64.",
+    "es": "MySQL nativo en Debian requiere amd64. En ARM64 elige MariaDB o Docker.",
+    "pt-BR": "MySQL nativo no Debian exige amd64. No ARM64, escolha MariaDB ou Docker."
+  },
+  "Updating database packages": {
+    "en": "Updating database packages",
+    "es": "Actualizando los paquetes de la base de datos",
+    "pt-BR": "Atualizando os pacotes do banco de dados"
+  },
+  "Composer installer signature does not match.": {
+    "en": "Composer installer signature does not match.",
+    "es": "La firma del instalador de Composer no coincide.",
+    "pt-BR": "A assinatura do instalador do Composer não corresponde."
+  },
+  "Installing verified Composer 2": {
+    "en": "Installing verified Composer 2",
+    "es": "Instalando Composer 2 verificado",
+    "pt-BR": "Instalando o Composer 2 verificado"
+  },
+  "Provisioning the Panel database": {
+    "en": "Provisioning the Panel database",
+    "es": "Preparando la base de datos del Panel",
+    "pt-BR": "Preparando o banco de dados do Painel"
+  },
+  "The reserved ptero_panel database/user already exists and is not managed by this installation.": {
+    "en": "The reserved ptero_panel database/user already exists and is not managed by this installation.",
+    "es": "La base de datos o el usuario reservado ptero_panel ya existe y no pertenece a esta instalación.",
+    "pt-BR": "O banco ou usuário reservado ptero_panel já existe e não pertence a esta instalação."
+  },
+  "Invalid generated database password.": {
+    "en": "Invalid generated database password.",
+    "es": "La contraseña generada de la base de datos no es válida.",
+    "pt-BR": "A senha gerada do banco de dados é inválida."
+  },
+  "Existing .env is missing its original application keys. Restore a backup.": {
+    "en": "Existing .env is missing its original application keys. Restore a backup.",
+    "es": "El .env existente no contiene sus claves originales. Restaura una copia de seguridad.",
+    "pt-BR": "O .env existente não contém as chaves originais. Restaure um backup."
+  },
+  "The Panel release does not provide a SHA-256 digest.": {
+    "en": "The Panel release does not provide a SHA-256 digest.",
+    "es": "La versión del Panel no incluye un digest SHA-256.",
+    "pt-BR": "A versão do Painel não fornece um digest SHA-256."
+  },
+  "Unexpected Panel release download URL.": {
+    "en": "Unexpected Panel release download URL.",
+    "es": "La URL de descarga del Panel no es la esperada.",
+    "pt-BR": "A URL de download do Painel é inesperada."
+  },
+  "Downloading and verifying the Panel release": {
+    "en": "Downloading and verifying the Panel release",
+    "es": "Descargando y verificando la versión del Panel",
+    "pt-BR": "Baixando e verificando a versão do Painel"
+  },
+  "Panel archive exceeds the download size limit.": {
+    "en": "Panel archive exceeds the download size limit.",
+    "es": "El archivo del Panel supera el límite de descarga.",
+    "pt-BR": "O arquivo do Painel excede o limite de download."
+  },
+  "Panel archive checksum does not match.": {
+    "en": "Panel archive checksum does not match.",
+    "es": "El checksum del archivo del Panel no coincide.",
+    "pt-BR": "O checksum do arquivo do Painel não corresponde."
+  },
+  "The Panel archive is incomplete.": {
+    "en": "The Panel archive is incomplete.",
+    "es": "El archivo del Panel está incompleto.",
+    "pt-BR": "O arquivo do Painel está incompleto."
+  },
+  "Validating NGINX configuration": {
+    "en": "Validating NGINX configuration",
+    "es": "Validando la configuración de NGINX",
+    "pt-BR": "Validando a configuração do NGINX"
+  },
+  "Issuing the Panel HTTPS certificate": {
+    "en": "Issuing the Panel HTTPS certificate",
+    "es": "Emitiendo el certificado HTTPS del Panel",
+    "pt-BR": "Emitindo o certificado HTTPS do Painel"
+  },
+  "Installing verified PHP dependencies": {
+    "en": "Installing verified PHP dependencies",
+    "es": "Instalando dependencias PHP verificadas",
+    "pt-BR": "Instalando dependências PHP verificadas"
+  },
+  "Running Panel migrations": {
+    "en": "Running Panel migrations",
+    "es": "Ejecutando las migraciones del Panel",
+    "pt-BR": "Executando as migrações do Painel"
+  },
+  "Standalone Panel is ready: {url}": {
+    "en": "Standalone Panel is ready: {url}",
+    "es": "El Panel standalone está listo: {url}",
+    "pt-BR": "O Painel standalone está pronto: {url}"
+  },
+  "Starting queue worker and scheduler": {
+    "en": "Starting queue worker and scheduler",
+    "es": "Iniciando el trabajador de colas y el programador",
+    "pt-BR": "Iniciando o worker da fila e o agendador"
+  },
+  "Checking database migrations": {
+    "en": "Checking database migrations",
+    "es": "Comprobando las migraciones de la base de datos",
+    "pt-BR": "Verificando as migrações do banco de dados"
+  },
+  "The Panel returned an unexpected HTTP status: {value}": {
+    "en": "The Panel returned an unexpected HTTP status: {value}",
+    "es": "El Panel devolvió un estado HTTP inesperado: {value}",
+    "pt-BR": "O Painel retornou um status HTTP inesperado: {value}"
+  },
+  "Exporting the Panel database": {
+    "en": "Exporting the Panel database",
+    "es": "Exportando la base de datos del Panel",
+    "pt-BR": "Exportando o banco de dados do Painel"
+  },
+  "SQL dump is empty; the backup was not accepted.": {
+    "en": "SQL dump is empty; the backup was not accepted.",
+    "es": "El dump SQL está vacío; no se acepta la copia.",
+    "pt-BR": "O dump SQL está vazio; o backup não foi aceito."
+  },
+  "Compressing application, original keys and private Redis": {
+    "en": "Compressing application, original keys and private Redis",
+    "es": "Comprimiendo la aplicación, las claves originales y Redis privado",
+    "pt-BR": "Comprimindo a aplicação, as chaves originais e o Redis privado"
+  },
+  "Backup created: {path}": {
+    "en": "Backup created: {path}",
+    "es": "Copia creada: {path}",
+    "pt-BR": "Backup criado: {path}"
+  },
+  "The standalone application directory must be empty before restore.": {
+    "en": "The standalone application directory must be empty before restore.",
+    "es": "El directorio de la aplicación standalone debe estar vacío antes de restaurar.",
+    "pt-BR": "O diretório da aplicação standalone deve estar vazio antes de restaurar."
+  },
+  "Backup is missing the original .env or SQL dump.": {
+    "en": "Backup is missing the original .env or SQL dump.",
+    "es": "Falta el .env original o el dump SQL en la copia.",
+    "pt-BR": "O backup não contém o .env original ou o dump SQL."
+  },
+  "Restoring SQL with the original application keys": {
+    "en": "Restoring SQL with the original application keys",
+    "es": "Restaurando SQL con las claves originales de la aplicación",
+    "pt-BR": "Restaurando o SQL com as chaves originais da aplicação"
+  },
+  "Update incomplete. Panel remains in maintenance. Recovery backup: {path}": {
+    "en": "Update incomplete. Panel remains in maintenance. Recovery backup: {path}",
+    "es": "Actualización incompleta. El Panel sigue en mantenimiento. Copia de recuperación: {path}",
+    "pt-BR": "Atualização incompleta. O Painel continua em manutenção. Backup de recuperação: {path}"
+  },
+  "UNINSTALL PANEL": {
+    "en": "UNINSTALL PANEL",
+    "es": "DESINSTALAR PANEL",
+    "pt-BR": "DESINSTALAR PAINEL"
+  },
+  "Also delete the Panel application and database? A backup is created first.": {
+    "en": "Also delete the Panel application and database? A backup is created first.",
+    "es": "¿Borrar también la aplicación y la base de datos del Panel? Antes se crea una copia.",
+    "pt-BR": "Excluir também a aplicação e o banco do Painel? Um backup será criado antes."
+  },
+  "DELETE PANEL": {
+    "en": "DELETE PANEL",
+    "es": "BORRAR PANEL",
+    "pt-BR": "EXCLUIR PAINEL"
+  },
+  "Unsafe removal path.": {
+    "en": "Unsafe removal path.",
+    "es": "Ruta de borrado no segura.",
+    "pt-BR": "Caminho de remoção inseguro."
+  },
+  "Panel uninstalled. Backup: {path}": {
+    "en": "Panel uninstalled. Backup: {path}",
+    "es": "Panel desinstalado. Copia: {path}",
+    "pt-BR": "Painel desinstalado. Backup: {path}"
+  },
+  "Wings domain / subdomain": {
+    "en": "Wings domain / subdomain",
+    "es": "Dominio / subdominio de Wings",
+    "pt-BR": "Domínio / subdomínio do Wings"
+  },
+  "Let's Encrypt email": {
+    "en": "Let's Encrypt email",
+    "es": "Correo de Let's Encrypt",
+    "pt-BR": "E-mail do Let's Encrypt"
+  },
+  "ISSUE WINGS SSL": {
+    "en": "ISSUE WINGS SSL",
+    "es": "EMITIR SSL WINGS",
+    "pt-BR": "EMITIR SSL WINGS"
+  },
+  "Issuing the Wings HTTPS certificate": {
+    "en": "Issuing the Wings HTTPS certificate",
+    "es": "Emitiendo el certificado HTTPS de Wings",
+    "pt-BR": "Emitindo o certificado HTTPS do Wings"
+  },
+  "Wings certificate is ready. Synchronize the node configuration after changing SSL settings.": {
+    "en": "Wings certificate is ready. Synchronize the node configuration after changing SSL settings.",
+    "es": "El certificado de Wings está listo. Sincroniza la configuración del nodo si cambias el SSL.",
+    "pt-BR": "O certificado do Wings está pronto. Sincronize a configuração do node se alterar o SSL."
+  },
+  "The standalone application directory already exists; unmanaged files will not be overwritten.": {
+    "en": "The standalone application directory already exists; unmanaged files will not be overwritten.",
+    "es": "El directorio de la aplicación standalone ya existe; no se sobrescribirán archivos ajenos.",
+    "pt-BR": "O diretório da aplicação standalone já existe; arquivos não gerenciados não serão sobrescritos."
+  },
+  "A reserved standalone configuration already exists: {value}": {
+    "en": "A reserved standalone configuration already exists: {value}",
+    "es": "Ya existe una configuración reservada para standalone: {value}",
+    "pt-BR": "Já existe uma configuração reservada para standalone: {value}"
+  },
+  "Wings deployment": {
+    "en": "Wings deployment",
+    "es": "Instalación de Wings",
+    "pt-BR": "Instalação do Wings"
+  },
+  "Standalone daemon (Recommended)": {
+    "en": "Standalone daemon (Recommended)",
+    "es": "Servicio standalone (Recomendado)",
+    "pt-BR": "Serviço standalone (Recomendado)"
+  },
+  "A systemd service managing Docker game containers": {
+    "en": "A systemd service managing Docker game containers",
+    "es": "Un servicio systemd que gestiona los contenedores de juegos",
+    "pt-BR": "Um serviço systemd que gerencia os contêineres dos jogos"
+  },
+  "Docker container": {
+    "en": "Docker container",
+    "es": "Contenedor Docker",
+    "pt-BR": "Contêiner Docker"
+  },
+  "A Wings container with host networking and Docker socket access": {
+    "en": "A Wings container with host networking and Docker socket access",
+    "es": "Un contenedor Wings con red del host y acceso al socket Docker",
+    "pt-BR": "Um contêiner Wings com rede do host e acesso ao socket Docker"
+  },
+  "Wings container already installed. Use configure or update.": {
+    "en": "Wings container already installed. Use configure or update.",
+    "es": "El contenedor de Wings ya está instalado. Usa configurar o actualizar.",
+    "pt-BR": "O contêiner do Wings já está instalado. Use configurar ou atualizar."
+  },
+  "Configure the Wings node before starting its container.": {
+    "en": "Configure the Wings node before starting its container.",
+    "es": "Configura el nodo de Wings antes de iniciar su contenedor.",
+    "pt-BR": "Configure o node do Wings antes de iniciar seu contêiner."
+  },
+  "Starting the Wings container": {
+    "en": "Starting the Wings container",
+    "es": "Iniciando el contenedor de Wings",
+    "pt-BR": "Iniciando o contêiner do Wings"
+  },
+  "The Wings container was not created.": {
+    "en": "The Wings container was not created.",
+    "es": "No se ha creado el contenedor de Wings.",
+    "pt-BR": "O contêiner do Wings não foi criado."
+  },
+  "Checking Wings startup stability": {
+    "en": "Checking Wings startup stability",
+    "es": "Comprobando la estabilidad del arranque de Wings",
+    "pt-BR": "Verificando a estabilidade da inicialização do Wings"
+  },
+  "Wings failed to start cleanly. Check the container logs.": {
+    "en": "Wings failed to start cleanly. Check the container logs.",
+    "es": "Wings no ha arrancado correctamente. Revisa los registros del contenedor.",
+    "pt-BR": "O Wings não iniciou corretamente. Verifique os logs do contêiner."
+  },
+  "UPDATE WINGS": {
+    "en": "UPDATE WINGS",
+    "es": "ACTUALIZAR WINGS",
+    "pt-BR": "ATUALIZAR WINGS"
+  },
+  "UNINSTALL WINGS": {
+    "en": "UNINSTALL WINGS",
+    "es": "DESINSTALAR WINGS",
+    "pt-BR": "DESINSTALAR WINGS"
+  },
+  "Removing only the Wings service container": {
+    "en": "Removing only the Wings service container",
+    "es": "Eliminando solo el contenedor del servicio Wings",
+    "pt-BR": "Removendo apenas o contêiner do serviço Wings"
+  },
+  "Wings removed. Game containers, game files and Docker are preserved.": {
+    "en": "Wings removed. Game containers, game files and Docker are preserved.",
+    "es": "Wings eliminado. Se conservan los contenedores, archivos de juegos y Docker.",
+    "pt-BR": "Wings removido. Os contêineres, arquivos de jogos e Docker foram preservados."
+  },
+  "Standalone services and HTTP endpoint passed their checks.": {
+    "en": "Standalone services and HTTP endpoint passed their checks.",
+    "es": "Los servicios standalone y el acceso HTTP han pasado sus comprobaciones.",
+    "pt-BR": "Os serviços standalone e o acesso HTTP passaram nas verificações."
+  },
+  "A Panel container is stopped or unhealthy.": {
+    "en": "A Panel container is stopped or unhealthy.",
+    "es": "Un contenedor del Panel está detenido o no está saludable.",
+    "pt-BR": "Um contêiner do Painel está parado ou não está saudável."
+  },
+  "Panel containers are missing.": {
+    "en": "Panel containers are missing.",
+    "es": "Faltan los contenedores del Panel.",
+    "pt-BR": "Os contêineres do Painel estão ausentes."
+  },
+  "All Panel containers are healthy.": {
+    "en": "All Panel containers are healthy.",
+    "es": "Todos los contenedores del Panel están saludables.",
+    "pt-BR": "Todos os contêineres do Painel estão saudáveis."
+  },
+  "Wings is active.": {
+    "en": "Wings is active.",
+    "es": "Wings está activo.",
+    "pt-BR": "Wings está ativo."
+  },
+  "No managed installation found.": {
+    "en": "No managed installation found.",
+    "es": "No se ha encontrado una instalación gestionada.",
+    "pt-BR": "Nenhuma instalação gerenciada foi encontrada."
+  },
+  "CREATE ADMINISTRATOR": {
+    "en": "CREATE ADMINISTRATOR",
+    "es": "CREAR ADMINISTRADOR",
+    "pt-BR": "CRIAR ADMINISTRADOR"
+  },
+  "Install Panel and Wings": {
+    "en": "Install Panel and Wings",
+    "es": "Instalar Panel y Wings",
+    "pt-BR": "Instalar Painel e Wings"
+  },
+  "Install Panel": {
+    "en": "Install Panel",
+    "es": "Instalar Panel",
+    "pt-BR": "Instalar Painel"
+  },
+  "Install Wings": {
+    "en": "Install Wings",
+    "es": "Instalar Wings",
+    "pt-BR": "Instalar Wings"
+  },
+  "Uninstall Panel and Wings": {
+    "en": "Uninstall Panel and Wings",
+    "es": "Desinstalar Panel y Wings",
+    "pt-BR": "Desinstalar Painel e Wings"
+  },
+  "Uninstall Panel": {
+    "en": "Uninstall Panel",
+    "es": "Desinstalar Panel",
+    "pt-BR": "Desinstalar Painel"
+  },
+  "Uninstall Wings": {
+    "en": "Uninstall Wings",
+    "es": "Desinstalar Wings",
+    "pt-BR": "Desinstalar Wings"
+  },
+  "Update Panel v2": {
+    "en": "Update Panel v2",
+    "es": "Actualizar Panel v2",
+    "pt-BR": "Atualizar Painel v2"
+  },
+  "Update Wings": {
+    "en": "Update Wings",
+    "es": "Actualizar Wings",
+    "pt-BR": "Atualizar Wings"
+  },
+  "Configure / link Wings": {
+    "en": "Configure / link Wings",
+    "es": "Configurar / vincular Wings",
+    "pt-BR": "Configurar / vincular Wings"
+  },
+  "Wings HTTPS certificate": {
+    "en": "Wings HTTPS certificate",
+    "es": "Certificado HTTPS de Wings",
+    "pt-BR": "Certificado HTTPS do Wings"
+  },
+  "Back up Panel": {
+    "en": "Back up Panel",
+    "es": "Crear copia del Panel",
+    "pt-BR": "Fazer backup do Painel"
+  },
+  "Back up Wings configuration": {
+    "en": "Back up Wings configuration",
+    "es": "Crear copia de la configuración de Wings",
+    "pt-BR": "Fazer backup da configuração do Wings"
+  },
+  "Restore Panel from backup": {
+    "en": "Restore Panel from backup",
+    "es": "Restaurar Panel desde una copia",
+    "pt-BR": "Restaurar o Painel de um backup"
+  },
+  "Status and diagnostics": {
+    "en": "Status and diagnostics",
+    "es": "Estado y diagnóstico",
+    "pt-BR": "Status e diagnóstico"
+  },
+  "Restart services": {
+    "en": "Restart services",
+    "es": "Reiniciar servicios",
+    "pt-BR": "Reiniciar serviços"
+  },
+  "View logs": {
+    "en": "View logs",
+    "es": "Ver registros",
+    "pt-BR": "Ver logs"
+  },
+  "Configure SMTP": {
+    "en": "Configure SMTP",
+    "es": "Configurar SMTP",
+    "pt-BR": "Configurar SMTP"
+  },
+  "Create administrator": {
+    "en": "Create administrator",
+    "es": "Crear administrador",
+    "pt-BR": "Criar administrador"
+  },
+  "Ports and firewall": {
+    "en": "Ports and firewall",
+    "es": "Puertos y firewall",
+    "pt-BR": "Portas e firewall"
+  },
+  "INSTALL & REMOVE": {
+    "en": "INSTALL & REMOVE",
+    "es": "INSTALAR Y DESINSTALAR",
+    "pt-BR": "INSTALAR E DESINSTALAR"
+  },
+  "UPDATE & CONNECT": {
+    "en": "UPDATE & CONNECT",
+    "es": "ACTUALIZAR Y CONECTAR",
+    "pt-BR": "ATUALIZAR E CONECTAR"
+  },
+  "BACKUP & RESTORE": {
+    "en": "BACKUP & RESTORE",
+    "es": "COPIAS Y RESTAURACIÓN",
+    "pt-BR": "BACKUPS E RESTAURAÇÃO"
+  },
+  "OPERATIONS": {
+    "en": "OPERATIONS",
+    "es": "OPERACIONES",
+    "pt-BR": "OPERAÇÕES"
+  },
+  "Change language": {
+    "en": "Change language",
+    "es": "Cambiar idioma",
+    "pt-BR": "Alterar idioma"
+  },
+  "Exit": {
+    "en": "Exit",
+    "es": "Salir",
+    "pt-BR": "Sair"
+  },
+  "The operation did not complete. Review the private installer log.": {
+    "en": "The operation did not complete. Review the private installer log.",
+    "es": "La operación no se ha completado. Revisa el registro privado del instalador.",
+    "pt-BR": "A operação não foi concluída. Verifique o log privado do instalador."
+  },
+  "Run with sudo or as root.": {
+    "en": "Run with sudo or as root.",
+    "es": "Ejecuta con sudo o como root.",
+    "pt-BR": "Execute com sudo ou como root."
+  },
+  "Another installer is already running.": {
+    "en": "Another installer is already running.",
+    "es": "Hay otro instalador en ejecución.",
+    "pt-BR": "Outro instalador já está em execução."
+  },
+  "\nInterrupted. Keep the log and resume from the menu.": {
+    "en": "\nInterrupted. Keep the log and resume from the menu.",
+    "es": "Interrumpido. Guarda el registro y reanuda desde el menú.",
+    "pt-BR": "Interrompido. Guarde o log e retome pelo menu."
+  },
+  "ready": {
+    "en": "ready",
+    "es": "listo",
+    "pt-BR": "pronto"
+  },
+  "stopped": {
+    "en": "stopped",
+    "es": "detenido",
+    "pt-BR": "parado"
+  },
+  "pending": {
+    "en": "pending",
+    "es": "pendiente",
+    "pt-BR": "pendente"
+  },
+  "configured": {
+    "en": "configured",
+    "es": "configurado",
+    "pt-BR": "configurado"
+  },
+  "installing": {
+    "en": "installing",
+    "es": "instalando",
+    "pt-BR": "instalando"
+  },
+  "updating": {
+    "en": "updating",
+    "es": "actualizando",
+    "pt-BR": "atualizando"
+  },
+  "restoring": {
+    "en": "restoring",
+    "es": "restaurando",
+    "pt-BR": "restaurando"
+  },
+  "Resume Panel": {
+    "en": "Resume Panel",
+    "es": "Reanudar Panel",
+    "pt-BR": "Retomar Painel"
+  },
+  "Downloading {image}": {
+    "en": "Downloading {image}",
+    "es": "Descargando {image}",
+    "pt-BR": "Baixando {image}"
+  },
+  "The Panel uses HTTP. Continue linking this node without HTTPS?": {
+    "en": "The Panel uses HTTP. Continue linking this node without HTTPS?",
+    "es": "El Panel utiliza HTTP. ¿Continuar vinculando este nodo sin HTTPS?",
+    "pt-BR": "O Painel usa HTTP. Continuar vinculando este node sem HTTPS?"
+  },
+  "Node linking cancelled.": {
+    "en": "Node linking cancelled.",
+    "es": "Vinculación del nodo cancelada.",
+    "pt-BR": "Vinculação do node cancelada."
+  },
+  "The standalone Redis directory must be empty before restore.": {
+    "en": "The standalone Redis directory must be empty before restore.",
+    "es": "El directorio Redis standalone debe estar vacío antes de restaurar.",
+    "pt-BR": "O diretório Redis standalone deve estar vazio antes de restaurar."
+  },
+  "The Wings container is stopped or missing.": {
+    "en": "The Wings container is stopped or missing.",
+    "es": "El contenedor Wings está detenido o no existe.",
+    "pt-BR": "O contêiner Wings está parado ou ausente."
+  },
+  "The Wings container is stopped or unhealthy.": {
+    "en": "The Wings container is stopped or unhealthy.",
+    "es": "El contenedor Wings está detenido o no está saludable.",
+    "pt-BR": "O contêiner Wings está parado ou não está saudável."
+  },
+  "Interface preview": {
+    "en": "Interface preview",
+    "es": "Vista previa de la interfaz",
+    "pt-BR": "Prévia da interface"
+  },
+  "Preview only. No packages, files or services will be installed.": {
+    "en": "Preview only. No packages, files or services will be installed.",
+    "es": "Solo vista previa. No se instalarán paquetes, archivos ni servicios.",
+    "pt-BR": "Somente prévia. Nenhum pacote, arquivo ou serviço será instalado."
+  },
+  "Checking your installation plan": {
+    "en": "Checking your installation plan",
+    "es": "Comprobando tu plan de instalación",
+    "pt-BR": "Verificando seu plano de instalação"
+  },
+  "A different database engine is already installed. Choose the matching engine or Docker.": {
+    "en": "A different database engine is already installed. Choose the matching engine or Docker.",
+    "es": "Ya hay otro motor de base de datos instalado. Elige el mismo motor o Docker.",
+    "pt-BR": "Já existe outro motor de banco de dados instalado. Escolha o mesmo motor ou Docker."
+  },
+  "The existing database server is too old for Panel v2. Choose Docker or upgrade it separately.": {
+    "en": "The existing database server is too old for Panel v2. Choose Docker or upgrade it separately.",
+    "es": "El servidor de base de datos existente es demasiado antiguo para Panel v2. Elige Docker o actualízalo por separado.",
+    "pt-BR": "O servidor de banco de dados existente é antigo demais para o Painel v2. Escolha Docker ou atualize-o separadamente."
+  },
+  "Binding the new database service to localhost": {
+    "en": "Binding the new database service to localhost",
+    "es": "Limitando la nueva base de datos a localhost",
+    "pt-BR": "Limitando o novo banco de dados ao localhost"
+  }
+}

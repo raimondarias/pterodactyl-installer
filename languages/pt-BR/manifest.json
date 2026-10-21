@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "repository": "raimondarias/pterodactyl-installer",
+  "language": "pt-BR",
+  "version": "1.0.0.beta",
+  "locale_sha256": {
+    "en": "9411add409fcabd990a6d489e58f36104b3338aee846f7856dbbb6106fe176da",
+    "es": "849ddfbebcd82fe6258bdc5461e0c929ce243c7f033112e72216250de0ae4de1",
+    "pt-BR": "ff00260246bb36657aac368aa772ba9cc049d91de5cfbc3e6f97c2ff02363593"
+  },
+  "archive_sha256": "17b353ced094840e6e4dfd2532e8591297b5d55d239210e8e1382fc329e63bd2"
+}

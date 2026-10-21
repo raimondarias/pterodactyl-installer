@@ -1,0 +1,41 @@
+# Guia rápido em português brasileiro
+
+Instale pelo repositório publicado:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/raimondarias/pterodactyl-installer/main/install.sh -o ptero-setup.sh && sudo bash ptero-setup.sh
+```
+
+A primeira pergunta será em inglês: **Which language would you like to use?**. Depois apenas o pacote do idioma escolhido será baixado e verificado, e o assistente começará sem repetir a pergunta. Essa rota exige publicar o projeto completo em `main`; veja [como publicar](UPLOAD.md).
+
+Ao iniciar você verá **1. English · 2. Español · 3. Português (Brasil)**. Selecione 3 para usar todo o assistente em português brasileiro. Também é possível alterar o idioma pelo menu.
+
+Selecione **Simples (Recomendado)** ou **Avançado** e escolha:
+
+- **Standalone nativo (recomendado), primeiro**, ou Docker.
+- MariaDB (recomendado) ou MySQL.
+- IPv4 público da máquina, com HTTP e sem SSL; ou domínio/subdomínio, com HTTPS recomendado.
+- E-mail, usuário e senha oculta do primeiro administrador. Deixe a senha vazia para gerar uma; ela será exibida para você salvar.
+- SMTP opcional, que também pode ser configurado depois.
+
+O modo avançado permite escolher versão, PHP 8.3/8.4 no standalone, porta HTTP, IP de escuta e fuso horário. Um resumo aparece antes da instalação.
+
+O mecanismo é escolhido uma única vez para o Painel e os jogos. O assistente também oferece preparar um host SQL local isolado no Docker, registrar um existente ou configurar depois (padrão). A opção local usa Docker mesmo com o Painel standalone e atende aos jogos desta máquina. O host é registrado automaticamente no Painel e exibe host, porta, usuário e senha na tela e em um arquivo privado. O modo avançado permite personalizar as credenciais e associar um node existente; 0 deixa o host global. Cada servidor de jogo precisa de um limite de bancos de dados maior que zero.
+
+As opções 20–22 configuram o host, exibem as credenciais e fazem backup dos bancos locais. O idioma muda na opção 23. Os bancos dos jogos e suas credenciais são mantidos ao excluir o Painel; os dados SQL exigem um backup separado. O host remoto deve estar preparado e acessível; sua instalação e seus backups não são feitos remotamente. A restauração do backup físico SQL continua manual, com a imagem original. Veja os detalhes de rede, firewall e restauração no [guia principal](../README.md#game-database-hosts).
+
+Prévia sem root e sem instalar:
+
+```bash
+bash scripts/run_local.sh --language pt-BR --preview
+```
+
+São aceitos Ubuntu 22.04/24.04/26.04 e Debian 12/13 com systemd. São necessários root, Python 3.10+, pelo menos 4 GiB livres e memória suficiente. O inicializador instala o Python se necessário. Nenhum pacote pip é exigido. MySQL nativo no Debian exige amd64; no Debian ARM64 use MariaDB ou Docker.
+
+O Wings precisa do Docker para executar os jogos, mesmo com o Painel standalone. Você pode usar o Wings como serviço systemd (recomendado) ou contêiner oficial. Primeiro crie localização, node e allocations no Painel e depois vincule-o com o token Auto-Deploy. A digitação do token é oculta e ele não é enviado por argumentos de processo.
+
+O menu permite instalar/desinstalar os componentes juntos ou separados, atualizar, emitir SSL para Wings, fazer backups, restaurar, consultar diagnóstico/logs e configurar e-mail/administradores.
+
+A desinstalação mantém os dados por padrão. Excluí-los exige confirmação e um backup correto. Os backups do Painel incluem SQL e as chaves originais; **não incluem os arquivos ou mundos dos jogos**. Guarde os arquivos `.tar.gz` e `.sha256` fora do servidor.
+
+O Painel v2 é beta. Os testes automatizados e as verificações reais de arquivos/configurações não substituem um teste completo em um VPS limpo. Consulte [o relatório](../test-results/REPORT.md), [o guia principal](../README.md) e [os testes de integração](TESTING.md).

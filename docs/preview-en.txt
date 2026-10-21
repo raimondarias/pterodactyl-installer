@@ -1,0 +1,52 @@
+╭────────────────────────────────────────────────────────────────────────────╮
+│ P T E R O   /   I N S T A L L E R                                          │
+│ A guided setup, from the first question to your first server.              │
+│ Panel v2  ·  Wings  ·  Ubuntu / Debian                                     │
+│ Install. Configure. Maintain.                                              │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Interface preview                                                          │
+│ Preview only. No packages, files or services will be installed.            │
+╰────────────────────────────────────────────────────────────────────────────╯
+[1/4] Choose your installation
+  ━━━━━───────────────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Setup experience                                                           │
+│ 1. Simple (Recommended)                                                    │
+│ 2. Advanced                                                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Panel deployment                                                           │
+│ 1. Standalone (Recommended)                                                │
+│ 2. Docker                                                                  │
+╰────────────────────────────────────────────────────────────────────────────╯
+[2/4] Address and connection
+  ━━━━━━━━━━──────────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ How will you access the Panel?                                             │
+│ 1. Domain / subdomain (Recommended)                                        │
+│ 2. Public machine IP                                                       │
+╰────────────────────────────────────────────────────────────────────────────╯
+[3/4] Administrator and email
+  ━━━━━━━━━━━━━━━─────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ First administrator                                                        │
+│ admin@example.com                                                          │
+│ Your password is hidden and is never stored in the installer's state.      │
+╰────────────────────────────────────────────────────────────────────────────╯
+[4/4] Review your installation
+  ━━━━━━━━━━━━━━━━━━━━
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Game database host                                                         │
+│ MariaDB / MySQL: One engine selection for Panel and games.                 │
+│ Local node (isolated Docker database)                                      │
+│ Existing database host                                                     │
+│ Configure later                                                            │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Ready to install                                                           │
+│ Deployment: Standalone                                                     │
+│ Database: MariaDB                                                          │
+│ Panel URL: https://panel.example.com                                       │
+╰────────────────────────────────────────────────────────────────────────────╯
+→ Checking your installation plan

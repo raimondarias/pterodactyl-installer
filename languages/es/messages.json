@@ -1,0 +1,1292 @@
+{
+  "La API redirige la petición. Introduce la URL final del Panel.": {
+    "es": "La API redirige la petición. Introduce la URL final del Panel."
+  },
+  "No se escribe sobre un enlace simbólico: {value1}": {
+    "es": "No se escribe sobre un enlace simbólico: {value1}"
+  },
+  "Iniciando Docker": {
+    "es": "Iniciando Docker"
+  },
+  "Verificando Docker": {
+    "es": "Verificando Docker"
+  },
+  "Versión de {value1} (auto busca la más reciente compatible)": {
+    "es": "Versión de {value1} (auto busca la más reciente compatible)"
+  },
+  "Versión elegida: {value1}": {
+    "es": "Versión elegida: {value1}"
+  },
+  "¿Activar HTTPS automático de Let's Encrypt?": {
+    "es": "¿Activar HTTPS automático de Let's Encrypt?"
+  },
+  "Correo de administración/Let's Encrypt": {
+    "es": "Correo de administración/Let's Encrypt"
+  },
+  "Zona horaria": {
+    "es": "Zona horaria"
+  },
+  "IP de escucha (IPv4)": {
+    "es": "IP de escucha (IPv4)"
+  },
+  "¿Configurar correo SMTP ahora?": {
+    "es": "¿Configurar correo SMTP ahora?"
+  },
+  "INSTALAR PANEL": {
+    "es": "INSTALAR PANEL"
+  },
+  "Preparando base de datos y Redis": {
+    "es": "Preparando base de datos y Redis"
+  },
+  "Manteniendo el Panel detenido durante las migraciones": {
+    "es": "Manteniendo el Panel detenido durante las migraciones"
+  },
+  "Migraciones y eggs oficiales": {
+    "es": "Migraciones y eggs oficiales"
+  },
+  "Iniciando Panel, colas y scheduler": {
+    "es": "Iniciando Panel, colas y scheduler"
+  },
+  "Panel disponible: {value1}": {
+    "es": "Panel disponible: {value1}"
+  },
+  "Guarda fuera del servidor una copia de data/var/.env (APP_KEY y HASHIDS_SALT).": {
+    "es": "Guarda fuera del servidor una copia de data/var/.env (APP_KEY y HASHIDS_SALT)."
+  },
+  "INSTALAR WINGS": {
+    "es": "INSTALAR WINGS"
+  },
+  "Binario Wings instalado y verificado. Falta vincular el nodo.": {
+    "es": "Binario Wings instalado y verificado. Falta vincular el nodo."
+  },
+  "¿Vincular Wings al Panel ahora?": {
+    "es": "¿Vincular Wings al Panel ahora?"
+  },
+  "En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration.": {
+    "es": "En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration."
+  },
+  "Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo.": {
+    "es": "Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo."
+  },
+  "El token solicitado es el de Auto-Deploy; se introducirá oculto.": {
+    "es": "El token solicitado es el de Auto-Deploy; se introducirá oculto."
+  },
+  "ID numérico del nodo": {
+    "es": "ID numérico del nodo"
+  },
+  "Token Auto-Deploy": {
+    "es": "Token Auto-Deploy"
+  },
+  "CONFIGURAR WINGS": {
+    "es": "CONFIGURAR WINGS"
+  },
+  "Si el Panel usa HTTPS, activa SSL en el nodo y emite su certificado antes de iniciar.": {
+    "es": "Si el Panel usa HTTPS, activa SSL en el nodo y emite su certificado antes de iniciar."
+  },
+  "¿Emitir certificado SSL para Wings ahora?": {
+    "es": "¿Emitir certificado SSL para Wings ahora?"
+  },
+  "Activando Wings": {
+    "es": "Activando Wings"
+  },
+  "Iniciando Wings con la configuración actual": {
+    "es": "Iniciando Wings con la configuración actual"
+  },
+  "Wings está activo. Comprueba que el nodo aparece conectado en el Panel.": {
+    "es": "Wings está activo. Comprueba que el nodo aparece conectado en el Panel."
+  },
+  "Dominio de Wings, ej. node.ejemplo.com": {
+    "es": "Dominio de Wings, ej. node.ejemplo.com"
+  },
+  "Correo Let's Encrypt": {
+    "es": "Correo Let's Encrypt"
+  },
+  "En Configuration del nodo activa SSL y usa estas rutas:": {
+    "es": "En Configuration del nodo activa SSL y usa estas rutas:"
+  },
+  "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem": {
+    "es": "/etc/letsencrypt/live/{value1}/fullchain.pem\n/etc/letsencrypt/live/{value3}/privkey.pem"
+  },
+  "El dominio debe apuntar a este host y permitir desafíos HTTP en el puerto 80.": {
+    "es": "El dominio debe apuntar a este host y permitir desafíos HTTP en el puerto 80."
+  },
+  "EMITIR SSL WINGS": {
+    "es": "EMITIR SSL WINGS"
+  },
+  "Actualizando APT": {
+    "es": "Actualizando APT"
+  },
+  "Instalando Certbot": {
+    "es": "Instalando Certbot"
+  },
+  "Certificado emitido. Vuelve a sincronizar la configuración si cambiaste SSL en el Panel.": {
+    "es": "Certificado emitido. Vuelve a sincronizar la configuración si cambiaste SSL en el Panel."
+  },
+  "Configuración de Wings guardada: {value1}": {
+    "es": "Configuración de Wings guardada: {value1}"
+  },
+  "RESTAURAR PANEL": {
+    "es": "RESTAURAR PANEL"
+  },
+  "Panel restaurado. Mantén el dominio/IP original o adapta DNS y configuración.": {
+    "es": "Panel restaurado. Mantén el dominio/IP original o adapta DNS y configuración."
+  },
+  "ACTUALIZAR PANEL": {
+    "es": "ACTUALIZAR PANEL"
+  },
+  "Deteniendo Panel para actualizar": {
+    "es": "Deteniendo Panel para actualizar"
+  },
+  "Panel actualizado y comprobado por el healthcheck oficial.": {
+    "es": "Panel actualizado y comprobado por el healthcheck oficial."
+  },
+  "ACTUALIZAR WINGS": {
+    "es": "ACTUALIZAR WINGS"
+  },
+  "Wings actualizado; los contenedores de juegos se conservan.": {
+    "es": "Wings actualizado; los contenedores de juegos se conservan."
+  },
+  "¿Borrar también base de datos y archivos del Panel? (antes se crea backup)": {
+    "es": "¿Borrar también base de datos y archivos del Panel? (antes se crea backup)"
+  },
+  "Eliminando solo contenedores y red de este Panel": {
+    "es": "Eliminando solo contenedores y red de este Panel"
+  },
+  "Panel desinstalado. Backup: {value1}": {
+    "es": "Panel desinstalado. Backup: {value1}"
+  },
+  "Los juegos y sus contenedores seguirán existiendo. Apágalos desde el Panel si lo necesitas.": {
+    "es": "Los juegos y sus contenedores seguirán existiendo. Apágalos desde el Panel si lo necesitas."
+  },
+  "Deteniendo y deshabilitando Wings": {
+    "es": "Deteniendo y deshabilitando Wings"
+  },
+  "Wings desinstalado. Archivos de juegos, Docker y certificados conservados.": {
+    "es": "Wings desinstalado. Archivos de juegos, Docker y certificados conservados."
+  },
+  "DESINSTALAR PANEL Y WINGS": {
+    "es": "DESINSTALAR PANEL Y WINGS"
+  },
+  "Log privado: {value1}": {
+    "es": "Log privado: {value1}"
+  },
+  "REINICIAR SERVICIOS": {
+    "es": "REINICIAR SERVICIOS"
+  },
+  "CAMBIAR SMTP": {
+    "es": "CAMBIAR SMTP"
+  },
+  "Aplicando SMTP": {
+    "es": "Aplicando SMTP"
+  },
+  "Permite en el firewall del proveedor y del host:": {
+    "es": "Permite en el firewall del proveedor y del host:"
+  },
+  "Panel: TCP 80/443. Wings: TCP 8080 (o el puerto del nodo) y TCP 2022 para SFTP.": {
+    "es": "Panel: TCP 80/443. Wings: TCP 8080 (o el puerto del nodo) y TCP 2022 para SFTP."
+  },
+  "Juegos: sus allocations TCP/UDP. SSH: conserva tu puerto de administración.": {
+    "es": "Juegos: sus allocations TCP/UDP. SSH: conserva tu puerto de administración."
+  },
+  "Docker publica puertos mediante sus propias reglas; usa DOCKER-USER/nftables para restringirlos.": {
+    "es": "Docker publica puertos mediante sus propias reglas; usa DOCKER-USER/nftables para restringirlos."
+  },
+  "No se activan firewalls ni se cambian reglas automáticamente.": {
+    "es": "No se activan firewalls ni se cambian reglas automáticamente."
+  },
+  "La API no devolvió una configuración de nodo válida.": {
+    "es": "La API no devolvió una configuración de nodo válida."
+  },
+  "No se puede leer JSON: {value1}: {value3}": {
+    "es": "No se puede leer JSON: {value1}: {value3}"
+  },
+  "Valor no válido. Inténtalo otra vez.": {
+    "es": "Valor no válido. Inténtalo otra vez."
+  },
+  "Escribe {value1} para continuar": {
+    "es": "Escribe {value1} para continuar"
+  },
+  "Operación cancelada.": {
+    "es": "Operación cancelada."
+  },
+  "→ {value1}": {
+    "es": "→ {value1}"
+  },
+  "La instalación o copia no pertenece a este instalador.": {
+    "es": "La instalación o copia no pertenece a este instalador."
+  },
+  "Ejecuta con sudo o como root.": {
+    "es": "Ejecuta con sudo o como root."
+  },
+  "Sistemas admitidos: Ubuntu 22.04/24.04/26.04 y Debian 12/13.": {
+    "es": "Sistemas admitidos: Ubuntu 22.04/24.04/26.04 y Debian 12/13."
+  },
+  "Arquitectura admitida: amd64 o arm64.": {
+    "es": "Arquitectura admitida: amd64 o arm64."
+  },
+  "Se necesita un VPS/servidor con systemd como sistema de inicio.": {
+    "es": "Se necesita un VPS/servidor con systemd como sistema de inicio."
+  },
+  "Se necesitan al menos 4 GiB libres para las imágenes y la instalación.": {
+    "es": "Se necesitan al menos 4 GiB libres para las imágenes y la instalación."
+  },
+  "Se instalará Docker Engine/Compose desde el repositorio oficial de Docker.": {
+    "es": "Se instalará Docker Engine/Compose desde el repositorio oficial de Docker."
+  },
+  "Actualizando índices APT": {
+    "es": "Actualizando índices APT"
+  },
+  "Dependencias de Docker": {
+    "es": "Dependencias de Docker"
+  },
+  "Consultando repositorio Docker": {
+    "es": "Consultando repositorio Docker"
+  },
+  "Instalando Docker y Compose": {
+    "es": "Instalando Docker y Compose"
+  },
+  "GitHub no devolvió una release compatible.": {
+    "es": "GitHub no devolvió una release compatible."
+  },
+  "Instalación beta cancelada.": {
+    "es": "Instalación beta cancelada."
+  },
+  "La imagen descargada no tiene un digest verificable.": {
+    "es": "La imagen descargada no tiene un digest verificable."
+  },
+  "HTTPS automático requiere un dominio y puerto público 443.": {
+    "es": "HTTPS automático requiere un dominio y puerto público 443."
+  },
+  "El dominio debe resolver a este servidor; los puertos TCP 80/443 deben ser accesibles.": {
+    "es": "El dominio debe resolver a este servidor; los puertos TCP 80/443 deben ser accesibles."
+  },
+  "El puerto de la URL debe coincidir con el puerto HTTP elegido.": {
+    "es": "El puerto de la URL debe coincidir con el puerto HTTP elegido."
+  },
+  "El correo quedará en modo log; configúralo en el menú para enviar recuperaciones.": {
+    "es": "El correo quedará en modo log; configúralo en el menú para enviar recuperaciones."
+  },
+  "Instalación gestionada existente: {value1}, {value3}.": {
+    "es": "Instalación gestionada existente: {value1}, {value3}."
+  },
+  "REANUDAR PANEL": {
+    "es": "REANUDAR PANEL"
+  },
+  "Crea el administrador en el asistente oficial (elige Yes para administrador).": {
+    "es": "Crea el administrador en el asistente oficial (elige Yes para administrador)."
+  },
+  "GitHub no publica un SHA-256 para este binario; se cancela la descarga.": {
+    "es": "GitHub no publica un SHA-256 para este binario; se cancela la descarga."
+  },
+  "La descarga de Wings no corresponde al repositorio oficial.": {
+    "es": "La descarga de Wings no corresponde al repositorio oficial."
+  },
+  "Comprobando ejecutable Wings": {
+    "es": "Comprobando ejecutable Wings"
+  },
+  "Instalación de Wings interrumpida: se reparará la versión registrada.": {
+    "es": "Instalación de Wings interrumpida: se reparará la versión registrada."
+  },
+  "Wings queda detenido hasta completar «Configurar Wings».": {
+    "es": "Wings queda detenido hasta completar «Configurar Wings»."
+  },
+  "Se genera una configuración nueva. Reaplica tus ajustes manuales desde la copia si los necesitas.": {
+    "es": "Se genera una configuración nueva. Reaplica tus ajustes manuales desde la copia si los necesitas."
+  },
+  "Comprobando estabilidad inicial de Wings": {
+    "es": "Comprobando estabilidad inicial de Wings"
+  },
+  "El Panel se pausará brevemente al emitir/renovar este certificado para liberar el puerto 80.": {
+    "es": "El Panel se pausará brevemente al emitir/renovar este certificado para liberar el puerto 80."
+  },
+  "Emitiendo certificado Wings": {
+    "es": "Emitiendo certificado Wings"
+  },
+  "Backup creado: {value1} (contiene secretos; guárdalo fuera del servidor)": {
+    "es": "Backup creado: {value1} (contiene secretos; guárdalo fuera del servidor)"
+  },
+  "Ruta absoluta al backup .tar.gz": {
+    "es": "Ruta absoluta al backup .tar.gz"
+  },
+  "Falta el archivo .sha256 del backup.": {
+    "es": "Falta el archivo .sha256 del backup."
+  },
+  "El checksum del backup no coincide.": {
+    "es": "El checksum del backup no coincide."
+  },
+  "El destino debe estar vacío. Desinstala/purga el Panel actual después de respaldarlo.": {
+    "es": "El destino debe estar vacío. Desinstala/purga el Panel actual después de respaldarlo."
+  },
+  "Descargando imágenes originales de la copia": {
+    "es": "Descargando imágenes originales de la copia"
+  },
+  "Arrancando Panel restaurado": {
+    "es": "Arrancando Panel restaurado"
+  },
+  "Completa/reanuda primero la instalación actual del Panel.": {
+    "es": "Completa/reanuda primero la instalación actual del Panel."
+  },
+  "Ya tienes esa versión.": {
+    "es": "Ya tienes esa versión."
+  },
+  "No se permiten downgrades del Panel; restaura un backup de esa versión.": {
+    "es": "No se permiten downgrades del Panel; restaura un backup de esa versión."
+  },
+  "Aplicando migraciones de la versión nueva": {
+    "es": "Aplicando migraciones de la versión nueva"
+  },
+  "Verificando nuevo Panel": {
+    "es": "Verificando nuevo Panel"
+  },
+  "DESINSTALAR PANEL": {
+    "es": "DESINSTALAR PANEL"
+  },
+  "BORRAR PANEL": {
+    "es": "BORRAR PANEL"
+  },
+  "Datos conservados. «Instalar Panel» permite reactivarlo.": {
+    "es": "Datos conservados. «Instalar Panel» permite reactivarlo."
+  },
+  "DESINSTALAR WINGS": {
+    "es": "DESINSTALAR WINGS"
+  },
+  "{value0}: {value2}": {
+    "es": "{value0}: {value2}"
+  },
+  "Panel {value1}: {value3}, {value5}": {
+    "es": "Panel {value1}: {value3}, {value5}"
+  },
+  "Wings {value1}: {value3}": {
+    "es": "Wings {value1}: {value3}"
+  },
+  "Hay servicios detenidos o comprobaciones fallidas. Revisa «Ver registros».": {
+    "es": "Hay servicios detenidos o comprobaciones fallidas. Revisa «Ver registros»."
+  },
+  "Reiniciando Panel": {
+    "es": "Reiniciando Panel"
+  },
+  "\n╔════════════════════════════════════════════╗\n║   PTERODACTYL v2 · PANEL + WINGS           ║\n╚════════════════════════════════════════════╝": {
+    "es": "\n╔════════════════════════════════════════════╗\n║   PTERODACTYL v2 · PANEL + WINGS           ║\n╚════════════════════════════════════════════╝"
+  },
+  "Instalador independiente · interfaz en español · v2 beta": {
+    "es": "Instalador independiente · interfaz en español · v2 beta"
+  },
+  "Opción": {
+    "es": "Opción"
+  },
+  "\nOperación interrumpida. Conserva el registro y reanuda desde el menú.": {
+    "es": "\nOperación interrumpida. Conserva el registro y reanuda desde el menú."
+  },
+  "Backup con entrada no permitida: {value1}": {
+    "es": "Backup con entrada no permitida: {value1}"
+  },
+  "Falló {value1} (código {value3}).\n{value5}": {
+    "es": "Falló {value1} (código {value3}).\n{value5}"
+  },
+  "Se recomiendan al menos 2 GiB de RAM, más la memoria de tus juegos.": {
+    "es": "Se recomiendan al menos 2 GiB de RAM, más la memoria de tus juegos."
+  },
+  "Wings requiere Docker en un host compatible; virtualización: {value1}.": {
+    "es": "Wings requiere Docker en un host compatible; virtualización: {value1}."
+  },
+  "Clave del repositorio Docker no válida.": {
+    "es": "Clave del repositorio Docker no válida."
+  },
+  "No se pudo determinar el codename de APT.": {
+    "es": "No se pudo determinar el codename de APT."
+  },
+  "Respuesta remota demasiado grande.": {
+    "es": "Respuesta remota demasiado grande."
+  },
+  "No se pudo descargar {value1}: {value3}": {
+    "es": "No se pudo descargar {value1}: {value3}"
+  },
+  "No hay releases oficiales compatibles para {value1}.": {
+    "es": "No hay releases oficiales compatibles para {value1}."
+  },
+  "Versión no válida o de otra rama principal.": {
+    "es": "Versión no válida o de otra rama principal."
+  },
+  "Es una versión de pruebas. ¿Continuar?": {
+    "es": "Es una versión de pruebas. ¿Continuar?"
+  },
+  "Puerto {value1}:{value3} ocupado o no disponible.": {
+    "es": "Puerto {value1}:{value3} ocupado o no disponible."
+  },
+  "URL del Panel, ej. https://panel.ejemplo.com": {
+    "es": "URL del Panel, ej. https://panel.ejemplo.com"
+  },
+  "¿DNS y acceso a 80/443 preparados?": {
+    "es": "¿DNS y acceso a 80/443 preparados?"
+  },
+  "Prepara el dominio antes de emitir el certificado.": {
+    "es": "Prepara el dominio antes de emitir el certificado."
+  },
+  "Puerto HTTP local": {
+    "es": "Puerto HTTP local"
+  },
+  "Host SMTP": {
+    "es": "Host SMTP"
+  },
+  "Puerto SMTP": {
+    "es": "Puerto SMTP"
+  },
+  "Usuario SMTP": {
+    "es": "Usuario SMTP"
+  },
+  "Contraseña SMTP": {
+    "es": "Contraseña SMTP"
+  },
+  "Cifrado SMTP (tls/ssl/null)": {
+    "es": "Cifrado SMTP (tls/ssl/null)"
+  },
+  "Restauración SQL incompleta. Conserva el backup y repite la restauración en un destino vacío.": {
+    "es": "Restauración SQL incompleta. Conserva el backup y repite la restauración en un destino vacío."
+  },
+  "El Panel ya está instalado. Usa actualizar, reiniciar o configurar SMTP.": {
+    "es": "El Panel ya está instalado. Usa actualizar, reiniciar o configurar SMTP."
+  },
+  "El directorio de destino contiene archivos sin registro; no se sobrescriben.": {
+    "es": "El directorio de destino contiene archivos sin registro; no se sobrescriben."
+  },
+  "Descargando y verificando Wings": {
+    "es": "Descargando y verificando Wings"
+  },
+  "El SHA-256 de Wings no coincide. No se ejecutará el archivo.": {
+    "es": "El SHA-256 de Wings no coincide. No se ejecutará el archivo."
+  },
+  "Wings ya está gestionado ({value1}). Usa configurar o actualizar.": {
+    "es": "Wings ya está gestionado ({value1}). Usa configurar o actualizar."
+  },
+  "Hay una instalación de Wings ajena a este script; no se sobrescribe.": {
+    "es": "Hay una instalación de Wings ajena a este script; no se sobrescribe."
+  },
+  "URL del Panel": {
+    "es": "URL del Panel"
+  },
+  "HTTP transmite el token sin cifrar. ¿Es una red privada de confianza?": {
+    "es": "HTTP transmite el token sin cifrar. ¿Es una red privada de confianza?"
+  },
+  "Utiliza HTTPS para vincular el nodo.": {
+    "es": "Utiliza HTTPS para vincular el nodo."
+  },
+  "Obteniendo configuración del nodo": {
+    "es": "Obteniendo configuración del nodo"
+  },
+  "Configuración del nodo demasiado grande.": {
+    "es": "Configuración del nodo demasiado grande."
+  },
+  "No se pudo obtener la configuración. Comprueba URL, ID y token Auto-Deploy.": {
+    "es": "No se pudo obtener la configuración. Comprueba URL, ID y token Auto-Deploy."
+  },
+  "Liberando puerto 80 para el certificado del nodo": {
+    "es": "Liberando puerto 80 para el certificado del nodo"
+  },
+  "El archivo no es un backup de Panel.": {
+    "es": "El archivo no es un backup de Panel."
+  },
+  "La copia no contiene SQL y claves originales del Panel.": {
+    "es": "La copia no contiene SQL y claves originales del Panel."
+  },
+  "Restaurando SQL con sus claves originales": {
+    "es": "Restaurando SQL con sus claves originales"
+  },
+  "Actualización incompleta. Panel detenido; copia de recuperación: {value1}": {
+    "es": "Actualización incompleta. Panel detenido; copia de recuperación: {value1}"
+  },
+  "Ruta de borrado no segura.": {
+    "es": "Ruta de borrado no segura."
+  },
+  "El Panel no está listo; reanuda la instalación/actualización primero.": {
+    "es": "El Panel no está listo; reanuda la instalación/actualización primero."
+  },
+  "Backup con enlace externo: {value1}": {
+    "es": "Backup con enlace externo: {value1}"
+  },
+  "Backup con hardlink sin archivo original anterior.": {
+    "es": "Backup con hardlink sin archivo original anterior."
+  },
+  "Backup con enlace que escapa del destino.": {
+    "es": "Backup con enlace que escapa del destino."
+  },
+  "Entrada cerrada. No se ha confirmado la operación.": {
+    "es": "Entrada cerrada. No se ha confirmado la operación."
+  },
+  "La operación no se ha completado. Log: {value1}": {
+    "es": "La operación no se ha completado. Log: {value1}"
+  },
+  "Hay otro instalador en ejecución.": {
+    "es": "Hay otro instalador en ejecución."
+  },
+  "Backup con ciclo de enlaces.": {
+    "es": "Backup con ciclo de enlaces."
+  },
+  "No se pudo ejecutar {value1}: {value3}": {
+    "es": "No se pudo ejecutar {value1}: {value3}"
+  },
+  "Pausando Panel para una copia consistente": {
+    "es": "Pausando Panel para una copia consistente"
+  },
+  "Exportando base de datos": {
+    "es": "Exportando base de datos"
+  },
+  "El dump SQL está vacío; no se acepta la copia.": {
+    "es": "El dump SQL está vacío; no se acepta la copia."
+  },
+  "Pausando Redis para guardar las colas": {
+    "es": "Pausando Redis para guardar las colas"
+  },
+  "Comprimiendo configuración, claves y datos": {
+    "es": "Comprimiendo configuración, claves y datos"
+  },
+  "P T E R O   /   I N S T A L L E R": {
+    "es": "P T E R O   /   I N S T A L A D O R"
+  },
+  "Panel v2  ·  Wings  ·  Ubuntu / Debian": {
+    "es": "Panel v2  ·  Wings  ·  Ubuntu / Debian"
+  },
+  "Install. Configure. Maintain.": {
+    "es": "Instala. Configura. Mantén."
+  },
+  "A guided setup, from the first question to your first server.": {
+    "es": "Instalación guiada, desde la primera pregunta hasta tu primer servidor."
+  },
+  "Input closed. The operation was not confirmed.": {
+    "es": "Entrada cerrada. La operación no se ha confirmado."
+  },
+  "Invalid value. Please try again.": {
+    "es": "Valor no válido. Inténtalo otra vez."
+  },
+  "Type {phrase} to continue": {
+    "es": "Escribe {phrase} para continuar"
+  },
+  "Operation cancelled.": {
+    "es": "Operación cancelada."
+  },
+  "Choose an option": {
+    "es": "Elige una opción"
+  },
+  "First administrator": {
+    "es": "Primer administrador"
+  },
+  "Your password is hidden and is never stored in the installer's state.": {
+    "es": "La contraseña se introduce oculta y no se guarda en el estado del instalador."
+  },
+  "Administrator email": {
+    "es": "Correo del administrador"
+  },
+  "Administrator username": {
+    "es": "Nombre de usuario del administrador"
+  },
+  "Administrator password (12+ characters; empty generates one)": {
+    "es": "Contraseña del administrador (12+ caracteres; vacía genera una)"
+  },
+  "Administrator password (12+ characters)": {
+    "es": "Contraseña del administrador (12+ caracteres)"
+  },
+  "Choose your installation": {
+    "es": "Elige tu instalación"
+  },
+  "Setup experience": {
+    "es": "Tipo de asistente"
+  },
+  "Simple (Recommended)": {
+    "es": "Simple (Recomendado)"
+  },
+  "Essential questions, sensible defaults": {
+    "es": "Preguntas esenciales y valores predeterminados adecuados"
+  },
+  "Advanced": {
+    "es": "Avanzado"
+  },
+  "Versions, ports, PHP, email and network settings": {
+    "es": "Versiones, puertos, PHP, correo y opciones de red"
+  },
+  "Panel deployment": {
+    "es": "Instalación del Panel"
+  },
+  "Docker (Recommended)": {
+    "es": "Docker (Recomendado)"
+  },
+  "Standalone (Recommended)": {
+    "es": "Standalone (Recomendado)"
+  },
+  "Which language would you like to use?": {
+    "es": "¿Qué idioma deseas usar?"
+  },
+  "The language download source is missing. Restart the online installer to choose another language.": {
+    "es": "Falta el origen de descarga del idioma. Reinicia el instalador en línea para elegir otro idioma."
+  },
+  "The requested language is not in this distribution.": {
+    "es": "El idioma solicitado no está en esta distribución."
+  },
+  "The selected language could not be downloaded or verified. Your current language is unchanged.": {
+    "es": "No se pudo descargar o verificar el idioma seleccionado. Se mantiene tu idioma actual."
+  },
+  "Confirm administrator password": {
+    "es": "Confirmar contraseña del administrador"
+  },
+  "Confirm database host password": {
+    "es": "Confirmar contraseña del host de bases de datos"
+  },
+  "Docker": {
+    "es": "Docker"
+  },
+  "Game database host": {
+    "es": "Host de bases de datos para juegos"
+  },
+  "One engine selection for Panel and games.": {
+    "es": "Una sola elección de motor para el Panel y los juegos."
+  },
+  "Game databases use separate credentials. Each game gets its own database from the Panel.": {
+    "es": "Las bases de juegos usan credenciales separadas. Cada juego obtiene su propia base desde el Panel."
+  },
+  "Where are the game databases?": {
+    "es": "¿Dónde estarán las bases de los juegos?"
+  },
+  "Local node (isolated Docker database)": {
+    "es": "Nodo local (base de datos Docker aislada)"
+  },
+  "Same machine only; private bridge, no public SQL port": {
+    "es": "Solo en esta máquina; red privada, sin puerto SQL público"
+  },
+  "Existing database host": {
+    "es": "Host de bases de datos existente"
+  },
+  "Register a database server already prepared on another machine": {
+    "es": "Registrar un servidor de bases de datos ya preparado en otra máquina"
+  },
+  "Configure later": {
+    "es": "Configurar después"
+  },
+  "Skip game databases; configure them later from the menu": {
+    "es": "Omitir las bases de juegos; configurarlas después desde el menú"
+  },
+  "Reusing the local database instance and its saved credentials.": {
+    "es": "Se reutiliza la instancia local con sus credenciales guardadas."
+  },
+  "The address must be reachable from both the Panel and game containers. Never use localhost for a remote node.": {
+    "es": "La dirección debe ser accesible desde el Panel y los contenedores de juegos. Nunca uses localhost para un nodo remoto."
+  },
+  "Game database hostname / IPv4": {
+    "es": "Nombre de host / IPv4 de las bases de juegos"
+  },
+  "Game database port": {
+    "es": "Puerto de las bases de juegos"
+  },
+  "Database host provisioning username": {
+    "es": "Usuario del host para crear bases de juegos"
+  },
+  "Database host provisioning password": {
+    "es": "Contraseña del host para crear bases de juegos"
+  },
+  "Prepare the remote SQL grants, private routing and firewall first; the installer will test the connection before registration.": {
+    "es": "Prepara primero los permisos SQL remotos, la ruta privada y el firewall; el instalador comprobará la conexión antes de registrar el host."
+  },
+  "Database host display name": {
+    "es": "Nombre visible del host de bases de datos"
+  },
+  "Database host password (16+ characters; empty generates one)": {
+    "es": "Contraseña del host (16+ caracteres; vacía genera una)"
+  },
+  "Existing node ID (0 = global / node not created yet)": {
+    "es": "ID del nodo existente (0 = global / nodo aún no creado)"
+  },
+  "A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.": {
+    "es": "Ya existe una base de juegos local. Reutiliza sus credenciales; cambiar su motor o contraseña requiere una migración aparte."
+  },
+  "The managed game database network is missing.": {
+    "es": "Falta la red gestionada de las bases de juegos."
+  },
+  "Creating the private game database network": {
+    "es": "Creando la red privada de las bases de juegos"
+  },
+  "The game database network is not an owned private IPv4 bridge.": {
+    "es": "La red de las bases de juegos no es un bridge IPv4 privado de este instalador."
+  },
+  "Local game databases require Docker's iptables DOCKER-USER chain. Use an existing private SQL host with this Docker firewall backend.": {
+    "es": "Las bases de juegos locales requieren la cadena DOCKER-USER de iptables. Con este backend de firewall usa un host SQL privado existente."
+  },
+  "Restricting game SQL to local container bridges": {
+    "es": "Restringiendo SQL de juegos a los bridges locales"
+  },
+  "The private database gateway changed. Restore its original network before proceeding.": {
+    "es": "Cambió la puerta de enlace privada de la base de datos. Restaura su red original antes de continuar."
+  },
+  "Unmanaged game database files exist; nothing was overwritten.": {
+    "es": "Existen archivos de bases de juegos ajenos al instalador; no se sobrescribieron."
+  },
+  "Starting the isolated game database": {
+    "es": "Iniciando la base de datos aislada para juegos"
+  },
+  "Registering the game database host in the Panel": {
+    "es": "Registrando el host de bases de juegos en el Panel"
+  },
+  "The Panel did not return a valid database host ID.": {
+    "es": "El Panel no devolvió un ID de host de bases de datos válido."
+  },
+  "The Panel is installed. Database host setup is incomplete; rerun Install Panel to retry, or configure it from the database menu.": {
+    "es": "El Panel está instalado. Falta completar el host de bases de juegos; vuelve a Instalar Panel para reintentarlo o configúralo desde el menú de bases de datos."
+  },
+  "No registered game database host is saved.": {
+    "es": "No hay ningún host de bases de juegos registrado y guardado."
+  },
+  "No managed local game database exists. Back up remote SQL on its own host.": {
+    "es": "No existe una base de juegos local gestionada. Haz la copia del SQL remoto en su propio servidor."
+  },
+  "Host: {value}": {
+    "es": "Host: {value}"
+  },
+  "Port: {value}": {
+    "es": "Puerto: {value}"
+  },
+  "Username: {value}": {
+    "es": "Usuario: {value}"
+  },
+  "Password: {value}": {
+    "es": "Contraseña: {value}"
+  },
+  "Private credentials file: {value}": {
+    "es": "Archivo privado de credenciales: {value}"
+  },
+  "Provisioning credentials are for the Panel only. Game users receive separate accounts.": {
+    "es": "Las credenciales de gestión son solo para el Panel. Los usuarios de juegos reciben cuentas separadas."
+  },
+  "Set each server's database limit above zero in the Panel before creating game databases.": {
+    "es": "Establece un límite de bases de datos mayor que cero para cada servidor en el Panel antes de crear sus bases."
+  },
+  "This private database address works only for nodes on this machine. Remote nodes need a reachable private database host.": {
+    "es": "Esta dirección privada sirve para los nodos de esta máquina. Los nodos remotos necesitan un host privado accesible."
+  },
+  "Game database host is ready": {
+    "es": "El host de bases de juegos está listo"
+  },
+  "The local game database data directory is empty; no backup was created.": {
+    "es": "El directorio de datos de las bases de juegos está vacío; no se creó una copia."
+  },
+  "Pausing game databases for a consistent physical backup": {
+    "es": "Pausando las bases de juegos para una copia física consistente"
+  },
+  "Game database backup: {value}": {
+    "es": "Copia de las bases de juegos: {value}"
+  },
+  "Physical backup: restore only with its original database image and private network; game queries pause during backup.": {
+    "es": "Copia física: restaura solo con la imagen de base de datos y la red privada originales; las consultas de juegos se pausan durante la copia."
+  },
+  "CONFIGURE DATABASE HOST": {
+    "es": "CONFIGURAR HOST DE BASES DE DATOS"
+  },
+  "Configure game database host": {
+    "es": "Configurar host de bases de juegos"
+  },
+  "Show database host credentials": {
+    "es": "Ver credenciales del host de bases de datos"
+  },
+  "Back up local game databases": {
+    "es": "Crear copia de las bases de juegos locales"
+  },
+  "GAME DATABASES": {
+    "es": "BASES DE DATOS DE JUEGOS"
+  },
+  "Game database host: {value}": {
+    "es": "Host de bases de juegos: {value}"
+  },
+  "local": {
+    "es": "local"
+  },
+  "existing": {
+    "es": "existente"
+  },
+  "later": {
+    "es": "después"
+  },
+  "Isolated Panel, database and Redis": {
+    "es": "Panel, base de datos y Redis aislados"
+  },
+  "Standalone": {
+    "es": "Standalone"
+  },
+  "Native PHP, NGINX, database and Redis services": {
+    "es": "Servicios nativos de PHP, NGINX, base de datos y Redis"
+  },
+  "Wings still uses Docker to run game servers.": {
+    "es": "Wings sigue utilizando Docker para ejecutar los servidores de juegos."
+  },
+  "Database engine": {
+    "es": "Motor de base de datos"
+  },
+  "MariaDB (Recommended)": {
+    "es": "MariaDB (Recomendado)"
+  },
+  "MariaDB 11.4 in Docker; compatible distribution packages natively": {
+    "es": "MariaDB 11.4 en Docker; paquetes compatibles de la distribución en standalone"
+  },
+  "MySQL": {
+    "es": "MySQL"
+  },
+  "MySQL 8.4 LTS in Docker; MySQL 8.x natively": {
+    "es": "MySQL 8.4 LTS en Docker; MySQL 8.x en standalone"
+  },
+  "Panel version (auto selects the latest compatible release)": {
+    "es": "Versión del Panel (auto selecciona la última compatible)"
+  },
+  "Panel v2 is a beta release. Continue?": {
+    "es": "Panel v2 es una versión beta. ¿Continuar?"
+  },
+  "Beta installation cancelled.": {
+    "es": "Instalación beta cancelada."
+  },
+  "Address and connection": {
+    "es": "Dirección y conexión"
+  },
+  "How will you access the Panel?": {
+    "es": "¿Cómo accederás al Panel?"
+  },
+  "Domain / subdomain (Recommended)": {
+    "es": "Dominio / subdominio (Recomendado)"
+  },
+  "HTTPS with a free Let's Encrypt certificate": {
+    "es": "HTTPS con un certificado gratuito de Let's Encrypt"
+  },
+  "Public machine IP": {
+    "es": "IP pública de la máquina"
+  },
+  "HTTP only, no SSL certificate": {
+    "es": "Solo HTTP, sin certificado SSL"
+  },
+  "Domain / subdomain (without http://)": {
+    "es": "Dominio / subdominio (sin http://)"
+  },
+  "Enable HTTPS (Recommended)?": {
+    "es": "¿Activar HTTPS (Recomendado)?"
+  },
+  "Detecting the machine's public IPv4 address": {
+    "es": "Detectando la dirección IPv4 pública de la máquina"
+  },
+  "Public IPv4 address of this machine": {
+    "es": "Dirección IPv4 pública de esta máquina"
+  },
+  "Does DNS point here, with public TCP ports 80 and 443 reachable?": {
+    "es": "¿El DNS apunta aquí y los puertos TCP públicos 80 y 443 están accesibles?"
+  },
+  "Prepare DNS and open the required ports, then run the wizard again.": {
+    "es": "Prepara el DNS y abre los puertos necesarios; después vuelve a ejecutar el asistente."
+  },
+  "PHP version": {
+    "es": "Versión de PHP"
+  },
+  "PHP 8.3 (Recommended)": {
+    "es": "PHP 8.3 (Recomendado)"
+  },
+  "PHP 8.4": {
+    "es": "PHP 8.4"
+  },
+  "HTTP port": {
+    "es": "Puerto HTTP"
+  },
+  "Listen IPv4 address": {
+    "es": "Dirección IPv4 de escucha"
+  },
+  "Timezone": {
+    "es": "Zona horaria"
+  },
+  "Administrator and email": {
+    "es": "Administrador y correo"
+  },
+  "Set up SMTP email now?": {
+    "es": "¿Configurar el correo SMTP ahora?"
+  },
+  "Email delivery is disabled until SMTP is configured from the menu.": {
+    "es": "El envío de correos estará desactivado hasta configurar SMTP desde el menú."
+  },
+  "Review your installation": {
+    "es": "Revisa tu instalación"
+  },
+  "Ready to install": {
+    "es": "Listo para instalar"
+  },
+  "Deployment: {value}": {
+    "es": "Instalación: {value}"
+  },
+  "Database: {value}": {
+    "es": "Base de datos: {value}"
+  },
+  "Panel URL: {value}": {
+    "es": "URL del Panel: {value}"
+  },
+  "Release: {value}": {
+    "es": "Versión: {value}"
+  },
+  "Administrator: {value}": {
+    "es": "Administrador: {value}"
+  },
+  "Timezone: {value}": {
+    "es": "Zona horaria: {value}"
+  },
+  "INSTALL PANEL": {
+    "es": "INSTALAR PANEL"
+  },
+  "Save your generated password": {
+    "es": "Guarda tu contraseña generada"
+  },
+  "Keep it in your password manager. It will not be written to a file.": {
+    "es": "Guárdala en tu gestor de contraseñas. No se escribirá en un archivo."
+  },
+  "Creating the first administrator": {
+    "es": "Creando el primer administrador"
+  },
+  "Installing standalone dependencies": {
+    "es": "Instalando las dependencias standalone"
+  },
+  "Invalid repository signing key.": {
+    "es": "Clave de firma del repositorio no válida."
+  },
+  "Updating APT indexes": {
+    "es": "Actualizando los índices de APT"
+  },
+  "Adding the PHP repository": {
+    "es": "Añadiendo el repositorio de PHP"
+  },
+  "Updating PHP packages": {
+    "es": "Actualizando los paquetes de PHP"
+  },
+  "Native MySQL on Debian requires amd64. Choose MariaDB or Docker on ARM64.": {
+    "es": "MySQL nativo en Debian requiere amd64. En ARM64 elige MariaDB o Docker."
+  },
+  "Updating database packages": {
+    "es": "Actualizando los paquetes de la base de datos"
+  },
+  "Composer installer signature does not match.": {
+    "es": "La firma del instalador de Composer no coincide."
+  },
+  "Installing verified Composer 2": {
+    "es": "Instalando Composer 2 verificado"
+  },
+  "Provisioning the Panel database": {
+    "es": "Preparando la base de datos del Panel"
+  },
+  "The reserved ptero_panel database/user already exists and is not managed by this installation.": {
+    "es": "La base de datos o el usuario reservado ptero_panel ya existe y no pertenece a esta instalación."
+  },
+  "Invalid generated database password.": {
+    "es": "La contraseña generada de la base de datos no es válida."
+  },
+  "Existing .env is missing its original application keys. Restore a backup.": {
+    "es": "El .env existente no contiene sus claves originales. Restaura una copia de seguridad."
+  },
+  "The Panel release does not provide a SHA-256 digest.": {
+    "es": "La versión del Panel no incluye un digest SHA-256."
+  },
+  "Unexpected Panel release download URL.": {
+    "es": "La URL de descarga del Panel no es la esperada."
+  },
+  "Downloading and verifying the Panel release": {
+    "es": "Descargando y verificando la versión del Panel"
+  },
+  "Panel archive exceeds the download size limit.": {
+    "es": "El archivo del Panel supera el límite de descarga."
+  },
+  "Panel archive checksum does not match.": {
+    "es": "El checksum del archivo del Panel no coincide."
+  },
+  "The Panel archive is incomplete.": {
+    "es": "El archivo del Panel está incompleto."
+  },
+  "Validating NGINX configuration": {
+    "es": "Validando la configuración de NGINX"
+  },
+  "Issuing the Panel HTTPS certificate": {
+    "es": "Emitiendo el certificado HTTPS del Panel"
+  },
+  "Installing verified PHP dependencies": {
+    "es": "Instalando dependencias PHP verificadas"
+  },
+  "Running Panel migrations": {
+    "es": "Ejecutando las migraciones del Panel"
+  },
+  "Standalone Panel is ready: {url}": {
+    "es": "El Panel standalone está listo: {url}"
+  },
+  "Starting queue worker and scheduler": {
+    "es": "Iniciando el trabajador de colas y el programador"
+  },
+  "Checking database migrations": {
+    "es": "Comprobando las migraciones de la base de datos"
+  },
+  "The Panel returned an unexpected HTTP status: {value}": {
+    "es": "El Panel devolvió un estado HTTP inesperado: {value}"
+  },
+  "Exporting the Panel database": {
+    "es": "Exportando la base de datos del Panel"
+  },
+  "SQL dump is empty; the backup was not accepted.": {
+    "es": "El dump SQL está vacío; no se acepta la copia."
+  },
+  "Compressing application, original keys and private Redis": {
+    "es": "Comprimiendo la aplicación, las claves originales y Redis privado"
+  },
+  "Backup created: {path}": {
+    "es": "Copia creada: {path}"
+  },
+  "The standalone application directory must be empty before restore.": {
+    "es": "El directorio de la aplicación standalone debe estar vacío antes de restaurar."
+  },
+  "Backup is missing the original .env or SQL dump.": {
+    "es": "Falta el .env original o el dump SQL en la copia."
+  },
+  "Restoring SQL with the original application keys": {
+    "es": "Restaurando SQL con las claves originales de la aplicación"
+  },
+  "Update incomplete. Panel remains in maintenance. Recovery backup: {path}": {
+    "es": "Actualización incompleta. El Panel sigue en mantenimiento. Copia de recuperación: {path}"
+  },
+  "UNINSTALL PANEL": {
+    "es": "DESINSTALAR PANEL"
+  },
+  "Also delete the Panel application and database? A backup is created first.": {
+    "es": "¿Borrar también la aplicación y la base de datos del Panel? Antes se crea una copia."
+  },
+  "DELETE PANEL": {
+    "es": "BORRAR PANEL"
+  },
+  "Unsafe removal path.": {
+    "es": "Ruta de borrado no segura."
+  },
+  "Panel uninstalled. Backup: {path}": {
+    "es": "Panel desinstalado. Copia: {path}"
+  },
+  "Wings domain / subdomain": {
+    "es": "Dominio / subdominio de Wings"
+  },
+  "Let's Encrypt email": {
+    "es": "Correo de Let's Encrypt"
+  },
+  "ISSUE WINGS SSL": {
+    "es": "EMITIR SSL WINGS"
+  },
+  "Issuing the Wings HTTPS certificate": {
+    "es": "Emitiendo el certificado HTTPS de Wings"
+  },
+  "Wings certificate is ready. Synchronize the node configuration after changing SSL settings.": {
+    "es": "El certificado de Wings está listo. Sincroniza la configuración del nodo si cambias el SSL."
+  },
+  "The standalone application directory already exists; unmanaged files will not be overwritten.": {
+    "es": "El directorio de la aplicación standalone ya existe; no se sobrescribirán archivos ajenos."
+  },
+  "A reserved standalone configuration already exists: {value}": {
+    "es": "Ya existe una configuración reservada para standalone: {value}"
+  },
+  "Wings deployment": {
+    "es": "Instalación de Wings"
+  },
+  "Standalone daemon (Recommended)": {
+    "es": "Servicio standalone (Recomendado)"
+  },
+  "A systemd service managing Docker game containers": {
+    "es": "Un servicio systemd que gestiona los contenedores de juegos"
+  },
+  "Docker container": {
+    "es": "Contenedor Docker"
+  },
+  "A Wings container with host networking and Docker socket access": {
+    "es": "Un contenedor Wings con red del host y acceso al socket Docker"
+  },
+  "Wings container already installed. Use configure or update.": {
+    "es": "El contenedor de Wings ya está instalado. Usa configurar o actualizar."
+  },
+  "Configure the Wings node before starting its container.": {
+    "es": "Configura el nodo de Wings antes de iniciar su contenedor."
+  },
+  "Starting the Wings container": {
+    "es": "Iniciando el contenedor de Wings"
+  },
+  "The Wings container was not created.": {
+    "es": "No se ha creado el contenedor de Wings."
+  },
+  "Checking Wings startup stability": {
+    "es": "Comprobando la estabilidad del arranque de Wings"
+  },
+  "Wings failed to start cleanly. Check the container logs.": {
+    "es": "Wings no ha arrancado correctamente. Revisa los registros del contenedor."
+  },
+  "UPDATE WINGS": {
+    "es": "ACTUALIZAR WINGS"
+  },
+  "UNINSTALL WINGS": {
+    "es": "DESINSTALAR WINGS"
+  },
+  "Removing only the Wings service container": {
+    "es": "Eliminando solo el contenedor del servicio Wings"
+  },
+  "Wings removed. Game containers, game files and Docker are preserved.": {
+    "es": "Wings eliminado. Se conservan los contenedores, archivos de juegos y Docker."
+  },
+  "Standalone services and HTTP endpoint passed their checks.": {
+    "es": "Los servicios standalone y el acceso HTTP han pasado sus comprobaciones."
+  },
+  "A Panel container is stopped or unhealthy.": {
+    "es": "Un contenedor del Panel está detenido o no está saludable."
+  },
+  "Panel containers are missing.": {
+    "es": "Faltan los contenedores del Panel."
+  },
+  "All Panel containers are healthy.": {
+    "es": "Todos los contenedores del Panel están saludables."
+  },
+  "Wings is active.": {
+    "es": "Wings está activo."
+  },
+  "No managed installation found.": {
+    "es": "No se ha encontrado una instalación gestionada."
+  },
+  "CREATE ADMINISTRATOR": {
+    "es": "CREAR ADMINISTRADOR"
+  },
+  "Install Panel and Wings": {
+    "es": "Instalar Panel y Wings"
+  },
+  "Install Panel": {
+    "es": "Instalar Panel"
+  },
+  "Install Wings": {
+    "es": "Instalar Wings"
+  },
+  "Uninstall Panel and Wings": {
+    "es": "Desinstalar Panel y Wings"
+  },
+  "Uninstall Panel": {
+    "es": "Desinstalar Panel"
+  },
+  "Uninstall Wings": {
+    "es": "Desinstalar Wings"
+  },
+  "Update Panel v2": {
+    "es": "Actualizar Panel v2"
+  },
+  "Update Wings": {
+    "es": "Actualizar Wings"
+  },
+  "Configure / link Wings": {
+    "es": "Configurar / vincular Wings"
+  },
+  "Wings HTTPS certificate": {
+    "es": "Certificado HTTPS de Wings"
+  },
+  "Back up Panel": {
+    "es": "Crear copia del Panel"
+  },
+  "Back up Wings configuration": {
+    "es": "Crear copia de la configuración de Wings"
+  },
+  "Restore Panel from backup": {
+    "es": "Restaurar Panel desde una copia"
+  },
+  "Status and diagnostics": {
+    "es": "Estado y diagnóstico"
+  },
+  "Restart services": {
+    "es": "Reiniciar servicios"
+  },
+  "View logs": {
+    "es": "Ver registros"
+  },
+  "Configure SMTP": {
+    "es": "Configurar SMTP"
+  },
+  "Create administrator": {
+    "es": "Crear administrador"
+  },
+  "Ports and firewall": {
+    "es": "Puertos y firewall"
+  },
+  "INSTALL & REMOVE": {
+    "es": "INSTALAR Y DESINSTALAR"
+  },
+  "UPDATE & CONNECT": {
+    "es": "ACTUALIZAR Y CONECTAR"
+  },
+  "BACKUP & RESTORE": {
+    "es": "COPIAS Y RESTAURACIÓN"
+  },
+  "OPERATIONS": {
+    "es": "OPERACIONES"
+  },
+  "Change language": {
+    "es": "Cambiar idioma"
+  },
+  "Exit": {
+    "es": "Salir"
+  },
+  "The operation did not complete. Review the private installer log.": {
+    "es": "La operación no se ha completado. Revisa el registro privado del instalador."
+  },
+  "Run with sudo or as root.": {
+    "es": "Ejecuta con sudo o como root."
+  },
+  "Another installer is already running.": {
+    "es": "Hay otro instalador en ejecución."
+  },
+  "\nInterrupted. Keep the log and resume from the menu.": {
+    "es": "Interrumpido. Guarda el registro y reanuda desde el menú."
+  },
+  "ready": {
+    "es": "listo"
+  },
+  "stopped": {
+    "es": "detenido"
+  },
+  "pending": {
+    "es": "pendiente"
+  },
+  "configured": {
+    "es": "configurado"
+  },
+  "installing": {
+    "es": "instalando"
+  },
+  "updating": {
+    "es": "actualizando"
+  },
+  "restoring": {
+    "es": "restaurando"
+  },
+  "Resume Panel": {
+    "es": "Reanudar Panel"
+  },
+  "Downloading {image}": {
+    "es": "Descargando {image}"
+  },
+  "The Panel uses HTTP. Continue linking this node without HTTPS?": {
+    "es": "El Panel utiliza HTTP. ¿Continuar vinculando este nodo sin HTTPS?"
+  },
+  "Node linking cancelled.": {
+    "es": "Vinculación del nodo cancelada."
+  },
+  "The standalone Redis directory must be empty before restore.": {
+    "es": "El directorio Redis standalone debe estar vacío antes de restaurar."
+  },
+  "The Wings container is stopped or missing.": {
+    "es": "El contenedor Wings está detenido o no existe."
+  },
+  "The Wings container is stopped or unhealthy.": {
+    "es": "El contenedor Wings está detenido o no está saludable."
+  },
+  "Interface preview": {
+    "es": "Vista previa de la interfaz"
+  },
+  "Preview only. No packages, files or services will be installed.": {
+    "es": "Solo vista previa. No se instalarán paquetes, archivos ni servicios."
+  },
+  "Checking your installation plan": {
+    "es": "Comprobando tu plan de instalación"
+  },
+  "A different database engine is already installed. Choose the matching engine or Docker.": {
+    "es": "Ya hay otro motor de base de datos instalado. Elige el mismo motor o Docker."
+  },
+  "The existing database server is too old for Panel v2. Choose Docker or upgrade it separately.": {
+    "es": "El servidor de base de datos existente es demasiado antiguo para Panel v2. Elige Docker o actualízalo por separado."
+  },
+  "Binding the new database service to localhost": {
+    "es": "Limitando la nueva base de datos a localhost"
+  }
+}

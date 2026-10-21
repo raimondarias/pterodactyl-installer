@@ -1,0 +1,53 @@
+╭────────────────────────────────────────────────────────────────────────────╮
+│ P T E R O   /   I N S T A L A D O R                                        │
+│ Instalação guiada, da primeira pergunta ao seu primeiro servidor.          │
+│ Painel v2  ·  Wings  ·  Ubuntu / Debian                                    │
+│ Instale. Configure. Mantenha.                                              │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Prévia da interface                                                        │
+│ Somente prévia. Nenhum pacote, arquivo ou serviço será instalado.          │
+╰────────────────────────────────────────────────────────────────────────────╯
+[1/4] Escolha sua instalação
+  ━━━━━───────────────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Tipo de assistente                                                         │
+│ 1. Simples (Recomendado)                                                   │
+│ 2. Avançado                                                                │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Instalação do Painel                                                       │
+│ 1. Standalone (Recomendado)                                                │
+│ 2. Docker                                                                  │
+╰────────────────────────────────────────────────────────────────────────────╯
+[2/4] Endereço e conexão
+  ━━━━━━━━━━──────────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Como você acessará o Painel?                                               │
+│ 1. Domínio / subdomínio (Recomendado)                                      │
+│ 2. IP público da máquina                                                   │
+╰────────────────────────────────────────────────────────────────────────────╯
+[3/4] Administrador e e-mail
+  ━━━━━━━━━━━━━━━─────
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Primeiro administrador                                                     │
+│ admin@example.com                                                          │
+│ A senha fica oculta e nunca é salva no estado do instalador.               │
+╰────────────────────────────────────────────────────────────────────────────╯
+[4/4] Revise sua instalação
+  ━━━━━━━━━━━━━━━━━━━━
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Host de bancos de dados dos jogos                                          │
+│ MariaDB / MySQL: Uma única escolha de mecanismo para o Painel e os         │
+│ jogos.                                                                     │
+│ Node local (banco de dados Docker isolado)                                 │
+│ Host de banco de dados existente                                           │
+│ Configurar depois                                                          │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Pronto para instalar                                                       │
+│ Instalação: Standalone                                                     │
+│ Banco de dados: MariaDB                                                    │
+│ URL do Painel: https://panel.example.com                                   │
+╰────────────────────────────────────────────────────────────────────────────╯
+→ Verificando seu plano de instalação

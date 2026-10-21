@@ -1,0 +1,11 @@
+OK official Panel release: v2.0.0-beta.2 (beta=True)
+OK official Wings release: v1.13.4
+→ Downloading and verifying Wings
+→ Checking the Wings executable
+OK real Wings binary: official SHA-256 and version command
+OK JSON/YAML configuration accepted by real Wings against a local mock API
+→ Downloading and verifying the Panel release
+OK real Panel archive: official SHA-256, safe extraction and expected release files
+OK official OCI panel image for amd64 and arm64
+OK official OCI wings image for amd64 and arm64
+Full VPS deployment with systemd, Docker, public DNS and TLS remains to be tested.

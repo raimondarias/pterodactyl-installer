@@ -1,0 +1,251 @@
+# English|||Spanish|||Brazilian Portuguese
+P T E R O   /   I N S T A L L E R|||P T E R O   /   I N S T A L A D O R|||P T E R O   /   I N S T A L A D O R
+Panel v2  ·  Wings  ·  Ubuntu / Debian|||Panel v2  ·  Wings  ·  Ubuntu / Debian|||Painel v2  ·  Wings  ·  Ubuntu / Debian
+Install. Configure. Maintain.|||Instala. Configura. Mantén.|||Instale. Configure. Mantenha.
+A guided setup, from the first question to your first server.|||Instalación guiada, desde la primera pregunta hasta tu primer servidor.|||Instalação guiada, da primeira pergunta ao seu primeiro servidor.
+Input closed. The operation was not confirmed.|||Entrada cerrada. La operación no se ha confirmado.|||Entrada fechada. A operação não foi confirmada.
+Invalid value. Please try again.|||Valor no válido. Inténtalo otra vez.|||Valor inválido. Tente novamente.
+Type {phrase} to continue|||Escribe {phrase} para continuar|||Digite {phrase} para continuar
+Operation cancelled.|||Operación cancelada.|||Operação cancelada.
+Choose an option|||Elige una opción|||Escolha uma opção
+First administrator|||Primer administrador|||Primeiro administrador
+Your password is hidden and is never stored in the installer's state.|||La contraseña se introduce oculta y no se guarda en el estado del instalador.|||A senha fica oculta e nunca é salva no estado do instalador.
+Administrator email|||Correo del administrador|||E-mail do administrador
+Administrator username|||Nombre de usuario del administrador|||Nome de usuário do administrador
+Administrator password (12+ characters; empty generates one)|||Contraseña del administrador (12+ caracteres; vacía genera una)|||Senha do administrador (12+ caracteres; vazia gera uma)
+Administrator password (12+ characters)|||Contraseña del administrador (12+ caracteres)|||Senha do administrador (12+ caracteres)
+Choose your installation|||Elige tu instalación|||Escolha sua instalação
+Setup experience|||Tipo de asistente|||Tipo de assistente
+Simple (Recommended)|||Simple (Recomendado)|||Simples (Recomendado)
+Essential questions, sensible defaults|||Preguntas esenciales y valores predeterminados adecuados|||Perguntas essenciais e valores padrão adequados
+Advanced|||Avanzado|||Avançado
+Versions, ports, PHP, email and network settings|||Versiones, puertos, PHP, correo y opciones de red|||Versões, portas, PHP, e-mail e configurações de rede
+Panel deployment|||Instalación del Panel|||Instalação do Painel
+Docker (Recommended)|||Docker (Recomendado)|||Docker (Recomendado)
+Standalone (Recommended)|||Standalone (Recomendado)|||Standalone (Recomendado)
+Which language would you like to use?|||¿Qué idioma deseas usar?|||Qual idioma você deseja usar?
+The language download source is missing. Restart the online installer to choose another language.|||Falta el origen de descarga del idioma. Reinicia el instalador en línea para elegir otro idioma.|||A origem do download do idioma não está disponível. Reinicie o instalador online para escolher outro idioma.
+The requested language is not in this distribution.|||El idioma solicitado no está en esta distribución.|||O idioma solicitado não está nesta distribuição.
+The selected language could not be downloaded or verified. Your current language is unchanged.|||No se pudo descargar o verificar el idioma seleccionado. Se mantiene tu idioma actual.|||Não foi possível baixar ou verificar o idioma selecionado. Seu idioma atual foi mantido.
+Confirm administrator password|||Confirmar contraseña del administrador|||Confirmar senha do administrador
+Confirm database host password|||Confirmar contraseña del host de bases de datos|||Confirmar senha do host de banco de dados
+Docker|||Docker|||Docker
+Game database host|||Host de bases de datos para juegos|||Host de bancos de dados dos jogos
+One engine selection for Panel and games.|||Una sola elección de motor para el Panel y los juegos.|||Uma única escolha de mecanismo para o Painel e os jogos.
+Game databases use separate credentials. Each game gets its own database from the Panel.|||Las bases de juegos usan credenciales separadas. Cada juego obtiene su propia base desde el Panel.|||Os bancos dos jogos usam credenciais separadas. Cada jogo recebe seu próprio banco pelo Painel.
+Where are the game databases?|||¿Dónde estarán las bases de los juegos?|||Onde ficarão os bancos dos jogos?
+Local node (isolated Docker database)|||Nodo local (base de datos Docker aislada)|||Node local (banco de dados Docker isolado)
+Same machine only; private bridge, no public SQL port|||Solo en esta máquina; red privada, sin puerto SQL público|||Somente nesta máquina; rede privada, sem porta SQL pública
+Existing database host|||Host de bases de datos existente|||Host de banco de dados existente
+Register a database server already prepared on another machine|||Registrar un servidor de bases de datos ya preparado en otra máquina|||Registrar um servidor de banco de dados já preparado em outra máquina
+Configure later|||Configurar después|||Configurar depois
+Skip game databases; configure them later from the menu|||Omitir las bases de juegos; configurarlas después desde el menú|||Pular os bancos dos jogos; configurar depois pelo menu
+Reusing the local database instance and its saved credentials.|||Se reutiliza la instancia local con sus credenciales guardadas.|||Reutilizando a instância local e suas credenciais salvas.
+The address must be reachable from both the Panel and game containers. Never use localhost for a remote node.|||La dirección debe ser accesible desde el Panel y los contenedores de juegos. Nunca uses localhost para un nodo remoto.|||O endereço deve ser acessível pelo Painel e pelos contêineres dos jogos. Nunca use localhost para um node remoto.
+Game database hostname / IPv4|||Nombre de host / IPv4 de las bases de juegos|||Hostname / IPv4 do banco dos jogos
+Game database port|||Puerto de las bases de juegos|||Porta do banco dos jogos
+Database host provisioning username|||Usuario del host para crear bases de juegos|||Usuário do host para criar bancos dos jogos
+Database host provisioning password|||Contraseña del host para crear bases de juegos|||Senha do host para criar bancos dos jogos
+Prepare the remote SQL grants, private routing and firewall first; the installer will test the connection before registration.|||Prepara primero los permisos SQL remotos, la ruta privada y el firewall; el instalador comprobará la conexión antes de registrar el host.|||Prepare primeiro as permissões SQL remotas, a rota privada e o firewall; o instalador testará a conexão antes de registrar o host.
+Database host display name|||Nombre visible del host de bases de datos|||Nome de exibição do host de banco de dados
+Database host password (16+ characters; empty generates one)|||Contraseña del host (16+ caracteres; vacía genera una)|||Senha do host (16+ caracteres; deixe vazia para gerar)
+Existing node ID (0 = global / node not created yet)|||ID del nodo existente (0 = global / nodo aún no creado)|||ID do node existente (0 = global / node ainda não criado)
+A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.|||Ya existe una base de juegos local. Reutiliza sus credenciales; cambiar su motor o contraseña requiere una migración aparte.|||Já existe um banco de jogos local. Reutilize suas credenciais; alterar o mecanismo ou a senha exige uma migração separada.
+The managed game database network is missing.|||Falta la red gestionada de las bases de juegos.|||A rede gerenciada dos bancos dos jogos não existe.
+Creating the private game database network|||Creando la red privada de las bases de juegos|||Criando a rede privada dos bancos dos jogos
+The game database network is not an owned private IPv4 bridge.|||La red de las bases de juegos no es un bridge IPv4 privado de este instalador.|||A rede dos bancos dos jogos não é uma bridge IPv4 privada deste instalador.
+Local game databases require Docker's iptables DOCKER-USER chain. Use an existing private SQL host with this Docker firewall backend.|||Las bases de juegos locales requieren la cadena DOCKER-USER de iptables. Con este backend de firewall usa un host SQL privado existente.|||Os bancos de jogos locais exigem a cadeia DOCKER-USER do iptables. Com este backend de firewall use um host SQL privado existente.
+Restricting game SQL to local container bridges|||Restringiendo SQL de juegos a los bridges locales|||Restringindo SQL dos jogos às bridges locais
+The private database gateway changed. Restore its original network before proceeding.|||Cambió la puerta de enlace privada de la base de datos. Restaura su red original antes de continuar.|||O gateway privado do banco mudou. Restaure a rede original antes de continuar.
+Unmanaged game database files exist; nothing was overwritten.|||Existen archivos de bases de juegos ajenos al instalador; no se sobrescribieron.|||Existem arquivos de bancos de jogos não gerenciados; nada foi sobrescrito.
+Starting the isolated game database|||Iniciando la base de datos aislada para juegos|||Iniciando o banco de dados isolado dos jogos
+Registering the game database host in the Panel|||Registrando el host de bases de juegos en el Panel|||Registrando o host de bancos dos jogos no Painel
+The Panel did not return a valid database host ID.|||El Panel no devolvió un ID de host de bases de datos válido.|||O Painel não retornou um ID de host de banco de dados válido.
+The Panel is installed. Database host setup is incomplete; rerun Install Panel to retry, or configure it from the database menu.|||El Panel está instalado. Falta completar el host de bases de juegos; vuelve a Instalar Panel para reintentarlo o configúralo desde el menú de bases de datos.|||O Painel está instalado. A configuração do host de bancos dos jogos está incompleta; execute Instalar Painel para tentar novamente ou configure pelo menu de bancos de dados.
+No registered game database host is saved.|||No hay ningún host de bases de juegos registrado y guardado.|||Nenhum host de bancos dos jogos registrado foi salvo.
+No managed local game database exists. Back up remote SQL on its own host.|||No existe una base de juegos local gestionada. Haz la copia del SQL remoto en su propio servidor.|||Não existe um banco de jogos local gerenciado. Faça o backup do SQL remoto no próprio servidor.
+Host: {value}|||Host: {value}|||Host: {value}
+Port: {value}|||Puerto: {value}|||Porta: {value}
+Username: {value}|||Usuario: {value}|||Usuário: {value}
+Password: {value}|||Contraseña: {value}|||Senha: {value}
+Private credentials file: {value}|||Archivo privado de credenciales: {value}|||Arquivo privado de credenciais: {value}
+Provisioning credentials are for the Panel only. Game users receive separate accounts.|||Las credenciales de gestión son solo para el Panel. Los usuarios de juegos reciben cuentas separadas.|||As credenciais de gerenciamento são apenas para o Painel. Os usuários dos jogos recebem contas separadas.
+Set each server's database limit above zero in the Panel before creating game databases.|||Establece un límite de bases de datos mayor que cero para cada servidor en el Panel antes de crear sus bases.|||Defina um limite de bancos de dados maior que zero para cada servidor no Painel antes de criar seus bancos.
+This private database address works only for nodes on this machine. Remote nodes need a reachable private database host.|||Esta dirección privada sirve para los nodos de esta máquina. Los nodos remotos necesitan un host privado accesible.|||Este endereço privado serve para nodes nesta máquina. Nodes remotos precisam de um host privado acessível.
+Game database host is ready|||El host de bases de juegos está listo|||O host de bancos dos jogos está pronto
+The local game database data directory is empty; no backup was created.|||El directorio de datos de las bases de juegos está vacío; no se creó una copia.|||O diretório dos bancos dos jogos está vazio; nenhum backup foi criado.
+Pausing game databases for a consistent physical backup|||Pausando las bases de juegos para una copia física consistente|||Pausando os bancos dos jogos para um backup físico consistente
+Game database backup: {value}|||Copia de las bases de juegos: {value}|||Backup dos bancos dos jogos: {value}
+Physical backup: restore only with its original database image and private network; game queries pause during backup.|||Copia física: restaura solo con la imagen de base de datos y la red privada originales; las consultas de juegos se pausan durante la copia.|||Backup físico: restaure apenas com a imagem do banco e a rede privada originais; as consultas dos jogos pausam durante o backup.
+CONFIGURE DATABASE HOST|||CONFIGURAR HOST DE BASES DE DATOS|||CONFIGURAR HOST DE BANCO DE DADOS
+Configure game database host|||Configurar host de bases de juegos|||Configurar host de bancos dos jogos
+Show database host credentials|||Ver credenciales del host de bases de datos|||Ver credenciais do host de banco de dados
+Back up local game databases|||Crear copia de las bases de juegos locales|||Fazer backup dos bancos dos jogos locais
+GAME DATABASES|||BASES DE DATOS DE JUEGOS|||BANCOS DE DADOS DOS JOGOS
+Game database host: {value}|||Host de bases de juegos: {value}|||Host de bancos dos jogos: {value}
+local|||local|||local
+existing|||existente|||existente
+later|||después|||depois
+Isolated Panel, database and Redis|||Panel, base de datos y Redis aislados|||Painel, banco de dados e Redis isolados
+Standalone|||Standalone|||Standalone
+Native PHP, NGINX, database and Redis services|||Servicios nativos de PHP, NGINX, base de datos y Redis|||Serviços nativos de PHP, NGINX, banco de dados e Redis
+Wings still uses Docker to run game servers.|||Wings sigue utilizando Docker para ejecutar los servidores de juegos.|||O Wings continua usando Docker para executar os servidores de jogos.
+Database engine|||Motor de base de datos|||Motor de banco de dados
+MariaDB (Recommended)|||MariaDB (Recomendado)|||MariaDB (Recomendado)
+MariaDB 11.4 in Docker; compatible distribution packages natively|||MariaDB 11.4 en Docker; paquetes compatibles de la distribución en standalone|||MariaDB 11.4 no Docker; pacotes compatíveis da distribuição no standalone
+MySQL|||MySQL|||MySQL
+MySQL 8.4 LTS in Docker; MySQL 8.x natively|||MySQL 8.4 LTS en Docker; MySQL 8.x en standalone|||MySQL 8.4 LTS no Docker; MySQL 8.x no standalone
+Panel version (auto selects the latest compatible release)|||Versión del Panel (auto selecciona la última compatible)|||Versão do Painel (auto seleciona a compatível mais recente)
+Panel v2 is a beta release. Continue?|||Panel v2 es una versión beta. ¿Continuar?|||O Painel v2 é uma versão beta. Continuar?
+Beta installation cancelled.|||Instalación beta cancelada.|||Instalação beta cancelada.
+Address and connection|||Dirección y conexión|||Endereço e conexão
+How will you access the Panel?|||¿Cómo accederás al Panel?|||Como você acessará o Painel?
+Domain / subdomain (Recommended)|||Dominio / subdominio (Recomendado)|||Domínio / subdomínio (Recomendado)
+HTTPS with a free Let's Encrypt certificate|||HTTPS con un certificado gratuito de Let's Encrypt|||HTTPS com certificado gratuito do Let's Encrypt
+Public machine IP|||IP pública de la máquina|||IP público da máquina
+HTTP only, no SSL certificate|||Solo HTTP, sin certificado SSL|||Somente HTTP, sem certificado SSL
+Domain / subdomain (without http://)|||Dominio / subdominio (sin http://)|||Domínio / subdomínio (sem http://)
+Enable HTTPS (Recommended)?|||¿Activar HTTPS (Recomendado)?|||Ativar HTTPS (Recomendado)?
+Detecting the machine's public IPv4 address|||Detectando la dirección IPv4 pública de la máquina|||Detectando o endereço IPv4 público da máquina
+Public IPv4 address of this machine|||Dirección IPv4 pública de esta máquina|||Endereço IPv4 público desta máquina
+Does DNS point here, with public TCP ports 80 and 443 reachable?|||¿El DNS apunta aquí y los puertos TCP públicos 80 y 443 están accesibles?|||O DNS aponta para cá e as portas TCP públicas 80 e 443 estão acessíveis?
+Prepare DNS and open the required ports, then run the wizard again.|||Prepara el DNS y abre los puertos necesarios; después vuelve a ejecutar el asistente.|||Prepare o DNS e libere as portas necessárias; depois execute o assistente novamente.
+PHP version|||Versión de PHP|||Versão do PHP
+PHP 8.3 (Recommended)|||PHP 8.3 (Recomendado)|||PHP 8.3 (Recomendado)
+PHP 8.4|||PHP 8.4|||PHP 8.4
+HTTP port|||Puerto HTTP|||Porta HTTP
+Listen IPv4 address|||Dirección IPv4 de escucha|||Endereço IPv4 de escuta
+Timezone|||Zona horaria|||Fuso horário
+Administrator and email|||Administrador y correo|||Administrador e e-mail
+Set up SMTP email now?|||¿Configurar el correo SMTP ahora?|||Configurar o e-mail SMTP agora?
+Email delivery is disabled until SMTP is configured from the menu.|||El envío de correos estará desactivado hasta configurar SMTP desde el menú.|||O envio de e-mails ficará desativado até configurar o SMTP pelo menu.
+Review your installation|||Revisa tu instalación|||Revise sua instalação
+Ready to install|||Listo para instalar|||Pronto para instalar
+Deployment: {value}|||Instalación: {value}|||Instalação: {value}
+Database: {value}|||Base de datos: {value}|||Banco de dados: {value}
+Panel URL: {value}|||URL del Panel: {value}|||URL do Painel: {value}
+Release: {value}|||Versión: {value}|||Versão: {value}
+Administrator: {value}|||Administrador: {value}|||Administrador: {value}
+Timezone: {value}|||Zona horaria: {value}|||Fuso horário: {value}
+INSTALL PANEL|||INSTALAR PANEL|||INSTALAR PAINEL
+Save your generated password|||Guarda tu contraseña generada|||Guarde sua senha gerada
+Keep it in your password manager. It will not be written to a file.|||Guárdala en tu gestor de contraseñas. No se escribirá en un archivo.|||Guarde-a no seu gerenciador de senhas. Ela não será gravada em um arquivo.
+Creating the first administrator|||Creando el primer administrador|||Criando o primeiro administrador
+Installing standalone dependencies|||Instalando las dependencias standalone|||Instalando as dependências standalone
+Invalid repository signing key.|||Clave de firma del repositorio no válida.|||Chave de assinatura do repositório inválida.
+Updating APT indexes|||Actualizando los índices de APT|||Atualizando os índices do APT
+Adding the PHP repository|||Añadiendo el repositorio de PHP|||Adicionando o repositório do PHP
+Updating PHP packages|||Actualizando los paquetes de PHP|||Atualizando os pacotes do PHP
+Native MySQL on Debian requires amd64. Choose MariaDB or Docker on ARM64.|||MySQL nativo en Debian requiere amd64. En ARM64 elige MariaDB o Docker.|||MySQL nativo no Debian exige amd64. No ARM64, escolha MariaDB ou Docker.
+Updating database packages|||Actualizando los paquetes de la base de datos|||Atualizando os pacotes do banco de dados
+Composer installer signature does not match.|||La firma del instalador de Composer no coincide.|||A assinatura do instalador do Composer não corresponde.
+Installing verified Composer 2|||Instalando Composer 2 verificado|||Instalando o Composer 2 verificado
+Provisioning the Panel database|||Preparando la base de datos del Panel|||Preparando o banco de dados do Painel
+The reserved ptero_panel database/user already exists and is not managed by this installation.|||La base de datos o el usuario reservado ptero_panel ya existe y no pertenece a esta instalación.|||O banco ou usuário reservado ptero_panel já existe e não pertence a esta instalação.
+Invalid generated database password.|||La contraseña generada de la base de datos no es válida.|||A senha gerada do banco de dados é inválida.
+Existing .env is missing its original application keys. Restore a backup.|||El .env existente no contiene sus claves originales. Restaura una copia de seguridad.|||O .env existente não contém as chaves originais. Restaure um backup.
+The Panel release does not provide a SHA-256 digest.|||La versión del Panel no incluye un digest SHA-256.|||A versão do Painel não fornece um digest SHA-256.
+Unexpected Panel release download URL.|||La URL de descarga del Panel no es la esperada.|||A URL de download do Painel é inesperada.
+Downloading and verifying the Panel release|||Descargando y verificando la versión del Panel|||Baixando e verificando a versão do Painel
+Panel archive exceeds the download size limit.|||El archivo del Panel supera el límite de descarga.|||O arquivo do Painel excede o limite de download.
+Panel archive checksum does not match.|||El checksum del archivo del Panel no coincide.|||O checksum do arquivo do Painel não corresponde.
+The Panel archive is incomplete.|||El archivo del Panel está incompleto.|||O arquivo do Painel está incompleto.
+Validating NGINX configuration|||Validando la configuración de NGINX|||Validando a configuração do NGINX
+Issuing the Panel HTTPS certificate|||Emitiendo el certificado HTTPS del Panel|||Emitindo o certificado HTTPS do Painel
+Installing verified PHP dependencies|||Instalando dependencias PHP verificadas|||Instalando dependências PHP verificadas
+Running Panel migrations|||Ejecutando las migraciones del Panel|||Executando as migrações do Painel
+Standalone Panel is ready: {url}|||El Panel standalone está listo: {url}|||O Painel standalone está pronto: {url}
+Starting queue worker and scheduler|||Iniciando el trabajador de colas y el programador|||Iniciando o worker da fila e o agendador
+Checking database migrations|||Comprobando las migraciones de la base de datos|||Verificando as migrações do banco de dados
+The Panel returned an unexpected HTTP status: {value}|||El Panel devolvió un estado HTTP inesperado: {value}|||O Painel retornou um status HTTP inesperado: {value}
+Exporting the Panel database|||Exportando la base de datos del Panel|||Exportando o banco de dados do Painel
+SQL dump is empty; the backup was not accepted.|||El dump SQL está vacío; no se acepta la copia.|||O dump SQL está vazio; o backup não foi aceito.
+Compressing application, original keys and private Redis|||Comprimiendo la aplicación, las claves originales y Redis privado|||Comprimindo a aplicação, as chaves originais e o Redis privado
+Backup created: {path}|||Copia creada: {path}|||Backup criado: {path}
+The standalone application directory must be empty before restore.|||El directorio de la aplicación standalone debe estar vacío antes de restaurar.|||O diretório da aplicação standalone deve estar vazio antes de restaurar.
+Backup is missing the original .env or SQL dump.|||Falta el .env original o el dump SQL en la copia.|||O backup não contém o .env original ou o dump SQL.
+Restoring SQL with the original application keys|||Restaurando SQL con las claves originales de la aplicación|||Restaurando o SQL com as chaves originais da aplicação
+Update incomplete. Panel remains in maintenance. Recovery backup: {path}|||Actualización incompleta. El Panel sigue en mantenimiento. Copia de recuperación: {path}|||Atualização incompleta. O Painel continua em manutenção. Backup de recuperação: {path}
+UNINSTALL PANEL|||DESINSTALAR PANEL|||DESINSTALAR PAINEL
+Also delete the Panel application and database? A backup is created first.|||¿Borrar también la aplicación y la base de datos del Panel? Antes se crea una copia.|||Excluir também a aplicação e o banco do Painel? Um backup será criado antes.
+DELETE PANEL|||BORRAR PANEL|||EXCLUIR PAINEL
+Unsafe removal path.|||Ruta de borrado no segura.|||Caminho de remoção inseguro.
+Panel uninstalled. Backup: {path}|||Panel desinstalado. Copia: {path}|||Painel desinstalado. Backup: {path}
+Wings domain / subdomain|||Dominio / subdominio de Wings|||Domínio / subdomínio do Wings
+Let's Encrypt email|||Correo de Let's Encrypt|||E-mail do Let's Encrypt
+ISSUE WINGS SSL|||EMITIR SSL WINGS|||EMITIR SSL WINGS
+Issuing the Wings HTTPS certificate|||Emitiendo el certificado HTTPS de Wings|||Emitindo o certificado HTTPS do Wings
+Wings certificate is ready. Synchronize the node configuration after changing SSL settings.|||El certificado de Wings está listo. Sincroniza la configuración del nodo si cambias el SSL.|||O certificado do Wings está pronto. Sincronize a configuração do node se alterar o SSL.
+The standalone application directory already exists; unmanaged files will not be overwritten.|||El directorio de la aplicación standalone ya existe; no se sobrescribirán archivos ajenos.|||O diretório da aplicação standalone já existe; arquivos não gerenciados não serão sobrescritos.
+A reserved standalone configuration already exists: {value}|||Ya existe una configuración reservada para standalone: {value}|||Já existe uma configuração reservada para standalone: {value}
+Wings deployment|||Instalación de Wings|||Instalação do Wings
+Standalone daemon (Recommended)|||Servicio standalone (Recomendado)|||Serviço standalone (Recomendado)
+A systemd service managing Docker game containers|||Un servicio systemd que gestiona los contenedores de juegos|||Um serviço systemd que gerencia os contêineres dos jogos
+Docker container|||Contenedor Docker|||Contêiner Docker
+A Wings container with host networking and Docker socket access|||Un contenedor Wings con red del host y acceso al socket Docker|||Um contêiner Wings com rede do host e acesso ao socket Docker
+Wings container already installed. Use configure or update.|||El contenedor de Wings ya está instalado. Usa configurar o actualizar.|||O contêiner do Wings já está instalado. Use configurar ou atualizar.
+Configure the Wings node before starting its container.|||Configura el nodo de Wings antes de iniciar su contenedor.|||Configure o node do Wings antes de iniciar seu contêiner.
+Starting the Wings container|||Iniciando el contenedor de Wings|||Iniciando o contêiner do Wings
+The Wings container was not created.|||No se ha creado el contenedor de Wings.|||O contêiner do Wings não foi criado.
+Checking Wings startup stability|||Comprobando la estabilidad del arranque de Wings|||Verificando a estabilidade da inicialização do Wings
+Wings failed to start cleanly. Check the container logs.|||Wings no ha arrancado correctamente. Revisa los registros del contenedor.|||O Wings não iniciou corretamente. Verifique os logs do contêiner.
+UPDATE WINGS|||ACTUALIZAR WINGS|||ATUALIZAR WINGS
+UNINSTALL WINGS|||DESINSTALAR WINGS|||DESINSTALAR WINGS
+Removing only the Wings service container|||Eliminando solo el contenedor del servicio Wings|||Removendo apenas o contêiner do serviço Wings
+Wings removed. Game containers, game files and Docker are preserved.|||Wings eliminado. Se conservan los contenedores, archivos de juegos y Docker.|||Wings removido. Os contêineres, arquivos de jogos e Docker foram preservados.
+Standalone services and HTTP endpoint passed their checks.|||Los servicios standalone y el acceso HTTP han pasado sus comprobaciones.|||Os serviços standalone e o acesso HTTP passaram nas verificações.
+A Panel container is stopped or unhealthy.|||Un contenedor del Panel está detenido o no está saludable.|||Um contêiner do Painel está parado ou não está saudável.
+Panel containers are missing.|||Faltan los contenedores del Panel.|||Os contêineres do Painel estão ausentes.
+All Panel containers are healthy.|||Todos los contenedores del Panel están saludables.|||Todos os contêineres do Painel estão saudáveis.
+Wings is active.|||Wings está activo.|||Wings está ativo.
+No managed installation found.|||No se ha encontrado una instalación gestionada.|||Nenhuma instalação gerenciada foi encontrada.
+CREATE ADMINISTRATOR|||CREAR ADMINISTRADOR|||CRIAR ADMINISTRADOR
+Install Panel and Wings|||Instalar Panel y Wings|||Instalar Painel e Wings
+Install Panel|||Instalar Panel|||Instalar Painel
+Install Wings|||Instalar Wings|||Instalar Wings
+Uninstall Panel and Wings|||Desinstalar Panel y Wings|||Desinstalar Painel e Wings
+Uninstall Panel|||Desinstalar Panel|||Desinstalar Painel
+Uninstall Wings|||Desinstalar Wings|||Desinstalar Wings
+Update Panel v2|||Actualizar Panel v2|||Atualizar Painel v2
+Update Wings|||Actualizar Wings|||Atualizar Wings
+Configure / link Wings|||Configurar / vincular Wings|||Configurar / vincular Wings
+Wings HTTPS certificate|||Certificado HTTPS de Wings|||Certificado HTTPS do Wings
+Back up Panel|||Crear copia del Panel|||Fazer backup do Painel
+Back up Wings configuration|||Crear copia de la configuración de Wings|||Fazer backup da configuração do Wings
+Restore Panel from backup|||Restaurar Panel desde una copia|||Restaurar o Painel de um backup
+Status and diagnostics|||Estado y diagnóstico|||Status e diagnóstico
+Restart services|||Reiniciar servicios|||Reiniciar serviços
+View logs|||Ver registros|||Ver logs
+Configure SMTP|||Configurar SMTP|||Configurar SMTP
+Create administrator|||Crear administrador|||Criar administrador
+Ports and firewall|||Puertos y firewall|||Portas e firewall
+INSTALL & REMOVE|||INSTALAR Y DESINSTALAR|||INSTALAR E DESINSTALAR
+UPDATE & CONNECT|||ACTUALIZAR Y CONECTAR|||ATUALIZAR E CONECTAR
+BACKUP & RESTORE|||COPIAS Y RESTAURACIÓN|||BACKUPS E RESTAURAÇÃO
+OPERATIONS|||OPERACIONES|||OPERAÇÕES
+Change language|||Cambiar idioma|||Alterar idioma
+Exit|||Salir|||Sair
+The operation did not complete. Review the private installer log.|||La operación no se ha completado. Revisa el registro privado del instalador.|||A operação não foi concluída. Verifique o log privado do instalador.
+Run with sudo or as root.|||Ejecuta con sudo o como root.|||Execute com sudo ou como root.
+Another installer is already running.|||Hay otro instalador en ejecución.|||Outro instalador já está em execução.
+\nInterrupted. Keep the log and resume from the menu.|||Interrumpido. Guarda el registro y reanuda desde el menú.|||Interrompido. Guarde o log e retome pelo menu.
+ready|||listo|||pronto
+stopped|||detenido|||parado
+pending|||pendiente|||pendente
+configured|||configurado|||configurado
+installing|||instalando|||instalando
+updating|||actualizando|||atualizando
+restoring|||restaurando|||restaurando
+Resume Panel|||Reanudar Panel|||Retomar Painel
+Downloading {image}|||Descargando {image}|||Baixando {image}
+The Panel uses HTTP. Continue linking this node without HTTPS?|||El Panel utiliza HTTP. ¿Continuar vinculando este nodo sin HTTPS?|||O Painel usa HTTP. Continuar vinculando este node sem HTTPS?
+Node linking cancelled.|||Vinculación del nodo cancelada.|||Vinculação do node cancelada.
+The standalone Redis directory must be empty before restore.|||El directorio Redis standalone debe estar vacío antes de restaurar.|||O diretório Redis standalone deve estar vazio antes de restaurar.
+The Wings container is stopped or missing.|||El contenedor Wings está detenido o no existe.|||O contêiner Wings está parado ou ausente.
+The Wings container is stopped or unhealthy.|||El contenedor Wings está detenido o no está saludable.|||O contêiner Wings está parado ou não está saudável.
+Interface preview|||Vista previa de la interfaz|||Prévia da interface
+Preview only. No packages, files or services will be installed.|||Solo vista previa. No se instalarán paquetes, archivos ni servicios.|||Somente prévia. Nenhum pacote, arquivo ou serviço será instalado.
+Checking your installation plan|||Comprobando tu plan de instalación|||Verificando seu plano de instalação
+A different database engine is already installed. Choose the matching engine or Docker.|||Ya hay otro motor de base de datos instalado. Elige el mismo motor o Docker.|||Já existe outro motor de banco de dados instalado. Escolha o mesmo motor ou Docker.
+The existing database server is too old for Panel v2. Choose Docker or upgrade it separately.|||El servidor de base de datos existente es demasiado antiguo para Panel v2. Elige Docker o actualízalo por separado.|||O servidor de banco de dados existente é antigo demais para o Painel v2. Escolha Docker ou atualize-o separadamente.
+Binding the new database service to localhost|||Limitando la nueva base de datos a localhost|||Limitando o novo banco de dados ao localhost
