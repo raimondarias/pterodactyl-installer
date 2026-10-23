@@ -1,0 +1,41 @@
+name: Installer verification
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install test clients
+        run: sudo apt-get update && sudo apt-get install -y shellcheck nginx mariadb-server php-cli restic
+      - name: Regression tests
+        run: bash tests/run.sh
+  live-deployment:
+    if: github.event_name == 'workflow_dispatch'
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04, ubuntu-26.04, debian-12, debian-13]
+        method: [standalone, docker]
+        engine: [mariadb, mysql]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install VM tooling
+        run: sudo apt-get update && sudo apt-get install -y qemu-system-x86 qemu-utils genisoimage
+      - name: Deploy on disposable systemd VM
+        env:
+          PTERO_GITHUB_TOKEN: ${{ github.token }}
+        run: sudo python3 scripts/vm_integration.py --os '${{ matrix.os }}' --method '${{ matrix.method }}' --engine '${{ matrix.engine }}'
+      - name: Upload redacted results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: deployment-${{ matrix.os }}-${{ matrix.method }}-${{ matrix.engine }}
+          path: test-results/integration-*.json
