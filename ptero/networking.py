@@ -16,7 +16,7 @@ def wings_network(installer, config):
     occupied = []
     existing = None
     for network in networks:
-        for item in network.get('IPAM', {}).get('Config', []):
+        for item in (network.get('IPAM') or {}).get('Config') or []:
             if item.get('Subnet'):
                 subnet = ipaddress.ip_network(item['Subnet'], strict=False)
                 occupied.append(subnet)

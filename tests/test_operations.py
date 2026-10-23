@@ -22,7 +22,8 @@ from ptero.backups import ScheduledBackups, checksum, verified, restore_sql, bac
 class OperationsTests(BaseTest):
     def test_wings_subnet_avoids_panel_compose_and_host_routes(self):
         from ptero.networking import wings_network
-        replies = ['panel\n', json.dumps([{'Name':'panel_default','IPAM':{'Config':[{'Subnet':'172.18.0.0/16'}]}}]),
+        replies = ['panel\nhost\nnone\n', json.dumps([{'Name':'host','IPAM':{'Config':None}}, {'Name':'none','IPAM':None},
+                   {'Name':'panel_default','IPAM':{'Config':[{'Subnet':'172.18.0.0/16'}]}}]),
                    json.dumps([{'dst':'default'},{'dst':'172.30.0.0/24'}])]
         with patch.object(self.runner, 'run', side_effect=[(0, value) for value in replies]):
             result = wings_network(self.installer, {})
