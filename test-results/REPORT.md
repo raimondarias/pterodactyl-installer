@@ -12,7 +12,7 @@ Date: 23 October 2026.
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
 | Language distributions | Three reproducible packages with one locale each; committed bytes match the shared runtime and translation tables |
 | Menu language change | Only the requested locale fetched; checksum/snapshot enforced; existing locale retained on failure |
-| Published GitHub distribution | The preceding snapshot was verified; run `tests/published_check.py` after this TUI revision is published to verify the actual online ncurses flow as well |
+| Published GitHub distribution | **Passed** against `173926847ac9a13022e5eea87647c989373dede1`: actual downloads, full-screen picker and ncurses preview in en/es/pt-BR, clean terminal restoration and verified language changes |
 | Full-screen TUI | Passed with actual ncurses PTYs: arrows, categories, numeric shortcuts, search, masked forms, resize, busy animation and terminal restoration |
 | Prerequisites and fresh machine | Option 20 is blocked with an installation hint; option 14 gives machine information and next steps; corrupt state is reported without overwriting it |
 | Plan/password review | Review and generated credentials require acknowledgement before continuing |
