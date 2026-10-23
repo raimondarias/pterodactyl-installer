@@ -44,7 +44,7 @@ class HostUI(QuietUI):
         self.mode = mode
 
     def choice(self, title, options, default=0):
-        return self.mode
+        return "docker" if title == "Game SQL deployment" else self.mode
 
 
 class GameDatabaseTests(BaseTest):

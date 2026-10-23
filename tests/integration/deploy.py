@@ -20,7 +20,11 @@ class LabUI(UI):
     def ask(self, label, default=None, validator=None, secret=False):
         if label == 'Ruta absoluta al backup .tar.gz' and getattr(self, 'restore_archive', None):
             return str(self.restore_archive)
+        if default is not None and (not validator or validator(str(default))):
+            return str(default)
         return super().ask(label,default,validator,secret)
+    def choice(self, label, options, default=0):
+        return options[default][0]
     def yes(self, label, default=False):
         return getattr(self, 'purge', False) and (label.startswith('Also delete the Panel') or label.startswith('¿Borrar también'))
 

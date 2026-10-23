@@ -261,7 +261,7 @@ class Runner:
             error = errors.read().decode("utf-8", "replace")
             self.record(text + error)
             if result.returncode and check:
-                detail = self.redact((error or text)[-2400:])
+                detail = self.redact((error + "\n" + text)[-4800:])
                 raise InstallerError(f"Falló {label or args[0]} (código {result.returncode}).\n{detail}")
             return result.returncode, text
 
@@ -322,6 +322,10 @@ class Installer:
     def save_panel(self, state):
         write_json(self.p.state, state)
         if state.get("method", "docker") == "docker":
+            if state.get("database_engine") == "mysql":
+                # The bundled MariaDB CLI otherwise rejects MySQL's generated
+                # private-cluster certificate during Laravel schema loading.
+                atomic_write(self.p.data / "mysql-client.cnf", "[client]\nssl-verify-server-cert=0\n", 0o644)
             write_json(self.p.compose, self.compose_config(state))
 
     def compose_config(self, state):
@@ -368,6 +372,10 @@ class Installer:
                       "volumes": [volumes(name, target) for name, target in mounts], "environment": env}
         }}
         if state.get("database_engine") == "mysql":
+            config["services"]["panel"]["volumes"].append({"type": "bind", "source": str(self.p.data / "mysql-client.cnf"),
+                "target": "/etc/my.cnf.d/ptero-installer.cnf", "read_only": True})
+            config["services"]["panel"]["volumes"].append({"type": "bind", "source": str(self.p.data / "mysql-plugins"),
+                "target": "/usr/lib/mariadb/plugin", "read_only": True})
             db = config["services"]["database"]
             db["image"] = state.get("database_image", "mysql:8.4")
             db["environment"] = {"MYSQL_RANDOM_ROOT_PASSWORD": "yes", "MYSQL_DATABASE": "panel",
@@ -378,6 +386,28 @@ class Installer:
     def dc(self, *args, **kwargs):
         return self.run.run(["docker", "compose", "--project-name", PROJECT, "--file", self.p.compose,
                              *args], **kwargs)
+
+    def prepare_mysql_client(self, state):
+        if state.get("method", "docker") != "docker" or state.get("database_engine") != "mysql":
+            return
+        directory = self.p.data / "mysql-plugins"
+        plugin = directory / "caching_sha2_password.so"
+        source = state["panel_image"]
+        if (plugin.is_file() and state.get("mysql_plugin_image") == source
+                and state.get("mysql_plugin_arch") == platform.machine()
+                and hashlib.sha256(plugin.read_bytes()).hexdigest() == state.get("mysql_plugin_sha256")):
+            return
+        directory.mkdir(parents=True, exist_ok=True, mode=0o755)
+        directory.chmod(0o755)
+        self.run.run(["docker", "run", "--rm", "--entrypoint", "sh", "--mount",
+                      f"type=bind,source={directory},target=/ptero-plugins", source, "-c",
+                      "apk add --no-cache mariadb-connector-c && cp /usr/lib/mariadb/plugin/caching_sha2_password.so /ptero-plugins/caching_sha2_password.so && chmod 644 /ptero-plugins/caching_sha2_password.so"],
+                     label="Preparing the MySQL authentication client", timeout=600)
+        if not plugin.is_file():
+            raise InstallerError("The MySQL authentication client was not prepared.")
+        state.update(mysql_plugin_image=source, mysql_plugin_arch=platform.machine(),
+                     mysql_plugin_sha256=hashlib.sha256(plugin.read_bytes()).hexdigest())
+        self.save_panel(state)
 
     def check_host(self, wings=False):
         if os.geteuid() != 0:
@@ -597,6 +627,7 @@ class Installer:
             if key not in state:
                 state[key] = self.pin_image(ref)
                 self.save_panel(state)
+        self.prepare_mysql_client(state)
         self.dc("config", "--quiet")
         phases.run("SQL and cache", lambda: self.dc("up", "-d", "--wait", "--wait-timeout", "240", "database", "cache", label="Preparando base de datos y Redis"))
         self.dc("stop", "panel", label="Manteniendo el Panel detenido durante las migraciones")
@@ -941,6 +972,7 @@ class Installer:
             for folder in ("database", "logs", "redis", "nginx", "certs", "extensions", "extension-assets"):
                 (self.p.data / folder).mkdir(exist_ok=True, mode=0o700)
             self.dc("pull", label="Descargando imágenes originales de la copia")
+            self.prepare_mysql_client(state)
             self.dc("up", "-d", "--wait", "--wait-timeout", "240", "database", "cache")
             with (work / "database.sql").open("rb") as stream:
                 self.dc("exec", "-T", "database", "sh", "-c",
@@ -971,6 +1003,7 @@ class Installer:
         state.update(version=release["tag_name"], panel_image=image, status="updating", recovery_backup=str(backup))
         self.save_panel(state)
         try:
+            self.prepare_mysql_client(state)
             self.dc("run", "--rm", "-T", "panel", "php", "artisan", "migrate", "--seed", "--force", "--no-interaction",
                     label="Aplicando migraciones de la versión nueva")
             self.dc("up", "-d", "--wait", "--wait-timeout", "360", "panel", label="Verificando nuevo Panel")

@@ -12,6 +12,7 @@ import secrets
 import shutil
 import tarfile
 import tempfile
+import time
 import urllib.parse
 import urllib.request
 
@@ -372,15 +373,23 @@ class NativeBackend:
             self.run.run(["systemctl", "is-active", "--quiet", unit])
         self.artisan("migrate:status", "--no-interaction", label="Checking database migrations")
         address = "127.0.0.1" if self.s.get("bind", "0.0.0.0") == "0.0.0.0" else self.s["bind"]
-        connection = http.client.HTTPConnection(address, self.s["http_port"], timeout=15)
-        try:
-            connection.request("GET", "/", headers={"Host": urllib.parse.urlsplit(self.s["url"]).netloc})
-            response = connection.getresponse()
-            if response.status not in (200, 301, 302, 303):
-                raise InstallerError("The Panel returned an unexpected HTTP status: " + str(response.status))
-            response.read(4096)
-        finally:
-            connection.close()
+        with self.ui.busy("Waiting for Panel HTTP readiness"):
+            for attempt in range(15):
+                connection = http.client.HTTPConnection(address, self.s["http_port"], timeout=5)
+                try:
+                    connection.request("GET", "/", headers={"Host": urllib.parse.urlsplit(self.s["url"]).netloc})
+                    response = connection.getresponse()
+                    response.read(4096)
+                    if response.status in (200, 301, 302, 303):
+                        return
+                    if attempt == 14:
+                        raise InstallerError("The Panel returned an unexpected HTTP status: " + str(response.status))
+                except (OSError, http.client.HTTPException):
+                    if attempt == 14:
+                        raise InstallerError("The Panel HTTP endpoint did not become ready.")
+                finally:
+                    connection.close()
+                time.sleep(1)
 
     @contextlib.contextmanager
     def client_config(self):

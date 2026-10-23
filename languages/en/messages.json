@@ -2191,5 +2191,17 @@
   },
   "Inspect journalctl -u ptero-backup.service before trusting scheduled copies.": {
     "en": "Inspect journalctl -u ptero-backup.service before trusting scheduled copies."
+  },
+  "Waiting for Panel HTTP readiness": {
+    "en": "Waiting for Panel HTTP readiness"
+  },
+  "The Panel HTTP endpoint did not become ready.": {
+    "en": "The Panel HTTP endpoint did not become ready."
+  },
+  "Preparing the MySQL authentication client": {
+    "en": "Preparing the MySQL authentication client"
+  },
+  "The MySQL authentication client was not prepared.": {
+    "en": "The MySQL authentication client was not prepared."
   }
 }

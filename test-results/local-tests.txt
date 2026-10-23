@@ -103,7 +103,9 @@ test_failed_phase_persists_failure_without_exception_secrets_and_can_resume (tes
 test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination (test_operations.OperationsTests) ... ok
 test_health_report_collects_multiple_failures_instead_of_hiding_them (test_operations.OperationsTests) ... ok
 test_menu_shortcuts_remain_unique_with_language_23_reserved (test_operations.OperationsTests) ... ok
+test_mysql_authentication_plugin_is_saved_verified_and_repaired (test_operations.OperationsTests) ... ok
 test_native_firewall_remote_allowlist_has_no_public_wildcard_rule (test_operations.OperationsTests) ... ok
+test_native_health_waits_for_php_socket_readiness_after_reload (test_operations.OperationsTests) ... ok
 test_native_sql_uses_own_datadir_socket_and_service (test_operations.OperationsTests) ... ok
 test_nested_game_backup_does_not_unpause_a_container_paused_by_the_bundle (test_operations.OperationsTests) ... ok
 test_node_php_has_valid_real_parser_syntax (test_operations.OperationsTests) ... ok
@@ -192,6 +194,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 192 tests in 29.113s
+Ran 194 tests in 28.114s
 
 OK

@@ -551,3 +551,7 @@ Renew the certificate; fewer than 14 days remain or verification failed.|||Renue
 Inspect Wings logs and verify the Panel connection.|||Revisa los registros de Wings y verifica la conexión con el Panel.|||Verifique os logs do Wings e a conexão com o Painel.
 Enable ptero-backup.timer and inspect the last backup service result.|||Activa ptero-backup.timer y revisa el resultado del último servicio de copia.|||Ative ptero-backup.timer e verifique o resultado do último serviço de backup.
 Inspect journalctl -u ptero-backup.service before trusting scheduled copies.|||Revisa journalctl -u ptero-backup.service antes de dar por válidas las copias programadas.|||Verifique journalctl -u ptero-backup.service antes de considerar válidos os backups agendados.
+Waiting for Panel HTTP readiness|||Esperando a que el Panel responda por HTTP|||Aguardando a resposta HTTP do Painel
+The Panel HTTP endpoint did not become ready.|||El acceso HTTP al Panel no llegó a estar disponible.|||O acesso HTTP ao Painel não ficou disponível.
+Preparing the MySQL authentication client|||Preparando el cliente de autenticación MySQL|||Preparando o cliente de autenticação MySQL
+The MySQL authentication client was not prepared.|||No se pudo preparar el cliente de autenticación MySQL.|||Não foi possível preparar o cliente de autenticação MySQL.

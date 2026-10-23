@@ -83,6 +83,11 @@ class FakeRunner:
         if args[:3] == ["docker", "image", "inspect"]:
             repository = args[-1].rsplit(":", 1)[0]
             return 0, json.dumps([repository + "@sha256:" + "a" * 64])
+        if args[:2] == ["docker", "run"] and "--mount" in args:
+            mount = args[args.index("--mount") + 1]
+            if "target=/ptero-plugins" in mount:
+                directory = Path(next(value[7:] for value in mount.split(",") if value.startswith("source=")))
+                (directory / "caching_sha2_password.so").write_bytes(b"test authentication plugin")
         if args[:3] == ["systemctl", "is-active", "--quiet"]:
             return (0 if self.active else 3), ""
         if "--services" in args and "--status" in args:

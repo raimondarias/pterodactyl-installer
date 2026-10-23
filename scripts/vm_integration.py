@@ -67,7 +67,9 @@ def main():
    result=subprocess.run([*ssh,f'cd /root/ptero-ci && python3 tests/integration/deploy.py --disposable --method {a.method} --engine {a.engine} --cycle --full'],timeout=3000)
    (root/'test-results').mkdir(exist_ok=True)
    subprocess.run([*ssh,'cat /root/ptero-ci/test-results/integration-result.json'],stdout=(root/'test-results'/('integration-'+a.os+'-'+a.method+'-'+a.engine+'.json')).open('wb'),check=False)
-   if result.returncode:raise RuntimeError('Real VM deployment failed')
+   if result.returncode:
+    subprocess.run([*ssh,'tail -160 /var/log/pterodactyl-installer/installer.log'],check=False)
+    raise RuntimeError('Real VM deployment failed')
   finally:
    machine.terminate()
    try:machine.wait(timeout=20)

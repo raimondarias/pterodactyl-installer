@@ -130,7 +130,7 @@ def main():
         if translated != {"en": "Choose an option", "es": "Elige una opción", "pt-BR": "Escolha uma opção"}:
             raise app.InstallerError("Published language changes returned unexpected translations.")
         print("OK real GitHub language changes: en -> es -> pt-BR; snapshot and hashes verified", flush=True)
-    print("No Panel/Wings/system services were installed. Complete clean-VPS deployment remains untested.", flush=True)
+    print("This distribution smoke check installs no services. Real VM deployment results are recorded separately.", flush=True)
 
 
 if __name__ == "__main__":

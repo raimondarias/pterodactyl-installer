@@ -32,6 +32,9 @@ class NativeGameDatabase:
     def dependencies(self, state):
         release = self.i.check_host()
         mysql = state['engine'] == 'mysql'
+        selected = 'mysql-community-server' if mysql and release['ID'] == 'debian' else 'mysql-server' if mysql else 'mariadb-server'
+        _, installed = self.run.run(['dpkg-query', '-W', '-f=${Status}', selected], check=False)
+        had_default_instance = 'install ok installed' in installed
         opposite = 'mariadb-server' if mysql else 'mysql-server'
         code, text = self.run.run(['dpkg-query', '-W', '-f=${Status}', opposite], check=False)
         if code == 0 and 'install ok installed' in text:
@@ -49,6 +52,8 @@ class NativeGameDatabase:
         else:
             packages = ['mysql-server', 'mysql-client'] if mysql else ['mariadb-server', 'mariadb-client']
         self.run.run(['apt-get', 'install', '-y', 'iptables', *packages], label='Installing native game SQL packages')
+        if not had_default_instance:
+            self.run.run(['systemctl', 'disable', '--now', 'mysql' if mysql else 'mariadb'])
 
     def firewall(self, state):
         host = str(ipaddress.IPv4Address(state['host']))

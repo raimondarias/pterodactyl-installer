@@ -253,3 +253,35 @@ class OperationsTests(BaseTest):
                     signal.raise_signal(signal.SIGTERM)
         self.assertEqual(actions, ['pause', 'unpause'])
         self.assertEqual(signal.getsignal(signal.SIGTERM), previous)
+
+    def test_native_health_waits_for_php_socket_readiness_after_reload(self):
+        from unittest.mock import MagicMock
+        from ptero.native import NativeBackend
+        backend = NativeBackend(self.installer, {**self.state, 'method': 'standalone'})
+        responses = [MagicMock(), MagicMock()]
+        responses[0].getresponse.return_value.status = 502
+        responses[1].getresponse.return_value.status = 200
+        with patch('ptero.native.http.client.HTTPConnection', side_effect=responses) as connect, patch('ptero.native.time.sleep') as sleep:
+            backend.health()
+        self.assertEqual(connect.call_count, 2)
+        sleep.assert_called_once_with(1)
+        for response in responses:
+            response.close.assert_called_once()
+
+    def test_mysql_authentication_plugin_is_saved_verified_and_repaired(self):
+        state = {**self.state, 'method': 'docker', 'database_engine': 'mysql',
+                 'panel_image': 'ghcr.io/pterodactyl/panel@sha256:' + 'a' * 64}
+        self.installer.save_panel(state)
+        self.installer.prepare_mysql_client(state)
+        plugin = self.paths.data / 'mysql-plugins/caching_sha2_password.so'
+        self.assertEqual(state['mysql_plugin_sha256'], checksum(plugin))
+        count = lambda: sum(args[:2] == ['docker', 'run'] for args, _ in self.runner.calls)
+        self.assertEqual(count(), 1)
+        self.installer.prepare_mysql_client(state)
+        self.assertEqual(count(), 1)
+        plugin.write_bytes(b'corrupt plugin')
+        self.installer.prepare_mysql_client(state)
+        self.assertEqual(count(), 2)
+        self.assertEqual(state['mysql_plugin_sha256'], checksum(plugin))
+        volumes = self.installer.compose_config(state)['services']['panel']['volumes']
+        self.assertTrue(any(v.get('target') == '/usr/lib/mariadb/plugin' and v['read_only'] for v in volumes))

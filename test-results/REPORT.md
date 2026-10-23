@@ -4,9 +4,9 @@ Date: 23 October 2026.
 
 | Check | Result |
 | --- | --- |
-| Local unittest suite | **192 tests passed**, no failures or skips in this environment |
+| Local unittest suite | **194 tests passed**, no failures or skips in this environment |
 | Guided simple setup matrix | Both Panel methods × both database engines × IP/domain × all three languages |
-| Language catalogue | 731 messages with complete en/es/pt-BR entries and matching placeholders |
+| Language catalogue | 735 messages with complete en/es/pt-BR entries and matching placeholders |
 | Bash syntax / Python compilation | Passed |
 | Online language bootstrap | Real Bash + Python runtime with GitHub transport fixtures: English first question, only selected folder, one language question, immutable commit and clean temporary-directory removal |
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
@@ -45,6 +45,8 @@ Date: 23 October 2026.
 | Automatic node and remote Wings | **Passed:** actual v2 contracts create location/node/11 allocations, verified root SSH installs and configures Wings, HTTPS API requires authentication |
 | Remote private SQL | **Passed:** source runtime deployed over verified SSH, private-address SQL instance initialized with explicit source allowlist and registered back into Panel |
 | Native game SQL restore | **Passed:** isolated native instance registered through v2 contract; physical archive restored and original table data verified |
+| Docker MySQL installation | **Passed:** real Panel schema loading, MySQL caching_sha2 client preparation, administrator creation and container health in the isolated guest |
+| Guest reboot | **Passed:** new boot ID, all managed services active again and public HTTPS returns 200 |
 | Real game | **Passed:** Minetest server created through Panel v2 contracts and started by Wings; game listens on its allocation inside the guest |
 | Scheduled encrypted backups | **Passed:** real systemd backup service, encrypted Restic local repository, verified snapshot download; game pause/unpause regression covered |
 | Native Panel lifecycle | **Passed:** real restart, same-release update redeployment, purge and SQL/application-key restoration; original APP_KEY/HASHIDS_SALT preserved |
