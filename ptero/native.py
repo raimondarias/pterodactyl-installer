@@ -66,6 +66,7 @@ class NativeBackend:
 
     def dependencies(self):
         release = self.i.check_host()
+        self.check_php_availability(release)
         opposites = ("mariadb-server",) if self.mysql else ("mysql-server", "mysql-community-server")
         for package in opposites:
             code, status = self.run.run(["dpkg-query", "-W", "-f=${Status}", package], check=False)
@@ -126,6 +127,12 @@ class NativeBackend:
             self.run.run(["systemctl", "restart", self.db_unit], label="Binding the new database service to localhost")
         self.run.run(["systemctl", "enable", "--now", self.db_unit])
         self.composer()
+
+    def check_php_availability(self, release):
+        if release.get("ID") == "ubuntu" and release.get("VERSION_ID") == "26.04":
+            _, policy = self.run.run(["apt-cache", "policy", "php" + self.s.get("php", "8.3") + "-cli"], check=False)
+            if not policy.strip() or "Candidate: (none)" in policy:
+                raise InstallerError("Ubuntu 26.04 needs a configured PHP 8.3/8.4 package source for standalone. Use Docker or Ubuntu 24.04.")
 
     def composer(self):
         tool = self.p.base / "tools/composer"

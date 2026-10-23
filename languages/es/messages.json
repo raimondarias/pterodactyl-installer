@@ -2203,5 +2203,8 @@
   },
   "The MySQL authentication client was not prepared.": {
     "es": "No se pudo preparar el cliente de autenticación MySQL."
+  },
+  "Ubuntu 26.04 needs a configured PHP 8.3/8.4 package source for standalone. Use Docker or Ubuntu 24.04.": {
+    "es": "Ubuntu 26.04 necesita un repositorio PHP 8.3/8.4 configurado para standalone. Usa Docker o Ubuntu 24.04."
   }
 }

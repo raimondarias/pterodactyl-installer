@@ -194,6 +194,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 194 tests in 28.114s
+Ran 194 tests in 28.764s
 
 OK

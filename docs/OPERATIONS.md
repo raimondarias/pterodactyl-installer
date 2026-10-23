@@ -195,3 +195,5 @@ Future priorities: [backup/restore, first-node automation, clean-VM CI and nativ
 ## Upstream references
 
 [Panel v2](https://docs.pterodactyl.io/v2) · [Native installation](https://docs.pterodactyl.io/v2/panel/getting-started) · [Docker deployment](https://docs.pterodactyl.io/v2/panel/docker) · [Requirements](https://docs.pterodactyl.io/v2/panel/requirements) · [Wings](https://docs.pterodactyl.io/v2/wings/installing) · [PHP packages](https://deb.sury.org/) · [MySQL APT](https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/).
+
+Ubuntu 26.04 is covered by Docker integration. Fresh standalone setup needs a separately configured PHP 8.3/8.4 package source: the tested Ondřej PPA currently has no resolute Release index. The installer stops before package changes when that prerequisite is missing. The automated fresh-VM matrix excludes those two unavailable native cases.

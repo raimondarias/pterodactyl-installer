@@ -541,6 +541,7 @@ class Installer:
             if state["database_engine"] == "mysql" and release["ID"] == "debian" and platform.machine() != "x86_64":
                 raise InstallerError("Native MySQL on Debian requires amd64. Choose MariaDB or Docker on ARM64.")
             backend = self.native(state)
+            backend.check_php_availability(release)
             if backend.app.exists() and any(backend.app.iterdir()):
                 raise InstallerError("The standalone application directory already exists; unmanaged files will not be overwritten.")
             for path in (backend.site, backend.enabled, backend.pool, backend.redis_config, backend.units / backend.redis_unit):

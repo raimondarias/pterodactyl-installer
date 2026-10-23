@@ -555,3 +555,4 @@ Waiting for Panel HTTP readiness|||Esperando a que el Panel responda por HTTP|||
 The Panel HTTP endpoint did not become ready.|||El acceso HTTP al Panel no llegó a estar disponible.|||O acesso HTTP ao Painel não ficou disponível.
 Preparing the MySQL authentication client|||Preparando el cliente de autenticación MySQL|||Preparando o cliente de autenticação MySQL
 The MySQL authentication client was not prepared.|||No se pudo preparar el cliente de autenticación MySQL.|||Não foi possível preparar o cliente de autenticação MySQL.
+Ubuntu 26.04 needs a configured PHP 8.3/8.4 package source for standalone. Use Docker or Ubuntu 24.04.|||Ubuntu 26.04 necesita un repositorio PHP 8.3/8.4 configurado para standalone. Usa Docker o Ubuntu 24.04.|||O Ubuntu 26.04 precisa de um repositório PHP 8.3/8.4 configurado para standalone. Use Docker ou Ubuntu 24.04.

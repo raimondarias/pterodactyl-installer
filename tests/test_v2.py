@@ -288,6 +288,11 @@ class NativeTests(BaseTest):
                     self.state["database_engine"] = engine
                     backend = NativeBackend(self.installer, self.state)
                     with patch.object(self.installer, "check_host", return_value={"ID": distro, "VERSION_ID": version, "VERSION_CODENAME": codename}), patch.object(self.installer, "fetch", return_value=b"-----BEGIN PGP PUBLIC KEY BLOCK-----\nfixture"), patch.object(backend, "composer"), patch.object(app.platform, "machine", return_value="x86_64"):
+                        if version == "26.04":
+                            with self.assertRaisesRegex(app.InstallerError, "configured PHP"):
+                                backend.dependencies()
+                            self.assertFalse(any(args[0] == "apt-get" for args, _ in self.runner.calls))
+                            continue
                         backend.dependencies()
                     commands = [args for args, _ in self.runner.calls]
                     self.assertTrue(any("php8.3-intl" in args for args in commands))

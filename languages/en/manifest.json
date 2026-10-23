@@ -4,9 +4,9 @@
   "language": "en",
   "version": "1.2.0",
   "locale_sha256": {
-    "en": "dd46957154f1dae9d23d2d2405e4acfb0cdc66bc974bee0e424eafa16ce9ba80",
-    "es": "2feb6bdd8f36ea5f104484a9390d1d7f1e2225af9e0ecc475fc405674bee5e16",
-    "pt-BR": "13e66a230265daf9efea744623f515347f5cd10ef622aaf570f0b19c48ed3522"
+    "en": "1b82609c6bf6a6d2f9a2957a503c3223242daa850691253e1b36513c00f9ab8b",
+    "es": "eda0b32d1c72314686fbd57240b14b854fd8d0f683e7408042dcdaa3fdc4aa28",
+    "pt-BR": "a072621cbfbf51affbd1a0f724c89c5e6859bbdf5ccc691ee87a34a450fb0d27"
   },
-  "archive_sha256": "4347db0203985d69ae8e36e9bd410c9759d9f1b5a3790b6bd3185567a76d2959"
+  "archive_sha256": "8ec98a8644695868ac6b26c4e8607497ada75b70a8c7962c0413175e2eca7329"
 }

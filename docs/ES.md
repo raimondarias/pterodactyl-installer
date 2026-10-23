@@ -45,3 +45,5 @@ La interfaz abre una TUI de pantalla completa en una terminal SSH compatible. Us
 Puedes seleccionar cada opción con un clic del ratón en terminales compatibles, incluido el selector inicial de idioma. También puedes pulsar las flechas y Enter.
 
 La versión 1.2.0 añade creación automática de nodos y allocations, SQL de juegos nativo aislado, copias cifradas programadas, restauración SQL/archivos de juegos, reanudación por etapas y preparación remota por SSH con claves verificadas. Consulta [las operaciones avanzadas](ADVANCED.md).
+
+Ubuntu 26.04 se prueba con Docker. Standalone requiere un repositorio PHP 8.3/8.4 preparado; el PPA probado aún no publica resolute. Sin ese requisito, el instalador se detiene antes de cambiar paquetes.
