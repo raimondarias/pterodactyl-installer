@@ -10,7 +10,7 @@ HTTPS Panels require HTTPS node addresses. An existing reverse proxy can termina
 
 ## Isolated native game SQL
 
-Choose the database engine once in the Panel wizard. For local game SQL, select an isolated native instance or Docker. Native SQL has a separate datadir, socket, port, systemd service and provisioning account; it never grants the game provisioning user access to the Panel SQL instance.
+Choose the database engine once in the Panel wizard. For local game SQL, select an isolated native instance or Docker. Native SQL has a separate operating-system user, datadir, socket, port, systemd service and provisioning account; it never grants the game provisioning user access to the Panel SQL instance. Where a packaged AppArmor profile applies, only the managed SQL paths are added to its local rules.
 
 The local native instance binds to the private game bridge. Docker remains required for game containers and this bridge, even though SQL itself runs natively. Its service starts after Docker, and its own input rules restrict SQL to local bridges. Game SQL and its credentials remain independent when the Panel is removed.
 

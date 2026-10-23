@@ -65,7 +65,11 @@ Criptografia SMTP (tls/ssl/null): tls
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Onde ficarão os bancos dos jogos?                                          │
-│ Node local (banco de dados Docker isolado)                                 │
+│ Node local (SQL de jogos isolado)                                          │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Instalação do SQL de jogos                                                 │
+│ Instância nativa isolada (Recomendado)                                     │
 ╰────────────────────────────────────────────────────────────────────────────╯
 Nome de exibição do host de banco de dados: Bancos dos jogos
 Porta do banco dos jogos: 3307
@@ -108,7 +112,7 @@ INSTALAR PAINEL
 │ Somente prévia. Nenhum pacote, arquivo ou serviço será instalado.          │
 │ 172.30.0.1:3307                                                            │
 │ ptero_games                                                                │
-│ 9d2dda166c68f1b721e4d6020cd8f2dacc0b5943617e484c3df7759dee53c93c           │
+│ b2f1b159944eff01ad6d6163c6c17dac44840fa66e5959e1b076f717a76c9835           │
 │ As credenciais de simulação desaparecem ao sair.                           │
 ╰────────────────────────────────────────────────────────────────────────────╯
 [1/3] Instalação do Wings
@@ -131,6 +135,10 @@ INSTALAR WINGS
 Vincular o Wings ao Painel agora? · Sim
 [3/3] Conexão do node
   ━━━━━━━━━━━━━━━━━━━━
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Método de conexão do node                                                  │
+│ Usar o token de um node existente                                          │
+╰────────────────────────────────────────────────────────────────────────────╯
 No Painel: Admin → Locations → crie uma localização; Nodes → crie um node → Configuration.
 Defina domínio, portas da API/SFTP, memória, disco e allocations com o IP do node.
 Use o token Auto-Deploy. A digitação ficará oculta.

@@ -65,7 +65,11 @@ SMTP encryption (tls/ssl/null): tls
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Where are the game databases?                                              │
-│ Local node (isolated Docker database)                                      │
+│ Local node (isolated game SQL)                                             │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Game SQL deployment                                                        │
+│ Isolated native instance (Recommended)                                     │
 ╰────────────────────────────────────────────────────────────────────────────╯
 Database host display name: Game databases
 Game database port: 3307
@@ -108,7 +112,7 @@ INSTALL PANEL
 │ Preview only. No packages, files or services will be installed.            │
 │ 172.30.0.1:3307                                                            │
 │ ptero_games                                                                │
-│ a153c739a1fae9f0d1ebd8c4d612ce7c3b3085410269e009ad2449174d948267           │
+│ e66f0c0f807af80c735b38ccebd735d95cd18a22fbc33e253034183c1928201f           │
 │ Simulation credentials disappear when you exit.                            │
 ╰────────────────────────────────────────────────────────────────────────────╯
 [1/3] Wings installation
@@ -131,6 +135,10 @@ INSTALL WINGS
 Link Wings to the Panel now? · Yes
 [3/3] Node connection
   ━━━━━━━━━━━━━━━━━━━━
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Node connection method                                                     │
+│ Use an existing node token                                                 │
+╰────────────────────────────────────────────────────────────────────────────╯
 In the Panel: Admin → Locations → create a location; Nodes → create a node → Configuration.
 Set the domain, API/SFTP ports, memory, disk and allocations using the node's IP.
 Use the Auto-Deploy token. Your input will be hidden.

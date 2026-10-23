@@ -11,7 +11,10 @@
 - Add persisted installation phases, a resume action and a health report that collects multiple findings.
 - Add remote Wings and private game SQL provisioning over SSH with strict host-key verification.
 - Add disposable QEMU integration runners and a manual Ubuntu/Debian deployment matrix.
-- Fix native Artisan working directories discovered during the real deployment, and enforce secure session cookies for HTTPS URLs.
+- Fix native Artisan working directories, HTTP readiness after restore, Docker MySQL authentication and internal SQL certificate handling.
+- Isolate native game SQL under a separate operating-system user and add scoped AppArmor rules.
+- Detect Docker/host network conflicts before choosing the Wings bridge.
+- Enforce secure session cookies for HTTPS URLs and explain the fresh Ubuntu 26.04 native PHP limitation before package changes.
 
 ## 1.1.0 — 2026-10-23
 
@@ -24,4 +27,4 @@
 - Shorten the README and move detailed operations and preview instructions into dedicated guides.
 - Expand regression coverage for simulation isolation, installation choices, lifecycle and terminal interaction.
 
-Upstream Panel v2 remains beta. Complete deployment and public TLS require disposable VPS integration testing.
+Upstream Panel v2 remains beta. See the verification report for executed deployments and remaining infrastructure limits.

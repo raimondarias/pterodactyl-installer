@@ -98,6 +98,7 @@ test_supported_host_detection (test_installer.ValidationTests) ... ok
 test_urls (test_installer.ValidationTests) ... ok
 test_versions_accept_only_correct_major (test_installer.ValidationTests) ... ok
 test_actual_encrypted_repository_roundtrip (test_operations.OperationsTests) ... ok
+test_apparmor_game_sql_rules_preserve_existing_local_rules (test_operations.OperationsTests) ... ok
 test_completed_phase_requires_live_validation_and_matching_version (test_operations.OperationsTests) ... ok
 test_failed_phase_persists_failure_without_exception_secrets_and_can_resume (test_operations.OperationsTests) ... ok
 test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination (test_operations.OperationsTests) ... ok
@@ -105,6 +106,7 @@ test_health_report_collects_multiple_failures_instead_of_hiding_them (test_opera
 test_menu_shortcuts_remain_unique_with_language_23_reserved (test_operations.OperationsTests) ... ok
 test_mysql_authentication_plugin_is_saved_verified_and_repaired (test_operations.OperationsTests) ... ok
 test_native_firewall_remote_allowlist_has_no_public_wildcard_rule (test_operations.OperationsTests) ... ok
+test_native_game_sql_refuses_mysql_community_before_package_changes (test_operations.OperationsTests) ... ok
 test_native_health_waits_for_php_socket_readiness_after_reload (test_operations.OperationsTests) ... ok
 test_native_sql_uses_own_datadir_socket_and_service (test_operations.OperationsTests) ... ok
 test_nested_game_backup_does_not_unpause_a_container_paused_by_the_bundle (test_operations.OperationsTests) ... ok
@@ -116,6 +118,8 @@ test_sigterm_in_plain_scheduled_session_unpauses_games_before_exit (test_operati
 test_sql_restore_refuses_existing_data_and_bad_checksum (test_operations.OperationsTests) ... ok
 test_sql_restore_verifies_hash_preserves_credentials_and_waits_for_health (test_operations.OperationsTests) ... ok
 test_ssh_provisioning_keeps_credentials_in_stdin_and_host_keys_enforced (test_operations.OperationsTests) ... ok
+test_wings_reuses_existing_bridge_and_preserves_explicit_configuration (test_operations.OperationsTests) ... ok
+test_wings_subnet_avoids_panel_compose_and_host_routes (test_operations.OperationsTests) ... ok
 test_actual_panel_form_matrix_and_game_database_modes (test_preview.SimulationTests) ... ok
 test_both_launchers_refuse_to_install_missing_python_in_preview_even_as_root (test_preview.SimulationTests) ... ok
 test_cancel_does_not_commit_partial_panel_plan (test_preview.SimulationTests) ... ok
@@ -194,6 +198,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 194 tests in 28.764s
+Ran 198 tests in 27.135s
 
 OK

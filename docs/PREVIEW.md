@@ -1,6 +1,6 @@
 # Full installation preview
 
-The 1.1.0 preview uses the production Panel question collector and node-linking form. Package installation, downloads from upstream, certificate issuance and service changes are replaced by animated simulation stages. Runtime language packs may be downloaded by the online launcher.
+The 1.2.0 preview uses the production Panel question collector and node-linking form. Package installation, downloads from upstream, certificate issuance and service changes are replaced by animated simulation stages. Runtime language packs may be downloaded by the online launcher.
 
 ```bash
 bash ptero-setup.sh --preview

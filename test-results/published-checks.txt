@@ -1,5 +1,5 @@
-OK published main commit: 389ae0434bd07520b37b3f3b8a229509a4862e13
-OK published installer version: 1.1.0
+OK published main commit: 976e67c91082020e6848a7e64f13a75913e14996
+OK published installer version: 1.2.0
 OK real GitHub download and preview: en; one English language question
 OK published full-screen TUI: en; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub download and preview: es; one English language question
@@ -7,4 +7,4 @@ OK published full-screen TUI: es; mouse language/action selection, wizard cancel
 OK real GitHub download and preview: pt-BR; one English language question
 OK published full-screen TUI: pt-BR; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub language changes: en -> es -> pt-BR; snapshot and hashes verified
-No Panel/Wings/system services were installed. Complete clean-VPS deployment remains untested.
+This distribution smoke check installs no services. Real VM deployment results are recorded separately.

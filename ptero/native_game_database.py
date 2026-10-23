@@ -37,10 +37,11 @@ class NativeGameDatabase:
         selected = 'mysql-community-server' if mysql and release['ID'] == 'debian' else 'mysql-server' if mysql else 'mariadb-server'
         _, installed = self.run.run(['dpkg-query', '-W', '-f=${Status}', selected], check=False)
         had_default_instance = 'install ok installed' in installed
-        opposite = 'mariadb-server' if mysql else 'mysql-server'
-        code, text = self.run.run(['dpkg-query', '-W', '-f=${Status}', opposite], check=False)
-        if code == 0 and 'install ok installed' in text:
-            raise InstallerError('A different database engine is already installed. Choose the matching engine or Docker.')
+        opposites = ('mariadb-server',) if mysql else ('mysql-server', 'mysql-community-server')
+        for package in opposites:
+            code, text = self.run.run(['dpkg-query', '-W', '-f=${Status}', package], check=False)
+            if code == 0 and 'install ok installed' in text:
+                raise InstallerError('A different database engine is already installed. Choose the matching engine or Docker.')
         self.run.run(['apt-get', 'update'])
         if mysql and release['ID'] == 'debian':
             import platform

@@ -20,6 +20,17 @@ from ptero.backups import ScheduledBackups, checksum, verified, restore_sql, bac
 
 
 class OperationsTests(BaseTest):
+    def test_native_game_sql_refuses_mysql_community_before_package_changes(self):
+        backend = NativeGameDatabase(GameDatabase(self.installer))
+        calls = []
+        def command(args, **kwargs):
+            calls.append(args)
+            return (0, 'install ok installed') if args[-1] == 'mysql-community-server' else (1, '')
+        with patch.object(self.installer, 'check_host', return_value={'ID':'debian','VERSION_CODENAME':'trixie'}), patch.object(self.runner, 'run', side_effect=command):
+            with self.assertRaisesRegex(InstallerError, 'different database engine'):
+                backend.dependencies({'engine':'mariadb'})
+        self.assertFalse(any(args[0]=='apt-get' for args in calls))
+
     def test_wings_subnet_avoids_panel_compose_and_host_routes(self):
         from ptero.networking import wings_network
         replies = ['panel\nhost\nnone\n', json.dumps([{'Name':'host','IPAM':{'Config':None}}, {'Name':'none','IPAM':None},
