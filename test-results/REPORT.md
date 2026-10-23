@@ -50,4 +50,4 @@ Local distribution tests use GitHub transport fixtures, including an actual PTY 
 
 See [ShellCheck output](shellcheck.txt), [local output](local-tests.txt), [test procedure](../docs/TESTING.md), and [UI previews](../docs/preview-en.txt).
 
-Upstream releases, binaries, archive and OCI manifests were rechecked on 23 October 2026 for this release. The repository endpoint checks in the table were last performed on 21 October 2026. The published-distribution log identifies the exact public snapshot tested; it is updated after pushing the release code.
+Upstream releases, binaries, archive and OCI manifests were rechecked on 23 October 2026 for this release. The repository endpoint checks in the table were last performed on 21 October 2026. The published-distribution log identifies the exact public snapshot tested; the 1.1.0 runtime at commit `d5970033f396db620926245f89b8c288b13321fb` passed public downloads, real TUI previews in every language and verified language switching.

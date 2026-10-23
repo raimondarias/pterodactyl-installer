@@ -1,5 +1,5 @@
-OK published main commit: 173926847ac9a13022e5eea87647c989373dede1
-OK published installer version: 1.0.0.beta
+OK published main commit: d5970033f396db620926245f89b8c288b13321fb
+OK published installer version: 1.1.0
 OK real GitHub download and preview: en; one English language question
 OK published full-screen TUI: en; online picker, ncurses preview and terminal restoration
 OK real GitHub download and preview: es; one English language question
