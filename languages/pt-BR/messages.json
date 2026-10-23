@@ -1702,5 +1702,14 @@
   },
   "Node connection": {
     "pt-BR": "Conexão do node"
+  },
+  "↑↓ / Click Choose · Tab Groups · / Search · Esc Back": {
+    "pt-BR": "↑↓ / Clique Escolher · Tab Grupos · / Buscar · Esc Voltar"
+  },
+  "↑↓ / Click Choose · Esc Back": {
+    "pt-BR": "↑↓ / Clique Escolher · Esc Voltar"
+  },
+  "↑↓ · Click · Enter · Esc": {
+    "pt-BR": "↑↓ · Clique · Enter · Esc"
   }
 }

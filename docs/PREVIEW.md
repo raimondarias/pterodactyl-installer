@@ -29,7 +29,7 @@ Python 3.10+ must already be installed. The preview never installs missing Pytho
 
 No files are created for simulated backups or credentials. Game SQL remains in preview memory after removing the Panel, matching its independent lifecycle. Exiting clears the session. Diagnostic and log screens show sample information, not host health. Production operations have additional real host, release, network and service checks; the preview cannot validate a real deployment.
 
-Use arrows and Enter for choices, Esc to cancel a form, `/` to search actions and Tab to change groups. The same preview works with `--plain`; add `--no-animation` for reduced motion. Keep stdin attached to a terminal for interactive questions.
+Click an option, or use arrows and Enter for choices, Esc to cancel a form, `/` to search actions and Tab to change groups. The same preview works with `--plain`; add `--no-animation` for reduced motion. Keep stdin attached to a terminal for interactive questions.
 
 ![Preview operations menu](images/preview-es.svg)
 

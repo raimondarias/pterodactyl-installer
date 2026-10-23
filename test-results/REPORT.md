@@ -4,9 +4,9 @@ Date: 23 October 2026.
 
 | Check | Result |
 | --- | --- |
-| Local unittest suite | **170 tests passed**, no failures or skips in this environment |
+| Local unittest suite | **175 tests passed**, no failures or skips in this environment |
 | Guided simple setup matrix | Both Panel methods × both database engines × IP/domain × all three languages |
-| Language catalogue | 568 messages with complete en/es/pt-BR entries and matching placeholders |
+| Language catalogue | 571 messages with complete en/es/pt-BR entries and matching placeholders |
 | Bash syntax / Python compilation | Passed |
 | Online language bootstrap | Real Bash + Python runtime with GitHub transport fixtures: English first question, only selected folder, one language question, immutable commit and clean temporary-directory removal |
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
@@ -16,6 +16,7 @@ Date: 23 October 2026.
 | Full-screen TUI | Passed with actual ncurses PTYs: arrows, categories, numeric shortcuts, search, masked forms, resize, busy animation and terminal restoration |
 | Prerequisites and fresh machine | Option 20 is blocked with an installation hint; option 14 gives machine information and next steps; corrupt state is reported without overwriting it |
 | Plan/password review | Review and generated credentials require acknowledgement before continuing |
+| Mouse navigation | Real PTY clicks select the startup language and an ncurses choice; widget tests cover sidebar/compact groups, wheel, empty-space clicks and disabled prerequisites |
 | Interactive animation | Multiple actual ncurses activity frames captured in a real pseudoterminal; reduced-motion/plain fallbacks checked |
 | TUI screenshots | Captured from actual ncurses buffers; SVG render visually reviewed |
 | Full preview | All 22 simulated actions; 96 Panel form combinations; en/es/pt-BR tours with subprocess, HTTP/socket and filesystem mutation APIs denied |

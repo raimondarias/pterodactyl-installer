@@ -2838,5 +2838,20 @@
     "en": "Node connection",
     "es": "Conexión del nodo",
     "pt-BR": "Conexão do node"
+  },
+  "↑↓ / Click Choose · Tab Groups · / Search · Esc Back": {
+    "en": "↑↓ / Click Choose · Tab Groups · / Search · Esc Back",
+    "es": "↑↓ / Clic Elegir · Tab Grupos · / Buscar · Esc Volver",
+    "pt-BR": "↑↓ / Clique Escolher · Tab Grupos · / Buscar · Esc Voltar"
+  },
+  "↑↓ / Click Choose · Esc Back": {
+    "en": "↑↓ / Click Choose · Esc Back",
+    "es": "↑↓ / Clic Elegir · Esc Volver",
+    "pt-BR": "↑↓ / Clique Escolher · Esc Voltar"
+  },
+  "↑↓ · Click · Enter · Esc": {
+    "en": "↑↓ · Click · Enter · Esc",
+    "es": "↑↓ · Clic · Enter · Esc",
+    "pt-BR": "↑↓ · Clique · Enter · Esc"
   }
 }

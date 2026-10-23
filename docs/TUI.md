@@ -110,3 +110,7 @@ python3 scripts/capture_tui.py --language es --scene overview --output docs/imag
 [Python ncurses documentation](https://docs.python.org/3.10/library/curses.html).
 
 The 1.1.0 preview now opens the full grouped operations menu and uses production setup forms with an in-memory simulation backend. See the [complete preview walkthrough](PREVIEW.md). All preview screens carry a persistent localized PREVIEW marker.
+
+## Mouse selection
+
+Click an option to choose it, including startup languages, installation choices and Yes/No prompts. Click sidebar groups to switch sections; use the mouse wheel to move through options. On compact layouts, click the arrows beside the group name. Disabled actions still explain missing prerequisites. Typed confirmations and password fields require keyboard input. Mouse support depends on your terminal/SSH client; keyboard controls remain available. Mouse tracking is disabled when exiting or cancelling.

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Select languages, menu actions and wizard choices with a mouse click in compatible terminals; click sidebar groups and use the wheel to navigate. Keyboard controls remain available.
+- Restore mouse tracking on exit and enforce the same action prerequisites for clicks and keyboard selection.
+
 ## 1.1.0 — 2026-10-23
 
 - Replace the short interface demo with a complete in-memory installation preview, sharing production Panel and Wings connection forms.

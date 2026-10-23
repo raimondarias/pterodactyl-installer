@@ -41,3 +41,5 @@ Al desinstalar se conservan los datos por defecto. Borrarlos requiere confirmaci
 Panel v2 es beta. Los tests automatizados y las comprobaciones reales de archivos/configuraciones no sustituyen probar un despliegue completo en un VPS limpio. Consulta [el informe](../test-results/REPORT.md), [la guía principal](../README.md) y [las pruebas de integración](TESTING.md).
 
 La interfaz abre una TUI de pantalla completa en una terminal SSH compatible. Usa ↑/↓ para moverte, Tab o ←/→ para cambiar de grupo, Enter para elegir, / para buscar, F5 para actualizar estados y Esc/Q para volver o salir. Las acciones sin requisitos cumplidos explican qué falta y no se ejecutan. En una máquina nueva, Diagnóstico muestra información útil y el siguiente paso. Prueba sin instalar con `bash ptero-setup.sh --preview`; usa `--plain` para menú numérico y `--no-animation` para reducir movimiento. [Detalles y capturas](TUI.md).
+
+Puedes seleccionar cada opción con un clic del ratón en terminales compatibles, incluido el selector inicial de idioma. También puedes pulsar las flechas y Enter.

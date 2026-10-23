@@ -38,7 +38,7 @@ On a terminal, the preview is interactive. Redirected input runs an automatic to
 
 Ubuntu **22.04 / 24.04 / 26.04** or Debian **12 / 13**, amd64 or arm64, with systemd. Allow at least **4 GiB free disk** and **2 GiB RAM** before game workloads. Installation requires root; Wings requires a host capable of running Docker. [Deployment requirements](docs/OPERATIONS.md#supported-hosts).
 
-Use **↑↓** to navigate, **Tab / ←→** for groups, **Enter** to select, **/** to search and **Esc** to return. A terminal of at least **60 × 18** supports full-screen mode. Add `--plain` for numbered prompts or `--no-animation` to disable movement.
+**Click an option to select it** in terminals with mouse support, including the startup language picker. Use **↑↓** to navigate, **Tab / ←→** for groups, **Enter** to select, **/** to search and **Esc** to return. A terminal of at least **60 × 18** supports full-screen mode. Add `--plain` for numbered prompts or `--no-animation` to disable movement.
 
 ![Terminal interface](docs/images/tui-es.svg)
 

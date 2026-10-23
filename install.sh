@@ -13,7 +13,7 @@ WORK_DIR=""
 forwarded=()
 restore_bootstrap() {
     if [[ "$bootstrap_active" == 1 ]]; then
-        printf '\033[0m\033[?25h\033[?1049l'
+        printf '\033[?1000l\033[?1006l\033[0m\033[?25h\033[?1049l'
         bootstrap_active=0
     fi
 }
@@ -48,11 +48,11 @@ while (($#)); do
     esac
 done
 choose_language_tui() {
-    local rows columns selected=1 previous="" key sequence frame=0 left index row label style reset=""
+    local rows columns selected=1 previous="" key sequence frame=0 left index row label style reset="" mouse part
     read -r rows columns < <(stty size)
     if (( rows < 18 || columns < 60 )); then return 1; fi
     bootstrap_active=1
-    printf '\033[?1049h\033[?25l\033[2J'
+    printf '\033[?1049h\033[?25l\033[?1000h\033[?1006h\033[2J'
     while true; do
         read -r rows columns < <(stty size)
         left=$(( (columns - 54) / 2 + 1 ))
@@ -76,7 +76,7 @@ choose_language_tui() {
                     printf '\033[%s;%sH%s  %s. %-30s  %s' "$row" "$left" "$style" "$index" "$label" "$reset"
                 done
                 printf '\033[%s;%sHDownloads only the selected language package.' "$((rows - 3))" "$left"
-                printf '\033[%s;%sH↑↓ / 1–3 Select · Enter Continue · Esc Cancel' "$((rows - 1))" "$left"
+                printf '\033[%s;%sH↑↓ / 1–3 Select · Click / Enter Continue · Esc Cancel' "$((rows - 1))" "$left"
             fi
             previous="$selected:$rows:$columns"
         fi
@@ -94,6 +94,21 @@ choose_language_tui() {
                 case "$sequence" in
                     '[A'|'OA') selected=$(( (selected + 1) % 3 + 1 )) ;;
                     '[B'|'OB') selected=$(( selected % 3 + 1 )) ;;
+                    '[<')
+                        mouse=""
+                        while (( ${#mouse} < 32 )); do
+                            part=""
+                            IFS= read -rsn1 -t 0.15 part || break
+                            mouse+="$part"
+                            [[ "$part" == M || "$part" == m ]] && break
+                        done
+                        if [[ "$mouse" =~ ^0\;([0-9]+)\;([0-9]+)m$ ]] && (( rows >= 18 && columns >= 60 )); then
+                            if (( BASH_REMATCH[1] >= left && BASH_REMATCH[1] < left + 38 )); then
+                                case "${BASH_REMATCH[2]}" in 9) language='en' ;; 11) language='es' ;; 13) language='pt-BR' ;; *) continue ;; esac
+                                restore_bootstrap
+                                return 0
+                            fi
+                        fi ;;
                     *) exit 130 ;;
                 esac ;;
             1|2|3) selected="$key" ;;

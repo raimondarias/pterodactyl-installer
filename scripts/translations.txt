@@ -388,3 +388,6 @@ The simulated Wings already exists. Use maintenance or reset the preview.|||Wing
 Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation|||Panel: TCP 80/443 · Wings: TCP 8080/2022 · Juegos: según allocations|||Painel: TCP 80/443 · Wings: TCP 8080/2022 · Jogos: conforme allocations
 Wings installation|||Instalación de Wings|||Instalação do Wings
 Node connection|||Conexión del nodo|||Conexão do node
+↑↓ / Click Choose · Tab Groups · / Search · Esc Back|||↑↓ / Clic Elegir · Tab Grupos · / Buscar · Esc Volver|||↑↓ / Clique Escolher · Tab Grupos · / Buscar · Esc Voltar
+↑↓ / Click Choose · Esc Back|||↑↓ / Clic Elegir · Esc Volver|||↑↓ / Clique Escolher · Esc Voltar
+↑↓ · Click · Enter · Esc|||↑↓ · Clic · Enter · Esc|||↑↓ · Clique · Enter · Esc

@@ -142,6 +142,30 @@ class WidgetTests(BaseTest):
             result = terminal.select("Panel deployment", [Item("native", "Standalone", shortcut="1"), Item("docker", "Docker", shortcut="2")])
             self.assertEqual(result, "docker")
 
+    def test_mouse_click_selects_options_and_sidebar_groups(self):
+        terminal = self.terminal([curses.KEY_MOUSE])
+        with patch("ptero.tui.curses.getmouse", return_value=(0, 8, 9, 0, curses.BUTTON1_CLICKED)):
+            self.assertEqual(terminal.select("Panel deployment", [Item("native", "Standalone"), Item("docker", "Docker")]), "docker")
+        items = [Item("install", "Install", group="Install"), Item("diagnose", "Diagnostics", group="Maintenance")]
+        terminal = self.terminal([curses.KEY_MOUSE, curses.KEY_MOUSE])
+        with patch("ptero.tui.curses.getmouse", side_effect=[(0, 4, 10, 0, curses.BUTTON1_CLICKED), (0, 35, 8, 0, curses.BUTTON1_CLICKED)]):
+            self.assertEqual(terminal.select("Overview", items, grouped=True), "diagnose")
+
+    def test_mouse_cannot_activate_disabled_options_or_empty_space(self):
+        terminal = self.terminal([curses.KEY_MOUSE, curses.KEY_MOUSE, curses.KEY_HOME, "\n"])
+        with patch("ptero.tui.curses.getmouse", side_effect=[(0, 9, 9, 0, curses.BUTTON1_CLICKED), (0, 9, 20, 0, curses.BUTTON1_CLICKED)]):
+            result = terminal.select("Overview", [Item("ok", "Install"), Item("blocked", "Database", enabled=False, reason="Install the Panel first")])
+        self.assertEqual(result, "ok")
+        self.assertTrue(any("Install the Panel first" in text for text in terminal.window.drawn))
+
+    def test_mouse_wheel_and_compact_group_arrows(self):
+        terminal = self.terminal([curses.KEY_MOUSE, "\n"])
+        with patch("ptero.tui.curses.getmouse", return_value=(0, 8, 9, 0, curses.BUTTON5_PRESSED)):
+            self.assertEqual(terminal.select("Options", [Item(1, "First"), Item(2, "Second")]), 2)
+        terminal = self.terminal([curses.KEY_MOUSE, "\n"], size=(24, 80))
+        with patch("ptero.tui.curses.getmouse", return_value=(0, 12, 7, 0, curses.BUTTON1_CLICKED)):
+            self.assertEqual(terminal.select("Groups", [Item(1, "First", group="Install"), Item(2, "Second", group="Maintenance")], grouped=True), 2)
+
     def test_disabled_actions_explain_the_prerequisite_without_returning_it(self):
         terminal = self.terminal(["2", "\n", "1", "\n"])
         result = terminal.select("Overview", [Item("ok", "Install", shortcut="1"),
@@ -258,6 +282,35 @@ class PseudoTerminalTests(BaseTest):
         restored = termios.tcgetattr(slave)
         for bit in (termios.ECHO, termios.ICANON):
             self.assertEqual(restored[3] & bit, original[3] & bit)
+
+    def test_real_mouse_click_selects_choice_and_restores_terminal(self):
+        code = ("from ptero.ui import UI;ui=UI();\nwith ui.session():\n"
+                " value=ui.choice('Panel deployment',[('native','Standalone',''),('docker','Docker','')])\n"
+                "print('MOUSE_RESULT='+value,flush=True)")
+        process, master, slave, original = self.spawn(code)
+        self.receive(process, master, "Panel deployment")
+        os.write(master, b"\x1b[<0;10;10M\x1b[<0;10;10m")
+        output = self.receive(process, master, "MOUSE_RESULT=docker")
+        self.assertEqual(process.wait(timeout=5), 0)
+        self.assertIn(b"1000l", output)
+        restored = termios.tcgetattr(slave)
+        for bit in (termios.ECHO, termios.ICANON):
+            self.assertEqual(restored[3] & bit, original[3] & bit)
+
+    def test_bootstrap_mouse_selects_spanish_and_opens_tui(self):
+        import test_distribution
+        fixture = test_distribution.BootstrapTests()
+        fixture.setUp()
+        self.addCleanup(fixture.doCleanups)
+        fixture.environment.update(TERM="xterm-256color", LANG="C.UTF-8")
+        code = "import os;os.execv('/bin/bash',['bash','install.sh','--preview','--no-animation'])"
+        process, master, _, _ = self.spawn(code, fixture.environment)
+        self.receive(process, master, "Which language would you like to use?")
+        os.write(master, b"\x1b[<0;30;11M\x1b[<0;30;11m")
+        self.receive(process, master, "Vista previa de la interfaz", timeout=15)
+        os.write(master, b"q")
+        self.assertEqual(process.wait(timeout=5), 0)
+        self.assertTrue(all("/languages/es/" in item["url"] for item in fixture.downloads()[1:]))
 
     def test_resize_and_sigint_restore_real_terminal(self):
         code = ("from ptero.ui import UI;ui=UI();\ntry:\n with ui.session():\n"

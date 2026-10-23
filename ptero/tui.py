@@ -22,6 +22,8 @@ class Terminal:
         self.started = time.monotonic()
         self.last_card = []
         self.colors = {}
+        self.previous_mouse_mask = None
+        self.previous_mouse_interval = None
 
     def start(self):
         self.window = curses.initscr()
@@ -29,6 +31,10 @@ class Terminal:
         curses.cbreak()
         self.window.keypad(True)
         self.window.timeout(80)
+        with contextlib.suppress(curses.error):
+            self.previous_mouse_interval = curses.mouseinterval(150)
+            _, self.previous_mouse_mask = curses.mousemask(
+                curses.BUTTON1_CLICKED | curses.BUTTON4_PRESSED | getattr(curses, "BUTTON5_PRESSED", 0))
         if hasattr(curses, "set_escdelay"):
             curses.set_escdelay(100)
         with contextlib.suppress(curses.error):
@@ -49,6 +55,12 @@ class Terminal:
     def close(self):
         with self.lock:
             if self.window is not None:
+                if self.previous_mouse_mask is not None:
+                    with contextlib.suppress(curses.error):
+                        curses.mousemask(self.previous_mouse_mask)
+                if self.previous_mouse_interval is not None:
+                    with contextlib.suppress(curses.error):
+                        curses.mouseinterval(self.previous_mouse_interval)
                 for restore in (lambda: self.window.keypad(False), curses.nocbreak, curses.echo,
                                 lambda: curses.curs_set(1), curses.endwin):
                     with contextlib.suppress(curses.error):
@@ -127,7 +139,7 @@ class Terminal:
     def footer(self, text):
         translated = self.tr(text)
         if cell_width(translated) > self.width - 4:
-            translated = "↑↓ · Tab · Enter · / · Esc" if "Groups" in text else "Enter · Esc"
+            translated = self.tr("↑↓ · Click · Enter · Esc") if "Click" in text else "↑↓ · Tab · Enter · / · Esc" if "Groups" in text else "Enter · Esc"
         self.put(self.height - 2, self.left + 2, translated, "muted", self.width - 4)
 
     def refresh(self):
@@ -137,7 +149,11 @@ class Terminal:
     def key(self):
         with self.lock:
             try:
-                return self.window.get_wch()
+                key = self.window.get_wch()
+                if key == curses.KEY_MOUSE:
+                    _, x, y, _, buttons = curses.getmouse()
+                    return ("mouse", x, y, buttons)
+                return key
             except curses.error:
                 return None
 
@@ -201,7 +217,7 @@ class Terminal:
                     self.paragraph(self.height - 6, x, self.tr(warning or chosen.reason or chosen.note), width, 2, "warn" if warning or not chosen.enabled else "muted")
                     if query or digits:
                         self.put(6, x, (self.tr("Search") + ": " + query) if query else self.tr("Option") + ": " + digits, "accent", width)
-                    self.footer("↑↓ Navigate · Tab/←→ Groups · Enter Choose · / Search · Esc Back" if grouped else "↑↓ Navigate · Enter Choose · Esc Back")
+                    self.footer("↑↓ / Click Choose · Tab Groups · / Search · Esc Back" if grouped else "↑↓ / Click Choose · Esc Back")
                 self.refresh()
             key = self.key()
             if key is None or key == curses.KEY_RESIZE:
@@ -214,6 +230,32 @@ class Terminal:
             warning = ""
             if self.small:
                 continue
+            if isinstance(key, tuple) and key[0] == "mouse":
+                _, mouse_x, mouse_y, buttons = key
+                if buttons & (curses.BUTTON4_PRESSED | getattr(curses, "BUTTON5_PRESSED", 0)):
+                    selection = max(0, min(len(visible) - 1, selection + (-1 if buttons & curses.BUTTON4_PRESSED else 1)))
+                    digits = ""
+                    continue
+                if not buttons & curses.BUTTON1_CLICKED:
+                    continue
+                if sidebar and self.left + 2 <= mouse_x < self.left + 24:
+                    index = (mouse_y - 8) // 2
+                    if mouse_y >= 8 and (mouse_y - 8) % 2 == 0 and index < len(GROUPS):
+                        category = GROUPS[index]
+                        selection, scroll, query, digits = 0, 0, "", ""
+                    continue
+                if grouped and not sidebar and mouse_y == 7:
+                    label_end = x + cell_width("‹ " + self.tr(category) + " ›") - 1
+                    if mouse_x in (x, label_end):
+                        index = GROUPS.index(category)
+                        category = GROUPS[(index + (-1 if mouse_x == x else 1)) % len(GROUPS)]
+                        selection, scroll, query, digits = 0, 0, "", ""
+                    continue
+                index = scroll + mouse_y - top
+                if not (x <= mouse_x < x + width and top <= mouse_y < top + capacity and index < len(visible)):
+                    continue
+                selection, digits = index, ""
+                key = "\n"  # Use the same prerequisite checks as keyboard selection.
             if key in (curses.KEY_DOWN, "j"):
                 selection = (selection + 1) % len(visible)
                 digits = ""
