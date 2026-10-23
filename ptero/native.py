@@ -283,7 +283,7 @@ class NativeBackend:
             return f"server {{ listen {listen}; server_name {host}; {challenge}{application} }}\n"
         cert = self.certdir / "live" / host
         return (f"server {{ listen {listen}; server_name {host}; {challenge} location / {{ return 301 https://$host$request_uri; }} }}\n"
-                f"server {{ listen {self.s.get('bind', '0.0.0.0')}:443 ssl; server_name {host};\n"
+                f"server {{ listen {self.s.get('bind', '0.0.0.0')}:{self.s.get('https_port', 443)} ssl; server_name {host};\n"
                 f"ssl_certificate {cert}/fullchain.pem;\nssl_certificate_key {cert}/privkey.pem;\n"
                 f"ssl_protocols TLSv1.2 TLSv1.3;\n{application} }}\n")
 

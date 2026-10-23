@@ -326,7 +326,7 @@ class NativeTests(BaseTest):
         prefix = self.paths.root / "nginx-test"
         prefix.mkdir()
         (prefix / "fastcgi_params").write_bytes(Path("/etc/nginx/fastcgi_params").read_bytes())
-        self.state.update(url="https://panel.example.test", tls=True, http_port=80)
+        self.state.update(url="https://panel.example.test:18443", tls=True, http_port=18080, https_port=18443)
         cert = self.backend.certdir / "live/panel.example.test"
         cert.mkdir(parents=True)
         subprocess.run([openssl, "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "1", "-subj", "/CN=panel.example.test",
