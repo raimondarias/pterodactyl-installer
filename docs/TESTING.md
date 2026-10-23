@@ -7,6 +7,9 @@ Covered behavior includes:
 - English-first online startup question, followed by downloads from only the selected `languages/en`, `languages/es` or `languages/pt-BR` directory.
 - Real Bash bootstrap execution with recorded GitHub transport fixtures, immutable commit selection, archive verification/safe extraction and all-language preview.
 - Reproducible single-language packages, committed-package freshness, menu language fetch/cache and unchanged active language on failed verification.
+- Actual ncurses sessions in PTYs: menu groups, unavailable-action explanations, fresh-machine diagnostics, arrow-driven bootstrap, hidden fields, animation, resize and terminal echo/canonical restoration after exit/Ctrl+C.
+- Read-only inventory and corrupt-state handling; direct commands and numeric fallback refuse missing prerequisites before loading nonexistent state.
+- Explicit `--plain` and `TERM=dumb` fallback; generated credentials and installation reviews require acknowledgement before proceeding.
 - Three startup languages, English default, complete catalogue field parity and translated confirmations.
 - Simple setup matrix: Docker/standalone × MariaDB/MySQL × domain/public IPv4 × three languages.
 - Advanced PHP, bind-address and timezone settings; passwords passed through stdin and omitted from state/argv.

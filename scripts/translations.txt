@@ -249,3 +249,103 @@ Checking your installation plan|||Comprobando tu plan de instalación|||Verifica
 A different database engine is already installed. Choose the matching engine or Docker.|||Ya hay otro motor de base de datos instalado. Elige el mismo motor o Docker.|||Já existe outro motor de banco de dados instalado. Escolha o mesmo motor ou Docker.
 The existing database server is too old for Panel v2. Choose Docker or upgrade it separately.|||El servidor de base de datos existente es demasiado antiguo para Panel v2. Elige Docker o actualízalo por separado.|||O servidor de banco de dados existente é antigo demais para o Painel v2. Escolha Docker ou atualize-o separadamente.
 Binding the new database service to localhost|||Limitando la nueva base de datos a localhost|||Limitando o novo banco de dados ao localhost
+# Full-screen TUI and actionable prerequisites
+Checking official releases|||Consultando versiones oficiales|||Consultando versões oficiais
+Install|||Instalar|||Instalar
+Maintenance|||Mantenimiento|||Manutenção
+Game databases|||Bases de juegos|||Bancos dos jogos
+Backups|||Copias de seguridad|||Backups
+Remove|||Desinstalar|||Desinstalar
+Preferences|||Preferencias|||Preferências
+Set up the Panel and a Wings node with a guided review.|||Configura el Panel y un nodo Wings con revisión guiada.|||Configure o Painel e um node Wings com revisão guiada.
+Standalone is recommended. Choose your database, address and administrator.|||Standalone es recomendado. Elige la base de datos, dirección y administrador.|||Standalone é recomendado. Escolha banco de dados, endereço e administrador.
+Install the game server daemon, then link it to your Panel.|||Instala Wings y vincúlalo después con tu Panel.|||Instale o Wings e vincule-o depois ao seu Painel.
+Check this machine and inspect managed services without changing them.|||Comprueba esta máquina y los servicios gestionados sin modificarlos.|||Verifique esta máquina e os serviços gerenciados sem modificá-los.
+Register a separate SQL host for game databases in the Panel.|||Registra en el Panel un host SQL separado para las bases de juegos.|||Registre no Painel um host SQL separado para os bancos dos jogos.
+View the saved private connection details for the provisioning account.|||Consulta los datos privados guardados de la cuenta de gestión.|||Consulte os dados privados salvos da conta de gerenciamento.
+Pause local game SQL briefly and create a consistent backup.|||Pausa brevemente el SQL de juegos local y crea una copia consistente.|||Pause brevemente o SQL local dos jogos e crie um backup consistente.
+Back up the Panel before updating its code and database schema.|||Crea una copia antes de actualizar el código y el esquema de la base del Panel.|||Faça backup antes de atualizar o código e o esquema do banco do Painel.
+Update Wings with recovery of its previous binary or image on failure.|||Actualiza Wings con recuperación del binario o imagen anterior si falla.|||Atualize o Wings com recuperação do binário ou imagem anterior em caso de falha.
+Restore a verified backup into an empty managed destination.|||Restaura una copia verificada en un destino gestionado vacío.|||Restaure um backup verificado em um destino gerenciado vazio.
+Remove managed components. Game files and game SQL remain.|||Elimina los componentes gestionados. Conserva los archivos y SQL de juegos.|||Remova os componentes gerenciados. Os arquivos e o SQL dos jogos são mantidos.
+Back up first, then choose whether to retain Panel data.|||Crea una copia primero y elige si conservar los datos del Panel.|||Faça backup primeiro e escolha se deseja manter os dados do Painel.
+Remove Wings while preserving game containers and files.|||Desinstala Wings conservando contenedores y archivos de juegos.|||Desinstale o Wings mantendo os contêineres e arquivos dos jogos.
+Use a node ID and Auto-Deploy token to link Wings.|||Vincula Wings con el ID del nodo y un token Auto-Deploy.|||Vincule o Wings com o ID do node e um token Auto-Deploy.
+Issue or renew the HTTPS certificate for the node address.|||Emite o renueva el certificado HTTPS de la dirección del nodo.|||Emita ou renove o certificado HTTPS do endereço do node.
+Save Panel SQL, original application keys and persistent configuration.|||Guarda SQL, claves originales y configuración persistente del Panel.|||Salve SQL, chaves originais e configuração persistente do Painel.
+Save the node configuration before changing or removing Wings.|||Guarda la configuración del nodo antes de modificar o eliminar Wings.|||Salve a configuração do node antes de alterar ou remover o Wings.
+Restart the managed services after a confirmation.|||Reinicia los servicios gestionados después de confirmar.|||Reinicie os serviços gerenciados após confirmar.
+Read recent service logs with secrets redacted.|||Consulta registros recientes con los secretos ocultos.|||Consulte os logs recentes com os segredos ocultos.
+Configure the Panel's outgoing email delivery.|||Configura el envío de correo del Panel.|||Configure o envio de e-mail do Painel.
+Create an additional administrator with a hidden password.|||Crea otro administrador con contraseña oculta.|||Crie outro administrador com senha oculta.
+Review required ports without changing firewall rules.|||Consulta los puertos necesarios sin cambiar reglas del firewall.|||Consulte as portas necessárias sem alterar regras do firewall.
+There are no managed components yet. Start from Install.|||Aún no hay componentes gestionados. Comienza en Instalar.|||Ainda não há componentes gerenciados. Comece em Instalar.
+Configure a game database host first to save its connection details.|||Configura primero un host de bases de juegos para guardar sus datos de conexión.|||Configure primeiro um host de bancos dos jogos para salvar seus dados de conexão.
+No local game SQL host is configured. Remote SQL must be backed up on its own host.|||No hay un host SQL de juegos local configurado. El SQL remoto se respalda en su propio servidor.|||Não há um host SQL local dos jogos configurado. O backup do SQL remoto deve ser feito no próprio servidor.
+Install the Panel first. Start with Install Panel or Install Panel and Wings.|||Instala el Panel primero. Elige Instalar Panel o Instalar Panel y Wings.|||Instale o Painel primeiro. Escolha Instalar Painel ou Instalar Painel e Wings.
+The Panel state needs attention. Use diagnostics before changing it.|||El estado del Panel requiere atención. Usa Diagnóstico antes de modificarlo.|||O estado do Painel exige atenção. Use Diagnóstico antes de modificá-lo.
+Finish or resume the Panel installation before using this option.|||Completa o reanuda la instalación del Panel antes de usar esta opción.|||Conclua ou retome a instalação do Painel antes de usar esta opção.
+Install Wings first, then create or link a node in your Panel.|||Instala Wings primero y después crea o vincula un nodo en tu Panel.|||Instale o Wings primeiro e depois crie ou vincule um node no seu Painel.
+The Wings state needs attention. Use diagnostics before changing it.|||El estado de Wings requiere atención. Usa Diagnóstico antes de modificarlo.|||O estado do Wings exige atenção. Use Diagnóstico antes de modificá-lo.
+Choose English, Spanish or Brazilian Portuguese.|||Elige inglés, español o portugués brasileño.|||Escolha inglês, espanhol ou português brasileiro.
+Return to your shell.|||Volver a la terminal.|||Voltar ao terminal.
+Operation complete|||Operación completada|||Operação concluída
+Enlarge the terminal to at least 60 columns and 18 rows.|||Amplía la terminal al menos a 60 columnas y 18 filas.|||Amplie o terminal para pelo menos 60 colunas e 18 linhas.
+Esc / Q: back or exit|||Esc / Q: volver o salir|||Esc / Q: voltar ou sair
+Needs attention|||Requiere atención|||Exige atenção
+Not configured|||Sin configurar|||Não configurado
+No matching actions|||No hay acciones coincidentes|||Nenhuma ação encontrada
+Your configuration|||Tu configuración|||Sua configuração
+↑↓ Scroll · Enter / Esc Back|||↑↓ Desplazar · Enter / Esc Volver|||↑↓ Rolar · Enter / Esc Voltar
+Working|||Trabajando|||Executando
+Installer|||Instalador|||Instalador
+Panel|||Panel|||Painel
+Wings|||Wings|||Wings
+Game SQL|||SQL de juegos|||SQL dos jogos
+New machine? Start with Install Panel and Wings.|||¿Máquina nueva? Comienza con Instalar Panel y Wings.|||Máquina nova? Comece em Instalar Painel e Wings.
+A guided setup for your Panel and game nodes.|||Configuración guiada para tu Panel y nodos de juegos.|||Configuração guiada para seu Painel e nodes de jogos.
+↑↓ Navigate · Tab/←→ Groups · Enter Choose · / Search · Esc Back|||↑↓ Navegar · Tab/←→ Grupos · Enter Elegir · / Buscar · Esc Volver|||↑↓ Navegar · Tab/←→ Grupos · Enter Escolher · / Buscar · Esc Voltar
+↑↓ Navigate · Enter Choose · Esc Back|||↑↓ Navegar · Enter Elegir · Esc Volver|||↑↓ Navegar · Enter Escolher · Esc Voltar
+Enter Continue · Esc Cancel · Ctrl+U Clear|||Enter Continuar · Esc Cancelar · Ctrl+U Limpiar|||Enter Continuar · Esc Cancelar · Ctrl+U Limpar
+Please wait. Ctrl+C interrupts the current operation.|||Espera. Ctrl+C interrumpe la operación actual.|||Aguarde. Ctrl+C interrompe a operação atual.
+Not installed|||Sin instalar|||Não instalado
+Configured|||Configurado|||Configurado
+Stopped|||Detenido|||Parado
+Not linked|||Sin vincular|||Não vinculado
+Why this action?|||¿Qué falta para continuar?|||O que falta para continuar?
+Next step|||Siguiente paso|||Próximo passo
+Step {number} of {total}|||Paso {number} de {total}|||Etapa {number} de {total}
+Unavailable|||No disponible|||Indisponível
+Type here|||Escribe aquí|||Digite aqui
+Your input is hidden.|||Tu entrada está oculta.|||Sua entrada está oculta.
+Your choices are reviewed before installation.|||Revisarás tus opciones antes de instalar.|||Você revisará suas opções antes de instalar.
+Elapsed: {seconds}s|||Tiempo: {seconds}s|||Tempo: {seconds}s
+Search|||Buscar|||Buscar
+Option|||Opción|||Opção
+Search actions|||Buscar acciones|||Buscar ações
+Default: {value}|||Predeterminado: {value}|||Padrão: {value}
+Choose one of the displayed options.|||Elige una de las opciones mostradas.|||Escolha uma das opções exibidas.
+This action is unavailable.|||Esta acción no está disponible.|||Esta ação está indisponível.
+Yes|||Sí|||Sim
+No|||No|||Não
+Full-screen mode is unavailable. Using the numbered interface.|||La pantalla completa no está disponible. Se usará el menú numérico.|||A tela cheia não está disponível. O menu numérico será usado.
+Language|||Idioma|||Idioma
+Installation status|||Estado de instalación|||Estado da instalação
+Operation needs attention|||La operación requiere atención|||A operação exige atenção
+Overview|||Resumen|||Visão geral
+Before you continue|||Antes de continuar|||Antes de continuar
+Language could not be changed|||No se pudo cambiar el idioma|||Não foi possível alterar o idioma
+Panel: {value}|||Panel: {value}|||Painel: {value}
+Wings: {value}|||Wings: {value}|||Wings: {value}
+Preview password (not saved)|||Contraseña de prueba (no se guarda)|||Senha de teste (não é salva)
+Explore the setup wizard|||Explorar el asistente de instalación|||Explorar o assistente de instalação
+Exit preview|||Salir de la vista previa|||Sair da prévia
+Ready for your first installation|||Listo para tu primera instalación|||Pronto para sua primeira instalação
+Machine overview|||Resumen de la máquina|||Visão geral da máquina
+No managed Panel or Wings is installed on this machine yet.|||Aún no hay Panel ni Wings gestionados en esta máquina.|||Ainda não há Painel ou Wings gerenciados nesta máquina.
+Next: choose Install Panel and Wings, or install the Panel first.|||Siguiente: elige Instalar Panel y Wings o instala primero el Panel.|||Próximo: escolha Instalar Painel e Wings ou instale primeiro o Painel.
+Diagnostics do not install software or change firewall rules.|||El diagnóstico no instala programas ni cambia reglas del firewall.|||O diagnóstico não instala programas nem altera regras do firewall.
+Architecture: {value}|||Arquitectura: {value}|||Arquitetura: {value}
+Free disk space: {value} GiB|||Espacio libre: {value} GiB|||Espaço livre: {value} GiB
+System manager: {value}|||Gestor del sistema: {value}|||Gerenciador do sistema: {value}
+Not detected|||No detectado|||Não detectado

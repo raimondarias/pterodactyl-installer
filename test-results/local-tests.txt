@@ -97,6 +97,29 @@ test_root_and_systemd_required (test_installer.ValidationTests) ... ok
 test_supported_host_detection (test_installer.ValidationTests) ... ok
 test_urls (test_installer.ValidationTests) ... ok
 test_versions_accept_only_correct_major (test_installer.ValidationTests) ... ok
+test_configured_and_incomplete_states_are_distinguished (test_tui.NavigationTests) ... ok
+test_corrupt_state_is_a_dashboard_condition_and_is_not_overwritten (test_tui.NavigationTests) ... ok
+test_direct_missing_panel_has_an_actionable_error (test_tui.NavigationTests) ... ok
+test_fresh_diagnostics_give_a_next_step_without_service_commands (test_tui.NavigationTests) ... ok
+test_language_switch_defaults_to_the_current_language (test_tui.NavigationTests) ... ok
+test_new_machine_only_offers_actions_with_satisfied_prerequisites (test_tui.NavigationTests) ... ok
+test_reproduced_option_20_never_dispatches_or_reads_missing_state (test_tui.NavigationTests) ... ok
+test_terminal_width_and_untrusted_control_characters (test_tui.NavigationTests) ... ok
+test_bootstrap_arrows_download_only_selected_package_and_open_real_tui (test_tui.PseudoTerminalTests) ... ok
+test_bootstrap_selector_cancels_before_any_language_download (test_tui.PseudoTerminalTests) ... ok
+test_busy_animation_updates_real_terminal_and_restores_it (test_tui.PseudoTerminalTests) ... ok
+test_plain_flag_and_dumb_terminal_do_not_enter_alternate_screen (test_tui.PseudoTerminalTests) ... ok
+test_real_menu_disabled_action_diagnostics_and_clean_exit (test_tui.PseudoTerminalTests) ... ok
+test_resize_and_sigint_restore_real_terminal (test_tui.PseudoTerminalTests) ... ok
+test_arrow_navigation_and_numeric_shortcuts (test_tui.WidgetTests) ... ok
+test_disabled_actions_explain_the_prerequisite_without_returning_it (test_tui.WidgetTests) ... ok
+test_escape_and_small_resized_terminal_can_cancel (test_tui.WidgetTests) ... ok
+test_form_defaults_clear_and_cancel (test_tui.WidgetTests) ... ok
+test_group_navigation_and_search (test_tui.WidgetTests) ... ok
+test_initialization_failure_falls_back_after_restoring_terminal (test_tui.WidgetTests) ... ok
+test_refresh_and_numeric_navigation_preserve_the_actual_action_group (test_tui.WidgetTests) ... ok
+test_review_and_generated_password_are_acknowledged_before_continuing (test_tui.WidgetTests) ... ok
+test_unicode_editing_and_password_masking (test_tui.WidgetTests) ... ok
 test_container_update_failure_restores_previous_image_and_node_config (test_v2.DockerWingsTests) ... ok
 test_real_wings_compose_schema_without_docker_daemon (test_v2.DockerWingsTests) ... ok
 test_uninstall_wings_container_preserves_games (test_v2.DockerWingsTests) ... ok
@@ -135,7 +158,7 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 135 tests in 9.305s
+Ran 158 tests in 13.190s
 
 OK
 ShellCheck unavailable; Bash syntax validation passed.

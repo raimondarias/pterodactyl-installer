@@ -1,19 +1,23 @@
 # Verification report — Ptero Installer 1.0.0.beta
 
-Date: 21 October 2026.
+Date: 23 October 2026.
 
 | Check | Result |
 | --- | --- |
-| Local unittest suite | **135 tests passed**, no failures or skips in this environment |
+| Local unittest suite | **158 tests passed**, no failures or skips in this environment |
 | Guided simple setup matrix | Both Panel methods × both database engines × IP/domain × all three languages |
-| Language catalogue | 430 messages with complete en/es/pt-BR entries and matching placeholders |
+| Language catalogue | 529 messages with complete en/es/pt-BR entries and matching placeholders |
 | Bash syntax / Python compilation | Passed |
 | Online language bootstrap | Real Bash + Python runtime with GitHub transport fixtures: English first question, only selected folder, one language question, immutable commit and clean temporary-directory removal |
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
 | Language distributions | Three reproducible packages with one locale each; committed bytes match the shared runtime and translation tables |
 | Menu language change | Only the requested locale fetched; checksum/snapshot enforced; existing locale retained on failure |
-| Published GitHub distribution | **Passed** against commit `df9998de60897979ebf220f9a01a256c4666ceca`: real online bootstrap/download/preview for en/es/pt-BR and verified locale changes; installer version `1.0.0.beta` |
-| Interactive animation | Passed in a real pseudoterminal |
+| Published GitHub distribution | The preceding snapshot was verified; run `tests/published_check.py` after this TUI revision is published to verify the actual online ncurses flow as well |
+| Full-screen TUI | Passed with actual ncurses PTYs: arrows, categories, numeric shortcuts, search, masked forms, resize, busy animation and terminal restoration |
+| Prerequisites and fresh machine | Option 20 is blocked with an installation hint; option 14 gives machine information and next steps; corrupt state is reported without overwriting it |
+| Plan/password review | Review and generated credentials require acknowledgement before continuing |
+| Interactive animation | Multiple actual ncurses activity frames captured in a real pseudoterminal; reduced-motion/plain fallbacks checked |
+| TUI screenshots | Captured from actual ncurses buffers; SVG render visually reviewed |
 | Preview | Passed without root in all three languages |
 | Single-file launcher | Built, payload checksum verified, extracted and executed `--version` successfully |
 | Real Compose parser | Passed for MariaDB Panel, MySQL Panel, both game SQL engines and Docker Wings |
@@ -39,6 +43,8 @@ Package and system-service operations are simulated in the local suite. The game
 
 Game SQL firewall forwarding, boot/Docker restart ordering and full cross-host physical restore still require the clean-VPS procedure. The host registration tests record commands and validate PHP syntax; they do not substitute for an actual Panel installation.
 
-The local bootstrap suite uses GitHub transport fixtures. After publication to `main`, `python3 tests/published_check.py` also verified the actual public GitHub downloads in all three languages and subsequent verified language changes against commit `df9998de60897979ebf220f9a01a256c4666ceca`. See [published check output](published-checks.txt). These checks run only previews and temporary code; complete service deployment on a clean VPS remains untested.
+Local distribution tests use GitHub transport fixtures, including an actual PTY bootstrap that chooses Spanish with an arrow and opens the selected ncurses runtime. `python3 tests/published_check.py` additionally checks actual public downloads, ncurses previews in all three languages, terminal restoration and verified language changes after publication. The recorded [published output](published-checks.txt) identifies the exact snapshot checked. Complete service deployment on a clean VPS remains untested.
 
 See [ShellCheck output](shellcheck.txt), [local output](local-tests.txt), [test procedure](../docs/TESTING.md), and [UI previews](../docs/preview-en.txt).
+
+Upstream release/binary/manifests were last checked on 21 October 2026; this revision changes the interface and prerequisites, not the selected upstream versions.

@@ -39,3 +39,5 @@ O menu permite instalar/desinstalar os componentes juntos ou separados, atualiza
 A desinstalação mantém os dados por padrão. Excluí-los exige confirmação e um backup correto. Os backups do Painel incluem SQL e as chaves originais; **não incluem os arquivos ou mundos dos jogos**. Guarde os arquivos `.tar.gz` e `.sha256` fora do servidor.
 
 O Painel v2 é beta. Os testes automatizados e as verificações reais de arquivos/configurações não substituem um teste completo em um VPS limpo. Consulte [o relatório](../test-results/REPORT.md), [o guia principal](../README.md) e [os testes de integração](TESTING.md).
+
+A interface abre uma TUI de tela cheia em um terminal SSH compatível. Use ↑/↓ para navegar, Tab ou ←/→ para mudar de grupo, Enter para escolher, / para buscar, F5 para atualizar os estados e Esc/Q para voltar ou sair. Ações sem os requisitos explicam o que falta e não são executadas. Em uma máquina nova, Diagnóstico mostra informações úteis e o próximo passo. Teste sem instalar com `bash ptero-setup.sh --preview`; use `--plain` para menu numérico e `--no-animation` para reduzir o movimento. [Detalhes e capturas](TUI.md).

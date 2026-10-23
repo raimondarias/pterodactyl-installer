@@ -4,22 +4,111 @@ set -Eeuo pipefail
 REPOSITORY="raimondarias/pterodactyl-installer"
 VERSION="1.0.0.beta"
 language=""
+plain_mode=0
+animations=1
+bootstrap_active=0
+download_pid=""
+WORK_DIR=""
 forwarded=()
+restore_bootstrap() {
+    if [[ "$bootstrap_active" == 1 ]]; then
+        printf '\033[0m\033[?25h\033[?1049l'
+        bootstrap_active=0
+    fi
+}
+cleanup() {
+    restore_bootstrap
+    if [[ -n "$download_pid" ]]; then
+        kill "$download_pid" 2>/dev/null || true
+        printf '\r\033[K\033[?25h'
+    fi
+    if [[ -n "$WORK_DIR" ]]; then rm -rf -- "$WORK_DIR"; fi
+}
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+trap 'exit 129' HUP
 while (($#)); do
     case "$1" in
         --language)
             [[ $# -ge 2 ]] || { printf '%s\n' 'Missing --language value.' >&2; exit 2; }
             language="$2"; shift 2 ;;
+        --plain) plain_mode=1; forwarded+=("$1"); shift ;;
+        --no-animation) animations=0; forwarded+=("$1"); shift ;;
         --version) printf 'ptero-installer %s\n' "$VERSION"; exit 0 ;;
         --help|-h)
             printf '%s\n' 'Ptero Installer — online language bootstrap' \
-                'Usage: bash install.sh [--language en|es|pt-BR] [--preview] [--no-animation] [action]' \
+                'Usage: bash install.sh [--language en|es|pt-BR] [--preview] [--plain] [--no-animation] [action]' \
                 'Without --language, the first question selects a language before downloading runtime code.' \
                 'Offline source checkout: bash scripts/run_local.sh [options]'
             exit 0 ;;
         *) forwarded+=("$1"); shift ;;
     esac
 done
+choose_language_tui() {
+    local rows columns selected=1 previous="" key sequence frame=0 left index row label style reset=""
+    read -r rows columns < <(stty size)
+    if (( rows < 18 || columns < 60 )); then return 1; fi
+    bootstrap_active=1
+    printf '\033[?1049h\033[?25l\033[2J'
+    while true; do
+        read -r rows columns < <(stty size)
+        left=$(( (columns - 54) / 2 + 1 ))
+        if (( left < 1 )); then left=1; fi
+        if [[ "$previous" != "$selected:$rows:$columns" ]]; then
+            printf '\033[2J'
+            if [[ -z "${NO_COLOR+x}" ]]; then printf '\033[1;36m'; fi
+            printf '\033[2;%sHPTERO / INSTALLER  %s' "$left" "$VERSION"
+            printf '\033[0m\033[4;%sHWhich language would you like to use?' "$left"
+            if (( rows < 18 || columns < 60 )); then
+                printf '\033[6;1HEnlarge the terminal (60 columns, 18 rows). Esc cancels.'
+            else
+                printf '\033[6;%sHChoose your setup language before downloading.' "$left"
+                for index in 1 2 3; do
+                    case "$index" in 1) label='English' ;; 2) label='Español' ;; 3) label='Português (Brasil)' ;; esac
+                    row=$(( 7 + index * 2 ))
+                    style=""; reset=""
+                    if [[ "$selected" == "$index" ]]; then
+                        style=$'\033[7m'; reset=$'\033[0m'
+                    fi
+                    printf '\033[%s;%sH%s  %s. %-30s  %s' "$row" "$left" "$style" "$index" "$label" "$reset"
+                done
+                printf '\033[%s;%sHDownloads only the selected language package.' "$((rows - 3))" "$left"
+                printf '\033[%s;%sH↑↓ / 1–3 Select · Enter Continue · Esc Cancel' "$((rows - 1))" "$left"
+            fi
+            previous="$selected:$rows:$columns"
+        fi
+        if (( animations && rows >= 18 && columns >= 60 )); then
+            case "$((frame % 4))" in 0) label='○' ;; 1) label='◔' ;; 2) label='●' ;; 3) label='◕' ;; esac
+            printf '\033[2;%sH%s' "$((left + 50))" "$label"
+            frame=$((frame + 1))
+        fi
+        key=""
+        if ! IFS= read -rsn1 -t 0.12 key; then continue; fi
+        case "$key" in
+            $'\033')
+                sequence=""
+                IFS= read -rsn2 -t 0.15 sequence || true
+                case "$sequence" in
+                    '[A'|'OA') selected=$(( (selected + 1) % 3 + 1 )) ;;
+                    '[B'|'OB') selected=$(( selected % 3 + 1 )) ;;
+                    *) exit 130 ;;
+                esac ;;
+            1|2|3) selected="$key" ;;
+            q|Q) exit 130 ;;
+            '')
+                if (( rows < 18 || columns < 60 )); then continue; fi
+                case "$selected" in 1) language='en' ;; 2) language='es' ;; 3) language='pt-BR' ;; esac
+                restore_bootstrap
+                return 0 ;;
+        esac
+    done
+}
+if [[ -z "$language" ]]; then
+    if [[ "$plain_mode" == 0 && -t 0 && -t 1 && "${TERM:-dumb}" != dumb ]]; then
+        choose_language_tui || true
+    fi
+fi
 if [[ -z "$language" ]]; then
     printf '\n  P T E R O  /  I N S T A L L E R\n\n'
     printf '%s\n' '  Which language would you like to use?' '' \
@@ -51,9 +140,9 @@ message() {
         en:curl) printf '%s\n' 'curl is required to download the selected language package.' ;;
         es:curl) printf '%s\n' 'Se necesita curl para descargar el paquete del idioma seleccionado.' ;;
         pt-BR:curl) printf '%s\n' 'O curl é necessário para baixar o pacote do idioma selecionado.' ;;
-        en:download) printf 'Downloading the %s installer from GitHub...\n' "$language" ;;
-        es:download) printf 'Descargando el instalador %s desde GitHub...\n' "$language" ;;
-        pt-BR:download) printf 'Baixando o instalador %s do GitHub...\n' "$language" ;;
+        en:download) printf '%s\n' 'Downloading the English installer from GitHub...' ;;
+        es:download) printf '%s\n' 'Descargando el instalador en español desde GitHub...' ;;
+        pt-BR:download) printf '%s\n' 'Baixando o instalador em português brasileiro do GitHub...' ;;
         en:failed) printf '%s\n' 'The language package could not be verified or downloaded. No installer code was run.' ;;
         es:failed) printf '%s\n' 'No se pudo verificar o descargar el paquete del idioma. No se ejecutó el código del instalador.' ;;
         pt-BR:failed) printf '%s\n' 'Não foi possível verificar ou baixar o pacote do idioma. O código do instalador não foi executado.' ;;
@@ -70,12 +159,27 @@ if ! command -v python3 >/dev/null 2>&1; then
 fi
 umask 077
 WORK_DIR="$(mktemp -d -t ptero-bootstrap.XXXXXXXX)"
-trap 'rm -rf -- "$WORK_DIR"' EXIT
-trap 'exit 130' INT
-trap 'exit 143' TERM
 download() {
-    curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
-        --retry 2 --connect-timeout 15 --max-time 180 --max-filesize 16777216 "$1" --output "$2"
+    if [[ -t 1 && "$animations" == 1 && "$plain_mode" == 0 ]]; then
+        local tick=0 status=0 symbol
+        printf '\033[?25l'
+        curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            --retry 2 --connect-timeout 15 --max-time 180 --max-filesize 16777216 "$1" --output "$2" &
+        download_pid=$!
+        while kill -0 "$download_pid" 2>/dev/null; do
+            case "$((tick % 4))" in 0) symbol='⠋' ;; 1) symbol='⠙' ;; 2) symbol='⠹' ;; 3) symbol='⠸' ;; esac
+            printf '\r  %s  GitHub · %s' "$symbol" "$language"
+            tick=$((tick + 1))
+            sleep 0.1
+        done
+        wait "$download_pid" || status=$?
+        download_pid=""
+        printf '\r\033[K\033[?25h'
+        return "$status"
+    else
+        curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            --retry 2 --connect-timeout 15 --max-time 180 --max-filesize 16777216 "$1" --output "$2"
+    fi
 }
 verified=0
 trap 'if [[ "$verified" == 0 ]]; then message failed >&2; fi' ERR

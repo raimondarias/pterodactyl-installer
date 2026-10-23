@@ -9,10 +9,13 @@
 - Native systemd Wings daemon recommended; optional official Wings Docker container.
 - First administrator collected in the wizard, with password confirmation. Administrator passwords are hidden and sent to PHP via stdin, never as command arguments or saved in installer state.
 - Optional automatic registration of a game database host, with separate provisioning credentials and a private connection report.
-- Responsive terminal cards, grouped menus, localized confirmations, step indicators, animated spinners and elapsed time.
+- Full-screen ncurses TUI with arrow keys, grouped actions, search, dashboard states, editable forms, masked passwords, animated activity and elapsed time.
+- Contextual prerequisites: unavailable actions explain what to install first. Fresh-machine diagnostics show a useful next step.
 - Installation, updates, separate/combined removal, backups, restoration, diagnostics, logs, SMTP and administrator management.
 
 This is an independent installer, not an official Pterodactyl project. Panel **v2.0.0-beta.2** is a beta; the wizard explicitly asks whether to proceed. Wings defaults to **v1.13.4**. Artifact checks last run on **21 October 2026**.
+
+![Actual Spanish ncurses dashboard](docs/images/tui-es.svg)
 
 ## Install from GitHub
 
@@ -22,7 +25,7 @@ The first command downloads only the bootstrap. Run it on your Ubuntu/Debian ser
 curl -fsSL https://raw.githubusercontent.com/raimondarias/pterodactyl-installer/main/install.sh -o ptero-setup.sh && sudo bash ptero-setup.sh
 ```
 
-Its **first question is in English**, before any runtime package download:
+Its **first question is in English**, before any runtime package download. On an interactive SSH terminal it opens a keyboard-driven language screen; arrows or 1–3 select a language and Enter continues. The numbered fallback looks like this:
 
 ```text
 Which language would you like to use?
@@ -70,9 +73,13 @@ bash scripts/run_local.sh --language es --preview
 bash scripts/run_local.sh --language pt-BR --preview
 ```
 
-To test the online path after publishing, run `bash ptero-setup.sh --preview`. It asks the English language question and downloads only the selected package, then displays a harmless preview. It needs an existing Python 3 runtime for a no-root preview.
+To try the online TUI without installing services, run `bash ptero-setup.sh --preview`. On an interactive terminal this opens an explorable demo with real selection widgets, editable fields, a masked preview password and a review screen. Escape cancels the current screen; Q exits the demo. It needs an existing Python 3 runtime for a no-root preview. With redirected output, the preview prints text instead.
 
-Text previews: [English](docs/preview-en.txt), [Español](docs/preview-es.txt), [Português (Brasil)](docs/preview-pt-BR.txt). Colors and animation are enabled in a real terminal and can be disabled with `--no-animation` or `NO_COLOR=1`.
+TUI controls: **↑/↓** move, **Tab or ←/→** switch groups, **Enter** choose, **/** search, **F5** refresh installation status, **Esc/Q** return or exit. Numeric action IDs still work: type a number and press Enter. Forms support cursor keys, Home/End, Backspace/Delete and Ctrl+U; passwords stay masked.
+
+`--plain` explicitly uses numbered prompts. A non-interactive stream, `TERM=dumb`, a missing ncurses module or an initial terminal smaller than 60×18 also uses the numbered interface. Resizing an active TUI is supported. `--no-animation` keeps keyboard navigation but disables decorative motion. Terminal modes and cursor visibility are restored on exit, cancellation and errors.
+
+[Interface behavior and screenshots](docs/TUI.md). Text previews: [English](docs/preview-en.txt), [Español](docs/preview-es.txt), [Português (Brasil)](docs/preview-pt-BR.txt). Colors and animation are enabled in a real terminal and can be disabled with `--no-animation` or `NO_COLOR=1`.
 
 ## Guided setup
 
@@ -176,6 +183,8 @@ The node API is accessed over verified HTTPS without putting the Auto-Deploy tok
 | 23 | Change language |
 | 0 | Exit |
 
+In the TUI, these operations are grouped under **Install**, **Maintenance**, **Game databases**, **Backups**, **Remove** and **Preferences**. The numbers below are stable keyboard shortcuts and the layout used by `--plain`.
+
 These operations are also available as direct commands: `install-all`, `install-panel`, `install-wings`, `uninstall-all`, `uninstall-panel`, `uninstall-wings`, `update-panel`, `update-wings`, `configure-wings`, `tls-wings`, `backup-panel`, `backup-wings`, `restore-panel`, `diagnose`, `restart`, `logs`, `smtp`, `admin`, `firewall`, `configure-database`, `database-credentials`, and `backup-game-database`. Confirmations still apply.
 
 ## Backups, updates and removal
@@ -203,7 +212,10 @@ languages/
 installer.py                # Compatibility Python entry point
 ptero/
   cli.py                    # Language selection, grouped menu, process lock
-  ui.py                     # Cards, prompts, progress and animation
+  ui.py                     # Interface adapter, fallback and terminal lifecycle
+  tui.py                    # Full-screen ncurses menus, forms, progress and results
+  navigation.py             # Read-only dashboard inventory and action prerequisites
+  terminal_text.py          # Unicode cell widths, safe clipping and wrapping
   i18n.py, locales/          # Maintained three-language source catalogue
   distribution.py           # Verified language changes from the pinned commit
   wizard.py                 # Simple / advanced configuration
@@ -251,7 +263,7 @@ python3 tests/published_check.py
 python3 scripts/build_release.py
 ```
 
-Distribution tests run the real Bash bootstrap against recorded GitHub URL fixtures, exercise all three selected packages and subsequent language downloads, and reject missing/corrupt/unsafe archives. They also require committed language packages to match the shared source exactly. The local suite uses temporary paths and simulated package/service commands, plus the real Compose parser, NGINX/PHP syntax validation and a disposable MariaDB instance using only a temporary Unix socket when those binaries are available. Remote checks verify official release artifacts, execute Wings' `version`/`configure` against a local mock API, extract the real Panel release and inspect OCI manifests. These checks do **not** install Pterodactyl on the test host.
+TUI tests use real pseudoterminals for keyboard navigation, masked fields, resize, animation, fresh-machine diagnostics and terminal restoration after cancellation/Ctrl+C. Distribution tests run the real Bash bootstrap against recorded GitHub URL fixtures, exercise all three selected packages and subsequent language downloads, and reject missing/corrupt/unsafe archives. They also require committed language packages to match the shared source exactly. The local suite uses temporary paths and simulated package/service commands, plus the real Compose parser, NGINX/PHP syntax validation and a disposable MariaDB instance using only a temporary Unix socket when those binaries are available. Remote checks verify official release artifacts, execute Wings' `version`/`configure` against a local mock API, extract the real Panel release and inspect OCI manifests. These checks do **not** install Pterodactyl on the test host.
 
 Full clean-VPS deployments, public certificates, email delivery and running a game still need the integration procedure in [docs/TESTING.md](docs/TESTING.md). See [test-results/REPORT.md](test-results/REPORT.md) for exactly what was executed. No production readiness claim is made from simulated service tests.
 

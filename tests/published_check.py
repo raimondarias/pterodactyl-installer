@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 """Read-only smoke check of the actual published GitHub distribution."""
 import hashlib
+import fcntl
 import json
 import os
+import pty
 from pathlib import Path
 import re
+import select
+import signal
+import struct
 import subprocess
 import sys
 import tempfile
+import termios
+import time
 import urllib.request
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -24,6 +31,50 @@ def fetch(url):
     if len(result) > 16 * 1024 * 1024:
         raise app.InstallerError("Published file exceeds the smoke check size limit.")
     return result
+
+
+def tui_preview(launcher, number, language, environment):
+    """Run the actual online picker and ncurses preview in an isolated PTY."""
+    master, slave = pty.openpty()
+    fcntl.ioctl(slave, termios.TIOCSWINSZ, struct.pack("HHHH", 28, 100, 0, 0))
+    original = termios.tcgetattr(slave)
+    process = subprocess.Popen(["bash", str(launcher), "--preview", "--no-animation"],
+                               stdin=slave, stdout=slave, stderr=slave, start_new_session=True,
+                               env={**environment, "TERM": "xterm-256color", "LANG": "C.UTF-8"})
+    output = bytearray()
+    def until(marker):
+        deadline = time.monotonic() + 120
+        while time.monotonic() < deadline:
+            ready, _, _ = select.select([master], [], [], 0.1)
+            if ready:
+                output.extend(os.read(master, 65536))
+                if marker.encode() in output:
+                    return
+            elif process.poll() is not None:
+                break
+        raise app.InstallerError(f"Published {language} TUI failed: " + output.decode("utf-8", "replace")[-1500:])
+    try:
+        until("Which language would you like to use?")
+        os.write(master, f"{number}\r".encode())
+        until(app.UI(False, language).tr("Interface preview"))
+        if output.count(b"\x1b[?1049h") < 2:
+            raise app.InstallerError("The published runtime did not open the full-screen TUI.")
+        os.write(master, b"q")
+        if process.wait(timeout=10):
+            raise app.InstallerError("The published TUI did not exit cleanly.")
+        restored = termios.tcgetattr(slave)
+        if any(restored[3] & bit != original[3] & bit for bit in (termios.ECHO, termios.ICANON)):
+            raise app.InstallerError("The published TUI did not restore terminal input modes.")
+    finally:
+        if process.poll() is None:
+            os.killpg(process.pid, signal.SIGTERM)
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(process.pid, signal.SIGKILL)
+                process.wait(timeout=5)
+        os.close(master)
+        os.close(slave)
 
 
 def main():
@@ -51,6 +102,8 @@ def main():
             if result.returncode or expected not in result.stdout or result.stdout.count("Which language would you like to use?") != 1:
                 raise app.InstallerError(f"Published {language} preview failed: " + result.stderr[-2000:])
             print(f"OK real GitHub download and preview: {language}; one English language question", flush=True)
+            tui_preview(launcher, number, language, environment)
+            print(f"OK published full-screen TUI: {language}; online picker, ncurses preview and terminal restoration", flush=True)
         payload = fetch(base + "/languages/en/installer.tar.gz")
         checksum = fetch(base + "/languages/en/installer.tar.gz.sha256").decode().split()[0]
         if hashlib.sha256(payload).hexdigest() != checksum:

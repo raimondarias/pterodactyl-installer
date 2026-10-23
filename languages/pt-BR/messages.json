@@ -1288,5 +1288,302 @@
   },
   "Binding the new database service to localhost": {
     "pt-BR": "Limitando o novo banco de dados ao localhost"
+  },
+  "Checking official releases": {
+    "pt-BR": "Consultando versões oficiais"
+  },
+  "Install": {
+    "pt-BR": "Instalar"
+  },
+  "Maintenance": {
+    "pt-BR": "Manutenção"
+  },
+  "Game databases": {
+    "pt-BR": "Bancos dos jogos"
+  },
+  "Backups": {
+    "pt-BR": "Backups"
+  },
+  "Remove": {
+    "pt-BR": "Desinstalar"
+  },
+  "Preferences": {
+    "pt-BR": "Preferências"
+  },
+  "Set up the Panel and a Wings node with a guided review.": {
+    "pt-BR": "Configure o Painel e um node Wings com revisão guiada."
+  },
+  "Standalone is recommended. Choose your database, address and administrator.": {
+    "pt-BR": "Standalone é recomendado. Escolha banco de dados, endereço e administrador."
+  },
+  "Install the game server daemon, then link it to your Panel.": {
+    "pt-BR": "Instale o Wings e vincule-o depois ao seu Painel."
+  },
+  "Check this machine and inspect managed services without changing them.": {
+    "pt-BR": "Verifique esta máquina e os serviços gerenciados sem modificá-los."
+  },
+  "Register a separate SQL host for game databases in the Panel.": {
+    "pt-BR": "Registre no Painel um host SQL separado para os bancos dos jogos."
+  },
+  "View the saved private connection details for the provisioning account.": {
+    "pt-BR": "Consulte os dados privados salvos da conta de gerenciamento."
+  },
+  "Pause local game SQL briefly and create a consistent backup.": {
+    "pt-BR": "Pause brevemente o SQL local dos jogos e crie um backup consistente."
+  },
+  "Back up the Panel before updating its code and database schema.": {
+    "pt-BR": "Faça backup antes de atualizar o código e o esquema do banco do Painel."
+  },
+  "Update Wings with recovery of its previous binary or image on failure.": {
+    "pt-BR": "Atualize o Wings com recuperação do binário ou imagem anterior em caso de falha."
+  },
+  "Restore a verified backup into an empty managed destination.": {
+    "pt-BR": "Restaure um backup verificado em um destino gerenciado vazio."
+  },
+  "Remove managed components. Game files and game SQL remain.": {
+    "pt-BR": "Remova os componentes gerenciados. Os arquivos e o SQL dos jogos são mantidos."
+  },
+  "Back up first, then choose whether to retain Panel data.": {
+    "pt-BR": "Faça backup primeiro e escolha se deseja manter os dados do Painel."
+  },
+  "Remove Wings while preserving game containers and files.": {
+    "pt-BR": "Desinstale o Wings mantendo os contêineres e arquivos dos jogos."
+  },
+  "Use a node ID and Auto-Deploy token to link Wings.": {
+    "pt-BR": "Vincule o Wings com o ID do node e um token Auto-Deploy."
+  },
+  "Issue or renew the HTTPS certificate for the node address.": {
+    "pt-BR": "Emita ou renove o certificado HTTPS do endereço do node."
+  },
+  "Save Panel SQL, original application keys and persistent configuration.": {
+    "pt-BR": "Salve SQL, chaves originais e configuração persistente do Painel."
+  },
+  "Save the node configuration before changing or removing Wings.": {
+    "pt-BR": "Salve a configuração do node antes de alterar ou remover o Wings."
+  },
+  "Restart the managed services after a confirmation.": {
+    "pt-BR": "Reinicie os serviços gerenciados após confirmar."
+  },
+  "Read recent service logs with secrets redacted.": {
+    "pt-BR": "Consulte os logs recentes com os segredos ocultos."
+  },
+  "Configure the Panel's outgoing email delivery.": {
+    "pt-BR": "Configure o envio de e-mail do Painel."
+  },
+  "Create an additional administrator with a hidden password.": {
+    "pt-BR": "Crie outro administrador com senha oculta."
+  },
+  "Review required ports without changing firewall rules.": {
+    "pt-BR": "Consulte as portas necessárias sem alterar regras do firewall."
+  },
+  "There are no managed components yet. Start from Install.": {
+    "pt-BR": "Ainda não há componentes gerenciados. Comece em Instalar."
+  },
+  "Configure a game database host first to save its connection details.": {
+    "pt-BR": "Configure primeiro um host de bancos dos jogos para salvar seus dados de conexão."
+  },
+  "No local game SQL host is configured. Remote SQL must be backed up on its own host.": {
+    "pt-BR": "Não há um host SQL local dos jogos configurado. O backup do SQL remoto deve ser feito no próprio servidor."
+  },
+  "Install the Panel first. Start with Install Panel or Install Panel and Wings.": {
+    "pt-BR": "Instale o Painel primeiro. Escolha Instalar Painel ou Instalar Painel e Wings."
+  },
+  "The Panel state needs attention. Use diagnostics before changing it.": {
+    "pt-BR": "O estado do Painel exige atenção. Use Diagnóstico antes de modificá-lo."
+  },
+  "Finish or resume the Panel installation before using this option.": {
+    "pt-BR": "Conclua ou retome a instalação do Painel antes de usar esta opção."
+  },
+  "Install Wings first, then create or link a node in your Panel.": {
+    "pt-BR": "Instale o Wings primeiro e depois crie ou vincule um node no seu Painel."
+  },
+  "The Wings state needs attention. Use diagnostics before changing it.": {
+    "pt-BR": "O estado do Wings exige atenção. Use Diagnóstico antes de modificá-lo."
+  },
+  "Choose English, Spanish or Brazilian Portuguese.": {
+    "pt-BR": "Escolha inglês, espanhol ou português brasileiro."
+  },
+  "Return to your shell.": {
+    "pt-BR": "Voltar ao terminal."
+  },
+  "Operation complete": {
+    "pt-BR": "Operação concluída"
+  },
+  "Enlarge the terminal to at least 60 columns and 18 rows.": {
+    "pt-BR": "Amplie o terminal para pelo menos 60 colunas e 18 linhas."
+  },
+  "Esc / Q: back or exit": {
+    "pt-BR": "Esc / Q: voltar ou sair"
+  },
+  "Needs attention": {
+    "pt-BR": "Exige atenção"
+  },
+  "Not configured": {
+    "pt-BR": "Não configurado"
+  },
+  "No matching actions": {
+    "pt-BR": "Nenhuma ação encontrada"
+  },
+  "Your configuration": {
+    "pt-BR": "Sua configuração"
+  },
+  "↑↓ Scroll · Enter / Esc Back": {
+    "pt-BR": "↑↓ Rolar · Enter / Esc Voltar"
+  },
+  "Working": {
+    "pt-BR": "Executando"
+  },
+  "Installer": {
+    "pt-BR": "Instalador"
+  },
+  "Panel": {
+    "pt-BR": "Painel"
+  },
+  "Wings": {
+    "pt-BR": "Wings"
+  },
+  "Game SQL": {
+    "pt-BR": "SQL dos jogos"
+  },
+  "New machine? Start with Install Panel and Wings.": {
+    "pt-BR": "Máquina nova? Comece em Instalar Painel e Wings."
+  },
+  "A guided setup for your Panel and game nodes.": {
+    "pt-BR": "Configuração guiada para seu Painel e nodes de jogos."
+  },
+  "↑↓ Navigate · Tab/←→ Groups · Enter Choose · / Search · Esc Back": {
+    "pt-BR": "↑↓ Navegar · Tab/←→ Grupos · Enter Escolher · / Buscar · Esc Voltar"
+  },
+  "↑↓ Navigate · Enter Choose · Esc Back": {
+    "pt-BR": "↑↓ Navegar · Enter Escolher · Esc Voltar"
+  },
+  "Enter Continue · Esc Cancel · Ctrl+U Clear": {
+    "pt-BR": "Enter Continuar · Esc Cancelar · Ctrl+U Limpar"
+  },
+  "Please wait. Ctrl+C interrupts the current operation.": {
+    "pt-BR": "Aguarde. Ctrl+C interrompe a operação atual."
+  },
+  "Not installed": {
+    "pt-BR": "Não instalado"
+  },
+  "Configured": {
+    "pt-BR": "Configurado"
+  },
+  "Stopped": {
+    "pt-BR": "Parado"
+  },
+  "Not linked": {
+    "pt-BR": "Não vinculado"
+  },
+  "Why this action?": {
+    "pt-BR": "O que falta para continuar?"
+  },
+  "Next step": {
+    "pt-BR": "Próximo passo"
+  },
+  "Step {number} of {total}": {
+    "pt-BR": "Etapa {number} de {total}"
+  },
+  "Unavailable": {
+    "pt-BR": "Indisponível"
+  },
+  "Type here": {
+    "pt-BR": "Digite aqui"
+  },
+  "Your input is hidden.": {
+    "pt-BR": "Sua entrada está oculta."
+  },
+  "Your choices are reviewed before installation.": {
+    "pt-BR": "Você revisará suas opções antes de instalar."
+  },
+  "Elapsed: {seconds}s": {
+    "pt-BR": "Tempo: {seconds}s"
+  },
+  "Search": {
+    "pt-BR": "Buscar"
+  },
+  "Option": {
+    "pt-BR": "Opção"
+  },
+  "Search actions": {
+    "pt-BR": "Buscar ações"
+  },
+  "Default: {value}": {
+    "pt-BR": "Padrão: {value}"
+  },
+  "Choose one of the displayed options.": {
+    "pt-BR": "Escolha uma das opções exibidas."
+  },
+  "This action is unavailable.": {
+    "pt-BR": "Esta ação está indisponível."
+  },
+  "Yes": {
+    "pt-BR": "Sim"
+  },
+  "No": {
+    "pt-BR": "Não"
+  },
+  "Full-screen mode is unavailable. Using the numbered interface.": {
+    "pt-BR": "A tela cheia não está disponível. O menu numérico será usado."
+  },
+  "Language": {
+    "pt-BR": "Idioma"
+  },
+  "Installation status": {
+    "pt-BR": "Estado da instalação"
+  },
+  "Operation needs attention": {
+    "pt-BR": "A operação exige atenção"
+  },
+  "Overview": {
+    "pt-BR": "Visão geral"
+  },
+  "Before you continue": {
+    "pt-BR": "Antes de continuar"
+  },
+  "Language could not be changed": {
+    "pt-BR": "Não foi possível alterar o idioma"
+  },
+  "Panel: {value}": {
+    "pt-BR": "Painel: {value}"
+  },
+  "Wings: {value}": {
+    "pt-BR": "Wings: {value}"
+  },
+  "Preview password (not saved)": {
+    "pt-BR": "Senha de teste (não é salva)"
+  },
+  "Explore the setup wizard": {
+    "pt-BR": "Explorar o assistente de instalação"
+  },
+  "Exit preview": {
+    "pt-BR": "Sair da prévia"
+  },
+  "Ready for your first installation": {
+    "pt-BR": "Pronto para sua primeira instalação"
+  },
+  "Machine overview": {
+    "pt-BR": "Visão geral da máquina"
+  },
+  "No managed Panel or Wings is installed on this machine yet.": {
+    "pt-BR": "Ainda não há Painel ou Wings gerenciados nesta máquina."
+  },
+  "Next: choose Install Panel and Wings, or install the Panel first.": {
+    "pt-BR": "Próximo: escolha Instalar Painel e Wings ou instale primeiro o Painel."
+  },
+  "Diagnostics do not install software or change firewall rules.": {
+    "pt-BR": "O diagnóstico não instala programas nem altera regras do firewall."
+  },
+  "Architecture: {value}": {
+    "pt-BR": "Arquitetura: {value}"
+  },
+  "Free disk space: {value} GiB": {
+    "pt-BR": "Espaço livre: {value} GiB"
+  },
+  "System manager: {value}": {
+    "pt-BR": "Gerenciador do sistema: {value}"
+  },
+  "Not detected": {
+    "pt-BR": "Não detectado"
   }
 }

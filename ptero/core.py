@@ -244,7 +244,7 @@ class Runner:
         self.record("$ " + " ".join(args))
         # Archivos temporales evitan acumular dumps y salidas de apt en memoria.
         with tempfile.TemporaryFile() as captured, tempfile.TemporaryFile() as errors:
-            with (self.ui.busy(label) if label and not interactive else contextlib.nullcontext()):
+            with (self.ui.busy(label) if label and not interactive else contextlib.nullcontext()), (self.ui.suspend() if interactive else contextlib.nullcontext()):
                 try:
                     result = subprocess.run(
                         args, stdin=input_file, stdout=None if interactive else (output or captured),
@@ -303,6 +303,8 @@ class Installer:
         return state
 
     def panel_state(self):
+        if not self.p.state.is_file():
+            raise InstallerError("Install the Panel first. Start with Install Panel or Install Panel and Wings.")
         state = self.load(self.p.state)
         self.run.secrets.update([state["db_password"], state.get("mail_password", "")])
         self.run.secrets.add(state.get("redis_password", ""))
@@ -439,7 +441,8 @@ class Installer:
     def release(self, component, version):
         base = f"https://api.github.com/repos/pterodactyl/{component}/releases"
         if version == "auto":
-            releases = json.loads(self.fetch(base + "?per_page=100"))
+            with self.ui.busy("Checking official releases"):
+                releases = json.loads(self.fetch(base + "?per_page=100"))
             candidates = [item for item in releases if not item["draft"]
                           and valid_version(item["tag_name"], component)
                           and (component != "wings" or not item["prerelease"])]
@@ -449,7 +452,8 @@ class Installer:
         else:
             if not valid_version(version, component):
                 raise InstallerError("Versión no válida o de otra rama principal.")
-            release = json.loads(self.fetch(base + "/tags/" + version))
+            with self.ui.busy("Checking official releases"):
+                release = json.loads(self.fetch(base + "/tags/" + version))
         if release.get("draft") or not valid_version(release.get("tag_name", ""), component):
             raise InstallerError("GitHub no devolvió una release compatible.")
         return release
@@ -1072,7 +1076,15 @@ class Installer:
                 self.run.run(["systemctl", "is-active", "--quiet", "wings"])
                 self.ui.say("Wings is active.", "ok")
         if not self.p.state.exists() and not self.p.wings_state.exists():
-            self.ui.say("No managed installation found.", "muted")
+            self.ui.card("Ready for your first installation", [
+                "No managed Panel or Wings is installed on this machine yet.",
+                "Next: choose Install Panel and Wings, or install the Panel first."])
+            self.ui.card("Machine overview", [
+                self.ui.tr("Architecture: {value}").format(value=platform.machine()),
+                self.ui.tr("Free disk space: {value} GiB").format(value=round(shutil.disk_usage(self.p.root).free / 1024 ** 3, 1)),
+                self.ui.tr("System manager: {value}").format(value="systemd" if (self.p.root / "run/systemd/system").is_dir() else self.ui.tr("Not detected")),
+                "Diagnostics do not install software or change firewall rules."])
+            return
         self.ui.say(f"Log privado: {self.p.log}")
 
     def logs(self):

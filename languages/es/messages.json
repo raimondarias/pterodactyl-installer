@@ -1288,5 +1288,302 @@
   },
   "Binding the new database service to localhost": {
     "es": "Limitando la nueva base de datos a localhost"
+  },
+  "Checking official releases": {
+    "es": "Consultando versiones oficiales"
+  },
+  "Install": {
+    "es": "Instalar"
+  },
+  "Maintenance": {
+    "es": "Mantenimiento"
+  },
+  "Game databases": {
+    "es": "Bases de juegos"
+  },
+  "Backups": {
+    "es": "Copias de seguridad"
+  },
+  "Remove": {
+    "es": "Desinstalar"
+  },
+  "Preferences": {
+    "es": "Preferencias"
+  },
+  "Set up the Panel and a Wings node with a guided review.": {
+    "es": "Configura el Panel y un nodo Wings con revisión guiada."
+  },
+  "Standalone is recommended. Choose your database, address and administrator.": {
+    "es": "Standalone es recomendado. Elige la base de datos, dirección y administrador."
+  },
+  "Install the game server daemon, then link it to your Panel.": {
+    "es": "Instala Wings y vincúlalo después con tu Panel."
+  },
+  "Check this machine and inspect managed services without changing them.": {
+    "es": "Comprueba esta máquina y los servicios gestionados sin modificarlos."
+  },
+  "Register a separate SQL host for game databases in the Panel.": {
+    "es": "Registra en el Panel un host SQL separado para las bases de juegos."
+  },
+  "View the saved private connection details for the provisioning account.": {
+    "es": "Consulta los datos privados guardados de la cuenta de gestión."
+  },
+  "Pause local game SQL briefly and create a consistent backup.": {
+    "es": "Pausa brevemente el SQL de juegos local y crea una copia consistente."
+  },
+  "Back up the Panel before updating its code and database schema.": {
+    "es": "Crea una copia antes de actualizar el código y el esquema de la base del Panel."
+  },
+  "Update Wings with recovery of its previous binary or image on failure.": {
+    "es": "Actualiza Wings con recuperación del binario o imagen anterior si falla."
+  },
+  "Restore a verified backup into an empty managed destination.": {
+    "es": "Restaura una copia verificada en un destino gestionado vacío."
+  },
+  "Remove managed components. Game files and game SQL remain.": {
+    "es": "Elimina los componentes gestionados. Conserva los archivos y SQL de juegos."
+  },
+  "Back up first, then choose whether to retain Panel data.": {
+    "es": "Crea una copia primero y elige si conservar los datos del Panel."
+  },
+  "Remove Wings while preserving game containers and files.": {
+    "es": "Desinstala Wings conservando contenedores y archivos de juegos."
+  },
+  "Use a node ID and Auto-Deploy token to link Wings.": {
+    "es": "Vincula Wings con el ID del nodo y un token Auto-Deploy."
+  },
+  "Issue or renew the HTTPS certificate for the node address.": {
+    "es": "Emite o renueva el certificado HTTPS de la dirección del nodo."
+  },
+  "Save Panel SQL, original application keys and persistent configuration.": {
+    "es": "Guarda SQL, claves originales y configuración persistente del Panel."
+  },
+  "Save the node configuration before changing or removing Wings.": {
+    "es": "Guarda la configuración del nodo antes de modificar o eliminar Wings."
+  },
+  "Restart the managed services after a confirmation.": {
+    "es": "Reinicia los servicios gestionados después de confirmar."
+  },
+  "Read recent service logs with secrets redacted.": {
+    "es": "Consulta registros recientes con los secretos ocultos."
+  },
+  "Configure the Panel's outgoing email delivery.": {
+    "es": "Configura el envío de correo del Panel."
+  },
+  "Create an additional administrator with a hidden password.": {
+    "es": "Crea otro administrador con contraseña oculta."
+  },
+  "Review required ports without changing firewall rules.": {
+    "es": "Consulta los puertos necesarios sin cambiar reglas del firewall."
+  },
+  "There are no managed components yet. Start from Install.": {
+    "es": "Aún no hay componentes gestionados. Comienza en Instalar."
+  },
+  "Configure a game database host first to save its connection details.": {
+    "es": "Configura primero un host de bases de juegos para guardar sus datos de conexión."
+  },
+  "No local game SQL host is configured. Remote SQL must be backed up on its own host.": {
+    "es": "No hay un host SQL de juegos local configurado. El SQL remoto se respalda en su propio servidor."
+  },
+  "Install the Panel first. Start with Install Panel or Install Panel and Wings.": {
+    "es": "Instala el Panel primero. Elige Instalar Panel o Instalar Panel y Wings."
+  },
+  "The Panel state needs attention. Use diagnostics before changing it.": {
+    "es": "El estado del Panel requiere atención. Usa Diagnóstico antes de modificarlo."
+  },
+  "Finish or resume the Panel installation before using this option.": {
+    "es": "Completa o reanuda la instalación del Panel antes de usar esta opción."
+  },
+  "Install Wings first, then create or link a node in your Panel.": {
+    "es": "Instala Wings primero y después crea o vincula un nodo en tu Panel."
+  },
+  "The Wings state needs attention. Use diagnostics before changing it.": {
+    "es": "El estado de Wings requiere atención. Usa Diagnóstico antes de modificarlo."
+  },
+  "Choose English, Spanish or Brazilian Portuguese.": {
+    "es": "Elige inglés, español o portugués brasileño."
+  },
+  "Return to your shell.": {
+    "es": "Volver a la terminal."
+  },
+  "Operation complete": {
+    "es": "Operación completada"
+  },
+  "Enlarge the terminal to at least 60 columns and 18 rows.": {
+    "es": "Amplía la terminal al menos a 60 columnas y 18 filas."
+  },
+  "Esc / Q: back or exit": {
+    "es": "Esc / Q: volver o salir"
+  },
+  "Needs attention": {
+    "es": "Requiere atención"
+  },
+  "Not configured": {
+    "es": "Sin configurar"
+  },
+  "No matching actions": {
+    "es": "No hay acciones coincidentes"
+  },
+  "Your configuration": {
+    "es": "Tu configuración"
+  },
+  "↑↓ Scroll · Enter / Esc Back": {
+    "es": "↑↓ Desplazar · Enter / Esc Volver"
+  },
+  "Working": {
+    "es": "Trabajando"
+  },
+  "Installer": {
+    "es": "Instalador"
+  },
+  "Panel": {
+    "es": "Panel"
+  },
+  "Wings": {
+    "es": "Wings"
+  },
+  "Game SQL": {
+    "es": "SQL de juegos"
+  },
+  "New machine? Start with Install Panel and Wings.": {
+    "es": "¿Máquina nueva? Comienza con Instalar Panel y Wings."
+  },
+  "A guided setup for your Panel and game nodes.": {
+    "es": "Configuración guiada para tu Panel y nodos de juegos."
+  },
+  "↑↓ Navigate · Tab/←→ Groups · Enter Choose · / Search · Esc Back": {
+    "es": "↑↓ Navegar · Tab/←→ Grupos · Enter Elegir · / Buscar · Esc Volver"
+  },
+  "↑↓ Navigate · Enter Choose · Esc Back": {
+    "es": "↑↓ Navegar · Enter Elegir · Esc Volver"
+  },
+  "Enter Continue · Esc Cancel · Ctrl+U Clear": {
+    "es": "Enter Continuar · Esc Cancelar · Ctrl+U Limpiar"
+  },
+  "Please wait. Ctrl+C interrupts the current operation.": {
+    "es": "Espera. Ctrl+C interrumpe la operación actual."
+  },
+  "Not installed": {
+    "es": "Sin instalar"
+  },
+  "Configured": {
+    "es": "Configurado"
+  },
+  "Stopped": {
+    "es": "Detenido"
+  },
+  "Not linked": {
+    "es": "Sin vincular"
+  },
+  "Why this action?": {
+    "es": "¿Qué falta para continuar?"
+  },
+  "Next step": {
+    "es": "Siguiente paso"
+  },
+  "Step {number} of {total}": {
+    "es": "Paso {number} de {total}"
+  },
+  "Unavailable": {
+    "es": "No disponible"
+  },
+  "Type here": {
+    "es": "Escribe aquí"
+  },
+  "Your input is hidden.": {
+    "es": "Tu entrada está oculta."
+  },
+  "Your choices are reviewed before installation.": {
+    "es": "Revisarás tus opciones antes de instalar."
+  },
+  "Elapsed: {seconds}s": {
+    "es": "Tiempo: {seconds}s"
+  },
+  "Search": {
+    "es": "Buscar"
+  },
+  "Option": {
+    "es": "Opción"
+  },
+  "Search actions": {
+    "es": "Buscar acciones"
+  },
+  "Default: {value}": {
+    "es": "Predeterminado: {value}"
+  },
+  "Choose one of the displayed options.": {
+    "es": "Elige una de las opciones mostradas."
+  },
+  "This action is unavailable.": {
+    "es": "Esta acción no está disponible."
+  },
+  "Yes": {
+    "es": "Sí"
+  },
+  "No": {
+    "es": "No"
+  },
+  "Full-screen mode is unavailable. Using the numbered interface.": {
+    "es": "La pantalla completa no está disponible. Se usará el menú numérico."
+  },
+  "Language": {
+    "es": "Idioma"
+  },
+  "Installation status": {
+    "es": "Estado de instalación"
+  },
+  "Operation needs attention": {
+    "es": "La operación requiere atención"
+  },
+  "Overview": {
+    "es": "Resumen"
+  },
+  "Before you continue": {
+    "es": "Antes de continuar"
+  },
+  "Language could not be changed": {
+    "es": "No se pudo cambiar el idioma"
+  },
+  "Panel: {value}": {
+    "es": "Panel: {value}"
+  },
+  "Wings: {value}": {
+    "es": "Wings: {value}"
+  },
+  "Preview password (not saved)": {
+    "es": "Contraseña de prueba (no se guarda)"
+  },
+  "Explore the setup wizard": {
+    "es": "Explorar el asistente de instalación"
+  },
+  "Exit preview": {
+    "es": "Salir de la vista previa"
+  },
+  "Ready for your first installation": {
+    "es": "Listo para tu primera instalación"
+  },
+  "Machine overview": {
+    "es": "Resumen de la máquina"
+  },
+  "No managed Panel or Wings is installed on this machine yet.": {
+    "es": "Aún no hay Panel ni Wings gestionados en esta máquina."
+  },
+  "Next: choose Install Panel and Wings, or install the Panel first.": {
+    "es": "Siguiente: elige Instalar Panel y Wings o instala primero el Panel."
+  },
+  "Diagnostics do not install software or change firewall rules.": {
+    "es": "El diagnóstico no instala programas ni cambia reglas del firewall."
+  },
+  "Architecture: {value}": {
+    "es": "Arquitectura: {value}"
+  },
+  "Free disk space: {value} GiB": {
+    "es": "Espacio libre: {value} GiB"
+  },
+  "System manager: {value}": {
+    "es": "Gestor del sistema: {value}"
+  },
+  "Not detected": {
+    "es": "No detectado"
   }
 }
