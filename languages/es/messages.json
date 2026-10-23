@@ -2206,5 +2206,14 @@
   },
   "Ubuntu 26.04 needs a configured PHP 8.3/8.4 package source for standalone. Use Docker or Ubuntu 24.04.": {
     "es": "Ubuntu 26.04 necesita un repositorio PHP 8.3/8.4 configurado para standalone. Usa Docker o Ubuntu 24.04."
+  },
+  "The reserved game SQL service account cannot be root.": {
+    "es": "La cuenta de servicio reservada para SQL de juegos no puede ser root."
+  },
+  "Loading the isolated SQL access rules": {
+    "es": "Cargando las reglas de acceso del SQL aislado"
+  },
+  "No free private Wings subnet was found. Configure the node network manually.": {
+    "es": "No se encontró una subred privada libre para Wings. Configura manualmente la red del nodo."
   }
 }

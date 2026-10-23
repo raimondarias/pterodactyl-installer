@@ -4,6 +4,7 @@ import hashlib
 import ipaddress
 import json
 import secrets
+import re
 import shlex
 import shutil
 import tempfile
@@ -14,6 +15,7 @@ from .core import InstallerError, atomic_write, write_json
 
 class NativeGameDatabase:
     unit = 'ptero-game-sql-native.service'
+    user = 'ptero-game-sql'
 
     def __init__(self, manager):
         self.manager, self.i, self.p = manager, manager.i, manager.p
@@ -75,24 +77,32 @@ class NativeGameDatabase:
         return path
 
     def runtime(self, state):
+        if state.get('os_user', 'mysql') != self.user:
+            self.run.run(['systemctl', 'stop', self.unit], check=False)
+        _, account = self.run.run(['getent', 'passwd', self.user], check=False)
+        if not account.strip():
+            self.run.run(['useradd', '--system', '--user-group', '--home-dir', str(self.data), '--shell', '/usr/sbin/nologin', self.user])
+        elif account.split(':')[2] == '0':
+            raise InstallerError('The reserved game SQL service account cannot be root.')
         self.data.parent.mkdir(parents=True, exist_ok=True, mode=0o755)
         self.data.parent.chmod(0o755)
         self.data.mkdir(exist_ok=True, mode=0o750)
-        self.run.run(['chown', '-R', 'mysql:mysql', self.data])
+        self.run.run(['chown', '-R', self.user + ':' + self.user, self.data])
         binary = '/usr/sbin/mysqld' if state['engine'] == 'mysql' else '/usr/sbin/mariadbd'
         atomic_write(self.config, '[mysqld]\n' + f"datadir={self.data}\nsocket={self.socket}\npid-file={self.socket.parent}/mysql.pid\nbind-address={state['host']}\nport={int(state['port'])}\n" + 'skip-name-resolve\n' + ('mysqlx=OFF\n' if state['engine'] == 'mysql' else ''), 0o640)
-        self.run.run(['chown', 'root:mysql', self.config])
+        self.run.run(['chown', 'root:' + self.user, self.config])
+        self.apparmor()
         if not (self.data / 'mysql').exists():
             if any(self.data.iterdir()):
                 raise InstallerError('Native game SQL data is incomplete; restore a backup into an empty destination.')
-            args = [binary, '--no-defaults', '--initialize-insecure', '--user=mysql', '--datadir=' + str(self.data)] if state['engine'] == 'mysql' else [
-                'mariadb-install-db', '--no-defaults', '--user=mysql', '--datadir=' + str(self.data), '--auth-root-authentication-method=socket', '--skip-test-db']
+            args = [binary, '--no-defaults', '--initialize-insecure', '--user=' + self.user, '--datadir=' + str(self.data)] if state['engine'] == 'mysql' else [
+                'mariadb-install-db', '--no-defaults', '--user=' + self.user, '--datadir=' + str(self.data), '--auth-root-authentication-method=socket', '--skip-test-db']
             self.run.run(args, label='Initializing isolated native game SQL')
         firewall = self.firewall(state)
         atomic_write(self.p.root / ('etc/systemd/system/' + self.unit),
             '[Unit]\nDescription=Ptero isolated native game SQL\nAfter=network-online.target\nWants=network-online.target\n'
             + ('Requires=docker.service\nAfter=docker.service\n' if not state.get('allowed_sources') else '') +
-            '[Service]\nUser=mysql\nGroup=mysql\nRuntimeDirectory=ptero-game-sql\nRuntimeDirectoryMode=0750\n'
+            f'[Service]\nUser={self.user}\nGroup={self.user}\nRuntimeDirectory=ptero-game-sql\nRuntimeDirectoryMode=0750\n'
             f'ExecStartPre=+/bin/sh {shlex.quote(str(firewall))}\nExecStart={binary} --defaults-file={self.config}\n'
             'Restart=on-failure\nTimeoutStartSec=180\nTimeoutStopSec=180\nLimitNOFILE=65536\n[Install]\nWantedBy=multi-user.target\n', 0o644)
         self.run.run(['systemctl', 'daemon-reload'])
@@ -106,6 +116,23 @@ class NativeGameDatabase:
                     if attempt == 59:
                         raise
                     time.sleep(1)
+        state['os_user'] = self.user
+
+    def apparmor(self):
+        directory = self.p.root / 'etc/apparmor.d'
+        for name in ('usr.sbin.mysqld', 'usr.sbin.mariadbd'):
+            profile = directory / name
+            if not profile.is_file() or ('local/' + name) not in profile.read_text():
+                continue
+            local = directory / 'local' / name
+            previous = local.read_text() if local.exists() else ''
+            rules = ('# BEGIN PTERO GAME SQL\n'
+                     f'{self.data.parent}/ r,\n{self.data}/ r,\n{self.data}/** rwk,\n'
+                     f'{self.config} r,\n{self.socket.parent}/ r,\n{self.socket.parent}/** rwk,\n'
+                     '# END PTERO GAME SQL\n')
+            previous = re.sub(r'# BEGIN PTERO GAME SQL\n.*?# END PTERO GAME SQL\n?', '', previous, flags=re.S)
+            atomic_write(local, previous.rstrip() + '\n' + rules, 0o644)
+            self.run.run(['apparmor_parser', '-r', profile], label='Loading the isolated SQL access rules')
 
     def install(self, settings):
         if self.manager.state_file.exists():

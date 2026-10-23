@@ -77,6 +77,8 @@ def create(installer, data, link=False):
             raise InstallerError('Install Wings before applying the node configuration.')
         if installer.p.config.exists():
             installer.backup_wings()
+        from .networking import wings_network
+        wings_network(installer, config)
         write_json(installer.p.config, config)
         state = installer.load(installer.p.wings_state)
         state.update(status='configured', panel_url=installer.panel_state()['url'], node=str(result['node_id']))

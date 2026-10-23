@@ -556,3 +556,6 @@ The Panel HTTP endpoint did not become ready.|||El acceso HTTP al Panel no lleg�
 Preparing the MySQL authentication client|||Preparando el cliente de autenticación MySQL|||Preparando o cliente de autenticação MySQL
 The MySQL authentication client was not prepared.|||No se pudo preparar el cliente de autenticación MySQL.|||Não foi possível preparar o cliente de autenticação MySQL.
 Ubuntu 26.04 needs a configured PHP 8.3/8.4 package source for standalone. Use Docker or Ubuntu 24.04.|||Ubuntu 26.04 necesita un repositorio PHP 8.3/8.4 configurado para standalone. Usa Docker o Ubuntu 24.04.|||O Ubuntu 26.04 precisa de um repositório PHP 8.3/8.4 configurado para standalone. Use Docker ou Ubuntu 24.04.
+The reserved game SQL service account cannot be root.|||La cuenta de servicio reservada para SQL de juegos no puede ser root.|||A conta de serviço reservada para SQL de jogos não pode ser root.
+Loading the isolated SQL access rules|||Cargando las reglas de acceso del SQL aislado|||Carregando as regras de acesso do SQL isolado
+No free private Wings subnet was found. Configure the node network manually.|||No se encontró una subred privada libre para Wings. Configura manualmente la red del nodo.|||Nenhuma sub-rede privada livre foi encontrada para o Wings. Configure a rede do nó manualmente.

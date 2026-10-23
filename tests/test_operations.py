@@ -20,6 +20,38 @@ from ptero.backups import ScheduledBackups, checksum, verified, restore_sql, bac
 
 
 class OperationsTests(BaseTest):
+    def test_wings_subnet_avoids_panel_compose_and_host_routes(self):
+        from ptero.networking import wings_network
+        replies = ['panel\n', json.dumps([{'Name':'panel_default','IPAM':{'Config':[{'Subnet':'172.18.0.0/16'}]}}]),
+                   json.dumps([{'dst':'default'},{'dst':'172.30.0.0/24'}])]
+        with patch.object(self.runner, 'run', side_effect=[(0, value) for value in replies]):
+            result = wings_network(self.installer, {})
+        self.assertEqual(result['docker']['network']['interfaces']['v4']['subnet'], '172.30.1.0/24')
+
+    def test_wings_reuses_existing_bridge_and_preserves_explicit_configuration(self):
+        from ptero.networking import wings_network
+        replies = ['wings', json.dumps([{'Name':'pterodactyl_nw','IPAM':{'Config':[{'Subnet':'10.20.0.0/24','Gateway':'10.20.0.1'}]}}]), '[]']
+        with patch.object(self.runner, 'run', side_effect=[(0, value) for value in replies]):
+            config = wings_network(self.installer, {})
+        self.assertEqual(config['docker']['network']['interface'], '10.20.0.1')
+        with patch.object(self.runner, 'run') as run:
+            self.assertIs(wings_network(self.installer, config), config)
+        run.assert_not_called()
+
+    def test_apparmor_game_sql_rules_preserve_existing_local_rules(self):
+        backend = NativeGameDatabase(GameDatabase(self.installer))
+        directory = self.paths.root/'etc/apparmor.d'
+        (directory/'local').mkdir(parents=True)
+        (directory/'usr.sbin.mysqld').write_text('#include <local/usr.sbin.mysqld>\n')
+        local = directory/'local/usr.sbin.mysqld'
+        local.write_text('/custom/site/** r,\n')
+        backend.apparmor(); backend.apparmor()
+        text = local.read_text()
+        self.assertIn('/custom/site/** r,', text)
+        self.assertEqual(text.count('# BEGIN PTERO GAME SQL'), 1)
+        self.assertIn(str(backend.data)+'/** rwk,', text)
+        self.assertNotIn('/var/lib/mysql/**', text)
+
     def test_failed_phase_persists_failure_without_exception_secrets_and_can_resume(self):
         state = {'version': 'v2'}
         saves = []

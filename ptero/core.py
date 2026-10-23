@@ -780,6 +780,8 @@ class Installer:
             raise InstallerError("No se pudo obtener la configuración. Comprueba URL, ID y token Auto-Deploy.") from exc
         self.run.secrets.update((config["token"], config["token_id"]))
         # JSON es un subconjunto de YAML y Wings completa los valores predeterminados.
+        from .networking import wings_network
+        wings_network(self, config)
         write_json(self.p.config, config)
         if state.get("method", "standalone") == "standalone":
             atomic_write(self.p.service, self.service_text(), 0o644)

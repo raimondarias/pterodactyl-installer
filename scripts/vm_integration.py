@@ -69,6 +69,7 @@ def main():
    subprocess.run([*ssh,'cat /root/ptero-ci/test-results/integration-result.json'],stdout=(root/'test-results'/('integration-'+a.os+'-'+a.method+'-'+a.engine+'.json')).open('wb'),check=False)
    if result.returncode:
     subprocess.run([*ssh,'tail -160 /var/log/pterodactyl-installer/installer.log'],check=False)
+    subprocess.run([*ssh,'journalctl -u wings -u ptero-game-sql-native --no-pager -n 60'],check=False)
     raise RuntimeError('Real VM deployment failed')
   finally:
    machine.terminate()

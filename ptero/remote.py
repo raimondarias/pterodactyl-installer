@@ -76,7 +76,8 @@ installer.check_host(wings=request['action']=='node')
 if request['action']=='node':
  installer.install_wings()
  if installer.p.config.exists():installer.backup_wings()
- write_json(installer.p.config,request['configuration'])
+ from .networking import wings_network
+ write_json(installer.p.config,wings_network(installer,request['configuration']))
  state=installer.load(installer.p.wings_state);state.update(status='configured',node=str(request['node_id']),panel_url=request['panel_url']);write_json(installer.p.wings_state,state)
  if request['configuration']['api']['ssl']['enabled']:installer.wings_tls()
  installer.start_wings()
