@@ -42,23 +42,29 @@ def tui_preview(launcher, number, language, environment):
                                stdin=slave, stdout=slave, stderr=slave, start_new_session=True,
                                env={**environment, "TERM": "xterm-256color", "LANG": "C.UTF-8"})
     output = bytearray()
-    def until(marker):
+    def until(marker, start=0):
         deadline = time.monotonic() + 120
         while time.monotonic() < deadline:
             ready, _, _ = select.select([master], [], [], 0.1)
             if ready:
                 output.extend(os.read(master, 65536))
-                if marker.encode() in output:
+                if marker.encode() in output[start:]:
                     return
             elif process.poll() is not None:
                 break
         raise app.InstallerError(f"Published {language} TUI failed: " + output.decode("utf-8", "replace")[-1500:])
     try:
         until("Which language would you like to use?")
-        os.write(master, f"{number}\r".encode())
+        row = 7 + number * 2
+        os.write(master, f"\x1b[<0;30;{row}M\x1b[<0;30;{row}m".encode())
         until(app.UI(False, language).tr("Interface preview"))
         if output.count(b"\x1b[?1049h") < 2:
             raise app.InstallerError("The published runtime did not open the full-screen TUI.")
+        os.write(master, b"\x1b[<0;35;10M\x1b[<0;35;10m")
+        until(app.UI(False, language).tr("Setup experience"))
+        checkpoint = len(output)
+        os.write(master, b"\x1b")
+        until(app.UI(False, language).tr("Interface preview"), checkpoint)
         os.write(master, b"q")
         if process.wait(timeout=10):
             raise app.InstallerError("The published TUI did not exit cleanly.")
@@ -103,7 +109,7 @@ def main():
                 raise app.InstallerError(f"Published {language} preview failed: " + result.stderr[-2000:])
             print(f"OK real GitHub download and preview: {language}; one English language question", flush=True)
             tui_preview(launcher, number, language, environment)
-            print(f"OK published full-screen TUI: {language}; online picker, ncurses preview and terminal restoration", flush=True)
+            print(f"OK published full-screen TUI: {language}; mouse language/action selection, wizard cancellation and terminal restoration", flush=True)
         payload = fetch(base + "/languages/en/installer.tar.gz")
         checksum = fetch(base + "/languages/en/installer.tar.gz.sha256").decode().split()[0]
         if hashlib.sha256(payload).hexdigest() != checksum:

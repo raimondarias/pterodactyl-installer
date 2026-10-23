@@ -1,10 +1,10 @@
-OK published main commit: d5970033f396db620926245f89b8c288b13321fb
+OK published main commit: 389ae0434bd07520b37b3f3b8a229509a4862e13
 OK published installer version: 1.1.0
 OK real GitHub download and preview: en; one English language question
-OK published full-screen TUI: en; online picker, ncurses preview and terminal restoration
+OK published full-screen TUI: en; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub download and preview: es; one English language question
-OK published full-screen TUI: es; online picker, ncurses preview and terminal restoration
+OK published full-screen TUI: es; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub download and preview: pt-BR; one English language question
-OK published full-screen TUI: pt-BR; online picker, ncurses preview and terminal restoration
+OK published full-screen TUI: pt-BR; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub language changes: en -> es -> pt-BR; snapshot and hashes verified
 No Panel/Wings/system services were installed. Complete clean-VPS deployment remains untested.
