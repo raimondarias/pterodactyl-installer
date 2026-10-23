@@ -213,6 +213,18 @@ class OperationsTests(BaseTest):
         self.assertTrue(any('Panel containers' in row for row in rows))
         self.assertTrue(any('Panel HTTP endpoint' in row for row in rows))
 
+    def test_health_reports_pending_migrations_and_queue_failures_in_docker(self):
+        self.panel()
+        from ptero.health import inspect
+        def command(*args, **kwargs):
+            if 'migrate:status' in args:return 0, '2026_10_23_create_games ........ Pending\n'
+            if 'queue:failed' in args:return 0, '17 failed jobs\n'
+            return 0, '[]'
+        with patch.object(self.installer, 'dc', side_effect=command), patch('ptero.health.urllib.request.urlopen', side_effect=OSError('offline')):
+            rows=inspect(self.installer)
+        self.assertTrue(any('Needs attention: Panel SQL and migrations' in row for row in rows))
+        self.assertTrue(any('Needs attention: Queue failures' in row for row in rows))
+
     def test_menu_shortcuts_remain_unique_with_language_23_reserved(self):
         from ptero.cli import ENTRIES
         from ptero.navigation import inventory, menu_items

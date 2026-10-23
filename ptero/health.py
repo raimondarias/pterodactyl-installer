@@ -1,5 +1,6 @@
 """Read-only checks with per-component findings; one failure never hides the rest."""
 import json
+import re
 import shutil
 import socket
 import ssl
@@ -30,14 +31,16 @@ def inspect(i):
             backend = i.native(state)
             for unit in (backend.db_unit, backend.redis_unit, backend.queue, backend.scheduler, 'php' + state.get('php', '8.3') + '-fpm', 'nginx'):
                 check(unit, lambda unit=unit: i.run.run(['systemctl', 'is-active', '--quiet', unit])[0] == 0, 'Inspect this service with systemctl status and journalctl.')
-            check('Panel SQL and migrations', lambda: backend.artisan('migrate:status', '--no-interaction'), 'Check SQL credentials and finish pending migrations.')
-            check('Queue failures', lambda: 'No failed jobs' in backend.artisan('queue:failed', '--no-interaction')[1], 'Inspect failed queue jobs before retrying them.')
+            artisan = backend.artisan
         else:
             def containers():
                 _, text = i.dc('ps', '--format', 'json')
                 values = json.loads(text) if text.strip().startswith('[') else [json.loads(line) for line in text.splitlines() if line.strip()]
                 return {'panel', 'database', 'cache'}.issubset({v.get('Service') for v in values}) and all(v.get('State') == 'running' and v.get('Health') == 'healthy' for v in values)
             check('Panel containers', containers, 'Inspect Docker Compose logs and container healthchecks.')
+            artisan = lambda *args: i.dc('exec', '-T', 'panel', 'php', 'artisan', *args)
+        check('Panel SQL and migrations', lambda: not re.search(r'\bPending\b', artisan('migrate:status', '--no-ansi', '--no-interaction')[1]), 'Check SQL credentials and finish pending migrations.')
+        check('Queue failures', lambda: 'No failed jobs' in artisan('queue:failed', '--no-ansi', '--no-interaction')[1], 'Inspect failed queue jobs before retrying them.')
         def http():
             request = urllib.request.Request(state['url'], headers={'User-Agent': 'ptero-health'})
             with urllib.request.urlopen(request, timeout=10) as response:

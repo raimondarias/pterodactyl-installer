@@ -45,11 +45,11 @@ Optional checks are explicitly skipped if the corresponding client binary is abs
 
 The simulator reuses the real Panel and Wings connection forms, but has no service runner or deployment paths. Tests deny subprocess execution, network sockets, HTTP requests and filesystem writes while completing the tour in every language. A 96-combination form matrix exercises simple/advanced, standalone/Docker, MariaDB/MySQL, IP/domain and local/existing/deferred game SQL. Both Bash launchers are tested with Python absent and a tripwire APT executable, including root execution.
 
-An additional real PTY walkthrough enters an invalid domain, corrects it, completes the administrator form, types the install confirmation, observes multiple animated frames, returns to the preview overview and checks terminal restoration. The full simulated lifecycle covers all 22 menu actions, separate SQL retention and restore prerequisites.
+An additional real PTY walkthrough enters an invalid domain, corrects it, completes the administrator form, types the install confirmation, observes multiple animated frames, returns to the preview overview and checks terminal restoration. The full simulated lifecycle covers all 33 menu actions, separate SQL retention and restore prerequisites.
 
-## Full deployment: still required
+## Additional deployment validation
 
-Use disposable VPSes with systemd and working Docker, plus real DNS names and an SMTP test account. Automated command simulations and upstream artifact validation do not establish that every package/service/network combination works end to end.
+The checklist below defines broader certification. Consult the [verification report](../test-results/REPORT.md) for checks already executed in the real domain lab and fresh-system CI. Use disposable VPSes with systemd and working Docker for additional environments.
 
 1. Test each supported Ubuntu/Debian version, first with the recommended standalone + MariaDB path, then Docker MariaDB, native MySQL on supported architecture and Docker MySQL.
 2. Test both public IPv4/HTTP and domain/HTTPS paths in English, Spanish and Brazilian Portuguese. Verify the correct URL, administrator login and hidden input.
@@ -65,7 +65,7 @@ Use disposable VPSes with systemd and working Docker, plus real DNS names and an
 12. Back up game SQL independently, verify checksum and restore manually on an isolated second host with the original image/network and Panel backup. Confirm existing game credentials still work. Exercise read-only/full disk, backup restart failure and an interrupted initialization.
 13. Repeat on ARM64 with supported database packages and game images.
 
-The creation environment has a Docker CLI but no available Docker daemon. Only the temporary MariaDB socket instance is executed locally. No full native package deployment, public DNS/TLS issuance, SMTP delivery or game-server run has been performed there. The verification report identifies those limits explicitly.
+The host regression suite uses temporary processes and command simulations. Separate isolated KVM guests execute actual package installations, Panel/Wings, public HTTPS, game SQL, a game and backup/restore operations. External SMTP delivery and independent provider routing remain separate validation.
 
 ## Disposable cloud-image matrix
 

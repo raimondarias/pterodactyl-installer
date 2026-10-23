@@ -4,7 +4,7 @@
 
 | Coverage | Result |
 | --- | --- |
-| Regression suite | **198 passing tests**, including real PTYs, MariaDB socket lifecycle, PHP/NGINX parsers and encrypted Restic roundtrip |
+| Regression suite | **199 passing tests**, including real PTYs, MariaDB socket lifecycle, PHP/NGINX parsers and encrypted Restic roundtrip |
 | Static checks | Bash syntax, Python compilation and ShellCheck 0.11.0 passed |
 | Languages | **739 messages** in English, Spanish and Brazilian Portuguese; placeholders and reproducible language packages verified |
 | Download bootstrap | English first question; only selected language fetched from an immutable commit; checksum and safe extraction enforced |

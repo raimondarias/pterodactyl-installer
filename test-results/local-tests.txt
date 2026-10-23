@@ -103,6 +103,7 @@ test_completed_phase_requires_live_validation_and_matching_version (test_operati
 test_failed_phase_persists_failure_without_exception_secrets_and_can_resume (test_operations.OperationsTests) ... ok
 test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination (test_operations.OperationsTests) ... ok
 test_health_report_collects_multiple_failures_instead_of_hiding_them (test_operations.OperationsTests) ... ok
+test_health_reports_pending_migrations_and_queue_failures_in_docker (test_operations.OperationsTests) ... ok
 test_menu_shortcuts_remain_unique_with_language_23_reserved (test_operations.OperationsTests) ... ok
 test_mysql_authentication_plugin_is_saved_verified_and_repaired (test_operations.OperationsTests) ... ok
 test_native_firewall_remote_allowlist_has_no_public_wildcard_rule (test_operations.OperationsTests) ... ok
@@ -198,6 +199,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 198 tests in 27.135s
+Ran 199 tests in 27.138s
 
 OK
