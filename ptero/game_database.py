@@ -41,17 +41,24 @@ def plan(installer, panel, advanced=False):
     ui.card("Game database host", ["One engine selection for Panel and games.",
             "Game databases use separate credentials. Each game gets its own database from the Panel."])
     mode = ui.choice("Where are the game databases?", [
-        ("local", "Local node (isolated Docker database)", "Same machine only; private bridge, no public SQL port"),
+        ("local", "Local node (isolated game SQL)", "Same machine only; private bridge, no public SQL port"),
         ("existing", "Existing database host", "Register a database server already prepared on another machine"),
         ("later", "Configure later", "Skip game databases; configure them later from the menu")], default=2)
     if mode == "later":
         return {"mode": mode}
+    method = "docker"
+    if mode == "local":
+        method = ui.choice("Game SQL deployment", [
+            ("standalone", "Isolated native instance (Recommended)", "Separate SQL data, socket and system service"),
+            ("docker", "Docker", "Isolated SQL container on a private bridge")])
     settings = {"mode": mode, "engine": panel.get("database_engine", "mariadb"), "name": "Game databases",
                 "port": 3307 if mode == "local" else 3306, "username": "ptero_games",
                 "password": secrets.token_hex(32), "node_id": None, "registered": False}
+    settings["method"] = method
     saved = installer.existing_game_database() if mode == "local" else None
     reuse_local = saved is not None
     if reuse_local:
+        settings["method"] = saved.get("method", "docker")
         if saved["engine"] != settings["engine"]:
             raise InstallerError("A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.")
         for key in ("port", "username", "password"):
@@ -102,12 +109,19 @@ class GameDatabase:
         return self.run.run(["docker", "compose", "--project-name", COMPOSE_PROJECT,
                              "--file", self.compose, *args], **kwargs)
 
-    def network(self, create=False):
+    def network(self, create=False, config=None):
         code, output = self.run.run(["docker", "network", "inspect", NETWORK], check=False)
         if code:
             if not create:
                 raise InstallerError("The managed game database network is missing.")
-            self.run.run(["docker", "network", "create", "--driver", "bridge", "--label",
+            addressing = []
+            if config:
+                subnet = ipaddress.IPv4Network(config["Subnet"])
+                gateway = ipaddress.IPv4Address(config["Gateway"])
+                if not subnet.is_private or not gateway.is_private or gateway not in subnet or gateway.is_loopback:
+                    raise InstallerError("The SQL backup contains an invalid private network.")
+                addressing = ["--subnet", str(subnet), "--gateway", str(gateway)]
+            self.run.run(["docker", "network", "create", *addressing, "--driver", "bridge", "--label",
                           OWNER_LABEL + "=" + PROJECT, "--opt", "com.docker.network.bridge.name=ptero-db0",
                           "--opt", "com.docker.network.bridge.gateway_mode_ipv4=nat", NETWORK], label="Creating the private game database network")
             _, output = self.run.run(["docker", "network", "inspect", NETWORK])
@@ -127,6 +141,13 @@ class GameDatabase:
         except (ValueError, KeyError, IndexError, TypeError):
             pass
         raise InstallerError("The game database network is not an owned private IPv4 bridge.")
+
+    def network_config(self):
+        _, output = self.run.run(["docker", "network", "inspect", NETWORK])
+        for config in json.loads(output)[0]["IPAM"]["Config"]:
+            if ipaddress.ip_address(config["Gateway"]).version == 4:
+                return {"Subnet": config["Subnet"], "Gateway": config["Gateway"]}
+        raise InstallerError("No IPv4 game database network was found.")
 
     def firewall(self, state):
         # Publishing on a private IP alone does not block a remote host that has
@@ -195,6 +216,9 @@ class GameDatabase:
                 f"GRANT ALL PRIVILEGES ON *.* TO {account} WITH GRANT OPTION;\n")
 
     def local(self, settings):
+        if settings.get("method") == "standalone":
+            from .native_game_database import NativeGameDatabase
+            return NativeGameDatabase(self).install(settings)
         self.i.docker()
         if self.state_file.exists():
             state = self.load()
@@ -209,6 +233,7 @@ class GameDatabase:
                 raise InstallerError("Unmanaged game database files exist; nothing was overwritten.")
             state = {**settings, "schema": SCHEMA, "owner": PROJECT, "status": "installing",
                      "host": self.network(create=True), "root_password": secrets.token_hex(32)}
+            state["network_config"] = self.network_config()
             self.run.secrets.add(state["root_password"])
             self.i.port_free(state["host"], state["port"])
             state["image"] = self.i.pin_image("mysql:8.4" if state["engine"] == "mysql" else "mariadb:11.4")
@@ -263,7 +288,8 @@ class GameDatabase:
         with tempfile.TemporaryFile() as stream:
             stream.write(json.dumps(data).encode())
             stream.seek(0)
-            _, output = self.run.run([*prefix, "-r", code], input_file=stream, label="Registering the game database host in the Panel")
+            _, output = self.run.run([*prefix, "-r", code], input_file=stream, label="Registering the game database host in the Panel",
+                                    cwd=app_path if panel.get("method") == "standalone" else None)
         try:
             host_id = json.loads(output)["id"]
             if not isinstance(host_id, int) or host_id < 1:
@@ -315,7 +341,10 @@ class GameDatabase:
     def backup(self):
         if not self.state_file.exists():
             raise InstallerError("No managed local game database exists. Back up remote SQL on its own host.")
-        self.load()
+        state = self.load()
+        if state.get("method") == "standalone":
+            from .native_game_database import NativeGameDatabase
+            return NativeGameDatabase(self).backup()
         if not self.data.is_dir() or not any(self.data.iterdir()):
             raise InstallerError("The local game database data directory is empty; no backup was created.")
         self.p.backups.mkdir(parents=True, exist_ok=True, mode=0o700)

@@ -1,0 +1,66 @@
+"""Real node, game SQL, game process and verified backup smoke in disposable VMs."""
+import json
+from pathlib import Path
+import secrets
+import shutil
+import socket
+import time
+from ptero.core import InstallerError
+from ptero.nodes import create
+from ptero.panel_bridge import execute
+from ptero.game_database import GameDatabase
+from ptero.native_game_database import NativeGameDatabase
+from ptero.backups import restore_sql, backup_games, verified
+
+
+def run(i):
+    address = socket.gethostbyname(socket.gethostname())
+    if address.startswith('127.'):
+        _, routes = i.run.run(['hostname', '-I'])
+        address = routes.split()[0]
+    # Full-smoke CI uses guest HTTP. Public TLS is exercised by the domain lab.
+    i.install_wings()
+    data = {'location':'integration','name':'Integration node','fqdn':address,'scheme':'http','behind_proxy':False,
+        'memory':256,'disk':2048,'memory_overallocate':0,'disk_overallocate':0,'public':True,'upload_size':100,
+        'daemon_base':'/var/lib/pterodactyl/volumes','daemon_listen':8080,'daemon_sftp':2022,
+        'allocation_ip':address,'allocation_ports':['25565-25575']}
+    result = create(i,data,link=True)
+    panel=i.panel_state()
+    settings={'mode':'local','method':'standalone','engine':panel['database_engine'],'name':'Integration SQL','port':3307,
+        'username':'ptero_games','password':secrets.token_hex(32),'node_id':result['node_id'],'registered':False}
+    panel['game_database']=settings;i.save_panel(panel)
+    sql=GameDatabase(i);sql.setup(panel)
+    backend=NativeGameDatabase(sql);state=sql.load()
+    backend.client(state,"CREATE DATABASE installer_smoke; CREATE TABLE installer_smoke.world(id INT PRIMARY KEY); INSERT INTO installer_smoke.world VALUES(42);")
+    archive=sql.backup()
+    i.run.run(['systemctl','stop',backend.unit])
+    backend.data.rename(backend.data.with_name('game-sql-original'))
+    sql.state_file.rename(sql.state_file.with_name('state-original.json'))
+    restore_sql(i,archive)
+    _,rows=backend.client(state,'SELECT id FROM installer_smoke.world;')
+    if rows.strip()!='42':raise InstallerError('SQL restore lost game data')
+    source=Path(__file__).resolve().parent
+    i.run.run(['docker','build','-t','ptero-integration-minetest:1','-f',source/'game.Dockerfile',source],timeout=900)
+    code=r'''
+$egg=$app->make(Pterodactyl\Contracts\Eggs\CreatesEggs::class)->create([
+'name'=>'Integration Minetest','docker_images'=>'ptero-integration-minetest:1',
+'startup'=>'/usr/lib/minetest/minetestserver --world /home/container/world --gameid minetest --port {{SERVER_PORT}}',
+'config_stop'=>'^C','config_startup'=>json_encode(['done'=>'Server for gameid=']),'config_logs'=>'{}','config_files'=>'{}']);
+$allocation=Pterodactyl\Models\Allocation::query()->where('node_id',$data['node'])->whereNull('server_id')->firstOrFail();
+$server=$app->make(Pterodactyl\Contracts\Servers\CreatesServers::class)->create([
+'name'=>'Integration game','owner_id'=>Pterodactyl\Models\User::query()->where('root_admin',true)->firstOrFail()->id,
+'egg_id'=>$egg->id,'image'=>'ptero-integration-minetest:1','startup'=>$egg->startup,'environment'=>[],
+'skip_scripts'=>true,'memory'=>128,'swap'=>128,'disk'=>1024,'io'=>500,'cpu'=>50,'oom_disabled'=>false,
+'database_limit'=>1,'allocation_limit'=>0,'backup_limit'=>1,'allocation_id'=>$allocation->id,'start_on_completion'=>true]);
+fwrite(STDOUT,json_encode(['uuid'=>$server->uuid]));
+'''
+    server=execute(i,code,{'node':result['node_id']})
+    for attempt in range(120):
+        status,logs=i.run.run(['docker','logs',server['uuid']],check=False)
+        if status==0 and 'listening on' in logs:break
+        time.sleep(1)
+    else:raise InstallerError('The integration game did not start')
+    verified(backup_games(i))
+    _,status=i.run.run(['docker','inspect','--format','{{.State.Running}}',server['uuid']])
+    if status.strip()!='true':raise InstallerError('Game was not resumed after backup')
+    i.ui.say('INTEGRATION_WINGS_SQL_GAME_BACKUP_PASSED','ok')

@@ -95,12 +95,16 @@ class SimulationTests(unittest.TestCase):
         visited = set()
         with contextlib.redirect_stdout(io.StringIO()):
             for action in ("install-panel", "install-wings", "install-all", "configure-database",
+                           "create-node", "remote-node", "remote-database", "health", "resume", "backup-schedule", "backup-run", "backup-download", "backup-games", "restore-games",
                            "database-credentials", "backup-game-database", "backup-panel", "backup-wings",
                            "configure-wings", "tls-wings", "update-panel", "update-wings", "smtp", "admin",
                            "diagnose", "restart", "logs", "firewall", "uninstall-all", "restore-panel",
                            "uninstall-panel", "install-wings", "uninstall-wings"):
                 simulation.dispatch(action)
                 visited.add(action)
+            simulation.database = None
+            simulation.dispatch("restore-game-database")
+            visited.add("restore-game-database")
         self.assertEqual(visited, {action for _, action in ENTRIES})
         self.assertIsNone(simulation.panel)
         self.assertIsNone(simulation.wings)

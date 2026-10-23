@@ -1,6 +1,6 @@
 # Ptero Installer
 
-**1.1.0** · Guided installation and maintenance of Pterodactyl Panel v2 and Wings on Ubuntu and Debian.
+**1.2.0** · Guided installation and maintenance of Pterodactyl Panel v2 and Wings on Ubuntu and Debian.
 
 An interactive terminal interface in **English, Español and Português (Brasil)**, with keyboard navigation, grouped actions, editable forms and animated task progress.
 
@@ -18,7 +18,9 @@ The first question is **“Which language would you like to use?”**. The boots
 - **MariaDB (Recommended)** or MySQL, selected once for Panel and games.
 - Public IPv4 with HTTP, or a domain/subdomain with optional Let's Encrypt HTTPS.
 - First administrator, optional SMTP and separate game database host registration.
-- Install, update, back up, restore, diagnose and remove managed components.
+- Automatic node creation, verified SSH provisioning and resumable installation phases.
+- Native or Docker game SQL; encrypted scheduled backups, game-file copies and guided restores.
+- Install, update, diagnose and remove managed components.
 
 Panel v2 is currently beta; the wizard requests explicit acceptance. This independent project is not affiliated with Pterodactyl.
 
@@ -45,11 +47,12 @@ Ubuntu **22.04 / 24.04 / 26.04** or Debian **12 / 13**, amd64 or arm64, with sys
 ## Documentation
 
 - [Installation and operations](docs/OPERATIONS.md) · [Español](docs/ES.md) · [Português](docs/PT-BR.md)
+- [Nodes, recovery and backups](docs/ADVANCED.md)
 - [Full preview](docs/PREVIEW.md) · [Terminal interface](docs/TUI.md)
 - [Testing](docs/TESTING.md) · [Verification report](test-results/REPORT.md)
 - [Changelog](CHANGELOG.md) · [Releases](https://github.com/raimondarias/pterodactyl-installer/releases)
 - [Publishing guide](docs/UPLOAD.md) · [Roadmap](docs/ROADMAP.md)
 
-Full deployment, public TLS and game workloads still require validation on disposable VPSes; see the verification report for tested scope.
+A real Ubuntu 24.04 standalone deployment is tested at `installer.xerosrv.com`. See the verification report for the exact integration coverage and remaining matrix checks.
 
 [MIT License](LICENSE)

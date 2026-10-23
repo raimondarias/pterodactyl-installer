@@ -241,7 +241,7 @@ class Runner:
             stream.write(self.redact(text) + "\n")
 
     def run(self, args, label=None, interactive=False, output=None, input_file=None,
-            check=True, timeout=1800, env=None, umask=0o077):
+            check=True, timeout=1800, env=None, umask=0o077, cwd=None):
         args = [str(arg) for arg in args]
         self.record("$ " + " ".join(args))
         # Archivos temporales evitan acumular dumps y salidas de apt en memoria.
@@ -252,7 +252,7 @@ class Runner:
                         args, stdin=input_file, stdout=None if interactive else (output or captured),
                         stderr=None if interactive else errors, check=False,
                         timeout=None if interactive else timeout,
-                        env={**os.environ, "DEBIAN_FRONTEND": "noninteractive", **(env or {})}, umask=umask)
+                        env={**os.environ, "DEBIAN_FRONTEND": "noninteractive", **(env or {})}, umask=umask, cwd=cwd)
                 except (OSError, subprocess.TimeoutExpired) as exc:
                     raise InstallerError(f"No se pudo ejecutar {args[0]}: {exc}") from exc
             captured.seek(0)
@@ -338,6 +338,7 @@ class Installer:
             "MAIL_HOST": state.get("mail_host", ""), "MAIL_PORT": state.get("mail_port", "587"),
             "MAIL_USERNAME": state.get("mail_user", ""), "MAIL_PASSWORD": state.get("mail_password", ""),
             "MAIL_ENCRYPTION": state.get("mail_encryption", "tls"),
+            "SESSION_SECURE_COOKIE": "true" if state["url"].startswith("https://") else "false",
             "LE_EMAIL": state["email"] if state.get("tls") else "",
         }
         # Compose interpola $ incluso en JSON; $$ transmite un dólar literal.
@@ -436,7 +437,13 @@ class Installer:
         self.run.run(["docker", "info"], label="Verificando Docker")
 
     def fetch(self, url, limit=8 * 1024 * 1024):
-        request = urllib.request.Request(url, headers={"User-Agent": "ptero-installer/" + __version__, "Accept": "application/json"})
+        headers = {"User-Agent": "ptero-installer/" + __version__, "Accept": "application/json"}
+        token = os.environ.get("PTERO_GITHUB_TOKEN")
+        parsed = urllib.parse.urlsplit(url)
+        if token and parsed.scheme == "https" and parsed.hostname == "api.github.com":
+            self.run.secrets.add(token)
+            headers["Authorization"] = "Bearer " + token
+        request = urllib.request.Request(url, headers=headers)
         try:
             with urllib.request.urlopen(request, timeout=45) as response:
                 result = response.read(limit + 1)
@@ -574,7 +581,9 @@ class Installer:
             self.save_panel(state)
         if state.get("method") == "standalone":
             return self.native(state).install()
-        self.docker()
+        from .phases import Phases
+        phases = Phases(self, state, lambda: self.save_panel(state))
+        phases.run("Docker runtime", self.docker)
         self.run.secrets.add(state["db_password"])
         for name in ("database", "redis", "var", "nginx", "certs", "logs", "extensions", "extension-assets"):
             (self.p.data / name).mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -589,16 +598,16 @@ class Installer:
                 state[key] = self.pin_image(ref)
                 self.save_panel(state)
         self.dc("config", "--quiet")
-        self.dc("up", "-d", "--wait", "--wait-timeout", "240", "database", "cache", label="Preparando base de datos y Redis")
+        phases.run("SQL and cache", lambda: self.dc("up", "-d", "--wait", "--wait-timeout", "240", "database", "cache", label="Preparando base de datos y Redis"))
         self.dc("stop", "panel", label="Manteniendo el Panel detenido durante las migraciones")
-        self.dc("run", "--rm", "-T", "panel", "php", "artisan", "migrate", "--seed", "--force", "--no-interaction",
-                label="Migraciones y eggs oficiales")
+        phases.run("Panel migrations", lambda: self.dc("run", "--rm", "-T", "panel", "php", "artisan", "migrate", "--seed", "--force", "--no-interaction",
+                label="Migraciones y eggs oficiales"))
         if not state.get("admin_created"):
             self.ui.say("Creating the first administrator")
             self.create_admin(state)
             state["admin_created"] = True
             self.save_panel(state)
-        self.dc("up", "-d", "--wait", "--wait-timeout", "360", "panel", label="Iniciando Panel, colas y scheduler")
+        phases.run("Service health", lambda: self.dc("up", "-d", "--wait", "--wait-timeout", "360", "panel", label="Iniciando Panel, colas y scheduler"))
         state["status"] = "ready"
         self.save_panel(state)
         self.ui.say(f"Panel disponible: {state['url']}", "ok")
@@ -712,6 +721,10 @@ class Installer:
 
     def configure_wings(self):
         state = self.load(self.p.wings_state)
+        if self.p.state.exists() and self.panel_state().get("status") == "ready":
+            method = self.ui.choice("Node connection method", [("automatic", "Create node automatically (Recommended)", "Create location, node and allocations, then configure Wings"), ("manual", "Use an existing node token", "Link a node already created in the Panel")])
+            if method == "automatic":
+                return self.create_node()
         self.ui.step(3, 3, "Node connection")
         from .node_plan import connection
         known = self.panel_state() if self.p.state.exists() else None
@@ -1053,6 +1066,62 @@ class Installer:
         if self.p.state.exists():
             self.uninstall_panel(confirmed=True)
 
+    def health_report(self):
+        from .health import inspect
+        return inspect(self)
+
+    def create_node(self):
+        from .nodes import setup
+        return setup(self)
+
+    def restore_game_database(self):
+        from .backups import restore_sql
+        return restore_sql(self)
+
+    def backup_games(self):
+        from .backups import backup_games
+        self.ui.confirm("BACK UP GAME FILES")
+        return backup_games(self)
+
+    def restore_games(self):
+        from .backups import restore_games
+        return restore_games(self)
+
+    def backup_schedule(self):
+        from .backups import ScheduledBackups
+        return ScheduledBackups(self).configure()
+
+    def backup_run(self):
+        from .backups import ScheduledBackups
+        return ScheduledBackups(self).run_now()
+
+    def backup_download(self):
+        from .backups import ScheduledBackups
+        return ScheduledBackups(self).download()
+
+    def remote_node(self):
+        from .remote import setup_node
+        return setup_node(self)
+
+    def remote_database(self):
+        from .remote import setup_database
+        return setup_database(self)
+
+    def resume(self):
+        if self.p.state.exists() and self.panel_state()["status"] != "ready":
+            return self.install_panel()
+        from .game_database import GameDatabase
+        database = GameDatabase(self)
+        if database.state_file.exists():
+            saved = database.load()
+            if saved.get("status") != "ready":
+                self.ui.confirm("REANUDAR PANEL")
+                database.local(saved)
+                return
+        if self.p.wings_state.exists() and self.load(self.p.wings_state)["status"] != "ready":
+            return self.configure_wings()
+        self.ui.say("No interrupted managed installation needs resuming.")
+
     def diagnostics(self):
         if self.p.state.exists() and self.panel_state().get("method") == "standalone":
             self.native().health()
@@ -1172,7 +1241,12 @@ class Installer:
                 "admin": self.admin, "firewall": self.firewall,
                 "configure-database": self.configure_game_database,
                 "database-credentials": self.game_database_credentials,
-                "backup-game-database": self.backup_game_database}
+                "backup-game-database": self.backup_game_database,
+                "create-node": self.create_node, "restore-game-database": self.restore_game_database,
+                "backup-games": self.backup_games, "restore-games": self.restore_games,
+                "backup-schedule": self.backup_schedule, "backup-run": self.backup_run,
+                "backup-download": self.backup_download, "health": self.health_report,
+                "resume": self.resume, "remote-node": self.remote_node, "remote-database": self.remote_database}
 
     def menu(self):
         from .cli import menu

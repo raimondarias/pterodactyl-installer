@@ -2,7 +2,7 @@
 # Online bootstrap: ask first, then fetch only the selected language package.
 set -Eeuo pipefail
 REPOSITORY="raimondarias/pterodactyl-installer"
-VERSION="1.1.0"
+VERSION="1.2.0"
 language=""
 plain_mode=0
 animations=1

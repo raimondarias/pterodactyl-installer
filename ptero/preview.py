@@ -25,6 +25,11 @@ class Simulation:
         self.panel = self.wings = self.database = None
         self.backups = {}
         self.generated_admin_password = False
+        self.backup_profile = None
+        self.created_node = None
+
+    def panel_state(self):
+        return self.panel
 
     def release(self, component, version):
         if version == "auto":
@@ -102,6 +107,17 @@ class Simulation:
     def link_wings(self):
         from .node_plan import connection
         self.ui.step(3, 3, "Node connection")
+        if self.panel:
+            method = self.ui.choice("Node connection method", [
+                ("automatic", "Create node automatically (Recommended)", "Create location, node and allocations, then configure Wings"),
+                ("manual", "Use an existing node token", "Link a node already created in the Panel")])
+            if method == "automatic":
+                from .nodes import plan
+                self.created_node = plan(self)
+                self.ui.confirm("CREATE NODE")
+                self.stages("Creating node and allocations", "Checking simulated services")
+                self.wings.update(status="ready", panel_url=self.panel["url"], node="1")
+                return
         url, node, _token = connection(self, self.panel["url"] if self.panel else None)
         self.stages("Fetching simulated node configuration")
         if self.ui.yes("¿Emitir certificado SSL para Wings ahora?"):
@@ -120,7 +136,48 @@ class Simulation:
         reason = prerequisite(action, self.inventory())
         if reason:
             raise InstallerError(reason)
-        if action == "install-all":
+        if action == "create-node":
+            from .nodes import plan
+            data = plan(self)
+            self.ui.confirm("CREATE NODE")
+            self.stages("Creating node and allocations")
+            self.created_node = data
+        elif action in ("remote-node", "remote-database"):
+            from .remote import target_plan, database_plan
+            target_plan(self, preview=True)
+            if action == "remote-node":
+                from .nodes import plan
+                self.created_node = plan(self)
+            else:
+                database_plan(self)
+            self.ui.confirm("INSTALL REMOTE NODE" if action == "remote-node" else "INSTALL REMOTE DATABASE")
+            self.stages("Checking simulated SSH connection", "Provisioning the simulated remote machine")
+        elif action == "health":
+            self.ui.card("Health report", [NOTICE, "All statuses and checks in this session are simulated."])
+        elif action == "resume":
+            self.stages("Checking completed installation phases")
+        elif action == "backup-schedule":
+            from .backups import backup_plan
+            profile, password = backup_plan(self.ui)
+            self.run.secrets.add(password)
+            self.ui.confirm("CONFIGURE BACKUPS")
+            self.backup_profile = profile
+            self.stages("Saving the simulated backup schedule")
+        elif action in ("backup-run", "backup-download"):
+            if not self.backup_profile:
+                raise InstallerError("Configure scheduled backups first.")
+            self.stages("Creating a simulated backup", "Verifying the simulated backup")
+        elif action == "restore-game-database":
+            if "game-database" not in self.backups or self.database:
+                raise InstallerError("Game SQL restore requires a backup and an empty destination.")
+            self.ui.confirm("RESTORE GAME DATABASES")
+            self.database = copy.deepcopy(self.backups["game-database"])
+        elif action == "restore-games":
+            if "games" not in self.backups:
+                raise InstallerError("Create a simulated game-file backup first.")
+            self.ui.confirm("RESTORE GAME FILES")
+            self.stages("Verifying the simulated backup")
+        elif action == "install-all":
             self.install_panel()
             self.install_wings()
         elif action == "install-panel":
@@ -198,7 +255,7 @@ class TourUI:
         return getattr(self.base, name)
 
     def choice(self, title, options, default=0):
-        preferred = {"Setup experience": True, "Where are the game databases?": "local"}
+        preferred = {"Setup experience": True, "Where are the game databases?": "local", "Node connection method": "manual"}
         value = preferred.get(title, options[default][0])
         self.base.card(title, [self.tr(next(item[1] for item in options if item[0] == value))])
         return value
@@ -213,7 +270,14 @@ class TourUI:
                   "ID numérico del nodo": "1", "Token Auto-Deploy": "preview-token",
                   "Dominio de Wings, ej. node.ejemplo.com": "node.example.com",
                   "Correo Let's Encrypt": "admin@example.com",
-                  "Database host password (16+ characters; empty generates one)": ""}
+                  "Database host password (16+ characters; empty generates one)": "",
+                  "Node hostname / IPv4": "node.example.com", "Allocation IPv4 address": "93.184.216.34",
+                  "Backup encryption password (16+ characters)": "preview-backup-password-123!",
+                  "Confirm backup encryption password": "preview-backup-password-123!",
+                  "Restic repository (local path, sftp: or s3:)": "s3:https://storage.example.com/ptero",
+                  "S3 access key": "preview-access-key", "S3 secret key": "preview-secret-key",
+                  "Remote SSH hostname / IPv4": "node.example.com", "Remote SQL private IPv4": "10.20.0.2",
+                  "Allowed private source IPv4 addresses (comma separated)": "10.20.0.1"}
         value = values.get(label, default)
         if value is None or (validator and not validator(value)):
             raise InstallerError("No valid tour answer: " + label)
@@ -250,7 +314,7 @@ def show(ui, action=None):
     from .navigation import Item
     while True:
         items = menu_items(ENTRIES, simulation.inventory())
-        items.insert(-2, Item("reset", "Reset preview", "Clear simulated components and backups.", shortcut="24", group="Preferences"))
+        items.insert(-2, Item("reset", "Reset preview", "Clear simulated components and backups.", shortcut="99", group="Preferences"))
         if ui.screen:
             ui.screen.wizard = None
             ui.screen.dashboard = simulation.inventory()

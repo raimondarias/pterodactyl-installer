@@ -426,4 +426,4 @@ class PreviewTests(BaseTest):
             _, launcher = builder.build()
         result = subprocess.run(["bash", str(launcher), "--version"], capture_output=True, text=True, timeout=15)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("ptero-installer 1.1.0", result.stdout)
+        self.assertIn("ptero-installer 1.2.0", result.stdout)

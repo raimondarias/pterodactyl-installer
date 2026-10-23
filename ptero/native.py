@@ -177,7 +177,8 @@ class NativeBackend:
                "MAIL_MAILER": self.s.get("mail_mailer", "log"), "MAIL_FROM_ADDRESS": self.s["email"],
                "MAIL_HOST": self.s.get("mail_host", ""), "MAIL_PORT": self.s.get("mail_port", "587"),
                "MAIL_USERNAME": self.s.get("mail_user", ""), "MAIL_PASSWORD": self.s.get("mail_password", ""),
-               "MAIL_ENCRYPTION": self.s.get("mail_encryption", "tls")}
+               "MAIL_ENCRYPTION": self.s.get("mail_encryption", "tls"),
+               "SESSION_SECURE_COOKIE": "true" if self.s["url"].startswith("https://") else "false"}
         previous = self.app / ".env"
         preserved = []
         if previous.exists():
@@ -240,6 +241,7 @@ class NativeBackend:
         self.save()
 
     def artisan(self, *args, **kwargs):
+        kwargs.setdefault("cwd", str(self.app))
         return self.run.run(["runuser", "-u", "www-data", "--", self.php, self.app / "artisan", *args], **kwargs)
 
     def setup_runtime(self):
@@ -321,28 +323,30 @@ class NativeBackend:
     def install(self):
         self.p.panel.mkdir(parents=True, exist_ok=True, mode=0o700)
         self.p.data.mkdir(parents=True, exist_ok=True, mode=0o700)
-        self.dependencies()
-        self.provision_database()
+        from .phases import Phases
+        phases = Phases(self.i, self.s, self.save)
+        phases.run("Dependencies", self.dependencies, lambda: self.php.exists() and (self.p.base / "tools/composer").exists() and self.run.run(["systemctl", "is-active", "--quiet", self.db_unit], check=False)[0] == 0)
+        phases.run("Panel database", self.provision_database)
         self.pause()
-        if self.s.get("source_installed") != self.s["version"]:
-            self.source(self.i.release("panel", self.s["version"]))
+        if self.s.get("source_installed") != self.s["version"] or not (self.app / "artisan").is_file():
+            phases.run("Panel source", lambda: self.source(self.i.release("panel", self.s["version"])))
         self.application_environment()
-        self.run.run([self.php, self.p.base / "tools/composer", "install", "--working-dir=" + str(self.app),
+        phases.run("PHP dependencies", lambda: self.run.run([self.php, self.p.base / "tools/composer", "install", "--working-dir=" + str(self.app),
                       "--no-dev", "--optimize-autoloader", "--no-interaction", "--no-progress", "--no-scripts", "--no-plugins"],
-                     label="Installing verified PHP dependencies", env={"COMPOSER_ALLOW_SUPERUSER": "1"})
+                     label="Installing verified PHP dependencies", env={"COMPOSER_ALLOW_SUPERUSER": "1"}), lambda: (self.app / "vendor/autoload.php").is_file())
         self.run.run(["chown", "-R", "www-data:www-data", self.app])
         self.setup_runtime()
         self.artisan("config:clear")
         self.artisan("package:discover", "--no-interaction")
-        self.artisan("migrate", "--seed", "--force", "--no-interaction", label="Running Panel migrations")
+        phases.run("Panel migrations", lambda: self.artisan("migrate", "--seed", "--force", "--no-interaction", label="Running Panel migrations"))
         if not self.s.get("admin_created"):
             self.i.create_admin(self.s)
             self.s["admin_created"] = True
             self.save()
         try:
-            self.certificate()
-            self.publish_site()
-            self.start()
+            phases.run("Panel certificate", self.certificate)
+            phases.run("Web configuration", self.publish_site)
+            phases.run("Service health", self.start)
         except BaseException:
             self.pause()
             raise

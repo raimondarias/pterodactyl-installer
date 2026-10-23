@@ -53,3 +53,7 @@ bash scripts/run_local.sh --language en --preview --no-animation < /dev/null
 ```
 
 The tour follows advanced standalone setup, MariaDB, HTTPS, administrator confirmation, SMTP, local game SQL, Wings linking and certificate questions, then simulated backups and diagnostics. All three languages are supported. Password input is represented by masked text; generated game SQL credentials are demonstration values. A text file cannot display terminal animation; use an interactive SSH terminal to see the effects.
+
+## Added in 1.2.0
+
+The preview also offers node resource/allocation forms, native game SQL selection, scheduled encrypted-backup questions, remote SSH/private-SQL planning, resume and health screens. Backup planning and node resource questions share the production collectors. Preview SSH key paths are placeholders; no key files are opened or remote connections made.

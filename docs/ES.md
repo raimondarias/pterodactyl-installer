@@ -43,3 +43,5 @@ Panel v2 es beta. Los tests automatizados y las comprobaciones reales de archivo
 La interfaz abre una TUI de pantalla completa en una terminal SSH compatible. Usa ↑/↓ para moverte, Tab o ←/→ para cambiar de grupo, Enter para elegir, / para buscar, F5 para actualizar estados y Esc/Q para volver o salir. Las acciones sin requisitos cumplidos explican qué falta y no se ejecutan. En una máquina nueva, Diagnóstico muestra información útil y el siguiente paso. Prueba sin instalar con `bash ptero-setup.sh --preview`; usa `--plain` para menú numérico y `--no-animation` para reducir movimiento. [Detalles y capturas](TUI.md).
 
 Puedes seleccionar cada opción con un clic del ratón en terminales compatibles, incluido el selector inicial de idioma. También puedes pulsar las flechas y Enter.
+
+La versión 1.2.0 añade creación automática de nodos y allocations, SQL de juegos nativo aislado, copias cifradas programadas, restauración SQL/archivos de juegos, reanudación por etapas y preparación remota por SSH con claves verificadas. Consulta [las operaciones avanzadas](ADVANCED.md).

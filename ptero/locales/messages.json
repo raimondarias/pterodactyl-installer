@@ -2853,5 +2853,805 @@
     "en": "↑↓ · Click · Enter · Esc",
     "es": "↑↓ · Clic · Enter · Esc",
     "pt-BR": "↑↓ · Clique · Enter · Esc"
+  },
+  "Local node (isolated game SQL)": {
+    "en": "Local node (isolated game SQL)",
+    "es": "Nodo local (SQL de juegos aislado)",
+    "pt-BR": "Node local (SQL de jogos isolado)"
+  },
+  "Game SQL deployment": {
+    "en": "Game SQL deployment",
+    "es": "Instalación de SQL de juegos",
+    "pt-BR": "Instalação do SQL de jogos"
+  },
+  "Isolated native instance (Recommended)": {
+    "en": "Isolated native instance (Recommended)",
+    "es": "Instancia nativa aislada (Recomendado)",
+    "pt-BR": "Instância nativa isolada (Recomendado)"
+  },
+  "Separate SQL data, socket and system service": {
+    "en": "Separate SQL data, socket and system service",
+    "es": "Datos SQL, socket y servicio del sistema separados",
+    "pt-BR": "Dados SQL, socket e serviço do sistema separados"
+  },
+  "Isolated SQL container on a private bridge": {
+    "en": "Isolated SQL container on a private bridge",
+    "es": "Contenedor SQL aislado en un puente privado",
+    "pt-BR": "Contêiner SQL isolado em uma bridge privada"
+  },
+  "Validated completed phase: {value}": {
+    "en": "Validated completed phase: {value}",
+    "es": "Etapa completada y validada: {value}",
+    "pt-BR": "Etapa concluída e validada: {value}"
+  },
+  "Node resources": {
+    "en": "Node resources",
+    "es": "Recursos del nodo",
+    "pt-BR": "Recursos do node"
+  },
+  "Location code": {
+    "en": "Location code",
+    "es": "Código de ubicación",
+    "pt-BR": "Código da localização"
+  },
+  "Node name": {
+    "en": "Node name",
+    "es": "Nombre del nodo",
+    "pt-BR": "Nome do node"
+  },
+  "Node hostname / IPv4": {
+    "en": "Node hostname / IPv4",
+    "es": "Dominio / IPv4 del nodo",
+    "pt-BR": "Domínio / IPv4 do node"
+  },
+  "Node memory (MiB)": {
+    "en": "Node memory (MiB)",
+    "es": "Memoria del nodo (MiB)",
+    "pt-BR": "Memória do node (MiB)"
+  },
+  "Node disk (MiB)": {
+    "en": "Node disk (MiB)",
+    "es": "Disco del nodo (MiB)",
+    "pt-BR": "Disco do node (MiB)"
+  },
+  "Use HTTPS for the node?": {
+    "en": "Use HTTPS for the node?",
+    "es": "¿Usar HTTPS para el nodo?",
+    "pt-BR": "Usar HTTPS para o node?"
+  },
+  "Is an existing HTTPS reverse proxy terminating node TLS?": {
+    "en": "Is an existing HTTPS reverse proxy terminating node TLS?",
+    "es": "¿Un proxy inverso HTTPS existente gestiona el TLS del nodo?",
+    "pt-BR": "Um proxy reverso HTTPS existente gerencia o TLS do node?"
+  },
+  "Node API port": {
+    "en": "Node API port",
+    "es": "Puerto API del nodo",
+    "pt-BR": "Porta da API do node"
+  },
+  "Node SFTP port": {
+    "en": "Node SFTP port",
+    "es": "Puerto SFTP del nodo",
+    "pt-BR": "Porta SFTP do node"
+  },
+  "Game allocations": {
+    "en": "Game allocations",
+    "es": "Allocations de juegos",
+    "pt-BR": "Allocations de jogos"
+  },
+  "Allocation IPv4 address": {
+    "en": "Allocation IPv4 address",
+    "es": "Dirección IPv4 de las allocations",
+    "pt-BR": "Endereço IPv4 das allocations"
+  },
+  "Allocation port or range": {
+    "en": "Allocation port or range",
+    "es": "Puerto o rango de allocations",
+    "pt-BR": "Porta ou intervalo das allocations"
+  },
+  "Review node": {
+    "en": "Review node",
+    "es": "Revisar nodo",
+    "pt-BR": "Revisar node"
+  },
+  "Node resources: {memory} MiB RAM / {disk} MiB disk": {
+    "en": "Node resources: {memory} MiB RAM / {disk} MiB disk",
+    "es": "Recursos del nodo: {memory} MiB RAM / {disk} MiB de disco",
+    "pt-BR": "Recursos do node: {memory} MiB RAM / {disk} MiB de disco"
+  },
+  "Apply this node configuration to local Wings?": {
+    "en": "Apply this node configuration to local Wings?",
+    "es": "¿Aplicar la configuración de este nodo a Wings local?",
+    "pt-BR": "Aplicar a configuração deste node ao Wings local?"
+  },
+  "CREATE NODE": {
+    "en": "CREATE NODE",
+    "es": "CREAR NODO",
+    "pt-BR": "CRIAR NODE"
+  },
+  "Node created: {value}": {
+    "en": "Node created: {value}",
+    "es": "Nodo creado: {value}",
+    "pt-BR": "Node criado: {value}"
+  },
+  "Creating node and allocations": {
+    "en": "Creating node and allocations",
+    "es": "Creando nodo y allocations",
+    "pt-BR": "Criando node e allocations"
+  },
+  "Node connection method": {
+    "en": "Node connection method",
+    "es": "Método de conexión del nodo",
+    "pt-BR": "Método de conexão do node"
+  },
+  "Create node automatically (Recommended)": {
+    "en": "Create node automatically (Recommended)",
+    "es": "Crear nodo automáticamente (Recomendado)",
+    "pt-BR": "Criar node automaticamente (Recomendado)"
+  },
+  "Create location, node and allocations, then configure Wings": {
+    "en": "Create location, node and allocations, then configure Wings",
+    "es": "Crear ubicación, nodo y allocations; después configurar Wings",
+    "pt-BR": "Criar localização, node e allocations; depois configurar o Wings"
+  },
+  "Use an existing node token": {
+    "en": "Use an existing node token",
+    "es": "Usar el token de un nodo existente",
+    "pt-BR": "Usar o token de um node existente"
+  },
+  "Link a node already created in the Panel": {
+    "en": "Link a node already created in the Panel",
+    "es": "Vincular un nodo ya creado en el Panel",
+    "pt-BR": "Vincular um node já criado no Painel"
+  },
+  "Create node and allocations": {
+    "en": "Create node and allocations",
+    "es": "Crear nodo y allocations",
+    "pt-BR": "Criar node e allocations"
+  },
+  "Restore game databases": {
+    "en": "Restore game databases",
+    "es": "Restaurar bases de juegos",
+    "pt-BR": "Restaurar bancos de jogos"
+  },
+  "Back up game files": {
+    "en": "Back up game files",
+    "es": "Crear copia de archivos de juegos",
+    "pt-BR": "Criar backup dos arquivos de jogos"
+  },
+  "Restore game files": {
+    "en": "Restore game files",
+    "es": "Restaurar archivos de juegos",
+    "pt-BR": "Restaurar arquivos de jogos"
+  },
+  "Schedule encrypted backups": {
+    "en": "Schedule encrypted backups",
+    "es": "Programar copias cifradas",
+    "pt-BR": "Agendar backups criptografados"
+  },
+  "Run scheduled backup now": {
+    "en": "Run scheduled backup now",
+    "es": "Ejecutar copia programada ahora",
+    "pt-BR": "Executar backup agendado agora"
+  },
+  "Download remote backup": {
+    "en": "Download remote backup",
+    "es": "Descargar copia remota",
+    "pt-BR": "Baixar backup remoto"
+  },
+  "Detailed health report": {
+    "en": "Detailed health report",
+    "es": "Informe de salud detallado",
+    "pt-BR": "Relatório de integridade detalhado"
+  },
+  "Resume installation": {
+    "en": "Resume installation",
+    "es": "Reanudar instalación",
+    "pt-BR": "Retomar instalação"
+  },
+  "Install remote Wings node": {
+    "en": "Install remote Wings node",
+    "es": "Instalar nodo Wings remoto",
+    "pt-BR": "Instalar node Wings remoto"
+  },
+  "Prepare remote game SQL": {
+    "en": "Prepare remote game SQL",
+    "es": "Preparar SQL de juegos remoto",
+    "pt-BR": "Preparar SQL de jogos remoto"
+  },
+  "Nodes": {
+    "en": "Nodes",
+    "es": "Nodos",
+    "pt-BR": "Nodes"
+  },
+  "Absolute backup archive path": {
+    "en": "Absolute backup archive path",
+    "es": "Ruta absoluta del archivo de copia",
+    "pt-BR": "Caminho absoluto do arquivo de backup"
+  },
+  "RESTORE GAME DATABASES": {
+    "en": "RESTORE GAME DATABASES",
+    "es": "RESTAURAR BASES DE JUEGOS",
+    "pt-BR": "RESTAURAR BANCOS DE JOGOS"
+  },
+  "RESTORE GAME FILES": {
+    "en": "RESTORE GAME FILES",
+    "es": "RESTAURAR ARCHIVOS DE JUEGOS",
+    "pt-BR": "RESTAURAR ARQUIVOS DE JOGOS"
+  },
+  "BACK UP GAME FILES": {
+    "en": "BACK UP GAME FILES",
+    "es": "COPIAR ARCHIVOS DE JUEGOS",
+    "pt-BR": "COPIAR ARQUIVOS DE JOGOS"
+  },
+  "Restic repository (local path, sftp: or s3:)": {
+    "en": "Restic repository (local path, sftp: or s3:)",
+    "es": "Repositorio Restic (ruta local, sftp: o s3:)",
+    "pt-BR": "Repositório Restic (caminho local, sftp: ou s3:)"
+  },
+  "Backup encryption password (16+ characters)": {
+    "en": "Backup encryption password (16+ characters)",
+    "es": "Contraseña de cifrado de copias (16+ caracteres)",
+    "pt-BR": "Senha de criptografia dos backups (16+ caracteres)"
+  },
+  "Confirm backup encryption password": {
+    "en": "Confirm backup encryption password",
+    "es": "Confirma la contraseña de cifrado de copias",
+    "pt-BR": "Confirme a senha de criptografia dos backups"
+  },
+  "Include game files? Running game servers pause during backup.": {
+    "en": "Include game files? Running game servers pause during backup.",
+    "es": "¿Incluir archivos de juegos? Los servidores se pausan durante la copia.",
+    "pt-BR": "Incluir arquivos de jogos? Os servidores são pausados durante o backup."
+  },
+  "Backup schedule": {
+    "en": "Backup schedule",
+    "es": "Frecuencia de copias",
+    "pt-BR": "Frequência dos backups"
+  },
+  "Daily": {
+    "en": "Daily",
+    "es": "Diaria",
+    "pt-BR": "Diária"
+  },
+  "Weekly": {
+    "en": "Weekly",
+    "es": "Semanal",
+    "pt-BR": "Semanal"
+  },
+  "Hourly": {
+    "en": "Hourly",
+    "es": "Cada hora",
+    "pt-BR": "A cada hora"
+  },
+  "S3 access key": {
+    "en": "S3 access key",
+    "es": "Clave de acceso S3",
+    "pt-BR": "Chave de acesso S3"
+  },
+  "S3 secret key": {
+    "en": "S3 secret key",
+    "es": "Clave secreta S3",
+    "pt-BR": "Chave secreta S3"
+  },
+  "CONFIGURE BACKUPS": {
+    "en": "CONFIGURE BACKUPS",
+    "es": "CONFIGURAR COPIAS",
+    "pt-BR": "CONFIGURAR BACKUPS"
+  },
+  "Available backup snapshots": {
+    "en": "Available backup snapshots",
+    "es": "Copias disponibles",
+    "pt-BR": "Backups disponíveis"
+  },
+  "Snapshot ID": {
+    "en": "Snapshot ID",
+    "es": "ID de la copia",
+    "pt-BR": "ID do backup"
+  },
+  "DOWNLOAD BACKUP": {
+    "en": "DOWNLOAD BACKUP",
+    "es": "DESCARGAR COPIA",
+    "pt-BR": "BAIXAR BACKUP"
+  },
+  "Downloaded backup directory: {value}": {
+    "en": "Downloaded backup directory: {value}",
+    "es": "Directorio de copias descargadas: {value}",
+    "pt-BR": "Diretório dos backups baixados: {value}"
+  },
+  "Health report": {
+    "en": "Health report",
+    "es": "Informe de salud",
+    "pt-BR": "Relatório de integridade"
+  },
+  "Healthy: {value}": {
+    "en": "Healthy: {value}",
+    "es": "Correcto: {value}",
+    "pt-BR": "Saudável: {value}"
+  },
+  "Needs attention: {value}": {
+    "en": "Needs attention: {value}",
+    "es": "Requiere atención: {value}",
+    "pt-BR": "Requer atenção: {value}"
+  },
+  "Disk space": {
+    "en": "Disk space",
+    "es": "Espacio en disco",
+    "pt-BR": "Espaço em disco"
+  },
+  "Available memory": {
+    "en": "Available memory",
+    "es": "Memoria disponible",
+    "pt-BR": "Memória disponível"
+  },
+  "Panel SQL and migrations": {
+    "en": "Panel SQL and migrations",
+    "es": "SQL y migraciones del Panel",
+    "pt-BR": "SQL e migrações do Painel"
+  },
+  "Queue failures": {
+    "en": "Queue failures",
+    "es": "Fallos de la cola",
+    "pt-BR": "Falhas da fila"
+  },
+  "Panel containers": {
+    "en": "Panel containers",
+    "es": "Contenedores del Panel",
+    "pt-BR": "Contêineres do Painel"
+  },
+  "Panel HTTP endpoint": {
+    "en": "Panel HTTP endpoint",
+    "es": "Acceso HTTP al Panel",
+    "pt-BR": "Acesso HTTP ao Painel"
+  },
+  "TLS certificate lifetime": {
+    "en": "TLS certificate lifetime",
+    "es": "Vigencia del certificado TLS",
+    "pt-BR": "Validade do certificado TLS"
+  },
+  "Interrupted phase: {value}": {
+    "en": "Interrupted phase: {value}",
+    "es": "Etapa interrumpida: {value}",
+    "pt-BR": "Etapa interrompida: {value}"
+  },
+  "Backup timer": {
+    "en": "Backup timer",
+    "es": "Temporizador de copias",
+    "pt-BR": "Temporizador de backups"
+  },
+  "Last scheduled backup": {
+    "en": "Last scheduled backup",
+    "es": "Última copia programada",
+    "pt-BR": "Último backup agendado"
+  },
+  "Remote SSH hostname / IPv4": {
+    "en": "Remote SSH hostname / IPv4",
+    "es": "Dominio / IPv4 SSH remoto",
+    "pt-BR": "Domínio / IPv4 SSH remoto"
+  },
+  "Remote SSH port": {
+    "en": "Remote SSH port",
+    "es": "Puerto SSH remoto",
+    "pt-BR": "Porta SSH remota"
+  },
+  "Absolute SSH private key path": {
+    "en": "Absolute SSH private key path",
+    "es": "Ruta absoluta de la clave privada SSH",
+    "pt-BR": "Caminho absoluto da chave privada SSH"
+  },
+  "Verified SSH known_hosts path": {
+    "en": "Verified SSH known_hosts path",
+    "es": "Ruta de known_hosts SSH verificado",
+    "pt-BR": "Caminho do known_hosts SSH verificado"
+  },
+  "INSTALL REMOTE NODE": {
+    "en": "INSTALL REMOTE NODE",
+    "es": "INSTALAR NODO REMOTO",
+    "pt-BR": "INSTALAR NODE REMOTO"
+  },
+  "INSTALL REMOTE DATABASE": {
+    "en": "INSTALL REMOTE DATABASE",
+    "es": "INSTALAR BASE REMOTA",
+    "pt-BR": "INSTALAR BANCO REMOTO"
+  },
+  "Remote SQL private IPv4": {
+    "en": "Remote SQL private IPv4",
+    "es": "IPv4 privada del SQL remoto",
+    "pt-BR": "IPv4 privado do SQL remoto"
+  },
+  "Allowed private source IPv4 addresses (comma separated)": {
+    "en": "Allowed private source IPv4 addresses (comma separated)",
+    "es": "IPv4 privadas de origen permitidas (separadas por comas)",
+    "pt-BR": "IPv4 privados de origem permitidos (separados por vírgulas)"
+  },
+  "Checking simulated SSH connection": {
+    "en": "Checking simulated SSH connection",
+    "es": "Comprobando conexión SSH simulada",
+    "pt-BR": "Verificando conexão SSH simulada"
+  },
+  "Provisioning the simulated remote machine": {
+    "en": "Provisioning the simulated remote machine",
+    "es": "Preparando la máquina remota simulada",
+    "pt-BR": "Preparando a máquina remota simulada"
+  },
+  "Checking completed installation phases": {
+    "en": "Checking completed installation phases",
+    "es": "Comprobando etapas de instalación completadas",
+    "pt-BR": "Verificando etapas de instalação concluídas"
+  },
+  "Saving the simulated backup schedule": {
+    "en": "Saving the simulated backup schedule",
+    "es": "Guardando la programación de copias simulada",
+    "pt-BR": "Salvando o agendamento de backups simulado"
+  },
+  "Dependencies": {
+    "en": "Dependencies",
+    "es": "Dependencias",
+    "pt-BR": "Dependências"
+  },
+  "Panel database": {
+    "en": "Panel database",
+    "es": "Base de datos del Panel",
+    "pt-BR": "Banco de dados do Painel"
+  },
+  "Panel source": {
+    "en": "Panel source",
+    "es": "Archivos del Panel",
+    "pt-BR": "Arquivos do Painel"
+  },
+  "PHP dependencies": {
+    "en": "PHP dependencies",
+    "es": "Dependencias PHP",
+    "pt-BR": "Dependências PHP"
+  },
+  "Panel migrations": {
+    "en": "Panel migrations",
+    "es": "Migraciones del Panel",
+    "pt-BR": "Migrações do Painel"
+  },
+  "Panel certificate": {
+    "en": "Panel certificate",
+    "es": "Certificado del Panel",
+    "pt-BR": "Certificado do Painel"
+  },
+  "Web configuration": {
+    "en": "Web configuration",
+    "es": "Configuración web",
+    "pt-BR": "Configuração web"
+  },
+  "Service health": {
+    "en": "Service health",
+    "es": "Estado de servicios",
+    "pt-BR": "Integridade dos serviços"
+  },
+  "Docker runtime": {
+    "en": "Docker runtime",
+    "es": "Entorno Docker",
+    "pt-BR": "Ambiente Docker"
+  },
+  "SQL and cache": {
+    "en": "SQL and cache",
+    "es": "SQL y caché",
+    "pt-BR": "SQL e cache"
+  },
+  "A backup archive and its SHA-256 sidecar are required.": {
+    "en": "A backup archive and its SHA-256 sidecar are required.",
+    "es": "Se necesitan el archivo de copia y su checksum SHA-256.",
+    "pt-BR": "São necessários o arquivo de backup e seu checksum SHA-256."
+  },
+  "An HTTPS Panel requires an HTTPS node for browser connections.": {
+    "en": "An HTTPS Panel requires an HTTPS node for browser connections.",
+    "es": "Un Panel HTTPS requiere un nodo HTTPS para las conexiones del navegador.",
+    "pt-BR": "Um Painel HTTPS exige um node HTTPS para as conexões do navegador."
+  },
+  "An existing game SQL instance has different settings.": {
+    "en": "An existing game SQL instance has different settings.",
+    "es": "Una instancia SQL de juegos existente tiene otra configuración.",
+    "pt-BR": "Uma instância SQL de jogos existente tem configurações diferentes."
+  },
+  "An unmanaged native SQL service already exists.": {
+    "en": "An unmanaged native SQL service already exists.",
+    "es": "Ya existe un servicio SQL nativo no gestionado por el instalador.",
+    "pt-BR": "Já existe um serviço SQL nativo não gerenciado pelo instalador."
+  },
+  "Backup checksum does not match; nothing was restored.": {
+    "en": "Backup checksum does not match; nothing was restored.",
+    "es": "El checksum de la copia no coincide; no se ha restaurado nada.",
+    "pt-BR": "O checksum do backup não confere; nada foi restaurado."
+  },
+  "Checking encrypted backup repository": {
+    "en": "Checking encrypted backup repository",
+    "es": "Comprobando el repositorio de copias cifradas",
+    "pt-BR": "Verificando o repositório de backups criptografados"
+  },
+  "Checking isolated native SQL readiness": {
+    "en": "Checking isolated native SQL readiness",
+    "es": "Comprobando la disponibilidad del SQL nativo aislado",
+    "pt-BR": "Verificando a disponibilidade do SQL nativo isolado"
+  },
+  "Checking remote SSH and Python": {
+    "en": "Checking remote SSH and Python",
+    "es": "Comprobando SSH remoto y Python",
+    "pt-BR": "Verificando SSH remoto e Python"
+  },
+  "Configuring isolated native game SQL": {
+    "en": "Configuring isolated native game SQL",
+    "es": "Configurando SQL nativo aislado para juegos",
+    "pt-BR": "Configurando SQL nativo isolado para jogos"
+  },
+  "Docker returned invalid game container identifiers.": {
+    "en": "Docker returned invalid game container identifiers.",
+    "es": "Docker devolvió identificadores de contenedor de juego inválidos.",
+    "pt-BR": "O Docker retornou identificadores de contêineres de jogos inválidos."
+  },
+  "Downloading the original game SQL image": {
+    "en": "Downloading the original game SQL image",
+    "es": "Descargando la imagen SQL original de juegos",
+    "pt-BR": "Baixando a imagem SQL original dos jogos"
+  },
+  "Game SQL restore requires an empty managed destination. Preserve or move existing SQL first.": {
+    "en": "Game SQL restore requires an empty managed destination. Preserve or move existing SQL first.",
+    "es": "La restauración SQL de juegos requiere un destino gestionado vacío. Conserva o mueve primero los datos existentes.",
+    "pt-BR": "A restauração SQL dos jogos exige um destino gerenciado vazio. Preserve ou mova os dados existentes primeiro."
+  },
+  "Game allocations cannot overlap node API or SFTP ports.": {
+    "en": "Game allocations cannot overlap node API or SFTP ports.",
+    "es": "Las allocations de juegos no pueden coincidir con los puertos API o SFTP del nodo.",
+    "pt-BR": "As allocations dos jogos não podem coincidir com as portas da API ou SFTP do node."
+  },
+  "Game databases restored with their original credentials.": {
+    "en": "Game databases restored with their original credentials.",
+    "es": "Bases de juegos restauradas con sus credenciales originales.",
+    "pt-BR": "Bancos de jogos restaurados com suas credenciais originais."
+  },
+  "Game-file backup currently requires the managed default Wings volume directory.": {
+    "en": "Game-file backup currently requires the managed default Wings volume directory.",
+    "es": "La copia de archivos de juegos requiere actualmente el directorio de volúmenes predeterminado de Wings.",
+    "pt-BR": "O backup dos arquivos de jogos exige atualmente o diretório padrão de volumes do Wings."
+  },
+  "Game-file restore requires an empty volume directory.": {
+    "en": "Game-file restore requires an empty volume directory.",
+    "es": "La restauración de archivos de juegos requiere un directorio de volúmenes vacío.",
+    "pt-BR": "A restauração dos arquivos de jogos exige um diretório de volumes vazio."
+  },
+  "Initializing encrypted backup repository": {
+    "en": "Initializing encrypted backup repository",
+    "es": "Inicializando el repositorio de copias cifradas",
+    "pt-BR": "Inicializando o repositório de backups criptografados"
+  },
+  "Initializing isolated native game SQL": {
+    "en": "Initializing isolated native game SQL",
+    "es": "Inicializando SQL nativo aislado para juegos",
+    "pt-BR": "Inicializando SQL nativo isolado para jogos"
+  },
+  "Install Wings before applying the node configuration.": {
+    "en": "Install Wings before applying the node configuration.",
+    "es": "Instala Wings antes de aplicar la configuración del nodo.",
+    "pt-BR": "Instale o Wings antes de aplicar a configuração do node."
+  },
+  "Install and configure Wings before backing up game files.": {
+    "en": "Install and configure Wings before backing up game files.",
+    "es": "Instala y configura Wings antes de copiar los archivos de juegos.",
+    "pt-BR": "Instale e configure o Wings antes de copiar os arquivos de jogos."
+  },
+  "Installing native game SQL packages": {
+    "en": "Installing native game SQL packages",
+    "es": "Instalando paquetes SQL nativos para juegos",
+    "pt-BR": "Instalando pacotes SQL nativos para jogos"
+  },
+  "Native game SQL data is incomplete; restore a backup into an empty destination.": {
+    "en": "Native game SQL data is incomplete; restore a backup into an empty destination.",
+    "es": "Los datos SQL nativos de juegos están incompletos; restaura una copia en un destino vacío.",
+    "pt-BR": "Os dados SQL nativos dos jogos estão incompletos; restaure um backup em um destino vazio."
+  },
+  "Native game SQL restore requires an empty data directory.": {
+    "en": "Native game SQL restore requires an empty data directory.",
+    "es": "La restauración SQL nativa de juegos requiere un directorio de datos vacío.",
+    "pt-BR": "A restauração SQL nativa dos jogos exige um diretório de dados vazio."
+  },
+  "No game volume directory exists to back up.": {
+    "en": "No game volume directory exists to back up.",
+    "es": "No existe un directorio de volúmenes de juegos para copiar.",
+    "pt-BR": "Não existe um diretório de volumes de jogos para copiar."
+  },
+  "No managed snapshots exist in this repository.": {
+    "en": "No managed snapshots exist in this repository.",
+    "es": "No hay copias gestionadas en este repositorio.",
+    "pt-BR": "Não há backups gerenciados neste repositório."
+  },
+  "No native game SQL data exists to back up.": {
+    "en": "No native game SQL data exists to back up.",
+    "es": "No hay datos SQL nativos de juegos para copiar.",
+    "pt-BR": "Não há dados SQL nativos dos jogos para copiar."
+  },
+  "Node API and SFTP ports must be different.": {
+    "en": "Node API and SFTP ports must be different.",
+    "es": "Los puertos API y SFTP del nodo deben ser diferentes.",
+    "pt-BR": "As portas da API e SFTP do node devem ser diferentes."
+  },
+  "Pausing game SQL for a consistent backup": {
+    "en": "Pausing game SQL for a consistent backup",
+    "es": "Pausando SQL de juegos para una copia consistente",
+    "pt-BR": "Pausando SQL dos jogos para um backup consistente"
+  },
+  "Pausing game servers for file backup": {
+    "en": "Pausing game servers for file backup",
+    "es": "Pausando servidores de juegos para copiar sus archivos",
+    "pt-BR": "Pausando servidores de jogos para copiar seus arquivos"
+  },
+  "Pausing games for a consistent backup bundle": {
+    "en": "Pausing games for a consistent backup bundle",
+    "es": "Pausando juegos para una copia conjunta consistente",
+    "pt-BR": "Pausando jogos para um backup conjunto consistente"
+  },
+  "Physical SQL restore requires the original database server version.": {
+    "en": "Physical SQL restore requires the original database server version.",
+    "es": "La restauración física SQL requiere la versión original del servidor de bases de datos.",
+    "pt-BR": "A restauração física SQL exige a versão original do servidor de bancos de dados."
+  },
+  "Physical SQL restore requires the original pinned database image.": {
+    "en": "Physical SQL restore requires the original pinned database image.",
+    "es": "La restauración física SQL requiere la imagen original fijada de la base de datos.",
+    "pt-BR": "A restauração física SQL exige a imagem original fixada do banco de dados."
+  },
+  "Prepare SSH keys and a verified known_hosts entry for the backup destination first.": {
+    "en": "Prepare SSH keys and a verified known_hosts entry for the backup destination first.",
+    "es": "Prepara primero las claves SSH y una entrada known_hosts verificada para el destino de copias.",
+    "pt-BR": "Prepare primeiro as chaves SSH e uma entrada known_hosts verificada para o destino dos backups."
+  },
+  "Provisioning the remote machine over verified SSH": {
+    "en": "Provisioning the remote machine over verified SSH",
+    "es": "Preparando la máquina remota mediante SSH verificado",
+    "pt-BR": "Preparando a máquina remota por SSH verificado"
+  },
+  "Remote provisioning uses root SSH with strict host-key verification. No password is sent.": {
+    "en": "Remote provisioning uses root SSH with strict host-key verification. No password is sent.",
+    "es": "La preparación remota usa SSH root con verificación estricta de la clave del host. No se envía ninguna contraseña.",
+    "pt-BR": "A preparação remota usa SSH root com verificação estrita da chave do host. Nenhuma senha é enviada."
+  },
+  "Restore the original private SQL network before importing its data.": {
+    "en": "Restore the original private SQL network before importing its data.",
+    "es": "Restaura la red privada SQL original antes de importar sus datos.",
+    "pt-BR": "Restaure a rede privada SQL original antes de importar seus dados."
+  },
+  "Resuming game servers": {
+    "en": "Resuming game servers",
+    "es": "Reanudando servidores de juegos",
+    "pt-BR": "Retomando servidores de jogos"
+  },
+  "Stop all game servers before restoring their files.": {
+    "en": "Stop all game servers before restoring their files.",
+    "es": "Detén todos los servidores de juegos antes de restaurar sus archivos.",
+    "pt-BR": "Pare todos os servidores de jogos antes de restaurar seus arquivos."
+  },
+  "The Panel returned an invalid node ID.": {
+    "en": "The Panel returned an invalid node ID.",
+    "es": "El Panel devolvió un ID de nodo inválido.",
+    "pt-BR": "O Painel retornou um ID de node inválido."
+  },
+  "The Panel returned an invalid resource response.": {
+    "en": "The Panel returned an invalid resource response.",
+    "es": "El Panel devolvió una respuesta de recurso inválida.",
+    "pt-BR": "O Painel retornou uma resposta de recurso inválida."
+  },
+  "The backup contains no game volumes.": {
+    "en": "The backup contains no game volumes.",
+    "es": "La copia no contiene volúmenes de juegos.",
+    "pt-BR": "O backup não contém volumes de jogos."
+  },
+  "The managed game volume directory cannot be a symlink.": {
+    "en": "The managed game volume directory cannot be a symlink.",
+    "es": "El directorio de volúmenes de juegos gestionado no puede ser un enlace simbólico.",
+    "pt-BR": "O diretório de volumes de jogos gerenciado não pode ser um link simbólico."
+  },
+  "The remote machine did not confirm successful provisioning.": {
+    "en": "The remote machine did not confirm successful provisioning.",
+    "es": "La máquina remota no confirmó que la preparación terminara correctamente.",
+    "pt-BR": "A máquina remota não confirmou que a preparação terminou corretamente."
+  },
+  "There are no managed resources to back up.": {
+    "en": "There are no managed resources to back up.",
+    "es": "No hay recursos gestionados para copiar.",
+    "pt-BR": "Não há recursos gerenciados para copiar."
+  },
+  "This is not a valid game SQL backup.": {
+    "en": "This is not a valid game SQL backup.",
+    "es": "Esta no es una copia SQL de juegos válida.",
+    "pt-BR": "Este não é um backup SQL de jogos válido."
+  },
+  "Unmanaged native game SQL files exist; nothing was overwritten.": {
+    "en": "Unmanaged native game SQL files exist; nothing was overwritten.",
+    "es": "Existen archivos SQL nativos de juegos no gestionados; no se ha sobrescrito nada.",
+    "pt-BR": "Existem arquivos SQL nativos dos jogos não gerenciados; nada foi sobrescrito."
+  },
+  "Updating Panel resources through supported contracts": {
+    "en": "Updating Panel resources through supported contracts",
+    "es": "Actualizando recursos del Panel mediante sus contratos oficiales",
+    "pt-BR": "Atualizando recursos do Painel pelos contratos oficiais"
+  },
+  "Uploading encrypted backup bundle": {
+    "en": "Uploading encrypted backup bundle",
+    "es": "Subiendo el conjunto de copias cifradas",
+    "pt-BR": "Enviando o conjunto de backups criptografados"
+  },
+  "Wings is installed but still needs node configuration.": {
+    "en": "Wings is installed but still needs node configuration.",
+    "es": "Wings está instalado, pero falta configurar el nodo.",
+    "pt-BR": "O Wings está instalado, mas falta configurar o node."
+  },
+  "Configure scheduled backups first.": {
+    "en": "Configure scheduled backups first.",
+    "es": "Configura primero las copias programadas.",
+    "pt-BR": "Configure primeiro os backups agendados."
+  },
+  "Game SQL restore requires a backup and an empty destination.": {
+    "en": "Game SQL restore requires a backup and an empty destination.",
+    "es": "La restauración SQL de juegos requiere una copia y un destino vacío.",
+    "pt-BR": "A restauração SQL dos jogos exige um backup e um destino vazio."
+  },
+  "Create a simulated game-file backup first.": {
+    "en": "Create a simulated game-file backup first.",
+    "es": "Crea primero una copia simulada de archivos de juegos.",
+    "pt-BR": "Crie primeiro um backup simulado dos arquivos de jogos."
+  },
+  "No interrupted managed installation needs resuming.": {
+    "en": "No interrupted managed installation needs resuming.",
+    "es": "No hay ninguna instalación gestionada interrumpida que reanudar.",
+    "pt-BR": "Não há nenhuma instalação gerenciada interrompida para retomar."
+  },
+  "Free at least 4 GiB and move backups off this disk.": {
+    "en": "Free at least 4 GiB and move backups off this disk.",
+    "es": "Libera al menos 4 GiB y mueve las copias fuera de este disco.",
+    "pt-BR": "Libere pelo menos 4 GiB e mova os backups para fora deste disco."
+  },
+  "Free memory before starting more game servers.": {
+    "en": "Free memory before starting more game servers.",
+    "es": "Libera memoria antes de iniciar más servidores de juegos.",
+    "pt-BR": "Libere memória antes de iniciar mais servidores de jogos."
+  },
+  "Inspect this service with systemctl status and journalctl.": {
+    "en": "Inspect this service with systemctl status and journalctl.",
+    "es": "Revisa este servicio con systemctl status y journalctl.",
+    "pt-BR": "Verifique este serviço com systemctl status e journalctl."
+  },
+  "Check SQL credentials and finish pending migrations.": {
+    "en": "Check SQL credentials and finish pending migrations.",
+    "es": "Comprueba las credenciales SQL y completa las migraciones pendientes.",
+    "pt-BR": "Verifique as credenciais SQL e conclua as migrações pendentes."
+  },
+  "Inspect failed queue jobs before retrying them.": {
+    "en": "Inspect failed queue jobs before retrying them.",
+    "es": "Revisa los trabajos de cola fallidos antes de reintentarlos.",
+    "pt-BR": "Verifique os trabalhos da fila com falha antes de tentar novamente."
+  },
+  "Inspect Docker Compose logs and container healthchecks.": {
+    "en": "Inspect Docker Compose logs and container healthchecks.",
+    "es": "Revisa los registros de Docker Compose y las comprobaciones de salud.",
+    "pt-BR": "Verifique os logs do Docker Compose e as verificações de integridade."
+  },
+  "Check the web server, DNS and application logs.": {
+    "en": "Check the web server, DNS and application logs.",
+    "es": "Comprueba el servidor web, DNS y los registros de la aplicación.",
+    "pt-BR": "Verifique o servidor web, DNS e os logs da aplicação."
+  },
+  "Renew the certificate; fewer than 14 days remain or verification failed.": {
+    "en": "Renew the certificate; fewer than 14 days remain or verification failed.",
+    "es": "Renueva el certificado; quedan menos de 14 días o falló su verificación.",
+    "pt-BR": "Renove o certificado; faltam menos de 14 dias ou sua verificação falhou."
+  },
+  "Inspect Wings logs and verify the Panel connection.": {
+    "en": "Inspect Wings logs and verify the Panel connection.",
+    "es": "Revisa los registros de Wings y verifica la conexión con el Panel.",
+    "pt-BR": "Verifique os logs do Wings e a conexão com o Painel."
+  },
+  "Enable ptero-backup.timer and inspect the last backup service result.": {
+    "en": "Enable ptero-backup.timer and inspect the last backup service result.",
+    "es": "Activa ptero-backup.timer y revisa el resultado del último servicio de copia.",
+    "pt-BR": "Ative ptero-backup.timer e verifique o resultado do último serviço de backup."
+  },
+  "Inspect journalctl -u ptero-backup.service before trusting scheduled copies.": {
+    "en": "Inspect journalctl -u ptero-backup.service before trusting scheduled copies.",
+    "es": "Revisa journalctl -u ptero-backup.service antes de dar por válidas las copias programadas.",
+    "pt-BR": "Verifique journalctl -u ptero-backup.service antes de considerar válidos os backups agendados."
   }
 }

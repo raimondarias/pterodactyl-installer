@@ -32,6 +32,13 @@ ENTRIES = [
     ("Configure game database host", "configure-database"),
     ("Show database host credentials", "database-credentials"),
     ("Back up local game databases", "backup-game-database"),
+    ("Create node and allocations", "create-node"),
+    ("Restore game databases", "restore-game-database"),
+    ("Back up game files", "backup-games"), ("Restore game files", "restore-games"),
+    ("Schedule encrypted backups", "backup-schedule"), ("Run scheduled backup now", "backup-run"),
+    ("Download remote backup", "backup-download"), ("Detailed health report", "health"),
+    ("Resume installation", "resume"), ("Install remote Wings node", "remote-node"),
+    ("Prepare remote game SQL", "remote-database"),
 ]
 
 

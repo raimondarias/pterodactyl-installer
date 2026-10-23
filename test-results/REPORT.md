@@ -1,12 +1,12 @@
-# Verification report — Ptero Installer 1.1.0
+# Verification report — Ptero Installer 1.2.0
 
 Date: 23 October 2026.
 
 | Check | Result |
 | --- | --- |
-| Local unittest suite | **175 tests passed**, no failures or skips in this environment |
+| Local unittest suite | **192 tests passed**, no failures or skips in this environment |
 | Guided simple setup matrix | Both Panel methods × both database engines × IP/domain × all three languages |
-| Language catalogue | 571 messages with complete en/es/pt-BR entries and matching placeholders |
+| Language catalogue | 731 messages with complete en/es/pt-BR entries and matching placeholders |
 | Bash syntax / Python compilation | Passed |
 | Online language bootstrap | Real Bash + Python runtime with GitHub transport fixtures: English first question, only selected folder, one language question, immutable commit and clean temporary-directory removal |
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
@@ -19,7 +19,7 @@ Date: 23 October 2026.
 | Mouse navigation | Real PTY clicks select the startup language and an ncurses choice; widget tests cover sidebar/compact groups, wheel, empty-space clicks and disabled prerequisites |
 | Interactive animation | Multiple actual ncurses activity frames captured in a real pseudoterminal; reduced-motion/plain fallbacks checked |
 | TUI screenshots | Captured from actual ncurses buffers; SVG render visually reviewed |
-| Full preview | All 22 simulated actions; 96 Panel form combinations; en/es/pt-BR tours with subprocess, HTTP/socket and filesystem mutation APIs denied |
+| Full preview | All 33 simulated actions; 96 Panel form combinations; en/es/pt-BR tours with subprocess, HTTP/socket and filesystem mutation APIs denied |
 | Preview bootstrap | Both launchers refuse to install missing Python in preview mode, including root; APT tripwire remains untouched |
 | Interactive preview | Real PTY: invalid-domain correction, masked administrator password, typed confirmation, animated deployment, dashboard return and terminal restoration |
 | Corrupt state shape | Lists, scalars and malformed nested credentials reported as invalid without overwriting them |
@@ -40,14 +40,22 @@ Date: 23 October 2026.
 | Official OCI images | Panel and Wings manifests checked for amd64 and arm64 |
 | Repository endpoints | MariaDB 11.4 Ubuntu jammy and MySQL 8.4 Debian trixie amd64 indexes reachable on 21 October 2026 |
 | ShellCheck | **Passed**, v0.11.0 official binary downloaded into a temporary directory and verified using GitHub asset SHA-256; not installed system-wide |
-| Complete deployment | **Not performed:** no available Docker daemon; no clean native package deployment |
-| Public DNS/TLS, SMTP and game server | **Not performed:** requires disposable VPSes and real domains/accounts |
+| Real Ubuntu 24.04 deployment | **Passed:** isolated KVM guest, standalone MariaDB Panel, real migrations, admin creation, queue/scheduler/Redis/FPM and HTTP diagnostics |
+| Public domain/TLS | **Passed:** installer.xerosrv.com routes through a dedicated host NGINX vhost to the isolated guest; Let's Encrypt certificate issued and HTTPS verified |
+| Automatic node and remote Wings | **Passed:** actual v2 contracts create location/node/11 allocations, verified root SSH installs and configures Wings, HTTPS API requires authentication |
+| Remote private SQL | **Passed:** source runtime deployed over verified SSH, private-address SQL instance initialized with explicit source allowlist and registered back into Panel |
+| Native game SQL restore | **Passed:** isolated native instance registered through v2 contract; physical archive restored and original table data verified |
+| Real game | **Passed:** Minetest server created through Panel v2 contracts and started by Wings; game listens on its allocation inside the guest |
+| Scheduled encrypted backups | **Passed:** real systemd backup service, encrypted Restic local repository, verified snapshot download; game pause/unpause regression covered |
+| Native Panel lifecycle | **Passed:** real restart, same-release update redeployment, purge and SQL/application-key restoration; original APP_KEY/HASHIDS_SALT preserved |
+| Full OS/deployment matrix | Workflow and private QEMU/KVM coordinator implemented; completion tracked per GitHub Actions run, not inferred from unit tests |
+| External SMTP, S3/SFTP and independent remote VPS | **Not performed:** user selected isolated local infrastructure for these tests |
 
-Package and system-service operations are simulated in the local suite. The game SQL integration test starts only a disposable MariaDB process with a private temporary Unix socket, no TCP listener, and terminates it before cleanup. MySQL service execution and full Laravel host registration are not validated end to end. The real NGINX test only validates configuration; it does not start or reload the host service. Remote checks execute Wings only for version/configure, use temporary files, and never start its daemon or the Panel. ARM64 availability was checked in OCI manifests; its binaries were not executed on this amd64 host.
+Package and system-service operations are simulated in the local suite. The game SQL integration test starts only a disposable MariaDB process with a private temporary Unix socket, no TCP listener, and terminates it before cleanup. Full Laravel host registration passed against the live MariaDB instance. MySQL service execution and physical restoration remain part of the pending matrix. The real NGINX test only validates configuration; it does not start or reload the host service. The separate upstream artifact checks execute Wings only for version/configure; the new domain integration test actually runs Panel, Wings, Docker and game SQL inside a dedicated KVM guest. Existing host websites and database services are outside that guest. ARM64 availability was checked in OCI manifests; its binaries were not executed on this amd64 host.
 
 Game SQL firewall forwarding, boot/Docker restart ordering and full cross-host physical restore still require the clean-VPS procedure. The host registration tests record commands and validate PHP syntax; they do not substitute for an actual Panel installation.
 
-Local distribution tests use GitHub transport fixtures, including an actual PTY bootstrap that chooses Spanish with an arrow and opens the selected ncurses runtime. `python3 tests/published_check.py` additionally checks actual public downloads, ncurses previews in all three languages, terminal restoration and verified language changes after publication. The recorded [published output](published-checks.txt) identifies the exact snapshot checked. Complete service deployment on a clean VPS remains untested.
+Local distribution tests use GitHub transport fixtures, including an actual PTY bootstrap that chooses Spanish with an arrow and opens the selected ncurses runtime. `python3 tests/published_check.py` additionally checks actual public downloads, ncurses previews in all three languages, terminal restoration and verified language changes after publication. The recorded [published output](published-checks.txt) identifies the exact snapshot checked. A real deployment is now exercised in the isolated Ubuntu 24.04 guest; cross-provider and complete OS-matrix validation remain separate.
 
 See [ShellCheck output](shellcheck.txt), [local output](local-tests.txt), [test procedure](../docs/TESTING.md), and [UI previews](../docs/preview-en.txt).
 

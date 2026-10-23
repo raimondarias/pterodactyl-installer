@@ -13,7 +13,7 @@ class Item:
     group: str = ""
 
 
-GROUPS = ("Install", "Maintenance", "Game databases", "Backups", "Remove", "Preferences")
+GROUPS = ("Install", "Maintenance", "Game databases", "Backups", "Remove", "Nodes", "Preferences")
 NOTES = {
     "install-all": "Set up the Panel and a Wings node with a guided review.",
     "install-panel": "Standalone is recommended. Choose your database, address and administrator.",
@@ -61,7 +61,7 @@ def inventory(installer):
 
 def prerequisite(action, state):
     panel, wings = state["panel"], state["wings"]
-    if action in ("configure-database", "smtp", "admin", "update-panel", "backup-panel", "uninstall-panel"):
+    if action in ("configure-database", "smtp", "admin", "update-panel", "backup-panel", "uninstall-panel", "create-node", "remote-node", "remote-database", "backup-schedule"):
         if panel == "absent":
             return "Install the Panel first. Start with Install Panel or Install Panel and Wings."
         if panel == "invalid":
@@ -75,6 +75,8 @@ def prerequisite(action, state):
             return "The Wings state needs attention. Use diagnostics before changing it."
     if action in ("restart", "logs", "uninstall-all") and panel == wings == "absent":
         return "There are no managed components yet. Start from Install."
+    if action in ("backup-games", "restore-games") and wings == "absent":
+        return "Install Wings first, then create or link a node in your Panel."
     if action == "database-credentials" and not state["credentials"]:
         return "Configure a game database host first to save its connection details."
     if action == "backup-game-database" and state["database"] == "absent":
@@ -83,13 +85,15 @@ def prerequisite(action, state):
 
 
 def group_for(action):
+    if action in ("create-node", "remote-node", "remote-database"):
+        return "Nodes"
     if action.startswith("install-"):
         return "Install"
     if action.startswith("uninstall-"):
         return "Remove"
     if action in ("configure-database", "database-credentials", "backup-game-database"):
         return "Game databases"
-    if action.startswith("backup-") or action == "restore-panel":
+    if action.startswith("backup-") or action in ("restore-panel", "restore-games", "restore-game-database", "backup-download"):
         return "Backups"
     return "Maintenance"
 
@@ -99,7 +103,7 @@ def menu_items(entries, state):
     for number, (label, action) in enumerate(entries, 1):
         reason = prerequisite(action, state)
         result.append(Item(action, label, NOTES.get(action, ""), not reason, reason,
-                           str(number), group_for(action)))
+                           str(number if number < 23 else number + 1), group_for(action)))
     result += [Item("language", "Change language", "Choose English, Spanish or Brazilian Portuguese.", shortcut="23", group="Preferences"),
                Item("exit", "Exit", "Return to your shell.", shortcut="0", group="Preferences")]
     return result

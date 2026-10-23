@@ -66,3 +66,9 @@ Use disposable VPSes with systemd and working Docker, plus real DNS names and an
 13. Repeat on ARM64 with supported database packages and game images.
 
 The creation environment has a Docker CLI but no available Docker daemon. Only the temporary MariaDB socket instance is executed locally. No full native package deployment, public DNS/TLS issuance, SMTP delivery or game-server run has been performed there. The verification report identifies those limits explicitly.
+
+## Disposable cloud-image matrix
+
+`python3 scripts/vm_integration.py --os ubuntu-24.04 --method standalone --engine mariadb` downloads an official image, verifies its checksum, boots a private QEMU/KVM guest, waits for root SSH, uploads the runtime and runs the real deployment/restart/update/purge/restore scenario. The script terminates its VM afterward. It supports Ubuntu 22.04/24.04/26.04 and Debian 12/13 with both engines and deployment methods. Run this coordinator on an otherwise unused CI machine with QEMU, genisoimage and KVM; loopback port 22022 must be free.
+
+The workflow in `.github/workflows/tests.yml` runs regressions on push/PR and provides the full deployment matrix through manual dispatch. A configured matrix is not a claim that every combination has passed; actual completed runs and the local domain test are recorded separately.

@@ -51,6 +51,7 @@ class UI:
         try:
             if renderer:
                 self.screen = renderer
+            if threading.current_thread() is threading.main_thread():
                 for name in ("SIGTERM", "SIGHUP"):
                     number = getattr(signal, name, None)
                     if number is not None:
