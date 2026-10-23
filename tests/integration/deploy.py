@@ -96,7 +96,10 @@ def main():
         from full_smoke import run as full_smoke
         full_smoke(i)
     results=Path('test-results');results.mkdir(exist_ok=True)
-    (results/'integration-result.json').write_text(json.dumps({'panel': 'passed', 'method': args.method, 'engine': args.engine, 'url': args.url, 'backup': str(archive), 'secrets': 'stored privately in guest only'},indent=2)+'\n')
+    (results/'integration-result.json').write_text(json.dumps({'panel': 'passed', 'method': args.method, 'engine': args.engine,
+        'url': args.url, 'backup': str(archive), 'update_purge_restore': 'passed' if args.cycle else 'not_run',
+        'node_wings_sql_restore_real_game_backup': 'passed' if args.full else 'not_run',
+        'secrets': 'stored privately in guest only'},indent=2)+'\n')
     print('INTEGRATION_PANEL_READY', flush=True)
 
 

@@ -144,6 +144,8 @@ class OperationsTests(BaseTest):
         config = backend.config.read_text()
         self.assertIn('port=3307', config)
         self.assertIn('game-sql', config)
+        self.assertEqual(backend.config.parent.stat().st_mode & 0o777, 0o755)
+        self.assertEqual(backend.config.stat().st_mode & 0o777, 0o640)
         self.assertNotIn('ptero_panel', config)
         unit = self.paths.root / ('etc/systemd/system/' + backend.unit)
         self.assertIn('ExecStartPre=+', unit.read_text())

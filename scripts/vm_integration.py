@@ -2,6 +2,7 @@
 """Boot an isolated cloud VM and run the real installer; intended for CI hosts."""
 import argparse
 import hashlib
+import json
 import os
 from pathlib import Path
 import shutil
@@ -65,8 +66,12 @@ def main():
    if os.environ.get('PTERO_GITHUB_TOKEN'):
     subprocess.run([*ssh,'umask 077; cat > /root/.ptero-github-token'], input=os.environ['PTERO_GITHUB_TOKEN'].encode(), check=True)
    result=subprocess.run([*ssh,f'cd /root/ptero-ci && python3 tests/integration/deploy.py --disposable --method {a.method} --engine {a.engine} --cycle --full'],timeout=3000)
-   (root/'test-results').mkdir(exist_ok=True)
-   subprocess.run([*ssh,'cat /root/ptero-ci/test-results/integration-result.json'],stdout=(root/'test-results'/('integration-'+a.os+'-'+a.method+'-'+a.engine+'.json')).open('wb'),check=False)
+   results=root/'test-results/vm';results.mkdir(parents=True,exist_ok=True)
+   fetched=subprocess.run([*ssh,'cat /root/ptero-ci/test-results/integration-result.json'],capture_output=True,text=True)
+   report={'os':a.os,'method':a.method,'engine':a.engine,'status':'failed' if result.returncode else 'passed'}
+   if fetched.returncode==0:
+    report.update(json.loads(fetched.stdout))
+   (results/(a.os+'-'+a.method+'-'+a.engine+'.json')).write_text(json.dumps(report,indent=2)+'\n')
    if result.returncode:
     subprocess.run([*ssh,'tail -160 /var/log/pterodactyl-installer/installer.log'],check=False)
     subprocess.run([*ssh,'journalctl -u wings -u ptero-game-sql-native --no-pager -n 60'],check=False)

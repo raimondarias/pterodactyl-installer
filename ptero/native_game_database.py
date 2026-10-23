@@ -90,6 +90,8 @@ class NativeGameDatabase:
         self.data.mkdir(exist_ok=True, mode=0o750)
         self.run.run(['chown', '-R', self.user + ':' + self.user, self.data])
         binary = '/usr/sbin/mysqld' if state['engine'] == 'mysql' else '/usr/sbin/mariadbd'
+        self.config.parent.mkdir(parents=True, exist_ok=True, mode=0o755)
+        self.config.parent.chmod(0o755)
         atomic_write(self.config, '[mysqld]\n' + f"datadir={self.data}\nsocket={self.socket}\npid-file={self.socket.parent}/mysql.pid\nbind-address={state['host']}\nport={int(state['port'])}\n" + 'skip-name-resolve\n' + ('mysqlx=OFF\n' if state['engine'] == 'mysql' else ''), 0o640)
         self.run.run(['chown', 'root:' + self.user, self.config])
         self.apparmor()
