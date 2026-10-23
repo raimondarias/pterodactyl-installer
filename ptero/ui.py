@@ -24,6 +24,7 @@ class UI:
         self.tr = Translator(language)
         self.plain = plain
         self.screen = None
+        self.preview = False
 
     @contextlib.contextmanager
     def session(self):

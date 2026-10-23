@@ -1585,5 +1585,122 @@
   },
   "Not detected": {
     "es": "No detectado"
+  },
+  "PREVIEW": {
+    "es": "SIMULACIÓN"
+  },
+  "Simulation: {value}": {
+    "es": "Simulación: {value}"
+  },
+  "Simulation complete": {
+    "es": "Simulación completada"
+  },
+  "Simulation uses a sample public IP; no address is detected.": {
+    "es": "La simulación utiliza una IP pública de ejemplo; no detecta la dirección real."
+  },
+  "All statuses and checks in this session are simulated.": {
+    "es": "Todos los estados y las comprobaciones de esta sesión son simulados."
+  },
+  "Simulation credentials disappear when you exit.": {
+    "es": "Las credenciales de simulación desaparecen al salir."
+  },
+  "Preparing dependencies": {
+    "es": "Preparando dependencias"
+  },
+  "Preparing the database and cache": {
+    "es": "Preparando la base de datos y la caché"
+  },
+  "Deploying Panel files": {
+    "es": "Desplegando los archivos del Panel"
+  },
+  "Running migrations and creating the administrator": {
+    "es": "Ejecutando migraciones y creando el administrador"
+  },
+  "Configuring the web server and scheduler": {
+    "es": "Configurando el servidor web y el programador de tareas"
+  },
+  "Checking simulated services": {
+    "es": "Comprobando servicios simulados"
+  },
+  "Preparing the game database host": {
+    "es": "Preparando el host de bases de juegos"
+  },
+  "Registering the database host in the Panel": {
+    "es": "Registrando el host de bases de datos en el Panel"
+  },
+  "Deploying Wings": {
+    "es": "Desplegando Wings"
+  },
+  "Fetching simulated node configuration": {
+    "es": "Obteniendo la configuración simulada del nodo"
+  },
+  "Simulating certificate issuance": {
+    "es": "Simulando la emisión del certificado"
+  },
+  "Saving simulated SMTP settings": {
+    "es": "Guardando la configuración SMTP simulada"
+  },
+  "Creating a simulated backup": {
+    "es": "Creando una copia de seguridad simulada"
+  },
+  "Verifying the simulated backup": {
+    "es": "Verificando la copia de seguridad simulada"
+  },
+  "Backup stored in preview memory only.": {
+    "es": "Copia guardada únicamente en la memoria de la simulación."
+  },
+  "Create a simulated Panel backup first.": {
+    "es": "Primero crea una copia de seguridad simulada del Panel."
+  },
+  "Remove the simulated Panel before restoring into an empty destination.": {
+    "es": "Elimina el Panel simulado antes de restaurar en un destino vacío."
+  },
+  "Restoring the simulated Panel": {
+    "es": "Restaurando el Panel simulado"
+  },
+  "Removing simulated components": {
+    "es": "Eliminando componentes simulados"
+  },
+  "Deploying the simulated update": {
+    "es": "Desplegando la actualización simulada"
+  },
+  "Restarting simulated services": {
+    "es": "Reiniciando servicios simulados"
+  },
+  "RESTORE PREVIEW": {
+    "es": "RESTAURAR SIMULACIÓN"
+  },
+  "REMOVE PREVIEW": {
+    "es": "ELIMINAR SIMULACIÓN"
+  },
+  "UPDATE PREVIEW": {
+    "es": "ACTUALIZAR SIMULACIÓN"
+  },
+  "RESTART PREVIEW": {
+    "es": "REINICIAR SIMULACIÓN"
+  },
+  "RESET PREVIEW": {
+    "es": "REINICIAR DEMOSTRACIÓN"
+  },
+  "Reset preview": {
+    "es": "Reiniciar demostración"
+  },
+  "Clear simulated components and backups.": {
+    "es": "Vacía los componentes y las copias simuladas."
+  },
+  "The simulated Panel already exists. Use maintenance or reset the preview.": {
+    "es": "El Panel simulado ya existe. Usa mantenimiento o reinicia la demostración."
+  },
+  "The simulated Wings already exists. Use maintenance or reset the preview.": {
+    "es": "Wings simulado ya existe. Usa mantenimiento o reinicia la demostración."
+  },
+  "Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation": {
+    "es": "Panel: TCP 80/443 · Wings: TCP 8080/2022 · Juegos: según allocations"
+  },
+  "Wings installation": {
+    "es": "Instalación de Wings"
+  },
+  "Node connection": {
+    "es": "Conexión del nodo"
   }
 }

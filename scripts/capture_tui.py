@@ -52,7 +52,7 @@ def capture(screen, target):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--language", choices=("en", "es", "pt-BR"), default="es")
-    parser.add_argument("--scene", choices=("overview", "database", "password"), default="overview")
+    parser.add_argument("--scene", choices=("overview", "database", "password", "preview", "review"), default="overview")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     ui = UI(False, args.language)
@@ -70,7 +70,15 @@ def main():
         if args.scene == "database":
             screen.navigation = ("Game databases", 0)
         try:
-            if args.scene == "password":
+            if args.scene == "preview":
+                from ptero.preview import show
+                show(ui)
+            elif args.scene == "review":
+                from ptero.preview import Simulation, TourUI
+                ui.preview = True
+                screen.begin()
+                Simulation(TourUI(ui)).install_panel()
+            elif args.scene == "password":
                 screen.wizard = (3, 4, "Administrator and email")
                 screen.prompt("Preview password (not saved)", secret=True, initial="Preview-only-123!")
             else:

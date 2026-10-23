@@ -7,47 +7,172 @@
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Vista previa de la interfaz                                                │
 │ Solo vista previa. No se instalarán paquetes, archivos ni servicios.       │
+│ Todos los estados y las comprobaciones de esta sesión son simulados.       │
 ╰────────────────────────────────────────────────────────────────────────────╯
 [1/4] Elige tu instalación
   ━━━━━───────────────
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Tipo de asistente                                                          │
-│ 1. Simple (Recomendado)                                                    │
-│ 2. Avanzado                                                                │
+│ Avanzado                                                                   │
 ╰────────────────────────────────────────────────────────────────────────────╯
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Instalación del Panel                                                      │
-│ 1. Standalone (Recomendado)                                                │
-│ 2. Docker                                                                  │
+│ Standalone (Recomendado)                                                   │
 ╰────────────────────────────────────────────────────────────────────────────╯
+Wings sigue utilizando Docker para ejecutar los servidores de juegos.
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Motor de base de datos                                                     │
+│ MariaDB (Recomendado)                                                      │
+╰────────────────────────────────────────────────────────────────────────────╯
+Versión del Panel (auto selecciona la última compatible): v2.0.0-beta.2
+Panel v2 es una versión beta. ¿Continuar? · Sí
 [2/4] Dirección y conexión
   ━━━━━━━━━━──────────
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ ¿Cómo accederás al Panel?                                                  │
-│ 1. Dominio / subdominio (Recomendado)                                      │
-│ 2. IP pública de la máquina                                                │
+│ Dominio / subdominio (Recomendado)                                         │
 ╰────────────────────────────────────────────────────────────────────────────╯
+Dominio / subdominio (sin http://): panel.example.com
+¿Activar HTTPS (Recomendado)? · Sí
+¿El DNS apunta aquí y los puertos TCP públicos 80 y 443 están accesibles? · Sí
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Versión de PHP                                                             │
+│ PHP 8.3 (Recomendado)                                                      │
+╰────────────────────────────────────────────────────────────────────────────╯
+Dirección IPv4 de escucha: 0.0.0.0
+Zona horaria: UTC
 [3/4] Administrador y correo
   ━━━━━━━━━━━━━━━─────
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Primer administrador                                                       │
-│ admin@example.com                                                          │
 │ La contraseña se introduce oculta y no se guarda en el estado del          │
 │ instalador.                                                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
-[4/4] Revisa tu instalación
-  ━━━━━━━━━━━━━━━━━━━━
+Correo del administrador: admin@example.com
+Nombre de usuario del administrador: admin
+Contraseña del administrador (12+ caracteres; vacía genera una): ••••••••
+Confirmar contraseña del administrador: ••••••••
+¿Configurar el correo SMTP ahora? · Sí
+Host SMTP: smtp.example.com
+Puerto SMTP: 587
+Usuario SMTP: admin@example.com
+Contraseña SMTP: ••••••••
+Cifrado SMTP (tls/ssl/null): tls
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Host de bases de datos para juegos                                         │
-│ MariaDB / MySQL: Una sola elección de motor para el Panel y los juegos.    │
-│ Nodo local (base de datos Docker aislada)                                  │
-│ Host de bases de datos existente                                           │
-│ Configurar después                                                         │
+│ Una sola elección de motor para el Panel y los juegos.                     │
+│ Las bases de juegos usan credenciales separadas. Cada juego obtiene su     │
+│ propia base desde el Panel.                                                │
 ╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ ¿Dónde estarán las bases de los juegos?                                    │
+│ Nodo local (base de datos Docker aislada)                                  │
+╰────────────────────────────────────────────────────────────────────────────╯
+Nombre visible del host de bases de datos: Bases de juegos
+Puerto de las bases de juegos: 3307
+Usuario del host para crear bases de juegos: ptero_games
+Contraseña del host (16+ caracteres; vacía genera una): ••••••••
+ID del nodo existente (0 = global / nodo aún no creado): 0
+[4/4] Revisa tu instalación
+  ━━━━━━━━━━━━━━━━━━━━
 ╭────────────────────────────────────────────────────────────────────────────╮
 │ Listo para instalar                                                        │
 │ Instalación: Standalone                                                    │
 │ Base de datos: MariaDB                                                     │
 │ URL del Panel: https://panel.example.com                                   │
+│ Versión: v2.0.0-beta.2                                                     │
+│ Administrador: admin@example.com                                           │
+│ Zona horaria: UTC                                                          │
+│ Host de bases de juegos: local                                             │
 ╰────────────────────────────────────────────────────────────────────────────╯
-→ Comprobando tu plan de instalación
+[1/1] Simulación: Comprobando tu plan de instalación
+→ Simulación: Comprobando tu plan de instalación
+INSTALAR PANEL
+[1/6] Simulación: Preparando dependencias
+→ Simulación: Preparando dependencias
+[2/6] Simulación: Preparando la base de datos y la caché
+→ Simulación: Preparando la base de datos y la caché
+[3/6] Simulación: Desplegando los archivos del Panel
+→ Simulación: Desplegando los archivos del Panel
+[4/6] Simulación: Ejecutando migraciones y creando el administrador
+→ Simulación: Ejecutando migraciones y creando el administrador
+[5/6] Simulación: Configurando el servidor web y el programador de tareas
+→ Simulación: Configurando el servidor web y el programador de tareas
+[6/6] Simulación: Comprobando servicios simulados
+→ Simulación: Comprobando servicios simulados
+[1/2] Simulación: Preparando el host de bases de juegos
+→ Simulación: Preparando el host de bases de juegos
+[2/2] Simulación: Registrando el host de bases de datos en el Panel
+→ Simulación: Registrando el host de bases de datos en el Panel
+╭────────────────────────────────────────────────────────────────────────────╮
+│ El host de bases de juegos está listo                                      │
+│ Solo vista previa. No se instalarán paquetes, archivos ni servicios.       │
+│ 172.30.0.1:3307                                                            │
+│ ptero_games                                                                │
+│ b12494c7c79415b91d84ada416cd3dc2c76fc6be1be1d41f9e321943bf6d88e1           │
+│ Las credenciales de simulación desaparecen al salir.                       │
+╰────────────────────────────────────────────────────────────────────────────╯
+[1/3] Instalación de Wings
+  ━━━━━━━─────────────
+Versión de wings (auto busca la más reciente compatible): v1.13.4
+Versión elegida: v1.13.4
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Instalación de Wings                                                       │
+│ Servicio standalone (Recomendado)                                          │
+╰────────────────────────────────────────────────────────────────────────────╯
+INSTALAR WINGS
+[2/3] Desplegando Wings
+  ━━━━━━━━━━━━━───────
+[1/3] Simulación: Preparando dependencias
+→ Simulación: Preparando dependencias
+[2/3] Simulación: Desplegando Wings
+→ Simulación: Desplegando Wings
+[3/3] Simulación: Comprobando servicios simulados
+→ Simulación: Comprobando servicios simulados
+¿Vincular Wings al Panel ahora? · Sí
+[3/3] Conexión del nodo
+  ━━━━━━━━━━━━━━━━━━━━
+En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration.
+Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo.
+El token solicitado es el de Auto-Deploy; se introducirá oculto.
+URL del Panel: https://panel.example.com
+ID numérico del nodo: 1
+Token Auto-Deploy: ••••••••
+CONFIGURAR WINGS
+[1/1] Simulación: Obteniendo la configuración simulada del nodo
+→ Simulación: Obteniendo la configuración simulada del nodo
+¿Emitir certificado SSL para Wings ahora? · Sí
+Dominio de Wings, ej. node.ejemplo.com: node.example.com
+Correo Let's Encrypt: admin@example.com
+EMITIR SSL WINGS
+[1/1] Simulación: Simulando la emisión del certificado
+→ Simulación: Simulando la emisión del certificado
+[1/1] Simulación: Comprobando servicios simulados
+→ Simulación: Comprobando servicios simulados
+[1/2] Simulación: Creando una copia de seguridad simulada
+→ Simulación: Creando una copia de seguridad simulada
+[2/2] Simulación: Verificando la copia de seguridad simulada
+→ Simulación: Verificando la copia de seguridad simulada
+Copia guardada únicamente en la memoria de la simulación.
+[1/2] Simulación: Creando una copia de seguridad simulada
+→ Simulación: Creando una copia de seguridad simulada
+[2/2] Simulación: Verificando la copia de seguridad simulada
+→ Simulación: Verificando la copia de seguridad simulada
+Copia guardada únicamente en la memoria de la simulación.
+[1/2] Simulación: Creando una copia de seguridad simulada
+→ Simulación: Creando una copia de seguridad simulada
+[2/2] Simulación: Verificando la copia de seguridad simulada
+→ Simulación: Verificando la copia de seguridad simulada
+Copia guardada únicamente en la memoria de la simulación.
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Vista previa de la interfaz                                                │
+│ Solo vista previa. No se instalarán paquetes, archivos ni servicios.       │
+│ Todos los estados y las comprobaciones de esta sesión son simulados.       │
+│ URL del Panel: https://panel.example.com                                   │
+│ Panel: TCP 80/443 · Wings: TCP 8080/2022 · Juegos: según allocations       │
+╰────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Simulación completada                                                      │
+│ Solo vista previa. No se instalarán paquetes, archivos ni servicios.       │
+│ Las credenciales de simulación desaparecen al salir.                       │
+╰────────────────────────────────────────────────────────────────────────────╯

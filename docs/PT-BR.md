@@ -22,7 +22,7 @@ O modo avançado permite escolher versão, PHP 8.3/8.4 no standalone, porta HTTP
 
 O mecanismo é escolhido uma única vez para o Painel e os jogos. O assistente também oferece preparar um host SQL local isolado no Docker, registrar um existente ou configurar depois (padrão). A opção local usa Docker mesmo com o Painel standalone e atende aos jogos desta máquina. O host é registrado automaticamente no Painel e exibe host, porta, usuário e senha na tela e em um arquivo privado. O modo avançado permite personalizar as credenciais e associar um node existente; 0 deixa o host global. Cada servidor de jogo precisa de um limite de bancos de dados maior que zero.
 
-As opções 20–22 configuram o host, exibem as credenciais e fazem backup dos bancos locais. O idioma muda na opção 23. Os bancos dos jogos e suas credenciais são mantidos ao excluir o Painel; os dados SQL exigem um backup separado. O host remoto deve estar preparado e acessível; sua instalação e seus backups não são feitos remotamente. A restauração do backup físico SQL continua manual, com a imagem original. Veja os detalhes de rede, firewall e restauração no [guia principal](../README.md#game-database-hosts).
+As opções 20–22 configuram o host, exibem as credenciais e fazem backup dos bancos locais. O idioma muda na opção 23. Os bancos dos jogos e suas credenciais são mantidos ao excluir o Painel; os dados SQL exigem um backup separado. O host remoto deve estar preparado e acessível; sua instalação e seus backups não são feitos remotamente. A restauração do backup físico SQL continua manual, com a imagem original. Veja os detalhes de rede, firewall e restauração no [guia principal](OPERATIONS.md#game-database-hosts).
 
 Prévia sem root e sem instalar:
 

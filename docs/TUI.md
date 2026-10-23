@@ -108,3 +108,5 @@ python3 scripts/capture_tui.py --language es --scene overview --output docs/imag
 ```
 
 [Python ncurses documentation](https://docs.python.org/3.10/library/curses.html).
+
+The 1.1.0 preview now opens the full grouped operations menu and uses production setup forms with an in-memory simulation backend. See the [complete preview walkthrough](PREVIEW.md). All preview screens carry a persistent localized PREVIEW marker.

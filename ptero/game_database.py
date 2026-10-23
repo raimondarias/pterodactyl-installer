@@ -49,9 +49,9 @@ def plan(installer, panel, advanced=False):
     settings = {"mode": mode, "engine": panel.get("database_engine", "mariadb"), "name": "Game databases",
                 "port": 3307 if mode == "local" else 3306, "username": "ptero_games",
                 "password": secrets.token_hex(32), "node_id": None, "registered": False}
-    reuse_local = mode == "local" and GameDatabase(installer).state_file.exists()
+    saved = installer.existing_game_database() if mode == "local" else None
+    reuse_local = saved is not None
     if reuse_local:
-        saved = GameDatabase(installer).load()
         if saved["engine"] != settings["engine"]:
             raise InstallerError("A local game database already exists. Reuse its saved credentials; changing its engine or password requires a separate migration.")
         for key in ("port", "username", "password"):

@@ -2,7 +2,7 @@
 
 Destination: **raimondarias/pterodactyl-installer**, branch **main**.
 
-Installer version: **1.0.0.beta**. Publish the root bootstrap and generated
+Installer version: **1.1.0**. Publish the root bootstrap and generated
 language distributions together. Building or testing locally does not update
 GitHub; a commit must be pushed to `main` to publish changes.
 

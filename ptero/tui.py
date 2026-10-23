@@ -101,7 +101,8 @@ class Terminal:
         self.put(1, self.left + 2, "PTERO", "accent", bold=True)
         self.put(1, self.left + 9, "/ " + self.tr("Installer") + "  " + __version__, "text")
         self.put(1, self.left + self.width - 25, self.ui.language + "  ·  " + ("●" if not self.ui.animate else "◉●◉○"[int(time.monotonic() * 3) % 4]), "accent")
-        self.put(2, self.left + 2, self.tr(title), "text", self.width - 4, True)
+        heading = (self.tr("PREVIEW") + " · " if getattr(self.ui, "preview", False) else "") + self.tr(title)
+        self.put(2, self.left + 2, heading, "text", self.width - 4, True)
         self.put(3, self.left + 2, "─" * (self.width - 4), "muted")
         if self.wizard:
             number, total, name = self.wizard

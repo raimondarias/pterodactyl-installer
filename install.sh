@@ -2,10 +2,11 @@
 # Online bootstrap: ask first, then fetch only the selected language package.
 set -Eeuo pipefail
 REPOSITORY="raimondarias/pterodactyl-installer"
-VERSION="1.0.0.beta"
+VERSION="1.1.0"
 language=""
 plain_mode=0
 animations=1
+preview_mode=0
 bootstrap_active=0
 download_pid=""
 WORK_DIR=""
@@ -35,6 +36,7 @@ while (($#)); do
             language="$2"; shift 2 ;;
         --plain) plain_mode=1; forwarded+=("$1"); shift ;;
         --no-animation) animations=0; forwarded+=("$1"); shift ;;
+        --preview) preview_mode=1; forwarded+=("$1"); shift ;;
         --version) printf 'ptero-installer %s\n' "$VERSION"; exit 0 ;;
         --help|-h)
             printf '%s\n' 'Ptero Installer — online language bootstrap' \
@@ -150,7 +152,7 @@ message() {
 }
 command -v curl >/dev/null 2>&1 || { message curl >&2; exit 1; }
 if ! command -v python3 >/dev/null 2>&1; then
-    if [[ "$EUID" -ne 0 ]] || ! command -v apt-get >/dev/null 2>&1; then
+    if [[ "$preview_mode" == 1 || "$EUID" -ne 0 ]] || ! command -v apt-get >/dev/null 2>&1; then
         message python >&2; exit 1
     fi
     message runtime

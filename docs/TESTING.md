@@ -41,6 +41,12 @@ The online distribution test doubles only GitHub transport; it executes the actu
 
 Optional checks are explicitly skipped if the corresponding client binary is absent. ShellCheck is used if installed; Bash syntax is always checked. The current verification also ran a separately downloaded official ShellCheck binary in a temporary directory, with the GitHub asset hash verified.
 
+## Preview isolation
+
+The simulator reuses the real Panel and Wings connection forms, but has no service runner or deployment paths. Tests deny subprocess execution, network sockets, HTTP requests and filesystem writes while completing the tour in every language. A 96-combination form matrix exercises simple/advanced, standalone/Docker, MariaDB/MySQL, IP/domain and local/existing/deferred game SQL. Both Bash launchers are tested with Python absent and a tripwire APT executable, including root execution.
+
+An additional real PTY walkthrough enters an invalid domain, corrects it, completes the administrator form, types the install confirmation, observes multiple animated frames, returns to the preview overview and checks terminal restoration. The full simulated lifecycle covers all 22 menu actions, separate SQL retention and restore prerequisites.
+
 ## Full deployment: still required
 
 Use disposable VPSes with systemd and working Docker, plus real DNS names and an SMTP test account. Automated command simulations and upstream artifact validation do not establish that every package/service/network combination works end to end.

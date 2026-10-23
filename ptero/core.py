@@ -28,6 +28,8 @@ import urllib.request
 import uuid
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
+from . import __version__
+
 PANEL_VERSION = "v2.0.0-beta.2"
 WINGS_VERSION = "v1.13.4"
 PROJECT = "ptero-installer"
@@ -290,7 +292,7 @@ class Installer:
 
     def load(self, path):
         state = read_json(path)
-        if state.get("schema") != SCHEMA or state.get("owner") != PROJECT:
+        if not isinstance(state, dict) or state.get("schema") != SCHEMA or state.get("owner") != PROJECT:
             raise InstallerError("La instalación o copia no pertenece a este instalador.")
         if Path(path) == self.p.wings_state and self.p.config.is_file():
             text = self.p.config.read_text()
@@ -306,9 +308,15 @@ class Installer:
         if not self.p.state.is_file():
             raise InstallerError("Install the Panel first. Start with Install Panel or Install Panel and Wings.")
         state = self.load(self.p.state)
+        settings = state.get("game_database", {})
+        credentials = [state.get("db_password"), state.get("mail_password", ""), state.get("redis_password", "")]
+        if not isinstance(settings, dict) or not all(isinstance(value, str) for value in credentials):
+            raise InstallerError("La instalación o copia no pertenece a este instalador.")
+        if not isinstance(settings.get("password", ""), str):
+            raise InstallerError("La instalación o copia no pertenece a este instalador.")
         self.run.secrets.update([state["db_password"], state.get("mail_password", "")])
         self.run.secrets.add(state.get("redis_password", ""))
-        self.run.secrets.add(state.get("game_database", {}).get("password", ""))
+        self.run.secrets.add(settings.get("password", ""))
         return state
 
     def save_panel(self, state):
@@ -428,7 +436,7 @@ class Installer:
         self.run.run(["docker", "info"], label="Verificando Docker")
 
     def fetch(self, url, limit=8 * 1024 * 1024):
-        request = urllib.request.Request(url, headers={"User-Agent": "ptero-installer/1.0", "Accept": "application/json"})
+        request = urllib.request.Request(url, headers={"User-Agent": "ptero-installer/" + __version__, "Accept": "application/json"})
         try:
             with urllib.request.urlopen(request, timeout=45) as response:
                 result = response.read(limit + 1)
@@ -541,6 +549,11 @@ class Installer:
                                                  lambda s: s in ("tls", "ssl", "null")))
         self.run.secrets.add(state["mail_password"])
 
+    def existing_game_database(self):
+        from .game_database import GameDatabase
+        database = GameDatabase(self)
+        return database.load() if database.state_file.exists() else None
+
     def install_panel(self):
         self.check_host()
         if self.p.state.exists():
@@ -648,6 +661,7 @@ class Installer:
                 "\n[Install]\nWantedBy=multi-user.target\n")
 
     def install_wings(self):
+        self.ui.step(1, 3, "Wings installation")
         self.check_host(wings=True)
         if self.p.wings_state.exists():
             state = self.load(self.p.wings_state)
@@ -669,6 +683,7 @@ class Installer:
             ("standalone", "Standalone daemon (Recommended)", "A systemd service managing Docker game containers"),
             ("docker", "Docker container", "A Wings container with host networking and Docker socket access")])
         self.ui.confirm("INSTALAR WINGS")
+        self.ui.step(2, 3, "Deploying Wings")
         self.docker()
         if method == "docker":
             from .wings import DockerWings
@@ -697,19 +712,10 @@ class Installer:
 
     def configure_wings(self):
         state = self.load(self.p.wings_state)
-        self.ui.say("En el Panel: Admin → Locations → crea ubicación; Nodes → crea nodo → Configuration.")
-        self.ui.say("Configura dominio, puertos API/SFTP, memoria, disco y allocations con la IP del nodo.")
-        self.ui.say("El token solicitado es el de Auto-Deploy; se introducirá oculto.")
-        url = self.ui.ask("URL del Panel", validator=valid_url).rstrip("/")
-        if url.startswith("http:"):
-            known = self.panel_state() if self.p.state.exists() else None
-            if not known or known["url"] != url:
-                if not self.ui.yes("The Panel uses HTTP. Continue linking this node without HTTPS?"):
-                    raise Cancelled("Node linking cancelled.")
-        node = self.ui.ask("ID numérico del nodo", validator=lambda s: s.isdigit() and int(s) > 0)
-        token = self.ui.ask("Token Auto-Deploy", secret=True, validator=lambda s: bool(s) and not any(c.isspace() for c in s))
-        self.run.secrets.add(token)
-        self.ui.confirm("CONFIGURAR WINGS")
+        self.ui.step(3, 3, "Node connection")
+        from .node_plan import connection
+        known = self.panel_state() if self.p.state.exists() else None
+        url, node, token = connection(self, known["url"] if known else None)
         if self.p.config.exists():
             self.ui.say("Se genera una configuración nueva. Reaplica tus ajustes manuales desde la copia si los necesitas.", "warn")
             self.backup_wings()
@@ -718,7 +724,7 @@ class Installer:
         endpoint = url + f"/api/application/nodes/{node}/configuration"
         request = urllib.request.Request(endpoint, headers={
             "Authorization": "Bearer " + token, "Accept": "application/vnd.pterodactyl.v1+json",
-            "User-Agent": "ptero-installer/1.0"})
+            "User-Agent": "ptero-installer/" + __version__})
         try:
             with self.ui.busy("Obteniendo configuración del nodo"), urllib.request.build_opener(NoRedirect()).open(request, timeout=30) as response:
                 body = response.read(1024 * 1024 + 1)

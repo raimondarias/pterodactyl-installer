@@ -1,12 +1,12 @@
-# Verification report — Ptero Installer 1.0.0.beta
+# Verification report — Ptero Installer 1.1.0
 
 Date: 23 October 2026.
 
 | Check | Result |
 | --- | --- |
-| Local unittest suite | **158 tests passed**, no failures or skips in this environment |
+| Local unittest suite | **170 tests passed**, no failures or skips in this environment |
 | Guided simple setup matrix | Both Panel methods × both database engines × IP/domain × all three languages |
-| Language catalogue | 529 messages with complete en/es/pt-BR entries and matching placeholders |
+| Language catalogue | 568 messages with complete en/es/pt-BR entries and matching placeholders |
 | Bash syntax / Python compilation | Passed |
 | Online language bootstrap | Real Bash + Python runtime with GitHub transport fixtures: English first question, only selected folder, one language question, immutable commit and clean temporary-directory removal |
 | Download rejection | Missing packages, wrong language, bad checksum, traversal, absolute paths, links, devices and duplicate archive entries rejected |
@@ -18,7 +18,10 @@ Date: 23 October 2026.
 | Plan/password review | Review and generated credentials require acknowledgement before continuing |
 | Interactive animation | Multiple actual ncurses activity frames captured in a real pseudoterminal; reduced-motion/plain fallbacks checked |
 | TUI screenshots | Captured from actual ncurses buffers; SVG render visually reviewed |
-| Preview | Passed without root in all three languages |
+| Full preview | All 22 simulated actions; 96 Panel form combinations; en/es/pt-BR tours with subprocess, HTTP/socket and filesystem mutation APIs denied |
+| Preview bootstrap | Both launchers refuse to install missing Python in preview mode, including root; APT tripwire remains untouched |
+| Interactive preview | Real PTY: invalid-domain correction, masked administrator password, typed confirmation, animated deployment, dashboard return and terminal restoration |
+| Corrupt state shape | Lists, scalars and malformed nested credentials reported as invalid without overwriting them |
 | Single-file launcher | Built, payload checksum verified, extracted and executed `--version` successfully |
 | Real Compose parser | Passed for MariaDB Panel, MySQL Panel, both game SQL engines and Docker Wings |
 | Game SQL setup | One engine selection, both Panel backends, local/remote/skip, custom credentials, private report, ownership checks and retry |
@@ -34,7 +37,7 @@ Date: 23 October 2026.
 | Real Wings configuration | Accepted installer JSON/YAML against a temporary local mock API |
 | Real Panel archive | Downloaded, official SHA-256 verified, safely extracted, expected files checked |
 | Official OCI images | Panel and Wings manifests checked for amd64 and arm64 |
-| Repository endpoints | MariaDB 11.4 Ubuntu jammy and MySQL 8.4 Debian trixie amd64 indexes reachable |
+| Repository endpoints | MariaDB 11.4 Ubuntu jammy and MySQL 8.4 Debian trixie amd64 indexes reachable on 21 October 2026 |
 | ShellCheck | **Passed**, v0.11.0 official binary downloaded into a temporary directory and verified using GitHub asset SHA-256; not installed system-wide |
 | Complete deployment | **Not performed:** no available Docker daemon; no clean native package deployment |
 | Public DNS/TLS, SMTP and game server | **Not performed:** requires disposable VPSes and real domains/accounts |
@@ -47,4 +50,4 @@ Local distribution tests use GitHub transport fixtures, including an actual PTY 
 
 See [ShellCheck output](shellcheck.txt), [local output](local-tests.txt), [test procedure](../docs/TESTING.md), and [UI previews](../docs/preview-en.txt).
 
-Upstream release/binary/manifests were last checked on 21 October 2026; this revision changes the interface and prerequisites, not the selected upstream versions.
+Upstream releases, binaries, archive and OCI manifests were rechecked on 23 October 2026 for this release. The repository endpoint checks in the table were last performed on 21 October 2026. The published-distribution log identifies the exact public snapshot tested; it is updated after pushing the release code.

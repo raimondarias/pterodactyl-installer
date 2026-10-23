@@ -1,1 +1,6 @@
-ShellCheck v0.11.0; official GitHub asset SHA-256 verified.
+ShellCheck - shell script analysis tool
+version: 0.11.0
+license: GNU General Public License, version 3
+website: https://www.shellcheck.net
+PASS: install.sh scripts/run_local.sh tests/run.sh
+Official v0.11.0 GitHub asset SHA-256 verified; binary used from /tmp without system installation.

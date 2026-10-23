@@ -1585,5 +1585,122 @@
   },
   "Not detected": {
     "en": "Not detected"
+  },
+  "PREVIEW": {
+    "en": "PREVIEW"
+  },
+  "Simulation: {value}": {
+    "en": "Simulation: {value}"
+  },
+  "Simulation complete": {
+    "en": "Simulation complete"
+  },
+  "Simulation uses a sample public IP; no address is detected.": {
+    "en": "Simulation uses a sample public IP; no address is detected."
+  },
+  "All statuses and checks in this session are simulated.": {
+    "en": "All statuses and checks in this session are simulated."
+  },
+  "Simulation credentials disappear when you exit.": {
+    "en": "Simulation credentials disappear when you exit."
+  },
+  "Preparing dependencies": {
+    "en": "Preparing dependencies"
+  },
+  "Preparing the database and cache": {
+    "en": "Preparing the database and cache"
+  },
+  "Deploying Panel files": {
+    "en": "Deploying Panel files"
+  },
+  "Running migrations and creating the administrator": {
+    "en": "Running migrations and creating the administrator"
+  },
+  "Configuring the web server and scheduler": {
+    "en": "Configuring the web server and scheduler"
+  },
+  "Checking simulated services": {
+    "en": "Checking simulated services"
+  },
+  "Preparing the game database host": {
+    "en": "Preparing the game database host"
+  },
+  "Registering the database host in the Panel": {
+    "en": "Registering the database host in the Panel"
+  },
+  "Deploying Wings": {
+    "en": "Deploying Wings"
+  },
+  "Fetching simulated node configuration": {
+    "en": "Fetching simulated node configuration"
+  },
+  "Simulating certificate issuance": {
+    "en": "Simulating certificate issuance"
+  },
+  "Saving simulated SMTP settings": {
+    "en": "Saving simulated SMTP settings"
+  },
+  "Creating a simulated backup": {
+    "en": "Creating a simulated backup"
+  },
+  "Verifying the simulated backup": {
+    "en": "Verifying the simulated backup"
+  },
+  "Backup stored in preview memory only.": {
+    "en": "Backup stored in preview memory only."
+  },
+  "Create a simulated Panel backup first.": {
+    "en": "Create a simulated Panel backup first."
+  },
+  "Remove the simulated Panel before restoring into an empty destination.": {
+    "en": "Remove the simulated Panel before restoring into an empty destination."
+  },
+  "Restoring the simulated Panel": {
+    "en": "Restoring the simulated Panel"
+  },
+  "Removing simulated components": {
+    "en": "Removing simulated components"
+  },
+  "Deploying the simulated update": {
+    "en": "Deploying the simulated update"
+  },
+  "Restarting simulated services": {
+    "en": "Restarting simulated services"
+  },
+  "RESTORE PREVIEW": {
+    "en": "RESTORE PREVIEW"
+  },
+  "REMOVE PREVIEW": {
+    "en": "REMOVE PREVIEW"
+  },
+  "UPDATE PREVIEW": {
+    "en": "UPDATE PREVIEW"
+  },
+  "RESTART PREVIEW": {
+    "en": "RESTART PREVIEW"
+  },
+  "RESET PREVIEW": {
+    "en": "RESET PREVIEW"
+  },
+  "Reset preview": {
+    "en": "Reset preview"
+  },
+  "Clear simulated components and backups.": {
+    "en": "Clear simulated components and backups."
+  },
+  "The simulated Panel already exists. Use maintenance or reset the preview.": {
+    "en": "The simulated Panel already exists. Use maintenance or reset the preview."
+  },
+  "The simulated Wings already exists. Use maintenance or reset the preview.": {
+    "en": "The simulated Wings already exists. Use maintenance or reset the preview."
+  },
+  "Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation": {
+    "en": "Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation"
+  },
+  "Wings installation": {
+    "en": "Wings installation"
+  },
+  "Node connection": {
+    "en": "Node connection"
   }
 }

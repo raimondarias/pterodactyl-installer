@@ -349,3 +349,42 @@ Architecture: {value}|||Arquitectura: {value}|||Arquitetura: {value}
 Free disk space: {value} GiB|||Espacio libre: {value} GiB|||Espaço livre: {value} GiB
 System manager: {value}|||Gestor del sistema: {value}|||Gerenciador do sistema: {value}
 Not detected|||No detectado|||Não detectado
+PREVIEW|||SIMULACIÓN|||SIMULAÇÃO
+Simulation: {value}|||Simulación: {value}|||Simulação: {value}
+Simulation complete|||Simulación completada|||Simulação concluída
+Simulation uses a sample public IP; no address is detected.|||La simulación utiliza una IP pública de ejemplo; no detecta la dirección real.|||A simulação usa um IP público de exemplo; não detecta o endereço real.
+All statuses and checks in this session are simulated.|||Todos los estados y las comprobaciones de esta sesión son simulados.|||Todos os estados e verificações desta sessão são simulados.
+Simulation credentials disappear when you exit.|||Las credenciales de simulación desaparecen al salir.|||As credenciais de simulação desaparecem ao sair.
+Preparing dependencies|||Preparando dependencias|||Preparando dependências
+Preparing the database and cache|||Preparando la base de datos y la caché|||Preparando o banco de dados e o cache
+Deploying Panel files|||Desplegando los archivos del Panel|||Implantando os arquivos do Painel
+Running migrations and creating the administrator|||Ejecutando migraciones y creando el administrador|||Executando migrações e criando o administrador
+Configuring the web server and scheduler|||Configurando el servidor web y el programador de tareas|||Configurando o servidor web e o agendador
+Checking simulated services|||Comprobando servicios simulados|||Verificando serviços simulados
+Preparing the game database host|||Preparando el host de bases de juegos|||Preparando o host de bancos de jogos
+Registering the database host in the Panel|||Registrando el host de bases de datos en el Panel|||Registrando o host de bancos de dados no Painel
+Deploying Wings|||Desplegando Wings|||Implantando o Wings
+Fetching simulated node configuration|||Obteniendo la configuración simulada del nodo|||Obtendo a configuração simulada do node
+Simulating certificate issuance|||Simulando la emisión del certificado|||Simulando a emissão do certificado
+Saving simulated SMTP settings|||Guardando la configuración SMTP simulada|||Salvando as configurações SMTP simuladas
+Creating a simulated backup|||Creando una copia de seguridad simulada|||Criando um backup simulado
+Verifying the simulated backup|||Verificando la copia de seguridad simulada|||Verificando o backup simulado
+Backup stored in preview memory only.|||Copia guardada únicamente en la memoria de la simulación.|||Backup salvo somente na memória da simulação.
+Create a simulated Panel backup first.|||Primero crea una copia de seguridad simulada del Panel.|||Primeiro crie um backup simulado do Painel.
+Remove the simulated Panel before restoring into an empty destination.|||Elimina el Panel simulado antes de restaurar en un destino vacío.|||Remova o Painel simulado antes de restaurar em um destino vazio.
+Restoring the simulated Panel|||Restaurando el Panel simulado|||Restaurando o Painel simulado
+Removing simulated components|||Eliminando componentes simulados|||Removendo componentes simulados
+Deploying the simulated update|||Desplegando la actualización simulada|||Implantando a atualização simulada
+Restarting simulated services|||Reiniciando servicios simulados|||Reiniciando serviços simulados
+RESTORE PREVIEW|||RESTAURAR SIMULACIÓN|||RESTAURAR SIMULAÇÃO
+REMOVE PREVIEW|||ELIMINAR SIMULACIÓN|||REMOVER SIMULAÇÃO
+UPDATE PREVIEW|||ACTUALIZAR SIMULACIÓN|||ATUALIZAR SIMULAÇÃO
+RESTART PREVIEW|||REINICIAR SIMULACIÓN|||REINICIAR SIMULAÇÃO
+RESET PREVIEW|||REINICIAR DEMOSTRACIÓN|||REINICIAR DEMONSTRAÇÃO
+Reset preview|||Reiniciar demostración|||Reiniciar demonstração
+Clear simulated components and backups.|||Vacía los componentes y las copias simuladas.|||Limpa os componentes e backups simulados.
+The simulated Panel already exists. Use maintenance or reset the preview.|||El Panel simulado ya existe. Usa mantenimiento o reinicia la demostración.|||O Painel simulado já existe. Use manutenção ou reinicie a demonstração.
+The simulated Wings already exists. Use maintenance or reset the preview.|||Wings simulado ya existe. Usa mantenimiento o reinicia la demostración.|||O Wings simulado já existe. Use manutenção ou reinicie a demonstração.
+Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation|||Panel: TCP 80/443 · Wings: TCP 8080/2022 · Juegos: según allocations|||Painel: TCP 80/443 · Wings: TCP 8080/2022 · Jogos: conforme allocations
+Wings installation|||Instalación de Wings|||Instalação do Wings
+Node connection|||Conexión del nodo|||Conexão do node

@@ -119,7 +119,7 @@ def main(argv=None):
                 select_language(ui)
             if args.preview:
                 from .preview import show
-                show(ui)
+                show(ui, args.action)
                 return 0
             if os.geteuid() != 0:
                 raise InstallerError("Run with sudo or as root.")

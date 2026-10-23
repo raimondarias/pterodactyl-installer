@@ -215,7 +215,11 @@ class PseudoTerminalTests(BaseTest):
         original = termios.tcgetattr(slave)
         process = subprocess.Popen([sys.executable, "-c", code], cwd=ROOT, stdin=slave, stdout=slave, stderr=slave,
                                    env={**os.environ, "TERM": "xterm-256color", "LANG": "C.UTF-8", **(env or {})})
-        self.addCleanup(lambda: process.poll() is None and process.kill())
+        def stop():
+            if process.poll() is None:
+                process.kill()
+            process.wait(timeout=5)
+        self.addCleanup(stop)
         self.addCleanup(lambda: os.close(master))
         self.addCleanup(lambda: os.close(slave))
         return process, master, slave, original
@@ -228,6 +232,7 @@ class PseudoTerminalTests(BaseTest):
             if ready:
                 data.extend(os.read(master, 65536))
                 if marker.encode() in data:
+                    process.tui_output = getattr(process, "tui_output", b"") + bytes(data)
                     return bytes(data)
             elif process.poll() is not None:
                 break
@@ -316,3 +321,55 @@ class PseudoTerminalTests(BaseTest):
         output = self.receive(process, master, "ANIMATION_FINISHED").decode("utf-8", "replace")
         self.assertGreaterEqual(sum(frame in output for frame in "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"), 2)
         self.assertEqual(process.wait(timeout=5), 0)
+
+    def test_preview_real_forms_validation_confirmation_and_simulated_install(self):
+        code = ("import os;os.environ.pop('NO_COLOR',None);from ptero.cli import main;"
+                "raise SystemExit(main(['--language','en','--preview']))")
+        process, master, slave, original = self.spawn(code)
+        self.receive(process, master, "Interface preview")
+        os.write(master, b"2\r")
+        self.receive(process, master, "Setup experience")
+        os.write(master, b"\r")
+        self.receive(process, master, "Panel deployment")
+        os.write(master, b"\r")
+        self.receive(process, master, "Database engine")
+        os.write(master, b"\r")
+        self.receive(process, master, "beta release")
+        os.write(master, b"1\r")
+        self.receive(process, master, "How will you access")
+        os.write(master, b"\r")
+        self.receive(process, master, "without http")
+        os.write(master, b"invalid\r")
+        self.receive(process, master, "Invalid value")
+        os.write(master, b"\x15panel.example.com\r")
+        self.receive(process, master, "Enable HTTPS")
+        os.write(master, b"\r")
+        self.receive(process, master, "Does DNS point")
+        os.write(master, b"1\r")
+        self.receive(process, master, "Administrator email")
+        os.write(master, b"admin@example.com\r")
+        self.receive(process, master, "username")
+        os.write(master, b"\r")
+        self.receive(process, master, "empty generates one")
+        os.write(master, b"Hidden-test-password-123!\r")
+        self.receive(process, master, "Confirm")
+        os.write(master, b"Hidden-test-password-123!\r")
+        self.receive(process, master, "Set up SMTP")
+        os.write(master, b"\r")
+        self.receive(process, master, "Where are the game")
+        os.write(master, b"\r")
+        self.receive(process, master, "Ready to install")
+        os.write(master, b"\r")
+        self.receive(process, master, "Type INSTALL PANEL")
+        os.write(master, b"INSTALL PANEL\r")
+        output = self.receive(process, master, "Simulation complete", timeout=15)
+        self.assertIn(b"PREVIEW", process.tui_output)
+        self.assertNotIn(b"Hidden-test-password-123!", process.tui_output)
+        self.assertGreaterEqual(sum(frame.encode() in output for frame in "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏"), 2)
+        os.write(master, b"\r")
+        self.receive(process, master, "Interface preview")
+        os.write(master, b"q")
+        self.assertEqual(process.wait(timeout=5), 0)
+        restored = termios.tcgetattr(slave)
+        for bit in (termios.ECHO, termios.ICANON):
+            self.assertEqual(restored[3] & bit, original[3] & bit)

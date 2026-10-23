@@ -1585,5 +1585,122 @@
   },
   "Not detected": {
     "pt-BR": "Não detectado"
+  },
+  "PREVIEW": {
+    "pt-BR": "SIMULAÇÃO"
+  },
+  "Simulation: {value}": {
+    "pt-BR": "Simulação: {value}"
+  },
+  "Simulation complete": {
+    "pt-BR": "Simulação concluída"
+  },
+  "Simulation uses a sample public IP; no address is detected.": {
+    "pt-BR": "A simulação usa um IP público de exemplo; não detecta o endereço real."
+  },
+  "All statuses and checks in this session are simulated.": {
+    "pt-BR": "Todos os estados e verificações desta sessão são simulados."
+  },
+  "Simulation credentials disappear when you exit.": {
+    "pt-BR": "As credenciais de simulação desaparecem ao sair."
+  },
+  "Preparing dependencies": {
+    "pt-BR": "Preparando dependências"
+  },
+  "Preparing the database and cache": {
+    "pt-BR": "Preparando o banco de dados e o cache"
+  },
+  "Deploying Panel files": {
+    "pt-BR": "Implantando os arquivos do Painel"
+  },
+  "Running migrations and creating the administrator": {
+    "pt-BR": "Executando migrações e criando o administrador"
+  },
+  "Configuring the web server and scheduler": {
+    "pt-BR": "Configurando o servidor web e o agendador"
+  },
+  "Checking simulated services": {
+    "pt-BR": "Verificando serviços simulados"
+  },
+  "Preparing the game database host": {
+    "pt-BR": "Preparando o host de bancos de jogos"
+  },
+  "Registering the database host in the Panel": {
+    "pt-BR": "Registrando o host de bancos de dados no Painel"
+  },
+  "Deploying Wings": {
+    "pt-BR": "Implantando o Wings"
+  },
+  "Fetching simulated node configuration": {
+    "pt-BR": "Obtendo a configuração simulada do node"
+  },
+  "Simulating certificate issuance": {
+    "pt-BR": "Simulando a emissão do certificado"
+  },
+  "Saving simulated SMTP settings": {
+    "pt-BR": "Salvando as configurações SMTP simuladas"
+  },
+  "Creating a simulated backup": {
+    "pt-BR": "Criando um backup simulado"
+  },
+  "Verifying the simulated backup": {
+    "pt-BR": "Verificando o backup simulado"
+  },
+  "Backup stored in preview memory only.": {
+    "pt-BR": "Backup salvo somente na memória da simulação."
+  },
+  "Create a simulated Panel backup first.": {
+    "pt-BR": "Primeiro crie um backup simulado do Painel."
+  },
+  "Remove the simulated Panel before restoring into an empty destination.": {
+    "pt-BR": "Remova o Painel simulado antes de restaurar em um destino vazio."
+  },
+  "Restoring the simulated Panel": {
+    "pt-BR": "Restaurando o Painel simulado"
+  },
+  "Removing simulated components": {
+    "pt-BR": "Removendo componentes simulados"
+  },
+  "Deploying the simulated update": {
+    "pt-BR": "Implantando a atualização simulada"
+  },
+  "Restarting simulated services": {
+    "pt-BR": "Reiniciando serviços simulados"
+  },
+  "RESTORE PREVIEW": {
+    "pt-BR": "RESTAURAR SIMULAÇÃO"
+  },
+  "REMOVE PREVIEW": {
+    "pt-BR": "REMOVER SIMULAÇÃO"
+  },
+  "UPDATE PREVIEW": {
+    "pt-BR": "ATUALIZAR SIMULAÇÃO"
+  },
+  "RESTART PREVIEW": {
+    "pt-BR": "REINICIAR SIMULAÇÃO"
+  },
+  "RESET PREVIEW": {
+    "pt-BR": "REINICIAR DEMONSTRAÇÃO"
+  },
+  "Reset preview": {
+    "pt-BR": "Reiniciar demonstração"
+  },
+  "Clear simulated components and backups.": {
+    "pt-BR": "Limpa os componentes e backups simulados."
+  },
+  "The simulated Panel already exists. Use maintenance or reset the preview.": {
+    "pt-BR": "O Painel simulado já existe. Use manutenção ou reinicie a demonstração."
+  },
+  "The simulated Wings already exists. Use maintenance or reset the preview.": {
+    "pt-BR": "O Wings simulado já existe. Use manutenção ou reinicie a demonstração."
+  },
+  "Panel: TCP 80/443 · Wings: TCP 8080/2022 · Games: per allocation": {
+    "pt-BR": "Painel: TCP 80/443 · Wings: TCP 8080/2022 · Jogos: conforme allocations"
+  },
+  "Wings installation": {
+    "pt-BR": "Instalação do Wings"
+  },
+  "Node connection": {
+    "pt-BR": "Conexão do node"
   }
 }

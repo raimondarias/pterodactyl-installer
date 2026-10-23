@@ -97,6 +97,17 @@ test_root_and_systemd_required (test_installer.ValidationTests) ... ok
 test_supported_host_detection (test_installer.ValidationTests) ... ok
 test_urls (test_installer.ValidationTests) ... ok
 test_versions_accept_only_correct_major (test_installer.ValidationTests) ... ok
+test_actual_panel_form_matrix_and_game_database_modes (test_preview.SimulationTests) ... ok
+test_both_launchers_refuse_to_install_missing_python_in_preview_even_as_root (test_preview.SimulationTests) ... ok
+test_cancel_does_not_commit_partial_panel_plan (test_preview.SimulationTests) ... ok
+test_every_menu_action_has_a_simulated_path_and_lifecycle (test_preview.SimulationTests) ... ok
+test_fresh_preview_prerequisites_fail_before_questions (test_preview.SimulationTests) ... ok
+test_full_tour_all_languages_cannot_use_system_network_or_files (test_preview.SimulationTests) ... ok
+test_generated_admin_password_is_displayed_and_not_saved_in_state (test_preview.SimulationTests) ... ok
+test_noninteractive_tour_does_not_ask_for_input (test_preview.SimulationTests) ... ok
+test_restore_requires_backup_and_empty_destination (test_preview.SimulationTests) ... ok
+test_invalid_nested_credentials_are_reported_without_overwriting (test_preview.StateShapeTests) ... ok
+test_json_lists_and_scalars_are_invalid_dashboard_state_without_writes (test_preview.StateShapeTests) ... ok
 test_configured_and_incomplete_states_are_distinguished (test_tui.NavigationTests) ... ok
 test_corrupt_state_is_a_dashboard_condition_and_is_not_overwritten (test_tui.NavigationTests) ... ok
 test_direct_missing_panel_has_an_actionable_error (test_tui.NavigationTests) ... ok
@@ -109,6 +120,7 @@ test_bootstrap_arrows_download_only_selected_package_and_open_real_tui (test_tui
 test_bootstrap_selector_cancels_before_any_language_download (test_tui.PseudoTerminalTests) ... ok
 test_busy_animation_updates_real_terminal_and_restores_it (test_tui.PseudoTerminalTests) ... ok
 test_plain_flag_and_dumb_terminal_do_not_enter_alternate_screen (test_tui.PseudoTerminalTests) ... ok
+test_preview_real_forms_validation_confirmation_and_simulated_install (test_tui.PseudoTerminalTests) ... ok
 test_real_menu_disabled_action_diagnostics_and_clean_exit (test_tui.PseudoTerminalTests) ... ok
 test_resize_and_sigint_restore_real_terminal (test_tui.PseudoTerminalTests) ... ok
 test_arrow_navigation_and_numeric_shortcuts (test_tui.WidgetTests) ... ok
@@ -158,7 +170,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 158 tests in 13.190s
+Ran 170 tests in 18.422s
 
 OK
-ShellCheck unavailable; Bash syntax validation passed.
