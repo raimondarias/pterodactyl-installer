@@ -334,7 +334,7 @@ class NativeTests(BaseTest):
         for tls, maintenance in ((False, False), (True, False), (True, True)):
             self.state["tls"] = tls
             config = prefix / "nginx.conf"
-            config.write_text(f"error_log stderr;\npid {prefix}/nginx.pid;\nevents {{}}\nhttp {{\n{self.backend.nginx_config(maintenance)}\n}}")
+            config.write_text(f"error_log stderr;\npid {prefix}/nginx.pid;\nevents {{}}\nhttp {{\naccess_log off;\n{self.backend.nginx_config(maintenance)}\n}}")
             result = subprocess.run([nginx, "-t", "-p", str(prefix), "-c", str(config)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stderr)
 
