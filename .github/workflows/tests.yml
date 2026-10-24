@@ -9,6 +9,11 @@ on:
         type: choice
         default: all
         options: [all, ubuntu-22.04, ubuntu-24.04, ubuntu-26.04, debian-12, debian-13]
+      target_method:
+        description: 'Panel deployment method to validate'
+        type: choice
+        default: all
+        options: [all, standalone, docker]
 permissions:
   contents: read
 jobs:
@@ -31,7 +36,7 @@ jobs:
       max-parallel: 6
       matrix:
         os: ${{ fromJSON(inputs.target_os && inputs.target_os != 'all' && format('["{0}"]', inputs.target_os) || '["ubuntu-22.04","ubuntu-24.04","ubuntu-26.04","debian-12","debian-13"]') }}
-        method: [standalone, docker]
+        method: ${{ fromJSON(inputs.target_method && inputs.target_method != 'all' && format('["{0}"]', inputs.target_method) || '["standalone","docker"]') }}
         engine: [mariadb, mysql]
         exclude:
           - os: ubuntu-26.04
