@@ -74,3 +74,5 @@ The host regression suite uses temporary processes and command simulations. Sepa
 The workflow in `.github/workflows/tests.yml` runs regressions on push/PR and provides the full deployment matrix through manual dispatch. A configured matrix is not a claim that every combination has passed; actual completed runs and the local domain test are recorded separately.
 
 Ubuntu 26.04 is covered by Docker integration. Fresh standalone setup needs a separately configured PHP 8.3/8.4 package source: the tested Ondřej PPA currently has no resolute Release index. The installer stops before package changes when that prerequisite is missing. The automated fresh-VM matrix excludes those two unavailable native cases.
+
+The CI guest keeps an emulated VGA device while its graphical display stays disabled, avoiding the Debian 13 GRUB gfxterm/serial boot issue ([Debian #1111240](https://bugs.debian.org/1111240)). The NoCloud seed uses a virtio block device. Boot failures include a bounded readiness timeout, console diagnostics and a failed-case JSON record.

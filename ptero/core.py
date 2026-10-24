@@ -798,7 +798,7 @@ class Installer:
         if state.get("method") == "docker":
             from .wings import DockerWings
             return DockerWings(self, state).start()
-        self.run.run(["systemctl", "enable", "--now", "wings"], label="Activando Wings")
+        self.run.run(["systemctl", "enable", "wings"], label="Activando Wings")
         self.run.run(["systemctl", "restart", "wings"], label="Iniciando Wings con la configuración actual")
         # systemctl start puede devolver éxito antes de que Wings termine de arrancar.
         with self.ui.busy("Comprobando estabilidad inicial de Wings"):

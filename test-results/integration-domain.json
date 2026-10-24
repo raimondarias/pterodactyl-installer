@@ -21,5 +21,6 @@
   "external_s3_independent_sftp": "not tested; isolated infrastructure selected",
   "administrator_password_hash_after_restore": "passed",
   "native_migrations_queue_health_report": "passed",
-  "docker_mysql_migrations_queue_health_report": "passed"
+  "docker_mysql_migrations_queue_health_report": "passed",
+  "debian13_official_cloud_image_vga_seed_ssh_boot": "passed"
 }

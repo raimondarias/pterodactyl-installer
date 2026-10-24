@@ -123,7 +123,7 @@ class NativeGameDatabase:
 
     def apparmor(self):
         directory = self.p.root / 'etc/apparmor.d'
-        for name in ('usr.sbin.mysqld', 'usr.sbin.mariadbd'):
+        for name in ('usr.sbin.mysqld', 'usr.sbin.mariadbd', 'mysqld', 'mariadbd'):
             profile = directory / name
             if not profile.is_file() or ('local/' + name) not in profile.read_text():
                 continue

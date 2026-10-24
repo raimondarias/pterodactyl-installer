@@ -64,6 +64,23 @@ class OperationsTests(BaseTest):
         self.assertIn(str(backend.data)+'/** rwk,', text)
         self.assertNotIn('/var/lib/mysql/**', text)
 
+    def test_modern_mariadb_apparmor_profile_gets_scoped_local_rules(self):
+        backend = NativeGameDatabase(GameDatabase(self.installer))
+        directory = self.paths.root/'etc/apparmor.d'
+        directory.mkdir(parents=True)
+        (directory/'mariadbd').write_text('profile mariadbd /usr/sbin/mariadbd {\n include if exists <local/mariadbd>\n}\n')
+        backend.apparmor()
+        self.assertIn(str(backend.data)+'/** rwk,', (directory/'local/mariadbd').read_text())
+        self.assertTrue(any(args[:2]==['apparmor_parser','-r'] for args,_ in self.runner.calls))
+
+    def test_wings_has_one_start_to_avoid_concurrent_bridge_creation(self):
+        self.wings()
+        with patch('ptero.core.time.sleep'):
+            self.installer.start_wings()
+        commands=[args for args,_ in self.runner.calls if args[0]=='systemctl']
+        self.assertIn(['systemctl','enable','wings'], commands)
+        self.assertEqual(sum(args[1]=='restart' or '--now' in args for args in commands), 1)
+
     def test_failed_phase_persists_failure_without_exception_secrets_and_can_resume(self):
         state = {'version': 'v2'}
         saves = []
