@@ -135,7 +135,8 @@ class NativeGameDatabase:
                      '# END PTERO GAME SQL\n')
             previous = re.sub(r'# BEGIN PTERO GAME SQL\n.*?# END PTERO GAME SQL\n?', '', previous, flags=re.S)
             atomic_write(local, previous.rstrip() + '\n' + rules, 0o644)
-            self.run.run(['apparmor_parser', '-r', profile], label='Loading the isolated SQL access rules')
+            # A newly created optional include may be absent from a cached policy.
+            self.run.run(['apparmor_parser', '-r', '-T', profile], label='Loading the isolated SQL access rules')
 
     def install(self, settings):
         if self.manager.state_file.exists():

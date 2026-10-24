@@ -112,6 +112,7 @@ def main():
             if result.returncode:
                 subprocess.run([*ssh, 'tail -160 /var/log/pterodactyl-installer/installer.log'], check=False)
                 subprocess.run([*ssh, 'journalctl -u wings -u ptero-game-sql-native --no-pager -n 60'], check=False)
+                subprocess.run([*ssh, 'journalctl -k --no-pager -n 100'], check=False)
                 raise RuntimeError('Real VM deployment failed')
         except Exception:
             if not ready and (work / 'console.log').exists():
