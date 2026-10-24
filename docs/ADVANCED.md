@@ -14,23 +14,21 @@ Choose the database engine once in the Panel wizard. For local game SQL, select 
 
 The local native instance binds to the private game bridge. Docker remains required for game containers and this bridge, even though SQL itself runs natively. Its service starts after Docker, and its own input rules restrict SQL to local bridges. Game SQL and its credentials remain independent when the Panel is removed.
 
-## Restore game databases and files
+## Panel and Wings-configuration backups
 
-- **Restore game databases** verifies the archive checksum, ownership metadata, original engine/image or native server version, and private network settings. The destination must be empty. Physical restore starts the original image or matching native version, then checks readiness. Original provisioning and game-account credentials remain in the restored SQL data.
-- **Back up game files** freezes only running containers with the Pterodactyl service label, copies the managed volume directory and unfreezes those containers even if archiving fails.
-- **Restore game files** requires stopped games and an empty destination, verifies SHA-256 and safely extracts the archive while preserving file ownership. The initial implementation supports Wings' default `/var/lib/pterodactyl/volumes` directory; custom daemon paths are rejected explicitly.
+Use **Back up Panel** for the Panel application, its SQL database, original encryption keys and persistent configuration. Use **Back up Wings configuration** for the node configuration. Archives have a SHA-256 companion file; retain both. **Restore Panel** checks the archive and requires an empty managed destination with the original deployment method and database engine.
 
-Panel SQL, game SQL and game files are separate restore operations. Restore the original Panel keys and records alongside game SQL to retain encrypted database credentials.
+These tools do not read hosted game volumes, copy game SQL data, or pause game containers. Protect hosted servers through Pterodactyl's backup features or a separate backup system.
 
 ## Encrypted scheduled backups
 
-Use **Schedule encrypted backups**. Choose a local Restic repository, `sftp:user@host:path` or `s3:https://endpoint/bucket`, supply the encryption password, select daily/weekly/hourly and optionally include game files. S3 credentials and the encryption password are stored in private root-only files. SFTP requires preconfigured SSH keys and a verified host key.
+Use **Schedule encrypted backups**. Choose a local Restic repository, `sftp:user@host:path` or `s3:https://endpoint/bucket`, supply the encryption password, select daily/weekly/hourly. The schedule includes the installed Panel and/or Wings configuration. A Wings-only machine can schedule configuration backups without a local Panel. S3 credentials and the encryption password are stored in private root-only files. SFTP requires preconfigured SSH keys and a verified host key.
 
-The installer installs Restic if needed, validates or initializes the encrypted repository and installs `ptero-backup.timer`. A private runtime copy makes scheduled jobs independent of the online launcher's temporary directory. **Run scheduled backup now** performs the same job immediately.
+The installer installs Restic if needed, validates or initializes the encrypted repository and installs `ptero-backup.timer`. A private runtime copy makes scheduled jobs independent of the online launcher's temporary directory. **Run scheduled backup now** performs the same job immediately. Hosted game files and game databases are excluded from every schedule. Older profiles are saved in the current Panel/Wings-only format; obsolete game flags are discarded, with a notice if they were enabled.
 
-When game files are included, games remain paused while the Panel, SQL and files are captured, then resume before uploading. Restic uploads a complete bundle, applies seven daily/four weekly retention within this installation's unique snapshot scope and checks repository integrity. Only successful runs trigger cleanup of older scheduler-created local archives; the latest three runs are retained. Manually created archives are not deleted.
+Restic uploads the installed component archives, applies seven daily/four weekly retention within this installation's unique snapshot scope and checks repository integrity. Only successful runs trigger cleanup of older scheduler-created local archives; the latest three runs are retained. Manually created archives are not deleted.
 
-**Download remote backup** lists this installation's snapshots, restores the selected one into a new private directory and verifies archive checksums. Apply the individual restore commands to empty destinations afterward. Keep the repository password outside the server: the installer cannot recover a lost encryption password.
+**Download remote backup** lists this installation's snapshots, restores the selected one into a new private directory and verifies archive checksums. Game-data snapshots from earlier releases are rejected before Restic restores their files. Downloading an accepted Panel/Wings snapshot does not overwrite an installation. Use **Restore Panel** for Panel recovery; inspect and apply a Wings configuration backup on the matching node. Keep the repository password outside the server: the installer cannot recover a lost encryption password.
 
 ## Resume and health
 

@@ -100,7 +100,7 @@ class UI:
         print(self.paint("╰" + "─" * width + "╯", "36"), flush=True)
 
     def banner(self):
-        self.card("P T E R O   /   I N S T A L L E R", [
+        self.card("Pterodactyl Installer", [
             "Panel v2  ·  Wings  ·  Ubuntu / Debian",
             "Install. Configure. Maintain.",
         ], "A guided setup, from the first question to your first server.")

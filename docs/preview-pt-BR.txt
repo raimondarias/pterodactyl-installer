@@ -1,5 +1,5 @@
 ╭────────────────────────────────────────────────────────────────────────────╮
-│ P T E R O   /   I N S T A L A D O R                                        │
+│ Pterodactyl Installer                                                      │
 │ Instalação guiada, da primeira pergunta ao seu primeiro servidor.          │
 │ Painel v2  ·  Wings  ·  Ubuntu / Debian                                    │
 │ Instale. Configure. Mantenha.                                              │
@@ -112,7 +112,7 @@ INSTALAR PAINEL
 │ Somente prévia. Nenhum pacote, arquivo ou serviço será instalado.          │
 │ 172.30.0.1:3307                                                            │
 │ ptero_games                                                                │
-│ b2f1b159944eff01ad6d6163c6c17dac44840fa66e5959e1b076f717a76c9835           │
+│ fcd808ed2f6c6d473b1cb704e80d9bbc5ea9f24f2c4090b6d22e5faf4c2e18d4           │
 │ As credenciais de simulação desaparecem ao sair.                           │
 ╰────────────────────────────────────────────────────────────────────────────╯
 [1/3] Instalação do Wings
@@ -156,11 +156,6 @@ EMITIR SSL WINGS
 → Simulação: Simulando a emissão do certificado
 [1/1] Simulação: Verificando serviços simulados
 → Simulação: Verificando serviços simulados
-[1/2] Simulação: Criando um backup simulado
-→ Simulação: Criando um backup simulado
-[2/2] Simulação: Verificando o backup simulado
-→ Simulação: Verificando o backup simulado
-Backup salvo somente na memória da simulação.
 [1/2] Simulação: Criando um backup simulado
 → Simulação: Criando um backup simulado
 [2/2] Simulação: Verificando o backup simulado

@@ -1,6 +1,6 @@
-# Ptero Installer
+# Pterodactyl Installer
 
-**1.2.0** · Guided installation and maintenance of Pterodactyl Panel v2 and Wings on Ubuntu and Debian.
+**1.2.1** · Guided installation and maintenance of Pterodactyl Panel v2 and Wings on Ubuntu and Debian.
 
 An interactive terminal interface in **English, Español and Português (Brasil)**, with keyboard navigation, grouped actions, editable forms and animated task progress.
 
@@ -19,8 +19,13 @@ The first question is **“Which language would you like to use?”**. The boots
 - Public IPv4 with HTTP, or a domain/subdomain with optional Let's Encrypt HTTPS.
 - First administrator, optional SMTP and separate game database host registration.
 - Automatic node creation, verified SSH provisioning and resumable installation phases.
-- Native or Docker game SQL; encrypted scheduled backups, game-file copies and guided restores.
+- Native or Docker game SQL host provisioning and automatic Panel registration.
+- Panel and Wings-configuration backups, encrypted schedules and guided Panel recovery.
 - Install, update, diagnose and remove managed components.
+
+Maintenance, backup, removal and node operations are implemented. A fresh machine shows the installation prerequisites for each action; install the required component before using its maintenance tools.
+
+Backups cover the Panel and Wings configuration only. Hosted servers’ files, volumes and databases are managed separately through Pterodactyl or your own backup system.
 
 Panel v2 is currently beta; the wizard requests explicit acceptance. This independent project is not affiliated with Pterodactyl.
 

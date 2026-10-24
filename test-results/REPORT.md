@@ -1,53 +1,33 @@
-# Verification report — 1.2.0
+# Verification report — 1.2.1
 
-23 October 2026. Test results distinguish simulations, real deployment and external infrastructure.
+24 October 2026. This version limits installer backups to **Panel and Wings configuration**. Hosted-server files, worlds and game SQL are outside the installer backup/restore scope. The Panel application database remains part of a Panel backup.
 
 | Coverage | Result |
 | --- | --- |
-| Regression suite | **205 passing tests**, including real PTYs, MariaDB socket lifecycle, PHP/NGINX parsers and encrypted Restic roundtrip |
-| Static checks | Bash syntax, Python compilation and ShellCheck 0.11.0 passed |
-| Languages | **740 messages** in English, Spanish and Brazilian Portuguese; placeholders and reproducible language packages verified |
-| Download bootstrap | English first question; only selected language fetched from an immutable commit; checksum and safe extraction enforced |
-| Public distribution | Real GitHub downloads and ncurses previews in all three languages; mouse selection, language switching and terminal restoration passed. [Exact snapshot and output](published-checks.txt) |
-| Terminal interface | Keyboard, mouse, categories, search, masked inputs, invalid-input correction, resize, animated progress and cancellation tested in actual pseudoterminals |
-| Preview isolation | All 33 actions and 96 Panel form combinations; en/es/pt-BR tours with subprocess, network and filesystem mutation APIs denied |
-| Managed state | Missing/corrupt state, action prerequisites, persisted phase failure/resume, interrupted SQL setup and secret-free checkpoint records covered |
-| SQL configuration | Single engine choice; both Panel backends; local/remote/deferred game SQL; credentials supplied through stdin and private files |
-| Recovery | Checksums, safe extraction, empty destinations, original SQL version/image and network identity enforced; failed backups resume paused games |
-| SSH | Strict host keys and batch key authentication; runtime checksum; credentials through encrypted stdin |
-| Upstream artifacts | Panel v2.0.0-beta.2 and Wings v1.13.4 release artifacts verified; official amd64/arm64 image manifests checked |
-| Fresh native-game-SQL matrix | **18/18 passed**, Ubuntu/Debian with both Panel methods and SQL engines; [immutable run and case records](ci-native-matrix.json) |
-| Additional Docker-game-SQL matrix | **10/10 passed**, Ubuntu/Debian with Docker Panel and both SQL engines; [immutable run and case records](ci-docker-matrix.json) |
+| Regression suite | **227 passing tests**, including real pseudoterminals, PHP/NGINX validation, SQL provisioning and an encrypted Restic roundtrip |
+| Static checks | Bash syntax, Python compilation and ShellCheck passed |
+| Languages | **777 messages**, English / Spanish / Brazilian Portuguese; field parity and reproducible language packages checked |
+| Navigation | Implemented actions remain selectable with keyboard/mouse; missing requirements are explained and eligible actions offer explicit setup before retry |
+| Removal | A missing component never triggers an installation offer when removal is selected |
+| Fresh/broken state | Read-only host diagnosis works before installation; corrupt, foreign and unmanaged components are reported individually |
+| Backup scope | Removed game-file and game-SQL backup/restore APIs, menu entries and preview workflows; Panel archive paths are allowlisted |
+| Scheduled copies | Panel and/or installed Wings configuration, including Wings-only hosts; game containers and game SQL are never paused/stopped for a backup |
+| Legacy profiles | Old game flags discarded with notice; private scheduled runtime replaced; mixed legacy snapshots rejected before download |
+| Retention | Only scheduler-owned Panel/Wings copies are pruned; manual copies and legacy game archives remain untouched |
+| Preview | All current actions simulated in memory; filesystem mutations, subprocess and network APIs denied; real keyboard/mouse/animation/cancellation checked |
 
-## Real deployment on installer.xerosrv.com
+## Real isolated-domain check
 
-A dedicated Ubuntu 24.04 KVM guest runs behind a separate host NGINX virtual host. Existing host sites and databases are outside the guest. These checks executed real services:
+The existing Ubuntu 24.04 KVM lab at [installer.xerosrv.com](https://installer.xerosrv.com) executed the new runtime. An old profile with game-inclusion flags was migrated, then the persistent systemd backup service uploaded an encrypted Panel/Wings-only bundle to Restic. Download and Panel archive inspection passed. A temporary real Minetest container kept the same running/paused/PID values, the native game SQL service kept its PID, and Wings configuration bytes stayed unchanged. The temporary test container was removed afterward.
 
-- Standalone Panel with MariaDB, migrations, first administrator, PHP-FPM, Redis, queue and scheduler.
-- Valid Let's Encrypt HTTPS, secure cookies and public application assets.
-- Automatic location, node and eleven allocations through actual Panel v2 contracts.
-- Wings deployment and configuration over verified SSH; HTTPS API rejects unauthenticated requests.
-- Isolated native game SQL with a separate operating-system account, Panel host registration, physical backup and restoration of original table data.
-- Private SQL provisioning over verified SSH with an explicit source allowlist, followed by Panel registration.
-- Docker Panel with MySQL, its authentication client, schema loading, administrator and container health.
-- Docker Wings with healthy API authentication and preservation of the running game, followed by restoration of the standalone daemon.
-- Docker game SQL with both MariaDB and MySQL: private account provisioning, original table data after physical restore and supervision held stopped until data copying completes.
-- A real Minetest server created through Panel contracts, started by Wings and listening on its game allocation; game-file restore preserves content and ownership, and the game starts again.
-- Encrypted scheduled systemd backup into a local Restic repository, snapshot download and archive checksum verification.
-- A separate encrypted SFTP repository roundtrip over verified SSH to the isolated guest.
-- Panel service restart, same-release update redeployment, purge and restore preserving APP_KEY and HASHIDS_SALT.
-- Guest reboot with a changed boot ID, managed services returning and public HTTPS responding again.
+[Structured scope result](1.2.1-domain-scope.json). Credentials remain private on the test server.
 
-[Structured deployment record](integration-domain.json). Test credentials remain in a private file on the server and are excluded from this repository.
+## Fresh-system deployment checks
 
-## Fresh-system matrix and limits
+Current 1.2.1 integration scenarios install Panel/Wings, provision a game SQL host, start a real game and verify Panel/Wings configuration backups without changing the game or its SQL data. They also exercise Panel restart, same-release redeployment, purge and restore with the original application keys. Completed current-version run records are added separately from the regression suite.
 
-The manually triggered [deployment workflow](https://github.com/raimondarias/pterodactyl-installer/actions/workflows/tests.yml) boots disposable official cloud images and performs install, restart, update redeployment, purge, restore, node linking, game SQL restoration and a real game smoke test. It covers 18 Ubuntu/Debian × deployment × SQL combinations. All **18 cases passed** in [run 40054262242](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40054262242), using native game SQL and standalone Wings. [Exact source commit, image checksums and results](ci-native-matrix.json).
+The [1.2.0 verification report](https://github.com/raimondarias/pterodactyl-installer/blob/v1.2.0/test-results/REPORT.md) and its 18 native-game-SQL / 10 Docker-game-SQL case records are historical coverage. That release included game-data backup/restore functions removed in 1.2.1; those records do not describe the current backup scope.
 
-An additional **10 Docker Panel + Docker game-SQL cases passed** in [run 40057444433](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40057444433) after the Docker provisioning/readiness/restore fixes. [Exact source commit, image checksums and results](ci-docker-matrix.json). These cases cover both engines on all five distributions. Docker Wings was exercised separately in the domain lab. The final regression run on this runtime commit also [passed](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40057444721).
+Ubuntu 26.04 native installation requires a preconfigured PHP 8.3/8.4 source; fresh-system CI uses Docker there. ARM64 execution, independent external S3/SFTP providers, independent VPS routing and external SMTP delivery remain untested. Actual encrypted repository and SSH tests use isolated local infrastructure.
 
-Ubuntu 26.04 native installation needs a preconfigured PHP 8.3/8.4 source; the tested PHP repository does not currently publish that distribution. The installer detects this before package changes. Fresh Ubuntu 26.04 matrix jobs therefore use Docker.
-
-External S3 and independent SFTP providers, remote VPS routing and external SMTP delivery were not exercised: the user selected isolated local environments. ARM64 image availability was verified; execution uses amd64. Same-release redeployment checks the update mechanism; it does not prove compatibility with an unreleased future Panel schema.
-
-[Local test output](local-tests.txt) · [Test procedure](../docs/TESTING.md) · [Advanced operations](../docs/ADVANCED.md).
+[Local test output](local-tests.txt) · [Test procedure](../docs/TESTING.md) · [Operations and backup scope](../docs/ADVANCED.md).

@@ -469,10 +469,13 @@ class MaintenanceTests(BaseTest):
                 self.installer.update_panel()
         self.assertEqual(self.runner.calls, [])
 
-    def test_diagnostics_fail_when_no_containers_exist(self):
+    def test_diagnostics_reports_missing_containers_and_keeps_machine_overview(self):
         self.panel()
-        with self.assertRaises(app.InstallerError):
-            self.installer.diagnostics()
+        self.installer.diagnostics()
+        messages = " ".join(str(message) for message, _ in self.ui.messages)
+        self.assertIn("Panel containers are missing", messages)
+        self.assertIn("Machine overview", messages)
+        self.assertNotIn("All Panel containers are healthy", messages)
 
     def test_update_failure_stays_stopped_with_recovery_backup(self):
         self.panel()

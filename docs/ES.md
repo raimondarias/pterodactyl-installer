@@ -1,4 +1,4 @@
-# Guía rápida en español
+# Pterodactyl Installer · Guía rápida en español
 
 Instala desde el repositorio publicado:
 
@@ -22,7 +22,7 @@ El modo avanzado también permite elegir versión, PHP 8.3/8.4 en standalone, pu
 
 El motor se elige una sola vez para Panel y juegos. El asistente también ofrece preparar un host SQL local aislado, nativo (recomendado) o en Docker, registrar uno existente o dejarlo para después (por defecto). La opción nativa separa usuario del sistema, datos, puerto y servicio de la base del Panel. Docker sigue siendo necesario para los juegos y su red privada. El host se registra automáticamente en el Panel y entrega host, puerto, usuario y contraseña en pantalla y en un archivo privado. Avanzado permite personalizar las credenciales y asociar un nodo existente; 0 lo deja global. Cada servidor de juego necesita un límite de bases de datos mayor que cero.
 
-Los menús 20–22 configuran el host, muestran sus credenciales y crean una copia de las bases locales. El idioma cambia en la opción 23. Las bases de juegos y sus credenciales se conservan al purgar el Panel; sus datos SQL requieren su propia copia. Puedes preparar SQL privado en otra máquina con la acción remota por SSH; las rutas privadas y claves verificadas deben estar listas. Las copias de ese SQL se ejecutan en su propia máquina. La restauración guiada verifica la versión o imagen original y requiere un destino vacío. Consulta los detalles de redes, firewall y restauración en [la guía principal](OPERATIONS.md#game-database-hosts).
+Los menús 20 y 21 configuran el host SQL y muestran sus credenciales. El idioma cambia en la opción 23. Las bases de juegos y sus credenciales se conservan al purgar el Panel. Puedes preparar SQL privado en otra máquina con la acción remota por SSH; las rutas privadas y claves verificadas deben estar listas. El instalador prepara y registra el host, pero las copias y restauraciones de los datos de juegos corresponden a Pterodactyl o a tu sistema de copias. Consulta los detalles de redes y firewall en [la guía principal](OPERATIONS.md#game-database-hosts).
 
 Vista previa sin root ni instalación:
 
@@ -36,14 +36,14 @@ Wings necesita Docker para ejecutar juegos, aunque el Panel sea standalone. Pued
 
 El menú permite instalar/desinstalar ambos componentes juntos o separados, actualizar, emitir SSL para Wings, hacer copias, restaurar, consultar diagnósticos/registros y configurar correo/administradores.
 
-Al desinstalar se conservan los datos por defecto. Borrarlos requiere confirmación y una copia correcta. Las copias del Panel incluyen SQL y las claves originales; **no incluyen los archivos ni mundos de los juegos**. Guarda los archivos `.tar.gz` y `.sha256` fuera del servidor.
+Al desinstalar se conservan los datos por defecto. Borrarlos requiere confirmación y una copia correcta. Las copias del Panel incluyen su propia base SQL y las claves originales. Las únicas copias ofrecidas son **Panel y configuración de Wings**; nunca incluyen archivos, volúmenes, mundos ni bases de datos de los servidores alojados. Guarda los archivos `.tar.gz` y `.sha256` fuera del servidor.
 
 Panel v2 es beta. Los tests automatizados y las comprobaciones reales de archivos/configuraciones no sustituyen probar un despliegue completo en un VPS limpio. Consulta [el informe](../test-results/REPORT.md), [la guía principal](../README.md) y [las pruebas de integración](TESTING.md).
 
-La interfaz abre una TUI de pantalla completa en una terminal SSH compatible. Usa ↑/↓ para moverte, Tab o ←/→ para cambiar de grupo, Enter para elegir, / para buscar, F5 para actualizar estados y Esc/Q para volver o salir. Las acciones sin requisitos cumplidos explican qué falta y no se ejecutan. En una máquina nueva, Diagnóstico muestra información útil y el siguiente paso. Prueba sin instalar con `bash ptero-setup.sh --preview`; usa `--plain` para menú numérico y `--no-animation` para reducir movimiento. [Detalles y capturas](TUI.md).
+La interfaz abre una TUI de pantalla completa en una terminal SSH compatible. Usa ↑/↓ para moverte, Tab o ←/→ para cambiar de grupo, Enter para elegir, / para buscar, F5 para actualizar estados y Esc/Q para volver o salir. Las operaciones están implementadas. Las acciones que requieren un componente aún no instalado explican qué falta y cómo prepararlo antes de ejecutarse. En una máquina nueva, Diagnóstico muestra información útil y el siguiente paso. Prueba sin instalar con `bash ptero-setup.sh --preview`; usa `--plain` para menú numérico y `--no-animation` para reducir movimiento. [Detalles y capturas](TUI.md).
 
 Puedes seleccionar cada opción con un clic del ratón en terminales compatibles, incluido el selector inicial de idioma. También puedes pulsar las flechas y Enter.
 
-La versión 1.2.0 añade creación automática de nodos y allocations, SQL de juegos nativo aislado, copias cifradas programadas, restauración SQL/archivos de juegos, reanudación por etapas y preparación remota por SSH con claves verificadas. Consulta [las operaciones avanzadas](ADVANCED.md).
+Incluye creación automática de nodos y allocations, SQL de juegos nativo aislado, copias cifradas programadas del Panel y/o configuración de Wings, restauración del Panel, reanudación por etapas y preparación remota por SSH con claves verificadas. Las opciones 28, 29 y 30 programan esas copias, ejecutan la programación y descargan una copia verificada. Una máquina con solo Wings también puede programar la copia de su configuración. Consulta [las operaciones avanzadas](ADVANCED.md).
 
 Ubuntu 26.04 se prueba con Docker. Standalone requiere un repositorio PHP 8.3/8.4 preparado; el PPA probado aún no publica resolute. Sin ese requisito, el instalador se detiene antes de cambiar paquetes.

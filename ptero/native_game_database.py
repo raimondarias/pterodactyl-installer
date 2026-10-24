@@ -6,7 +6,6 @@ import json
 import secrets
 import re
 import shlex
-import shutil
 import tempfile
 import time
 from pathlib import Path
@@ -97,7 +96,7 @@ class NativeGameDatabase:
         self.apparmor()
         if not (self.data / 'mysql').exists():
             if any(self.data.iterdir()):
-                raise InstallerError('Native game SQL data is incomplete; restore a backup into an empty destination.')
+                raise InstallerError('Native game SQL data is incomplete; recover this SQL instance outside the installer before continuing.')
             args = [binary, '--no-defaults', '--initialize-insecure', '--user=' + self.user, '--datadir=' + str(self.data)] if state['engine'] == 'mysql' else [
                 'mariadb-install-db', '--no-defaults', '--user=' + self.user, '--datadir=' + str(self.data), '--auth-root-authentication-method=socket', '--skip-test-db']
             # Initialize under the same account as the service. Modern MariaDB
@@ -106,7 +105,7 @@ class NativeGameDatabase:
                          label='Initializing isolated native game SQL')
         firewall = self.firewall(state)
         atomic_write(self.p.root / ('etc/systemd/system/' + self.unit),
-            '[Unit]\nDescription=Ptero isolated native game SQL\nAfter=network-online.target\nWants=network-online.target\n'
+            '[Unit]\nDescription=Pterodactyl Installer: isolated native game SQL\nAfter=network-online.target\nWants=network-online.target\n'
             + ('Requires=docker.service\nAfter=docker.service\n' if not state.get('allowed_sources') else '') +
             f'[Service]\nUser={self.user}\nGroup={self.user}\nRuntimeDirectory=ptero-game-sql\nRuntimeDirectoryMode=0750\n'
             f'ExecStartPre=+/bin/sh {shlex.quote(str(firewall))}\nExecStart={binary} --defaults-file={self.config}\n'
@@ -178,11 +177,3 @@ class NativeGameDatabase:
         state.update(status='ready', server_version=version.strip())
         write_json(self.manager.state_file, state)
         settings.update(host=state['host'], method='standalone')
-
-    def backup(self):
-        state = self.manager.load()
-        if not self.data.is_dir() or not any(self.data.iterdir()):
-            raise InstallerError('No native game SQL data exists to back up.')
-        from .backups import physical_archive
-        return physical_archive(self.i, 'game-databases-native', self.manager.base, self.data, self.unit,
-                                extra={'server_version': state.get('server_version', '')})

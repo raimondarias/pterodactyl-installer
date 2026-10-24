@@ -2218,5 +2218,116 @@
   },
   "Preparing the game SQL provisioning account": {
     "en": "Preparing the game SQL provisioning account"
+  },
+  "Pterodactyl Installer": {
+    "en": "Pterodactyl Installer"
+  },
+  "Pterodactyl Installer — multilingual Panel v2 and Wings setup for Ubuntu / Debian.": {
+    "en": "Pterodactyl Installer — multilingual Panel v2 and Wings setup for Ubuntu / Debian."
+  },
+  "Setup required": {
+    "en": "Setup required"
+  },
+  "Schedule encrypted copies of the Panel and Wings configuration only.": {
+    "en": "Schedule encrypted copies of the Panel and Wings configuration only."
+  },
+  "Run the saved Panel and Wings configuration backup schedule now.": {
+    "en": "Run the saved Panel and Wings configuration backup schedule now."
+  },
+  "Download and verify a saved encrypted Panel or Wings configuration backup.": {
+    "en": "Download and verify a saved encrypted Panel or Wings configuration backup."
+  },
+  "Inspect this machine and report service failures with next steps.": {
+    "en": "Inspect this machine and report service failures with next steps."
+  },
+  "Continue an interrupted managed installation from its saved phases.": {
+    "en": "Continue an interrupted managed installation from its saved phases."
+  },
+  "Create a location, node and allocations in your managed Panel.": {
+    "en": "Create a location, node and allocations in your managed Panel."
+  },
+  "Provision Wings over verified SSH and register its node in your Panel.": {
+    "en": "Provision Wings over verified SSH and register its node in your Panel."
+  },
+  "Prepare a private SQL host over verified SSH and register it in your Panel.": {
+    "en": "Prepare a private SQL host over verified SSH and register it in your Panel."
+  },
+  "Panel state belongs to another installer. Review it manually; it will not be adopted or overwritten.": {
+    "en": "Panel state belongs to another installer. Review it manually; it will not be adopted or overwritten."
+  },
+  "Panel files exist without managed state. Review this installation manually; it will not be adopted or overwritten.": {
+    "en": "Panel files exist without managed state. Review this installation manually; it will not be adopted or overwritten."
+  },
+  "Panel state is invalid or unreadable. Use diagnostics and recover the saved state before changing it.": {
+    "en": "Panel state is invalid or unreadable. Use diagnostics and recover the saved state before changing it."
+  },
+  "Wings state belongs to another installer. Review it manually; it will not be adopted or overwritten.": {
+    "en": "Wings state belongs to another installer. Review it manually; it will not be adopted or overwritten."
+  },
+  "Wings files exist without managed state. Review this installation manually; it will not be adopted or overwritten.": {
+    "en": "Wings files exist without managed state. Review this installation manually; it will not be adopted or overwritten."
+  },
+  "Wings state is invalid or unreadable. Use diagnostics and recover the saved state before changing it.": {
+    "en": "Wings state is invalid or unreadable. Use diagnostics and recover the saved state before changing it."
+  },
+  "Configure scheduled Panel and Wings configuration backups first.": {
+    "en": "Configure scheduled Panel and Wings configuration backups first."
+  },
+  "The saved backup profile is invalid or belongs to another installer. Review it before continuing.": {
+    "en": "The saved backup profile is invalid or belongs to another installer. Review it before continuing."
+  },
+  "There are no managed components to back up. Install the Panel or Wings first.": {
+    "en": "There are no managed components to back up. Install the Panel or Wings first."
+  },
+  "The saved SQL host state needs manual review before resuming.": {
+    "en": "The saved SQL host state needs manual review before resuming."
+  },
+  "Install the Panel now and return to this action?": {
+    "en": "Install the Panel now and return to this action?"
+  },
+  "Install Wings now and return to this action?": {
+    "en": "Install Wings now and return to this action?"
+  },
+  "Install Panel and Wings now and return to this action?": {
+    "en": "Install Panel and Wings now and return to this action?"
+  },
+  "Inspect installation state in diagnostics before changing this component.": {
+    "en": "Inspect installation state in diagnostics before changing this component."
+  },
+  "Saved installation phases need attention.": {
+    "en": "Saved installation phases need attention."
+  },
+  "No managed Panel or Wings is installed. Host checks are available; install a component to inspect its services.": {
+    "en": "No managed Panel or Wings is installed. Host checks are available; install a component to inspect its services."
+  },
+  "Backups may contain only the Panel and Wings configuration; hosted-server content is not supported.": {
+    "en": "Backups may contain only the Panel and Wings configuration; hosted-server content is not supported."
+  },
+  "This is not a valid Panel backup.": {
+    "en": "This is not a valid Panel backup."
+  },
+  "Backups include only the Panel and Wings configuration. Hosted-server files and databases are excluded.": {
+    "en": "Backups include only the Panel and Wings configuration. Hosted-server files and databases are excluded."
+  },
+  "The scheduled backup runtime cannot be a symlink.": {
+    "en": "The scheduled backup runtime cannot be a symlink."
+  },
+  "Legacy game backup options were removed. This profile now backs up only the Panel and Wings configuration.": {
+    "en": "Legacy game backup options were removed. This profile now backs up only the Panel and Wings configuration."
+  },
+  "This snapshot contains unsupported hosted-server content. Nothing was downloaded.": {
+    "en": "This snapshot contains unsupported hosted-server content. Nothing was downloaded."
+  },
+  "The snapshot contains no supported Panel or Wings configuration files.": {
+    "en": "The snapshot contains no supported Panel or Wings configuration files."
+  },
+  "Needs attention: {component} — {detail}": {
+    "en": "Needs attention: {component} — {detail}"
+  },
+  "No managed Panel installation is available to remove.": {
+    "en": "No managed Panel installation is available to remove."
+  },
+  "No managed Wings installation is available to remove.": {
+    "en": "No managed Wings installation is available to remove."
   }
 }

@@ -1,5 +1,4 @@
 """New node, recovery, backup, native SQL and SSH boundary regressions."""
-import contextlib
 import io
 import json
 import os
@@ -7,7 +6,6 @@ from pathlib import Path
 import shutil
 import subprocess
 import tarfile
-import tempfile
 from unittest.mock import patch
 from test_installer import BaseTest, QuietUI
 from ptero.core import InstallerError, write_json
@@ -16,7 +14,7 @@ from ptero.nodes import CREATE, create, port_range
 from ptero.game_database import GameDatabase
 from ptero.native_game_database import NativeGameDatabase
 from ptero.remote import AGENT, execute, private_ipv4, ssh
-from ptero.backups import ScheduledBackups, checksum, verified, restore_sql, backup_games, restore_games
+from ptero.backups import ScheduledBackups, checksum, panel_archive, backup_plan
 
 
 class OperationsTests(BaseTest):
@@ -180,76 +178,215 @@ class OperationsTests(BaseTest):
         self.assertNotIn('0.0.0.0/0', script)
         self.assertNotIn('-F ', script)
 
-    def make_sql_archive(self):
-        work = Path(self.temporary.name) / 'source'
-        work.mkdir()
-        state = {'schema': 1, 'owner': 'ptero-installer', 'engine': 'mariadb', 'host': '172.25.0.1', 'port': 3307,
-                 'username': 'manager', 'password': 'original-game-password', 'root_password': 'original-root-password',
-                 'image': 'mariadb@sha256:' + 'a' * 64}
-        write_json(work / 'state.json', state)
-        (work / 'data').mkdir(); (work / 'data/table.dat').write_text('SQL DATA')
-        archive = Path(self.temporary.name) / 'sql.tar.gz'
-        with tarfile.open(archive, 'w:gz') as tar:
-            for path in work.iterdir():
-                tar.add(path, arcname=path.name)
-        Path(str(archive) + '.sha256').write_text(checksum(archive) + '  sql.tar.gz\n')
-        return archive
+    def configure_backup_profile(self, **changes):
+        self.paths.base.mkdir(parents=True, exist_ok=True)
+        profile = {'schema': 1, 'owner': 'ptero-installer', 'repository': '/private-repository',
+                   'backup_id': 'test-instance', 'environment': {}, 'keep_daily': 7, 'keep_weekly': 4,
+                   **changes}
+        write_json(self.paths.base / 'backup-profile.json', profile)
+        return ScheduledBackups(self.installer)
 
-    def test_sql_restore_verifies_hash_preserves_credentials_and_waits_for_health(self):
-        archive = self.make_sql_archive()
-        with patch.object(self.installer, 'docker'), patch.object(GameDatabase, 'network', return_value='172.25.0.1'), \
-             patch.object(GameDatabase, 'firewall'), patch.object(GameDatabase, 'service_config'):
-            restore_sql(self.installer, archive)
-        state = self.installer.load(GameDatabase(self.installer).state_file)
-        self.assertEqual(state['password'], 'original-game-password')
-        self.assertEqual(state['status'], 'ready')
-        self.assertEqual((GameDatabase(self.installer).data / 'table.dat').read_text(), 'SQL DATA')
-        self.assertTrue(any('--wait' in args for args, _ in self.runner.calls))
+    def test_backup_plan_never_asks_to_include_hosted_server_data(self):
+        ui = QuietUI(['/private-repository', 'strong-backup-password', 'strong-backup-password'])
+        with patch.object(ui, 'choice', return_value='daily'), \
+             patch.object(ui, 'yes', side_effect=AssertionError('No game inclusion prompt')):
+            profile, password = backup_plan(ui)
+        self.assertEqual(profile['scope'], 'panel-wings-config')
+        self.assertNotIn('games', profile)
+        self.assertEqual(password, 'strong-backup-password')
 
-    def test_sql_restore_refuses_existing_data_and_bad_checksum(self):
-        archive = self.make_sql_archive()
-        Path(str(archive) + '.sha256').write_text('0' * 64)
-        with self.assertRaisesRegex(InstallerError, 'checksum'):
-            restore_sql(self.installer, archive)
+    def test_profile_migration_replaces_obsolete_scheduled_runtime_modules(self):
+        scheduler = self.configure_backup_profile(games=True)
+        runtime = self.paths.base / 'runtime/ptero'
+        runtime.mkdir(parents=True)
+        (runtime / 'obsolete_game_backups.py').write_text('do_not_run = True')
+        scheduler.migrate()
+        self.assertFalse((runtime / 'obsolete_game_backups.py').exists())
+        self.assertIn('panel-wings-config', (runtime / 'backups.py').read_text())
         self.assertEqual(self.runner.calls, [])
 
-    def test_sql_restore_disables_old_supervisor_before_docker_can_activate_it(self):
-        archive = self.make_sql_archive()
-        manager = GameDatabase(self.installer)
-        manager.service_config()
-        write_json(manager.compose, {})
-        seen = []
-        def docker():
-            seen.extend(args for args, _ in self.runner.calls)
-        with patch.object(self.installer, 'docker', side_effect=docker), \
-             patch.object(GameDatabase, 'network', return_value='172.25.0.1'), \
-             patch.object(GameDatabase, 'firewall'), patch.object(GameDatabase, 'service_config'):
-            restore_sql(self.installer, archive)
-        self.assertIn(['systemctl', 'disable', '--now', 'ptero-game-databases.service'], seen)
-        self.assertTrue(any(args[-1]=='down' for args in seen))
+    def test_native_panel_backup_excludes_unknown_data_directories(self):
+        from ptero.native import NativeBackend
+        state = {**self.state, 'method': 'standalone', 'database_engine': 'mariadb', 'php': '8.3', 'redis_password': 'c' * 64}
+        self.installer.save_panel(state)
+        backend = NativeBackend(self.installer, state)
+        backend.app.mkdir(parents=True)
+        (backend.app / '.env').write_text('APP_KEY=original-key')
+        (self.paths.data / 'volumes').mkdir(parents=True)
+        (self.paths.data / 'volumes/world.dat').write_text('PRIVATE WORLD')
+        archive = backend.backup()
+        panel_archive(archive)
+        with tarfile.open(archive) as tar:
+            self.assertFalse(any('volumes' in member.name for member in tar))
+        self.assertEqual((self.paths.data / 'volumes/world.dat').read_text(), 'PRIVATE WORLD')
 
-    def test_sql_restore_preserves_an_unmanaged_supervisor(self):
-        archive = self.make_sql_archive()
-        manager = GameDatabase(self.installer)
-        manager.service.parent.mkdir(parents=True)
-        manager.service.write_text('[Service]\nExecStart=/usr/bin/foreign-sql\n')
-        with self.assertRaisesRegex(InstallerError, 'Unmanaged'):
-            restore_sql(self.installer, archive)
-        self.assertEqual(self.runner.calls, [])
-        self.assertIn('foreign-sql', manager.service.read_text())
+    def test_removed_hosted_server_backup_apis_are_not_executable(self):
+        actions = self.installer.actions()
+        for action in ('backup-game-database', 'restore-game-database', 'backup-games', 'restore-games'):
+            self.assertNotIn(action, actions)
+        for manager in (GameDatabase(self.installer), NativeGameDatabase(GameDatabase(self.installer))):
+            self.assertFalse(hasattr(manager, 'backup'))
 
-    def test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination(self):
+    def test_legacy_game_profile_migrates_without_touching_game_files_or_sql(self):
+        self.wings()
+        scheduler = self.configure_backup_profile(games=True, include_games=True)
+        with patch.object(GameDatabase, '__init__', side_effect=AssertionError('SQL must not be opened')):
+            scheduler.run_now()
+        profile = self.installer.load(scheduler.profile)
+        self.assertEqual(profile['scope'], 'panel-wings-config')
+        self.assertNotIn('games', profile)
+        self.assertNotIn('include_games', profile)
+        self.assertTrue(any('Legacy game backup options' in str(message) for message, _ in self.ui.messages))
+        commands = [args for args, _ in self.runner.calls]
+        self.assertFalse(any(args[0] == 'docker' for args in commands))
+        self.assertTrue(any(args[:2] == ['restic', 'backup'] for args in commands))
+
+    def test_legacy_game_backup_history_and_snapshots_are_never_pruned(self):
+        self.wings()
+        scheduler = self.configure_backup_profile(keep_local=1)
+        self.paths.backups.mkdir(parents=True)
+        legacy = []
+        for name in ('game-files-old.tar.gz', 'game-databases-old.tar.gz'):
+            path = self.paths.backups / name
+            path.write_bytes(b'original hosted-server backup')
+            Path(str(path) + '.sha256').write_text('original checksum')
+            legacy.append(str(path))
+        write_json(self.paths.base / 'backup-history.json', {'schema': 1, 'owner': 'ptero-installer', 'runs': [legacy]})
+        scheduler.run_now()
+        for value in legacy:
+            self.assertEqual(Path(value).read_bytes(), b'original hosted-server backup')
+            self.assertEqual(Path(value + '.sha256').read_text(), 'original checksum')
+        forget = next(args for args, _ in self.runner.calls if args[:2] == ['restic', 'forget'])
+        self.assertEqual(forget[forget.index('--tag') + 1], 'ptero-installer,panel-wings-config')
+
+    def test_wings_only_bundle_contains_configuration_not_game_volumes(self):
         self.wings()
         source = self.paths.root / 'var/lib/pterodactyl/volumes'
         source.mkdir(parents=True)
-        (source / 'world.dat').write_text('WORLD')
-        archive = backup_games(self.installer)
-        self.assertTrue(verified(archive))
-        with self.assertRaisesRegex(InstallerError, 'empty'):
-            restore_games(self.installer, archive)
-        shutil.rmtree(source)
-        restore_games(self.installer, archive)
-        self.assertEqual((source / 'world.dat').read_text(), 'WORLD')
+        (source / 'world.dat').write_text('PRIVATE WORLD')
+        scheduler = self.configure_backup_profile()
+        observed = {}
+        original = self.runner.run
+        def run(args, **kwargs):
+            if args[:2] == ['restic', 'backup']:
+                bundle = Path(kwargs['cwd'])
+                observed.update({p.name: p.read_bytes() for p in bundle.iterdir()})
+            return original(args, **kwargs)
+        with patch.object(self.runner, 'run', side_effect=run), \
+             patch.object(self.installer, 'backup_panel', side_effect=AssertionError('No Panel')):
+            scheduler.run_now()
+        self.assertIn('wings-state.json', observed)
+        self.assertIn('wings-config.yml', observed)
+        self.assertIn('bundle-manifest.json', observed)
+        self.assertNotIn(b'PRIVATE WORLD', b''.join(observed.values()))
+        self.assertEqual((source / 'world.dat').read_text(), 'PRIVATE WORLD')
+
+    def test_wings_only_schedule_retains_three_runs_and_preserves_manual_copies(self):
+        self.wings()
+        scheduler = self.configure_backup_profile()
+        manual = self.installer.backup_wings()
+        # Even a manual directory present in legacy history is not scheduler-owned.
+        write_json(self.paths.base / 'backup-history.json', {'schema': 1, 'owner': 'ptero-installer',
+                   'runs': [[str(manual)]]})
+        for _ in range(5):
+            scheduler.run_now()
+        scheduled = [path for path in self.paths.backups.glob('wings-*')
+                     if (path / 'scheduled-backup.json').exists()]
+        self.assertEqual(len(scheduled), 3)
+        self.assertTrue((manual / 'wings.json').is_file())
+        self.assertTrue((manual / 'config.yml').is_file())
+        history = self.installer.load(self.paths.base / 'backup-history.json')
+        self.assertEqual(len(history['runs']), 3)
+        self.assertEqual({value for run in history['runs'] for value in run}, {str(path) for path in scheduled})
+
+    def test_wings_schedule_retention_refuses_unknown_files_and_links(self):
+        self.wings()
+        scheduler = self.configure_backup_profile(keep_local=1)
+        scheduler.run_now()
+        owned = next(self.paths.backups.glob('wings-*'))
+        (owned / 'extra-world.dat').write_text('must remain')
+        scheduler.run_now()
+        self.assertEqual((owned / 'extra-world.dat').read_text(), 'must remain')
+        self.assertTrue((owned / 'wings.json').is_file())
+        history = self.installer.load(self.paths.base / 'backup-history.json')
+        current = Path(history['runs'][-1][0])
+        external = Path(self.temporary.name) / 'preserve-external-file'
+        external.write_text('external content')
+        (current / 'config.yml').unlink()
+        (current / 'config.yml').symlink_to(external)
+        scheduler.run_now()
+        self.assertTrue((current / 'config.yml').is_symlink())
+        self.assertTrue((current / 'wings.json').is_file())
+        self.assertEqual(external.read_text(), 'external content')
+
+    def test_download_rejects_legacy_hosted_content_before_restic_restore(self):
+        scheduler = self.configure_backup_profile()
+        for name in ('/game-files-old.tar.gz', '/game-databases-old.tar.gz', '/volumes/world.dat'):
+            calls = []
+            def run(args, **kwargs):
+                calls.append(args)
+                if args[1] == 'snapshots': return 0, '[{"id":"snapshot"}]'
+                if args[1] == 'ls': return 0, json.dumps({'struct_type': 'node', 'type': 'file', 'path': name})
+                raise AssertionError('Restore must not run')
+            with self.subTest(name=name), patch.object(self.runner, 'run', side_effect=run), \
+                 self.assertRaisesRegex(InstallerError, 'Nothing was downloaded'):
+                scheduler.download()
+            self.assertFalse(any(args[1] == 'restore' for args in calls))
+        self.assertFalse(self.paths.backups.exists())
+
+    def test_panel_restore_rejects_hosted_content_before_any_extraction(self):
+        for name in ('volumes/world.dat', 'data/ibdata1', 'game-files-old.tar.gz'):
+            archive = Path(self.temporary.name) / 'legacy.tar.gz'
+            with tarfile.open(archive, 'w:gz') as tar:
+                for path, value in [('manifest.json', b'{"type":"panel-backup","owner":"ptero-installer"}'), (name, b'PRIVATE GAME DATA')]:
+                    member = tarfile.TarInfo(path); member.size = len(value)
+                    tar.addfile(member, io.BytesIO(value))
+            Path(str(archive) + '.sha256').write_text(checksum(archive))
+            self.ui.answers = [str(archive)]
+            with self.subTest(name=name), patch('ptero.core.secure_extract') as extract, \
+                 self.assertRaisesRegex(InstallerError, 'hosted-server content'):
+                self.installer.restore_panel()
+            extract.assert_not_called()
+        self.assertEqual(self.runner.calls, [])
+
+    def test_panel_backup_excludes_unknown_data_directories(self):
+        self.panel()
+        (self.paths.data / 'volumes').mkdir()
+        (self.paths.data / 'volumes/world.dat').write_text('PRIVATE GAME DATA')
+        archive = self.installer.backup_panel()
+        panel_archive(archive)
+        with tarfile.open(archive) as tar:
+            self.assertFalse(any('volumes' in item.name for item in tar))
+        self.assertEqual((self.paths.data / 'volumes/world.dat').read_text(), 'PRIVATE GAME DATA')
+
+    def test_diagnostics_invalid_panel_keeps_wings_and_machine_checks_read_only(self):
+        self.wings()
+        self.paths.state.parent.mkdir(parents=True, exist_ok=True)
+        self.paths.state.write_text('invalid JSON')
+        before = self.paths.state.read_bytes()
+        self.installer.diagnostics()
+        messages = ' '.join(str(message) for message, _ in self.ui.messages)
+        self.assertIn('Panel state is invalid', messages)
+        self.assertIn('Wings is active', messages)
+        self.assertIn('Machine overview', messages)
+        self.assertEqual(self.paths.state.read_bytes(), before)
+        self.assertEqual([args for args, _ in self.runner.calls], [['systemctl', 'is-active', '--quiet', 'wings']])
+
+    def test_diagnostics_failed_panel_backend_does_not_hide_healthy_wings(self):
+        self.panel(); self.wings()
+        with patch.object(self.installer, 'dc', side_effect=InstallerError('Panel failed')):
+            self.installer.diagnostics()
+        messages = ' '.join(str(message) for message, _ in self.ui.messages)
+        self.assertIn('Panel failed', messages)
+        self.assertIn('Wings is active', messages)
+
+    def test_diagnostics_foreign_panel_is_not_operated_or_adopted(self):
+        self.paths.state.parent.mkdir(parents=True, exist_ok=True)
+        write_json(self.paths.state, {'schema': 1, 'owner': 'another-installer'})
+        self.installer.diagnostics()
+        self.assertEqual(self.runner.calls, [])
+        self.assertEqual(json.loads(self.paths.state.read_text())['owner'], 'another-installer')
+        self.assertTrue(any('belongs to another installer' in str(message) for message, _ in self.ui.messages))
 
     def test_health_report_collects_multiple_failures_instead_of_hiding_them(self):
         self.panel()
@@ -284,7 +421,8 @@ class OperationsTests(BaseTest):
         if not binary:
             self.skipTest('Restic executable unavailable')
         root = Path(self.temporary.name)
-        archive = self.make_sql_archive()
+        self.panel()
+        archive = self.installer.backup_panel()
         repository = root / 'encrypted-repo'
         self.paths.base.mkdir(parents=True, exist_ok=True)
         (self.paths.base / 'backup-password').write_text('test-encryption-password-123!\n')
@@ -307,56 +445,10 @@ class OperationsTests(BaseTest):
         with patch.object(self.installer, 'backup_panel', return_value=archive):
             scheduler.run_now()
         destination = scheduler.download()
-        restored = list(destination.rglob('sql.tar.gz'))
+        restored = list(destination.glob('panel-*.tar.gz'))
         self.assertEqual(len(restored), 1)
         self.assertEqual(checksum(restored[0]), checksum(archive))
-        self.assertNotIn(b'original-game-password', b''.join(p.read_bytes() for p in repository.rglob('*') if p.is_file()))
-
-    def test_nested_game_backup_does_not_unpause_a_container_paused_by_the_bundle(self):
-        from ptero.backups import paused_games
-        self.wings()
-        source = self.paths.root / 'var/lib/pterodactyl/volumes'
-        source.mkdir(parents=True)
-        (source / 'world').write_text('GAME')
-        paused = False
-        actions = []
-        original = self.runner.run
-        def run(args, **kwargs):
-            nonlocal paused
-            args = list(map(str, args))
-            if args[:2] == ['docker', 'ps']:
-                self.assertIn('status=running', args)
-                return 0, '' if paused else 'a' * 12
-            if args[:2] == ['docker', 'pause']:
-                self.assertFalse(paused); paused = True; actions.append('pause'); return 0, ''
-            if args[:2] == ['docker', 'unpause']:
-                self.assertTrue(paused); paused = False; actions.append('unpause'); return 0, ''
-            return original(args, **kwargs)
-        self.runner.run = run
-        with paused_games(self.installer, True):
-            archive = backup_games(self.installer)
-            self.assertTrue(paused)
-        self.assertFalse(paused)
-        self.assertEqual(actions, ['pause', 'unpause'])
-        self.assertTrue(verified(archive))
-
-    def test_sigterm_in_plain_scheduled_session_unpauses_games_before_exit(self):
-        import signal
-        from ptero.backups import paused_games
-        actions = []
-        def run(args, **kwargs):
-            args = list(map(str, args))
-            if args[:2] == ['docker', 'ps']:
-                return 0, 'a' * 12
-            actions.append(args[1]); return 0, ''
-        self.runner.run = run
-        previous = signal.getsignal(signal.SIGTERM)
-        with self.assertRaises(KeyboardInterrupt):
-            with self.ui.session():
-                with paused_games(self.installer, True):
-                    signal.raise_signal(signal.SIGTERM)
-        self.assertEqual(actions, ['pause', 'unpause'])
-        self.assertEqual(signal.getsignal(signal.SIGTERM), previous)
+        self.assertNotIn(b'original-key', b''.join(p.read_bytes() for p in repository.rglob('*') if p.is_file()))
 
     def test_native_health_waits_for_php_socket_readiness_after_reload(self):
         from unittest.mock import MagicMock

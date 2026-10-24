@@ -58,7 +58,7 @@ class SimulationTests(unittest.TestCase):
                              "os.mkdir", "os.replace", "os.unlink"):
                     stack.enter_context(patch(name, side_effect=AssertionError("Preview side effect: " + name)))
                 simulation.dispatch("install-all")
-                for action in ("backup-panel", "backup-wings", "backup-game-database", "diagnose", "logs", "firewall"):
+                for action in ("backup-panel", "backup-wings", "diagnose", "logs", "firewall"):
                     simulation.dispatch(action)
             self.assertEqual(simulation.inventory()["panel"], "ready")
             self.assertEqual(simulation.inventory()["wings"], "ready")
@@ -95,20 +95,30 @@ class SimulationTests(unittest.TestCase):
         visited = set()
         with contextlib.redirect_stdout(io.StringIO()):
             for action in ("install-panel", "install-wings", "install-all", "configure-database",
-                           "create-node", "remote-node", "remote-database", "health", "resume", "backup-schedule", "backup-run", "backup-download", "backup-games", "restore-games",
-                           "database-credentials", "backup-game-database", "backup-panel", "backup-wings",
+                           "create-node", "remote-node", "remote-database", "health", "backup-schedule", "backup-run", "backup-download",
+                           "database-credentials", "backup-panel", "backup-wings",
                            "configure-wings", "tls-wings", "update-panel", "update-wings", "smtp", "admin",
                            "diagnose", "restart", "logs", "firewall", "uninstall-all", "restore-panel",
                            "uninstall-panel", "install-wings", "uninstall-wings"):
                 simulation.dispatch(action)
                 visited.add(action)
-            simulation.database = None
-            simulation.dispatch("restore-game-database")
-            visited.add("restore-game-database")
+            simulation.wings = {"status": "pending"}
+            simulation.dispatch("resume")
+            simulation.wings = None
+            visited.add("resume")
         self.assertEqual(visited, {action for _, action in ENTRIES})
         self.assertIsNone(simulation.panel)
         self.assertIsNone(simulation.wings)
         self.assertIsNotNone(simulation.database)  # Independent SQL lifecycle.
+
+    def test_removed_game_data_backup_operations_have_no_simulated_path(self):
+        simulation = Simulation(TourUI(UI(False)))
+        with contextlib.redirect_stdout(io.StringIO()):
+            simulation.dispatch("install-all")
+        for action in ("backup-games", "restore-games", "backup-game-database", "restore-game-database"):
+            with self.assertRaisesRegex(InstallerError, "Unknown preview action"):
+                simulation.dispatch(action)
+        self.assertEqual(simulation.backups, {})
 
     def test_restore_requires_backup_and_empty_destination(self):
         simulation = Simulation(TourUI(UI(False)))

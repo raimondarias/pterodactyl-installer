@@ -110,8 +110,8 @@ class Terminal:
             self.put(1, 1, self.tr("Enlarge the terminal to at least 60 columns and 18 rows."), "warn")
             self.put(3, 1, self.tr("Esc / Q: back or exit"), "muted")
             return
-        self.put(1, self.left + 2, "PTERO", "accent", bold=True)
-        self.put(1, self.left + 9, "/ " + self.tr("Installer") + "  " + __version__, "text")
+        self.put(1, self.left + 2, "PTERODACTYL", "accent", bold=True)
+        self.put(1, self.left + 15, "/ " + self.tr("Installer") + "  " + __version__, "text")
         self.put(1, self.left + self.width - 25, self.ui.language + "  ·  " + ("●" if not self.ui.animate else "◉●◉○"[int(time.monotonic() * 3) % 4]), "accent")
         heading = (self.tr("PREVIEW") + " · " if getattr(self.ui, "preview", False) else "") + self.tr(title)
         self.put(2, self.left + 2, heading, "text", self.width - 4, True)
@@ -208,13 +208,15 @@ class Terminal:
                         prefix = "› " if index == selection else "  "
                         prefix += (item.shortcut + "  ") if item.shortcut else ""
                         text = prefix + self.tr(item.label)
-                        if not item.enabled:
+                        if item.reason:
+                            text += "  · " + self.tr("Setup required")
+                        elif not item.enabled:
                             text += "  · " + self.tr("Unavailable")
                         style = "selected" if index == selection else "text" if item.enabled else "muted"
                         self.put(top + offset, x, text + " " * max(0, width - cell_width(text)), style, width)
                     chosen = visible[selection]
-                    self.put(self.height - 7, x, self.tr("Why this action?") if not chosen.enabled else self.tr("Next step"), "warn" if not chosen.enabled else "accent", width, True)
-                    self.paragraph(self.height - 6, x, self.tr(warning or chosen.reason or chosen.note), width, 2, "warn" if warning or not chosen.enabled else "muted")
+                    self.put(self.height - 7, x, self.tr("Before you continue") if chosen.reason else self.tr("Next step"), "warn" if chosen.reason else "accent", width, True)
+                    self.paragraph(self.height - 6, x, self.tr(warning or chosen.reason or chosen.note), width, 2, "warn" if warning or chosen.reason else "muted")
                     if query or digits:
                         self.put(6, x, (self.tr("Search") + ": " + query) if query else self.tr("Option") + ": " + digits, "accent", width)
                     self.footer("↑↓ / Click Choose · Tab Groups · / Search · Esc Back" if grouped else "↑↓ / Click Choose · Esc Back")

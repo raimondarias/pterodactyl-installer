@@ -15,8 +15,6 @@ test_language_switch_requires_a_pinned_source (test_distribution.LanguageChangeT
 test_source_catalogue_needs_no_network_for_any_language (test_distribution.LanguageChangeTests) ... ok
 test_switch_downloads_only_requested_locale_from_same_commit_and_caches_it (test_distribution.LanguageChangeTests) ... ok
 test_advanced_host_keeps_entered_credentials_and_node_id (test_game_database.GameDatabaseTests) ... ok
-test_backup_contains_game_data_and_credentials_and_restores_running_state (test_game_database.GameDatabaseTests) ... ok
-test_backup_failure_restarts_game_database (test_game_database.GameDatabaseTests) ... ok
 test_boot_waits_for_firewall_and_uses_only_one_restart_manager (test_game_database.GameDatabaseTests) ... ok
 test_both_engine_configs_pass_real_compose_and_hide_password_interpolation (test_game_database.GameDatabaseTests) ... ok
 test_create_network_and_refuse_wrong_gateway_on_retry (test_game_database.GameDatabaseTests) ... ok
@@ -29,7 +27,6 @@ test_no_supported_firewall_backend_never_starts_database (test_game_database.Gam
 test_one_engine_selection_is_reused_by_game_host (test_game_database.GameDatabaseTests) ... ok
 test_panel_purge_preserves_game_database_project_and_data (test_game_database.GameDatabaseTests) ... ok
 test_passwords_are_not_localized_as_interface_labels (test_game_database.GameDatabaseTests) ... ok
-test_physical_backup_omits_mysql_runtime_socket_alias (test_game_database.GameDatabaseTests) ... ok
 test_private_credential_report_and_log_redaction (test_game_database.GameDatabaseTests) ... ok
 test_private_gateway_validation (test_game_database.GameDatabaseTests) ... ok
 test_registration_contract_php_passes_real_syntax_check (test_game_database.GameDatabaseTests) ... ok
@@ -41,6 +38,11 @@ test_sql_credentials_use_private_stdin_after_readiness_and_before_supervision (t
 test_unhealthy_database_stops_its_supervisor_and_preserves_data (test_game_database.GameDatabaseTests) ... ok
 test_unowned_network_and_files_are_refused (test_game_database.GameDatabaseTests) ... ok
 test_real_mariadb_provisioning_and_game_user_lifecycle_with_special_password (test_game_database.RealSQLTests) ... ok
+test_corrupt_panel_does_not_hide_working_wings (test_health.HealthStateTests) ... ok
+test_corrupt_wings_still_produces_host_checks (test_health.HealthStateTests) ... ok
+test_foreign_panel_is_not_contacted_or_adopted (test_health.HealthStateTests) ... ok
+test_fresh_host_reports_next_step_without_service_commands (test_health.HealthStateTests) ... ok
+test_malformed_phase_metadata_does_not_hide_wings_health (test_health.HealthStateTests) ... ok
 test_device_rejected (test_installer.ArchiveTests) ... ok
 test_external_symlink_rejected (test_installer.ArchiveTests) ... ok
 test_file_under_archive_symlink_rejected (test_installer.ArchiveTests) ... ok
@@ -69,7 +71,7 @@ test_confirmation_refused_by_default (test_installer.InteractionTests) ... ok
 test_menu_lists_requested_options_and_exits_without_commands (test_installer.InteractionTests) ... ok
 test_configure_cancel_does_not_replace_previous_config (test_installer.MaintenanceTests) ... ok
 test_configure_token_is_not_in_command_arguments_or_state (test_installer.MaintenanceTests) ... ok
-test_diagnostics_fail_when_no_containers_exist (test_installer.MaintenanceTests) ... ok
+test_diagnostics_reports_missing_containers_and_keeps_machine_overview (test_installer.MaintenanceTests) ... ok
 test_downgrade_refused_before_backup_or_migration (test_installer.MaintenanceTests) ... ok
 test_node_config_rejects_token_indirection_and_discards_host_settings (test_installer.MaintenanceTests) ... ok
 test_panel_purge_requires_backup_first (test_installer.MaintenanceTests) ... ok
@@ -101,31 +103,39 @@ test_urls (test_installer.ValidationTests) ... ok
 test_versions_accept_only_correct_major (test_installer.ValidationTests) ... ok
 test_actual_encrypted_repository_roundtrip (test_operations.OperationsTests) ... ok
 test_apparmor_game_sql_rules_preserve_existing_local_rules (test_operations.OperationsTests) ... ok
+test_backup_plan_never_asks_to_include_hosted_server_data (test_operations.OperationsTests) ... ok
 test_completed_phase_requires_live_validation_and_matching_version (test_operations.OperationsTests) ... ok
+test_diagnostics_failed_panel_backend_does_not_hide_healthy_wings (test_operations.OperationsTests) ... ok
+test_diagnostics_foreign_panel_is_not_operated_or_adopted (test_operations.OperationsTests) ... ok
+test_diagnostics_invalid_panel_keeps_wings_and_machine_checks_read_only (test_operations.OperationsTests) ... ok
+test_download_rejects_legacy_hosted_content_before_restic_restore (test_operations.OperationsTests) ... ok
 test_failed_phase_persists_failure_without_exception_secrets_and_can_resume (test_operations.OperationsTests) ... ok
-test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination (test_operations.OperationsTests) ... ok
 test_health_report_collects_multiple_failures_instead_of_hiding_them (test_operations.OperationsTests) ... ok
 test_health_reports_pending_migrations_and_queue_failures_in_docker (test_operations.OperationsTests) ... ok
+test_legacy_game_backup_history_and_snapshots_are_never_pruned (test_operations.OperationsTests) ... ok
+test_legacy_game_profile_migrates_without_touching_game_files_or_sql (test_operations.OperationsTests) ... ok
 test_menu_shortcuts_remain_unique_with_language_23_reserved (test_operations.OperationsTests) ... ok
 test_modern_mariadb_apparmor_profile_gets_scoped_local_rules (test_operations.OperationsTests) ... ok
 test_mysql_authentication_plugin_is_saved_verified_and_repaired (test_operations.OperationsTests) ... ok
 test_native_firewall_remote_allowlist_has_no_public_wildcard_rule (test_operations.OperationsTests) ... ok
 test_native_game_sql_refuses_mysql_community_before_package_changes (test_operations.OperationsTests) ... ok
 test_native_health_waits_for_php_socket_readiness_after_reload (test_operations.OperationsTests) ... ok
+test_native_panel_backup_excludes_unknown_data_directories (test_operations.OperationsTests) ... ok
 test_native_sql_uses_own_datadir_socket_and_service (test_operations.OperationsTests) ... ok
-test_nested_game_backup_does_not_unpause_a_container_paused_by_the_bundle (test_operations.OperationsTests) ... ok
 test_node_php_has_valid_real_parser_syntax (test_operations.OperationsTests) ... ok
 test_node_port_ranges_reject_system_ports_reverse_and_excessive_ranges (test_operations.OperationsTests) ... ok
 test_node_provisioning_uses_contracts_and_saves_tokens_privately (test_operations.OperationsTests) ... ok
+test_panel_backup_excludes_unknown_data_directories (test_operations.OperationsTests) ... ok
+test_panel_restore_rejects_hosted_content_before_any_extraction (test_operations.OperationsTests) ... ok
+test_profile_migration_replaces_obsolete_scheduled_runtime_modules (test_operations.OperationsTests) ... ok
 test_remote_database_requires_private_routed_ipv4 (test_operations.OperationsTests) ... ok
-test_sigterm_in_plain_scheduled_session_unpauses_games_before_exit (test_operations.OperationsTests) ... ok
-test_sql_restore_disables_old_supervisor_before_docker_can_activate_it (test_operations.OperationsTests) ... ok
-test_sql_restore_preserves_an_unmanaged_supervisor (test_operations.OperationsTests) ... ok
-test_sql_restore_refuses_existing_data_and_bad_checksum (test_operations.OperationsTests) ... ok
-test_sql_restore_verifies_hash_preserves_credentials_and_waits_for_health (test_operations.OperationsTests) ... ok
+test_removed_hosted_server_backup_apis_are_not_executable (test_operations.OperationsTests) ... ok
 test_ssh_provisioning_keeps_credentials_in_stdin_and_host_keys_enforced (test_operations.OperationsTests) ... ok
 test_wings_has_one_start_to_avoid_concurrent_bridge_creation (test_operations.OperationsTests) ... ok
+test_wings_only_bundle_contains_configuration_not_game_volumes (test_operations.OperationsTests) ... ok
+test_wings_only_schedule_retains_three_runs_and_preserves_manual_copies (test_operations.OperationsTests) ... ok
 test_wings_reuses_existing_bridge_and_preserves_explicit_configuration (test_operations.OperationsTests) ... ok
+test_wings_schedule_retention_refuses_unknown_files_and_links (test_operations.OperationsTests) ... ok
 test_wings_subnet_avoids_panel_compose_and_host_routes (test_operations.OperationsTests) ... ok
 test_actual_panel_form_matrix_and_game_database_modes (test_preview.SimulationTests) ... ok
 test_both_launchers_refuse_to_install_missing_python_in_preview_even_as_root (test_preview.SimulationTests) ... ok
@@ -135,16 +145,27 @@ test_fresh_preview_prerequisites_fail_before_questions (test_preview.SimulationT
 test_full_tour_all_languages_cannot_use_system_network_or_files (test_preview.SimulationTests) ... ok
 test_generated_admin_password_is_displayed_and_not_saved_in_state (test_preview.SimulationTests) ... ok
 test_noninteractive_tour_does_not_ask_for_input (test_preview.SimulationTests) ... ok
+test_removed_game_data_backup_operations_have_no_simulated_path (test_preview.SimulationTests) ... ok
 test_restore_requires_backup_and_empty_destination (test_preview.SimulationTests) ... ok
 test_invalid_nested_credentials_are_reported_without_overwriting (test_preview.StateShapeTests) ... ok
 test_json_lists_and_scalars_are_invalid_dashboard_state_without_writes (test_preview.StateShapeTests) ... ok
 test_configured_and_incomplete_states_are_distinguished (test_tui.NavigationTests) ... ok
 test_corrupt_state_is_a_dashboard_condition_and_is_not_overwritten (test_tui.NavigationTests) ... ok
+test_direct_action_guides_setup_and_never_reports_success_when_declined (test_tui.NavigationTests) ... ok
 test_direct_missing_panel_has_an_actionable_error (test_tui.NavigationTests) ... ok
+test_foreign_state_and_unmanaged_files_are_never_adopted_by_guided_setup (test_tui.NavigationTests) ... ok
 test_fresh_diagnostics_give_a_next_step_without_service_commands (test_tui.NavigationTests) ... ok
+test_guided_installation_requires_explicit_consent_and_rechecks_state (test_tui.NavigationTests) ... ok
+test_guided_setup_cancellation_never_runs_the_original_operation (test_tui.NavigationTests) ... ok
+test_invalid_status_and_incomplete_backup_profile_are_not_ready (test_tui.NavigationTests) ... ok
 test_language_switch_defaults_to_the_current_language (test_tui.NavigationTests) ... ok
-test_new_machine_only_offers_actions_with_satisfied_prerequisites (test_tui.NavigationTests) ... ok
+test_missing_backup_profile_and_resume_have_accurate_requirements (test_tui.NavigationTests) ... ok
+test_new_machine_actions_are_selectable_and_explain_prerequisites (test_tui.NavigationTests) ... ok
+test_removal_on_empty_machine_never_offers_installation (test_tui.NavigationTests) ... ok
 test_reproduced_option_20_never_dispatches_or_reads_missing_state (test_tui.NavigationTests) ... ok
+test_retained_shortcuts_are_stable_and_game_backup_actions_are_removed (test_tui.NavigationTests) ... ok
+test_schedule_requires_complete_panel_but_supports_wings_only (test_tui.NavigationTests) ... ok
+test_startup_migrates_owned_schedule_only_for_menu_or_mutating_actions (test_tui.NavigationTests) ... ok
 test_terminal_width_and_untrusted_control_characters (test_tui.NavigationTests) ... ok
 test_bootstrap_arrows_download_only_selected_package_and_open_real_tui (test_tui.PseudoTerminalTests) ... ok
 test_bootstrap_mouse_selects_spanish_and_opens_tui (test_tui.PseudoTerminalTests) ... ok
@@ -152,7 +173,7 @@ test_bootstrap_selector_cancels_before_any_language_download (test_tui.PseudoTer
 test_busy_animation_updates_real_terminal_and_restores_it (test_tui.PseudoTerminalTests) ... ok
 test_plain_flag_and_dumb_terminal_do_not_enter_alternate_screen (test_tui.PseudoTerminalTests) ... ok
 test_preview_real_forms_validation_confirmation_and_simulated_install (test_tui.PseudoTerminalTests) ... ok
-test_real_menu_disabled_action_diagnostics_and_clean_exit (test_tui.PseudoTerminalTests) ... ok
+test_real_menu_guided_prerequisite_diagnostics_and_clean_exit (test_tui.PseudoTerminalTests) ... ok
 test_real_mouse_click_selects_choice_and_restores_terminal (test_tui.PseudoTerminalTests) ... ok
 test_resize_and_sigint_restore_real_terminal (test_tui.PseudoTerminalTests) ... ok
 test_arrow_navigation_and_numeric_shortcuts (test_tui.WidgetTests) ... ok
@@ -161,6 +182,7 @@ test_escape_and_small_resized_terminal_can_cancel (test_tui.WidgetTests) ... ok
 test_form_defaults_clear_and_cancel (test_tui.WidgetTests) ... ok
 test_group_navigation_and_search (test_tui.WidgetTests) ... ok
 test_initialization_failure_falls_back_after_restoring_terminal (test_tui.WidgetTests) ... ok
+test_keyboard_and_mouse_select_actions_with_prerequisite_information (test_tui.WidgetTests) ... ok
 test_mouse_cannot_activate_disabled_options_or_empty_space (test_tui.WidgetTests) ... ok
 test_mouse_click_selects_options_and_sidebar_groups (test_tui.WidgetTests) ... ok
 test_mouse_wheel_and_compact_group_arrows (test_tui.WidgetTests) ... ok
@@ -205,6 +227,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 205 tests in 28.650s
+Ran 227 tests in 29.106s
 
 OK

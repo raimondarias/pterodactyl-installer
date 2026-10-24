@@ -2218,5 +2218,116 @@
   },
   "Preparing the game SQL provisioning account": {
     "pt-BR": "Preparando a conta de gerenciamento SQL de jogos"
+  },
+  "Pterodactyl Installer": {
+    "pt-BR": "Pterodactyl Installer"
+  },
+  "Pterodactyl Installer — multilingual Panel v2 and Wings setup for Ubuntu / Debian.": {
+    "pt-BR": "Pterodactyl Installer — instalação do Painel v2 e Wings em vários idiomas para Ubuntu / Debian."
+  },
+  "Setup required": {
+    "pt-BR": "Configuração necessária"
+  },
+  "Schedule encrypted copies of the Panel and Wings configuration only.": {
+    "pt-BR": "Agende backups criptografados somente do Painel e da configuração do Wings."
+  },
+  "Run the saved Panel and Wings configuration backup schedule now.": {
+    "pt-BR": "Execute agora o agendamento salvo de backups do Painel e da configuração do Wings."
+  },
+  "Download and verify a saved encrypted Panel or Wings configuration backup.": {
+    "pt-BR": "Baixe e verifique um backup criptografado salvo do Painel ou da configuração do Wings."
+  },
+  "Inspect this machine and report service failures with next steps.": {
+    "pt-BR": "Verifique esta máquina e informe falhas nos serviços com os próximos passos."
+  },
+  "Continue an interrupted managed installation from its saved phases.": {
+    "pt-BR": "Continue uma instalação gerenciada interrompida a partir das etapas salvas."
+  },
+  "Create a location, node and allocations in your managed Panel.": {
+    "pt-BR": "Crie uma localização, um node e allocations no seu Painel gerenciado."
+  },
+  "Provision Wings over verified SSH and register its node in your Panel.": {
+    "pt-BR": "Instale o Wings via SSH com a identidade do servidor verificada e registre o node no seu Painel."
+  },
+  "Prepare a private SQL host over verified SSH and register it in your Panel.": {
+    "pt-BR": "Prepare um host SQL privado via SSH com a identidade do servidor verificada e registre-o no seu Painel."
+  },
+  "Panel state belongs to another installer. Review it manually; it will not be adopted or overwritten.": {
+    "pt-BR": "O estado do Painel pertence a outro instalador. Revise-o manualmente; ele não será adotado nem sobrescrito."
+  },
+  "Panel files exist without managed state. Review this installation manually; it will not be adopted or overwritten.": {
+    "pt-BR": "Existem arquivos do Painel sem um estado gerenciado. Revise esta instalação manualmente; ela não será adotada nem sobrescrita."
+  },
+  "Panel state is invalid or unreadable. Use diagnostics and recover the saved state before changing it.": {
+    "pt-BR": "O estado do Painel é inválido ou não pode ser lido. Use Diagnóstico e recupere o estado salvo antes de modificá-lo."
+  },
+  "Wings state belongs to another installer. Review it manually; it will not be adopted or overwritten.": {
+    "pt-BR": "O estado do Wings pertence a outro instalador. Revise-o manualmente; ele não será adotado nem sobrescrito."
+  },
+  "Wings files exist without managed state. Review this installation manually; it will not be adopted or overwritten.": {
+    "pt-BR": "Existem arquivos do Wings sem um estado gerenciado. Revise esta instalação manualmente; ela não será adotada nem sobrescrita."
+  },
+  "Wings state is invalid or unreadable. Use diagnostics and recover the saved state before changing it.": {
+    "pt-BR": "O estado do Wings é inválido ou não pode ser lido. Use Diagnóstico e recupere o estado salvo antes de modificá-lo."
+  },
+  "Configure scheduled Panel and Wings configuration backups first.": {
+    "pt-BR": "Configure primeiro os backups agendados do Painel e da configuração do Wings."
+  },
+  "The saved backup profile is invalid or belongs to another installer. Review it before continuing.": {
+    "pt-BR": "O perfil de backup salvo é inválido ou pertence a outro instalador. Revise-o antes de continuar."
+  },
+  "There are no managed components to back up. Install the Panel or Wings first.": {
+    "pt-BR": "Não há componentes gerenciados para fazer backup. Instale primeiro o Painel ou o Wings."
+  },
+  "The saved SQL host state needs manual review before resuming.": {
+    "pt-BR": "O estado salvo do host SQL precisa de revisão manual antes de retomar."
+  },
+  "Install the Panel now and return to this action?": {
+    "pt-BR": "Instalar o Painel agora e voltar a esta ação?"
+  },
+  "Install Wings now and return to this action?": {
+    "pt-BR": "Instalar o Wings agora e voltar a esta ação?"
+  },
+  "Install Panel and Wings now and return to this action?": {
+    "pt-BR": "Instalar o Painel e o Wings agora e voltar a esta ação?"
+  },
+  "Inspect installation state in diagnostics before changing this component.": {
+    "pt-BR": "Verifique o estado da instalação em Diagnóstico antes de modificar este componente."
+  },
+  "Saved installation phases need attention.": {
+    "pt-BR": "As etapas salvas da instalação precisam de atenção."
+  },
+  "No managed Panel or Wings is installed. Host checks are available; install a component to inspect its services.": {
+    "pt-BR": "Não há Painel ou Wings gerenciado instalado. As verificações da máquina estão disponíveis; instale um componente para verificar seus serviços."
+  },
+  "Backups may contain only the Panel and Wings configuration; hosted-server content is not supported.": {
+    "pt-BR": "Os backups podem conter somente o Painel e a configuração do Wings; o conteúdo dos servidores hospedados não é aceito."
+  },
+  "This is not a valid Panel backup.": {
+    "pt-BR": "Este não é um backup válido do Painel."
+  },
+  "Backups include only the Panel and Wings configuration. Hosted-server files and databases are excluded.": {
+    "pt-BR": "Os backups incluem somente o Painel e a configuração do Wings. Arquivos e bancos de dados dos servidores hospedados ficam excluídos."
+  },
+  "The scheduled backup runtime cannot be a symlink.": {
+    "pt-BR": "O ambiente de execução dos backups agendados não pode ser um link simbólico."
+  },
+  "Legacy game backup options were removed. This profile now backs up only the Panel and Wings configuration.": {
+    "pt-BR": "As antigas opções de backup dos jogos foram removidas. Este perfil agora faz backup somente do Painel e da configuração do Wings."
+  },
+  "This snapshot contains unsupported hosted-server content. Nothing was downloaded.": {
+    "pt-BR": "Este snapshot contém dados de servidores hospedados que não são aceitos. Nada foi baixado."
+  },
+  "The snapshot contains no supported Panel or Wings configuration files.": {
+    "pt-BR": "O snapshot não contém arquivos compatíveis do Painel ou da configuração do Wings."
+  },
+  "Needs attention: {component} — {detail}": {
+    "pt-BR": "Precisa de atenção: {component} — {detail}"
+  },
+  "No managed Panel installation is available to remove.": {
+    "pt-BR": "Não há uma instalação gerenciada do Painel para desinstalar."
+  },
+  "No managed Wings installation is available to remove.": {
+    "pt-BR": "Não há uma instalação gerenciada do Wings para desinstalar."
   }
 }

@@ -664,10 +664,6 @@ class Installer:
         from .game_database import GameDatabase
         GameDatabase(self).credentials(self.panel_state() if self.p.state.exists() else None)
 
-    def backup_game_database(self):
-        from .game_database import GameDatabase
-        return GameDatabase(self).backup()
-
     def download_wings(self, release, target):
         arch = "amd64" if platform.machine() == "x86_64" else "arm64"
         name = "wings_linux_" + arch
@@ -913,8 +909,9 @@ class Installer:
                     with self.ui.busy("Comprimiendo configuración, claves y datos"), tarfile.open(temporary, "w:gz", dereference=False) as tar:
                         for item in work.iterdir():
                             tar.add(item, arcname=item.name, recursive=True)
+                        from .backups import PANEL_DATA
                         for item in self.p.data.iterdir():
-                            if item.name not in ("database", "logs"):
+                            if item.name in PANEL_DATA:
                                 tar.add(item, arcname="data/" + item.name, recursive=True)
                 finally:
                     # Restaurar el estado previo incluso ante errores de disco/SQL.
@@ -948,6 +945,8 @@ class Installer:
                 digest.update(chunk)
         if digest.hexdigest() != checksum.read_text().strip():
             raise InstallerError("El checksum del backup no coincide.")
+        from .backups import panel_archive
+        panel_archive(archive)
         # La restauración se realiza en destino vacío para no mezclar claves ni esquemas.
         if self.p.panel.exists() and any(self.p.panel.iterdir()):
             raise InstallerError("El destino debe estar vacío. Desinstala/purga el Panel actual después de respaldarlo.")
@@ -1110,19 +1109,6 @@ class Installer:
         from .nodes import setup
         return setup(self)
 
-    def restore_game_database(self):
-        from .backups import restore_sql
-        return restore_sql(self)
-
-    def backup_games(self):
-        from .backups import backup_games
-        self.ui.confirm("BACK UP GAME FILES")
-        return backup_games(self)
-
-    def restore_games(self):
-        from .backups import restore_games
-        return restore_games(self)
-
     def backup_schedule(self):
         from .backups import ScheduledBackups
         return ScheduledBackups(self).configure()
@@ -1159,44 +1145,59 @@ class Installer:
         self.ui.say("No interrupted managed installation needs resuming.")
 
     def diagnostics(self):
-        if self.p.state.exists() and self.panel_state().get("method") == "standalone":
-            self.native().health()
-            self.ui.say("Standalone services and HTTP endpoint passed their checks.", "ok")
-        elif self.p.state.exists():
-            self.run.run(["docker", "info", "--format", "{{.ServerVersion}}"])
-            _, text = self.dc("ps", "--format", "json")
-            found = set()
-            for line in text.splitlines():
-                data = json.loads(line)
-                for service in (data if isinstance(data, list) else [data]):
-                    found.add(service.get("Service"))
-                    if service.get("State") != "running" or service.get("Health") != "healthy":
-                        raise InstallerError("A Panel container is stopped or unhealthy.")
-            if not {"database", "cache", "panel"}.issubset(found):
-                raise InstallerError("Panel containers are missing.")
-            self.ui.say("All Panel containers are healthy.", "ok")
-        if self.p.wings_state.exists():
-            state = self.load(self.p.wings_state)
-            if state.get("method") == "docker":
-                from .wings import DockerWings
-                backend = DockerWings(self, state)
-                backend.health()
-                _, text = backend.dc("ps", "--all")
-                self.ui.say(text)
-            else:
-                self.run.run(["systemctl", "is-active", "--quiet", "wings"])
-                self.ui.say("Wings is active.", "ok")
-        if not self.p.state.exists() and not self.p.wings_state.exists():
+        from .navigation import inventory, _state_problem
+        installed = inventory(self)
+        if installed['panel'] == installed['wings'] == 'absent':
             self.ui.card("Ready for your first installation", [
                 "No managed Panel or Wings is installed on this machine yet.",
                 "Next: choose Install Panel and Wings, or install the Panel first."])
-            self.ui.card("Machine overview", [
-                self.ui.tr("Architecture: {value}").format(value=platform.machine()),
-                self.ui.tr("Free disk space: {value} GiB").format(value=round(shutil.disk_usage(self.p.root).free / 1024 ** 3, 1)),
-                self.ui.tr("System manager: {value}").format(value="systemd" if (self.p.root / "run/systemd/system").is_dir() else self.ui.tr("Not detected")),
-                "Diagnostics do not install software or change firewall rules."])
-            return
-        self.ui.say(f"Log privado: {self.p.log}")
+        self.ui.card("Machine overview", [
+            self.ui.tr("Architecture: {value}").format(value=platform.machine()),
+            self.ui.tr("Free disk space: {value} GiB").format(value=round(shutil.disk_usage(self.p.root).free / 1024 ** 3, 1)),
+            self.ui.tr("System manager: {value}").format(value="systemd" if (self.p.root / "run/systemd/system").is_dir() else self.ui.tr("Not detected")),
+            "Diagnostics do not install software or change firewall rules."])
+        for component in ('Panel', 'Wings'):
+            status = installed[component.lower()]
+            if status == 'absent':
+                continue
+            problem = _state_problem(component, status)
+            if problem:
+                self.ui.say(problem, 'error')
+                continue
+            try:
+                if component == 'Panel':
+                    if self.panel_state().get('method') == 'standalone':
+                        self.native().health()
+                        self.ui.say("Standalone services and HTTP endpoint passed their checks.", 'ok')
+                    else:
+                        self.run.run(['docker', 'info', '--format', '{{.ServerVersion}}'])
+                        _, text = self.dc('ps', '--format', 'json')
+                        found = set()
+                        for line in text.splitlines():
+                            data = json.loads(line)
+                            for service in (data if isinstance(data, list) else [data]):
+                                found.add(service.get('Service'))
+                                if service.get('State') != 'running' or service.get('Health') != 'healthy':
+                                    raise InstallerError('A Panel container is stopped or unhealthy.')
+                        if not {'database', 'cache', 'panel'}.issubset(found):
+                            raise InstallerError('Panel containers are missing.')
+                        self.ui.say('All Panel containers are healthy.', 'ok')
+                else:
+                    state = self.load(self.p.wings_state)
+                    if state.get('method') == 'docker':
+                        from .wings import DockerWings
+                        backend = DockerWings(self, state)
+                        backend.health()
+                        _, text = backend.dc('ps', '--all')
+                        self.ui.say(text)
+                    else:
+                        self.run.run(['systemctl', 'is-active', '--quiet', 'wings'])
+                        self.ui.say('Wings is active.', 'ok')
+            except (InstallerError, OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+                self.ui.say(self.ui.tr('Needs attention: {component} — {detail}').format(
+                    component=component, detail=self.run.redact(str(exc))), 'error')
+        if installed['panel'] != 'absent' or installed['wings'] != 'absent':
+            self.ui.say(f"Log privado: {self.p.log}")
 
     def logs(self):
         if self.p.state.exists():
@@ -1277,9 +1278,7 @@ class Installer:
                 "admin": self.admin, "firewall": self.firewall,
                 "configure-database": self.configure_game_database,
                 "database-credentials": self.game_database_credentials,
-                "backup-game-database": self.backup_game_database,
-                "create-node": self.create_node, "restore-game-database": self.restore_game_database,
-                "backup-games": self.backup_games, "restore-games": self.restore_games,
+                "create-node": self.create_node,
                 "backup-schedule": self.backup_schedule, "backup-run": self.backup_run,
                 "backup-download": self.backup_download, "health": self.health_report,
                 "resume": self.resume, "remote-node": self.remote_node, "remote-database": self.remote_database}

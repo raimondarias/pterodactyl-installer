@@ -1,5 +1,5 @@
 ╭────────────────────────────────────────────────────────────────────────────╮
-│ P T E R O   /   I N S T A L A D O R                                        │
+│ Pterodactyl Installer                                                      │
 │ Instalación guiada, desde la primera pregunta hasta tu primer servidor.    │
 │ Panel v2  ·  Wings  ·  Ubuntu / Debian                                     │
 │ Instala. Configura. Mantén.                                                │
@@ -113,7 +113,7 @@ INSTALAR PANEL
 │ Solo vista previa. No se instalarán paquetes, archivos ni servicios.       │
 │ 172.30.0.1:3307                                                            │
 │ ptero_games                                                                │
-│ d2d1eb16a511486019c3dc52ddfe96d4077ba11b1f1df128aa13a0a0f856e8e0           │
+│ d281f27cb87a475af39798883459f8ba3538c44b0d8c4113b9809dd702505705           │
 │ Las credenciales de simulación desaparecen al salir.                       │
 ╰────────────────────────────────────────────────────────────────────────────╯
 [1/3] Instalación de Wings
@@ -157,11 +157,6 @@ EMITIR SSL WINGS
 → Simulación: Simulando la emisión del certificado
 [1/1] Simulación: Comprobando servicios simulados
 → Simulación: Comprobando servicios simulados
-[1/2] Simulación: Creando una copia de seguridad simulada
-→ Simulación: Creando una copia de seguridad simulada
-[2/2] Simulación: Verificando la copia de seguridad simulada
-→ Simulación: Verificando la copia de seguridad simulada
-Copia guardada únicamente en la memoria de la simulación.
 [1/2] Simulación: Creando una copia de seguridad simulada
 → Simulación: Creando una copia de seguridad simulada
 [2/2] Simulación: Verificando la copia de seguridad simulada

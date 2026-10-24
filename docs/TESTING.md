@@ -17,7 +17,7 @@ Covered behavior includes:
 - One database-engine choice reused by game SQL; custom credentials, private report, retry and ownership checks.
 - Independent local game SQL Compose configuration, firewall-before-start and rejection of an unsupported firewall backend.
 - Real disposable MariaDB game database/account/privilege lifecycle, including quotes, backslashes and dollars in provisioning passwords. This instance has no TCP listener and changes no system service.
-- Consistent physical game SQL backups, restart on backup failure, and game SQL/report retention after Panel purge.
+- Panel/Wings-only backup scope, encrypted scheduling and game SQL/report retention after Panel purge.
 - Docker MySQL environment/healthcheck/backup commands and MariaDB compatibility.
 - Native environment key preservation, dedicated Redis/FPM/worker/timer generation, SQL collision checks and migration ordering.
 - SQL, original keys, storage, extensions, Redis, file modes, owners and certificate links in backup/restore tests.
@@ -45,7 +45,7 @@ Optional checks are explicitly skipped if the corresponding client binary is abs
 
 The simulator reuses the real Panel and Wings connection forms, but has no service runner or deployment paths. Tests deny subprocess execution, network sockets, HTTP requests and filesystem writes while completing the tour in every language. A 96-combination form matrix exercises simple/advanced, standalone/Docker, MariaDB/MySQL, IP/domain and local/existing/deferred game SQL. Both Bash launchers are tested with Python absent and a tripwire APT executable, including root execution.
 
-An additional real PTY walkthrough enters an invalid domain, corrects it, completes the administrator form, types the install confirmation, observes multiple animated frames, returns to the preview overview and checks terminal restoration. The full simulated lifecycle covers all 33 menu actions, separate SQL retention and restore prerequisites.
+An additional real PTY walkthrough enters an invalid domain, corrects it, completes the administrator form, types the install confirmation, observes multiple animated frames, returns to the preview overview and checks terminal restoration. The simulated lifecycle covers the current operations menu, separate SQL retention and Panel restore prerequisites. Hosted-game backup/restore actions are excluded from the current installer.
 
 ## Additional deployment validation
 
@@ -62,10 +62,10 @@ The checklist below defines broader certification. Consult the [verification rep
 9. Test certificate renewal dry-runs. Standalone Panel uses its dedicated Certbot configuration directory; Wings uses host Certbot. Verify reload/restart hooks for its selected backend.
 10. Uninstall while retaining data, reactivate it, then test purge after a successful backup. Confirm unrelated services and all game data remain.
 11. Exercise local game SQL with both engines and both Panel methods. Confirm automatic registration, per-server limits, game-container access via the private gateway and rejection of SQL from an external interface, including routed private addresses. Reboot and restart Docker; verify firewall persistence before accepting deployment. Check a remote prepared host and a node with a custom bridge.
-12. Back up game SQL independently, verify checksum and restore manually on an isolated second host with the original image/network and Panel backup. Confirm existing game credentials still work. Exercise read-only/full disk, backup restart failure and an interrupted initialization.
+12. Verify Panel-only, Wings-configuration-only and combined encrypted schedules. Confirm game volumes and game SQL are never read, archived, restored or paused. Test read-only/full disk, backup failure recovery and safe legacy schedule normalization and rejection of old game-data snapshots before extraction.
 13. Repeat on ARM64 with supported database packages and game images.
 
-The host regression suite uses temporary processes and command simulations. Separate isolated KVM guests execute actual package installations, Panel/Wings, public HTTPS, game SQL, a game and backup/restore operations. External SMTP delivery and independent provider routing remain separate validation.
+The host regression suite uses temporary processes and command simulations. Separate isolated KVM guests execute actual package installations, Panel/Wings, public HTTPS, game SQL provisioning, a game and Panel backup/restore operations. Historical 1.2.0 runs also exercised game-data backup features that have since been removed; those results do not validate the current narrower backup implementation. External SMTP delivery and independent provider routing remain separate validation.
 
 ## Disposable cloud-image matrix
 

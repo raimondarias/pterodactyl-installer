@@ -1,0 +1,11 @@
+{
+  "installer_version": "1.2.1",
+  "backup_scope": "panel-wings-config",
+  "legacy_profile_migration": "passed",
+  "real_systemd_encrypted_backup_download": "passed",
+  "panel_archive_allowlist": "passed",
+  "wings_configuration_copy": "passed",
+  "hosted_game_running_paused_pid_unchanged": "passed",
+  "hosted_sql_process_unchanged": "passed",
+  "wings_config_unchanged": "passed"
+}

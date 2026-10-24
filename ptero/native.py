@@ -260,14 +260,14 @@ class NativeBackend:
         self.redis_config.parent.chmod(0o755)
         self.run.run(["chown", "root:redis", self.redis_config])
         atomic_write(self.units / self.redis_unit,
-                     f"[Unit]\nDescription=Ptero private Redis\nAfter=network.target\n[Service]\nUser=redis\nGroup=redis\nExecStart=/usr/bin/redis-server {self.redis_config}\nRestart=on-failure\n[Install]\nWantedBy=multi-user.target\n", 0o644)
+                     f"[Unit]\nDescription=Pterodactyl Installer: private Redis\nAfter=network.target\n[Service]\nUser=redis\nGroup=redis\nExecStart=/usr/bin/redis-server {self.redis_config}\nRestart=on-failure\n[Install]\nWantedBy=multi-user.target\n", 0o644)
         atomic_write(self.pool, "[ptero-installer]\nuser=www-data\ngroup=www-data\nlisten=/run/php/ptero-installer.sock\nlisten.owner=www-data\nlisten.group=www-data\npm=ondemand\npm.max_children=12\npm.process_idle_timeout=10s\npm.max_requests=500\ncatch_workers_output=yes\n", 0o644)
         atomic_write(self.units / self.queue,
-                     f"[Unit]\nDescription=Ptero queue worker\nAfter={self.redis_unit} {self.db_unit}.service\nRequires={self.redis_unit}\nStartLimitIntervalSec=180\nStartLimitBurst=30\n[Service]\nUser=www-data\nGroup=www-data\nWorkingDirectory={self.app}\nExecStart={self.php} {self.app}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3\nRestart=always\nRestartSec=5\nTimeoutStopSec=90\n[Install]\nWantedBy=multi-user.target\n", 0o644)
+                     f"[Unit]\nDescription=Pterodactyl Installer: queue worker\nAfter={self.redis_unit} {self.db_unit}.service\nRequires={self.redis_unit}\nStartLimitIntervalSec=180\nStartLimitBurst=30\n[Service]\nUser=www-data\nGroup=www-data\nWorkingDirectory={self.app}\nExecStart={self.php} {self.app}/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3\nRestart=always\nRestartSec=5\nTimeoutStopSec=90\n[Install]\nWantedBy=multi-user.target\n", 0o644)
         atomic_write(self.units / "ptero-panel-scheduler.service",
-                     f"[Unit]\nDescription=Ptero scheduler\nAfter={self.redis_unit}\n[Service]\nType=oneshot\nUser=www-data\nGroup=www-data\nWorkingDirectory={self.app}\nExecStart={self.php} {self.app}/artisan schedule:run\n", 0o644)
+                     f"[Unit]\nDescription=Pterodactyl Installer: scheduler\nAfter={self.redis_unit}\n[Service]\nType=oneshot\nUser=www-data\nGroup=www-data\nWorkingDirectory={self.app}\nExecStart={self.php} {self.app}/artisan schedule:run\n", 0o644)
         atomic_write(self.units / self.scheduler,
-                     "[Unit]\nDescription=Ptero scheduler timer\n[Timer]\nOnCalendar=*-*-* *:*:00\nPersistent=true\n[Install]\nWantedBy=timers.target\n", 0o644)
+                     "[Unit]\nDescription=Pterodactyl Installer: scheduler timer\n[Timer]\nOnCalendar=*-*-* *:*:00\nPersistent=true\n[Install]\nWantedBy=timers.target\n", 0o644)
         self.run.run(["systemctl", "daemon-reload"])
         self.run.run(["systemctl", "enable", "--now", self.redis_unit, "php" + self.s.get("php", "8.3") + "-fpm"])
         self.run.run(["systemctl", "reload", "php" + self.s.get("php", "8.3") + "-fpm"])
@@ -324,7 +324,7 @@ class NativeBackend:
         atomic_write(self.units / "ptero-panel-cert.service",
                      f"[Service]\nType=oneshot\nExecStart=/usr/bin/certbot renew --config-dir {self.certdir} --work-dir {self.p.data}/acme-work --logs-dir {self.p.data}/acme-logs --quiet --deploy-hook \"systemctl reload nginx\"\n", 0o644)
         atomic_write(self.units / self.cert_timer,
-                     "[Unit]\nDescription=Renew Ptero Panel certificates\n[Timer]\nOnCalendar=*-*-* 03,15:30:00\nRandomizedDelaySec=1800\nPersistent=true\n[Install]\nWantedBy=timers.target\n", 0o644)
+                     "[Unit]\nDescription=Renew Pterodactyl Panel certificates\n[Timer]\nOnCalendar=*-*-* 03,15:30:00\nRandomizedDelaySec=1800\nPersistent=true\n[Install]\nWantedBy=timers.target\n", 0o644)
         self.run.run(["systemctl", "daemon-reload"])
         self.run.run(["systemctl", "enable", "--now", self.cert_timer])
 
@@ -436,7 +436,10 @@ class NativeBackend:
                         if self.redis_data.exists():
                             tar.add(self.redis_data, arcname="redis")
                         if self.p.data.exists():
-                            tar.add(self.p.data, arcname="data")
+                            from .backups import PANEL_DATA
+                            for item in self.p.data.iterdir():
+                                if item.name in PANEL_DATA:
+                                    tar.add(item, arcname="data/" + item.name)
                 finally:
                     for unit in (self.redis_unit, self.queue, self.scheduler):
                         if unit in active:

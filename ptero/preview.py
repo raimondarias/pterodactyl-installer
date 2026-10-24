@@ -5,7 +5,7 @@ import time
 from types import SimpleNamespace
 
 from .core import Cancelled, Installer, InstallerError, PANEL_VERSION, WINGS_VERSION
-from .navigation import menu_items, prerequisite
+from .navigation import menu_items, prerequisite, prepare_action
 from .ui import Literal
 from .wizard import administrator, panel_plan
 
@@ -59,6 +59,8 @@ class Simulation:
                 "wings": self.wings["status"] if self.wings else "absent",
                 "database": "ready" if self.database else "absent",
                 "credentials": bool(self.panel and self.panel.get("game_database", {}).get("registered")),
+                "backup_profile": "ready" if self.backup_profile else "absent",
+                "interrupted": bool(self.wings and self.wings.get("status") != "ready"),
                 "url": self.panel["url"] if self.panel else ""}
 
     def install_panel(self):
@@ -156,6 +158,8 @@ class Simulation:
             self.ui.card("Health report", [NOTICE, "All statuses and checks in this session are simulated."])
         elif action == "resume":
             self.stages("Checking completed installation phases")
+            if self.wings and self.wings.get("status") != "ready":
+                self.link_wings()
         elif action == "backup-schedule":
             from .backups import backup_plan
             profile, password = backup_plan(self.ui)
@@ -167,16 +171,6 @@ class Simulation:
             if not self.backup_profile:
                 raise InstallerError("Configure scheduled backups first.")
             self.stages("Creating a simulated backup", "Verifying the simulated backup")
-        elif action == "restore-game-database":
-            if "game-database" not in self.backups or self.database:
-                raise InstallerError("Game SQL restore requires a backup and an empty destination.")
-            self.ui.confirm("RESTORE GAME DATABASES")
-            self.database = copy.deepcopy(self.backups["game-database"])
-        elif action == "restore-games":
-            if "games" not in self.backups:
-                raise InstallerError("Create a simulated game-file backup first.")
-            self.ui.confirm("RESTORE GAME FILES")
-            self.stages("Verifying the simulated backup")
         elif action == "install-all":
             self.install_panel()
             self.install_wings()
@@ -208,10 +202,10 @@ class Simulation:
             if self.generated_admin_password:
                 self.ui.card("Save your generated password", [Literal(self.admin_password),
                     "Simulation credentials disappear when you exit."])
-        elif action.startswith("backup-"):
+        elif action in ("backup-panel", "backup-wings"):
             key = action.removeprefix("backup-")
             self.stages("Creating a simulated backup", "Verifying the simulated backup")
-            self.backups[key] = copy.deepcopy(self.panel if key == "panel" else self.wings if key == "wings" else self.database)
+            self.backups[key] = copy.deepcopy(self.panel if key == "panel" else self.wings)
             self.ui.say("Backup stored in preview memory only.")
         elif action == "restore-panel":
             if "panel" not in self.backups:
@@ -306,7 +300,7 @@ def show(ui, action=None):
         ui.card("Interface preview", [NOTICE, "All statuses and checks in this session are simulated."])
         simulation.ui = TourUI(ui)
         simulation.dispatch("install-all")
-        for item in ("backup-panel", "backup-wings", "backup-game-database", "diagnose"):
+        for item in ("backup-panel", "backup-wings", "diagnose"):
             simulation.dispatch(item)
         ui.card("Simulation complete", [NOTICE, "Simulation credentials disappear when you exit."])
         return
@@ -340,9 +334,12 @@ def show(ui, action=None):
             if ui.screen:
                 ui.screen.begin()
             ui.say(NOTICE, "muted")
-            simulation.dispatch(selected)
-            if ui.screen:
-                ui.screen.result("Simulation complete")
+            if prepare_action(ui, selected, simulation.inventory(), simulation.dispatch, simulation.inventory):
+                simulation.dispatch(selected)
+                if ui.screen:
+                    ui.screen.result("Simulation complete")
+            elif ui.screen:
+                ui.screen.result("Before you continue")
         except Cancelled:
             if not in_operation:
                 return

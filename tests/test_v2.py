@@ -14,6 +14,7 @@ from unittest.mock import patch
 
 from test_installer import BaseTest, FakeRunner, QuietUI
 import installer as app
+from ptero import __version__
 from ptero.cli import select_language
 from ptero.i18n import Translator
 from ptero.native import NativeBackend, dotenv
@@ -431,4 +432,4 @@ class PreviewTests(BaseTest):
             _, launcher = builder.build()
         result = subprocess.run(["bash", str(launcher), "--version"], capture_output=True, text=True, timeout=15)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("ptero-installer 1.2.0", result.stdout)
+        self.assertIn("Pterodactyl Installer " + __version__, result.stdout)

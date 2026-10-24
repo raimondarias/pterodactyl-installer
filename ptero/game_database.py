@@ -4,14 +4,12 @@ Local SQL uses a dedicated native service or Docker database: the privileged
 provisioning account must never share the Panel SQL server.
 Its published port binds only to its own private Docker bridge IPv4 gateway.
 """
-import hashlib
 import ipaddress
 import json
 import shlex
 from pathlib import Path
 import re
 import secrets
-import tarfile
 import tempfile
 
 from .core import PROJECT, SCHEMA, InstallerError, atomic_write, write_json, valid_host
@@ -119,7 +117,7 @@ class GameDatabase:
                 subnet = ipaddress.IPv4Network(config["Subnet"])
                 gateway = ipaddress.IPv4Address(config["Gateway"])
                 if not subnet.is_private or not gateway.is_private or gateway not in subnet or gateway.is_loopback:
-                    raise InstallerError("The SQL backup contains an invalid private network.")
+                    raise InstallerError("The SQL configuration contains an invalid private network.")
                 addressing = ["--subnet", str(subnet), "--gateway", str(gateway)]
             self.run.run(["docker", "network", "create", *addressing, "--driver", "bridge", "--label",
                           OWNER_LABEL + "=" + PROJECT, "--opt", "com.docker.network.bridge.name=ptero-db0",
@@ -168,7 +166,7 @@ class GameDatabase:
                   f"iptables -w -C INPUT -d {gateway} -p tcp --dport {port} -j PTERO-GAME-DB 2>/dev/null || iptables -w -I INPUT 1 -d {gateway} -p tcp --dport {port} -j PTERO-GAME-DB\n")
         atomic_write(self.firewall_script, script, 0o700)
         atomic_write(self.firewall_unit,
-                     "[Unit]\nDescription=Restrict local Ptero game SQL to host and game bridges\n"
+                     "[Unit]\nDescription=Restrict local Pterodactyl game SQL to host and game bridges\n"
                      "Requires=docker.service\nAfter=docker.service\nPartOf=docker.service\n"
                      f"[Service]\nType=oneshot\nRemainAfterExit=yes\nExecStart=/bin/sh {shlex.quote(str(self.firewall_script))}\n"
                      "[Install]\nWantedBy=multi-user.target\n", 0o644)
@@ -198,7 +196,7 @@ class GameDatabase:
     def service_config(self):
         command = "/usr/bin/docker compose --project-name " + COMPOSE_PROJECT + " --file " + shlex.quote(str(self.compose))
         atomic_write(self.service,
-                     "[Unit]\nDescription=Ptero isolated game SQL host\n"
+                     "[Unit]\nDescription=Pterodactyl Installer: isolated game SQL host\n"
                      "Requires=docker.service ptero-game-db-firewall.service\n"
                      "After=docker.service ptero-game-db-firewall.service\nPartOf=docker.service\n"
                      f"[Service]\nType=simple\nExecStart={command} up --abort-on-container-exit --exit-code-from database\n"
@@ -360,46 +358,3 @@ class GameDatabase:
         if settings["mode"] == "local":
             rows.append("This private database address works only for nodes on this machine. Remote nodes need a reachable private database host.")
         self.ui.card("Game database host is ready", rows)
-
-    def backup(self):
-        if not self.state_file.exists():
-            raise InstallerError("No managed local game database exists. Back up remote SQL on its own host.")
-        state = self.load()
-        if state.get("method") == "standalone":
-            from .native_game_database import NativeGameDatabase
-            return NativeGameDatabase(self).backup()
-        if not self.data.is_dir() or not any(self.data.iterdir()):
-            raise InstallerError("The local game database data directory is empty; no backup was created.")
-        self.p.backups.mkdir(parents=True, exist_ok=True, mode=0o700)
-        target = self.p.backups / ("game-databases-" + self.i.stamp() + ".tar.gz")
-        partial = Path(str(target) + ".partial")
-        _, running = self.dc("ps", "--status", "running", "--services")
-        was_running = "database" in running.splitlines()
-        try:
-            self.run.run(["systemctl", "stop", "ptero-game-databases.service"])
-            self.dc("stop", "database", label="Pausing game databases for a consistent physical backup")
-            with tarfile.open(partial, "w:gz") as archive:
-                for path in (self.state_file, self.compose, self.init, self.data):
-                    # MySQL's image recreates this runtime socket alias on boot.
-                    # It points outside the datadir and carries no persistent data.
-                    archive.add(path, arcname=path.name, filter=lambda member:
-                                None if member.name == 'data/mysql.sock' and member.issym() else member)
-            partial.chmod(0o600)
-            partial.replace(target)
-            with target.open("rb") as stream:
-                digest = hashlib.file_digest(stream, "sha256").hexdigest() if hasattr(hashlib, "file_digest") else self.digest(stream)
-            atomic_write(Path(str(target) + ".sha256"), digest + "  " + target.name + "\n")
-        finally:
-            partial.unlink(missing_ok=True)
-            if was_running:
-                self.start()
-        self.ui.say("Game database backup: {value}".format(value=target), "ok")
-        self.ui.say("Physical backup: restore only with its original database image and private network; game queries pause during backup.")
-        return target
-
-    @staticmethod
-    def digest(stream):
-        digest = hashlib.sha256()
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-        return digest.hexdigest()

@@ -58,7 +58,7 @@ The database engine is selected **once**. The Panel gets its own application dat
 
 Choose one of three options in either simple or advanced setup:
 
-1. **Local node (isolated game SQL):** choose an isolated native instance (recommended) or a separate, digest-pinned MariaDB/MySQL container. See [native SQL and recovery](ADVANCED.md). The Docker option installs its own project, even when the **Panel is standalone**. This explicit option installs Docker if needed. The privileged provisioning user cannot access the Panel SQL instance. Docker selects a private bridge subnet; SQL publishes only on that bridge's IPv4 gateway, on port 3307 by default. This address works for the native/Docker Panel and game containers on this machine. It does not use the public Panel IP and does not work for remote nodes.
+1. **Local node (isolated game SQL):** choose an isolated native instance (recommended) or a separate, digest-pinned MariaDB/MySQL container. See [native SQL setup](ADVANCED.md). The Docker option installs its own project, even when the **Panel is standalone**. This explicit option installs Docker if needed. The privileged provisioning user cannot access the Panel SQL instance. Docker selects a private bridge subnet; SQL publishes only on that bridge's IPv4 gateway, on port 3307 by default. This address works for the native/Docker Panel and game containers on this machine. It does not use the public Panel IP and does not work for remote nodes.
 2. **Existing database host:** asks for its reachable hostname/IPv4, port and existing provisioning credentials, then registers it in the Panel. Remote SQL packages, grants, private routing and firewall must already be prepared; this registration option does not alter that host. To provision a new private SQL host over verified SSH, use **Prepare remote game SQL** separately. Use the selected MariaDB/MySQL engine there as well.
 3. **Configure later (default):** installs the Panel without game SQL. Use menu option 20 later. A simple Panel installation does not acquire another SQL container without choosing it.
 
@@ -70,9 +70,7 @@ The final card shows **host, port, provisioning username and password** and writ
 
 An advanced setup can link the host to an existing numeric node ID. Leave it at **0** to register a global host when the first node has not been created. Each game server still needs a **database limit greater than zero** in the Panel. Then creating a database from that server's Databases page generates its separate database/user; setup does not invent a first game server.
 
-Local SQL data lives outside the Panel project at `/opt/pterodactyl-installer/game-databases/`. **Removing or purging Panel/Wings preserves this project, its data, SQL service, firewall and connection report.** Game databases may still serve running games. Menu option 22 backs up this instance separately, briefly stopping SQL for a consistent physical copy and restarting it if it was running. Keep the archive and checksum off the host. Remote-host backups remain your responsibility.
-
-A physical game-SQL backup contains its original pinned image/configuration, manager/root credentials and raw data. Use **Restore game databases** for a guided restore into an empty managed destination. The restore verifies the original image/native version and private network. For manual recovery: verify the checksum; stop the game SQL project; safely extract into an empty managed directory with ownership preserved; recreate the same private bridge/gateway and firewall; then start the **original pinned image**. Rewrite absolute bind paths only when restoring to a different root. Restore the Panel backup as well to retain its database-host records and encrypted game passwords. Do not restore raw files into a different engine/version. Full cross-host restore has not been validated; the remaining integration coverage is tracked in [the roadmap](ROADMAP.md).
+Local SQL data lives outside the Panel project at `/opt/pterodactyl-installer/game-databases/`. **Removing or purging Panel/Wings preserves this project, its data, SQL service, firewall and connection report.** Game databases may still serve running games. The installer provisions and registers the host; game database data backups and restores belong to Pterodactyl or your own database backup system.
 
 [Pterodactyl SQL setup](https://docs.pterodactyl.io/v2/guides/tutorials/mysql-setup) · [v2 host creation contract](https://github.com/pterodactyl/panel/blob/v2.0.0-beta.2/app/Actions/Databases/CreateDatabaseHost.php) · [Docker publishing and routing](https://docs.docker.com/engine/network/port-publishing/).
 
@@ -100,24 +98,27 @@ The node API is accessed over verified HTTPS without putting the Auto-Deploy tok
 | 11–13 | Back up Panel / Wings configuration / restore Panel |
 | 14–16 | Diagnostics / restart / logs |
 | 17–19 | SMTP / administrator / ports and firewall |
-| 20–22 | Configure game SQL host / view its credentials / back up local game databases |
+| 20–21 | Configure game SQL host / view its credentials |
 | 23 | Change language |
 | 24 | Create node and allocations |
-| 25–27 | Restore game SQL / back up game files / restore game files |
 | 28–30 | Schedule encrypted backups / run backup now / download snapshot |
 | 31–32 | Detailed health / resume installation |
 | 33–34 | Install remote Wings / prepare remote game SQL |
 | 0 | Exit |
 
-In the TUI, these operations are grouped under **Install**, **Maintenance**, **Game databases**, **Backups**, **Remove**, **Nodes** and **Preferences**. The numbers below are stable keyboard shortcuts and the layout used by `--plain`.
+All listed operations are implemented. A component must be installed and configured before actions that depend on it can run. On a fresh machine, select an action to see its prerequisite and the installation step that prepares it.
 
-These operations are also available as direct commands: `install-all`, `install-panel`, `install-wings`, `uninstall-all`, `uninstall-panel`, `uninstall-wings`, `update-panel`, `update-wings`, `configure-wings`, `tls-wings`, `backup-panel`, `backup-wings`, `restore-panel`, `diagnose`, `restart`, `logs`, `smtp`, `admin`, `firewall`, `configure-database`, `database-credentials`, `backup-game-database`, `create-node`, `restore-game-database`, `backup-games`, `restore-games`, `backup-schedule`, `backup-run`, `backup-download`, `health`, `resume`, `remote-node` and `remote-database`. Confirmations still apply.
+In the TUI, these operations are grouped under **Install**, **Maintenance**, **Game databases**, **Backups**, **Remove**, **Nodes** and **Preferences**. The numbers above are stable keyboard shortcuts and the layout used by `--plain`.
+
+These operations are also available as direct commands: `install-all`, `install-panel`, `install-wings`, `uninstall-all`, `uninstall-panel`, `uninstall-wings`, `update-panel`, `update-wings`, `configure-wings`, `tls-wings`, `backup-panel`, `backup-wings`, `restore-panel`, `diagnose`, `restart`, `logs`, `smtp`, `admin`, `firewall`, `configure-database`, `database-credentials`, `create-node`, `backup-schedule`, `backup-run`, `backup-download`, `health`, `resume`, `remote-node` and `remote-database`. Confirmations still apply.
 
 ## Backups, updates and removal
 
 Panel backups contain SQL, original application keys, Redis and persistent configuration. Standalone backups also include the complete application; its Panel certificate/account state is kept in a dedicated managed Certbot directory. Backups pause the Panel's workers/web access and Redis as appropriate, and recover previously running services when an operation fails. Each archive has a `.sha256` companion; retain both and store a copy off the server.
 
-**Panel and Wings-configuration backups do not include game SQL data, game worlds, game files or game backups.** Use `backup-game-database` for the managed local SQL instance. Back those up through Pterodactyl or your node backup system.
+**Panel and Wings-configuration backups are the only supported backup scope.** No hosted game SQL data, worlds, files, volumes or game backups are copied or restored. Protect hosted servers through Pterodactyl or your own backup system.
+
+Scheduled encrypted backups select Panel and/or Wings configuration, including Wings-only machines. Actions 28, 29 and 30 configure the schedule, run it immediately and download a verified snapshot. See [encrypted scheduled backups](ADVANCED.md#encrypted-scheduled-backups).
 
 Restoration requires empty managed Panel/application directories and preserves the original APP_KEY/HASHIDS_SALT. Standalone restore also requires an empty private Redis directory. The backup's deployment method and database engine are restored; this is not a Docker ↔ standalone or MySQL ↔ MariaDB migration tool. Keep the original domain/IP/DNS or explicitly adapt the configuration afterward.
 

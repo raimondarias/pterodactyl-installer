@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.1 — 2026-10-24
+
+- Use the full **Pterodactyl Installer** name in the bootstrap, terminal interface and documentation in all three languages.
+- Clarify that maintenance actions are implemented and expose their precise installation/configuration prerequisites as selectable menu entries.
+- Restrict all backup and recovery tools to the Panel and Wings configuration. Remove hosted-game volume and game-database backup/restore commands while retaining SQL host provisioning.
+- Support Panel-only, Wings-configuration-only and combined encrypted schedules. Safely normalize legacy profile scopes and reject legacy game-data snapshots before restoration.
+- Keep detailed health reporting available when managed state is corrupt, so the report explains problems instead of treating them as a fresh installation.
+
+
 ## 1.2.0 — 2026-10-23
 
 - Select languages, menu actions and wizard choices with a mouse click in compatible terminals; click sidebar groups and use the wheel to navigate. Keyboard controls remain available.

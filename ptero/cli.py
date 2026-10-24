@@ -31,10 +31,7 @@ ENTRIES = [
     ("Create administrator", "admin"), ("Ports and firewall", "firewall"),
     ("Configure game database host", "configure-database"),
     ("Show database host credentials", "database-credentials"),
-    ("Back up local game databases", "backup-game-database"),
     ("Create node and allocations", "create-node"),
-    ("Restore game databases", "restore-game-database"),
-    ("Back up game files", "backup-games"), ("Restore game files", "restore-games"),
     ("Schedule encrypted backups", "backup-schedule"), ("Run scheduled backup now", "backup-run"),
     ("Download remote backup", "backup-download"), ("Detailed health report", "health"),
     ("Resume installation", "resume"), ("Install remote Wings node", "remote-node"),
@@ -44,7 +41,7 @@ ENTRIES = [
 
 def menu(installer):
     from .core import InstallerError, Cancelled
-    from .navigation import inventory, menu_items
+    from .navigation import inventory, menu_items, prepare_action
     ui = installer.ui
     while True:
         state = inventory(installer)
@@ -67,14 +64,11 @@ def menu(installer):
                 if item.group != last_group:
                     print("\n  " + ui.paint(ui.tr(item.group), "35"))
                     last_group = item.group
-                suffix = " · " + ui.tr("Unavailable") if not item.enabled else ""
+                suffix = " · " + ui.tr("Setup required") if item.reason else ""
                 print(f"  {item.shortcut:>2}  {ui.tr(item.label)}{suffix}")
             print()
             selected = ui.ask("Choose an option", validator=lambda s: any(item.shortcut == s for item in items))
             item = next(item for item in items if item.shortcut == selected)
-            if not item.enabled:
-                ui.card("Before you continue", [item.reason])
-                continue
             action = item.value
         if action == "exit":
             return
@@ -94,7 +88,10 @@ def menu(installer):
             ui.screen.begin()
         outcome = "Operation complete"
         try:
-            installer.actions()[action]()
+            if prepare_action(ui, action, state, lambda setup: installer.actions()[setup](), lambda: inventory(installer)):
+                installer.actions()[action]()
+            else:
+                outcome = "Before you continue"
         except Cancelled:
             outcome = "Operation cancelled."
             ui.say(outcome, "muted")
@@ -108,12 +105,12 @@ def menu(installer):
 
 def main(argv=None):
     from .core import Installer, InstallerError
-    parser = argparse.ArgumentParser(description="Ptero Installer — multilingual Panel v2 and Wings setup for Ubuntu / Debian.")
+    parser = argparse.ArgumentParser(description="Pterodactyl Installer — multilingual Panel v2 and Wings setup for Ubuntu / Debian.")
     parser.add_argument("--language", choices=LANGUAGES, help="Skip the startup language selector")
     parser.add_argument("--no-animation", action="store_true", help="Disable terminal animations")
     parser.add_argument("--plain", action="store_true", help="Use numbered prompts instead of the full-screen TUI")
     parser.add_argument("--preview", action="store_true", help="Preview the interface without root or system changes")
-    parser.add_argument("--version", action="version", version="ptero-installer " + __version__)
+    parser.add_argument("--version", action="version", version="Pterodactyl Installer " + __version__)
     parser.add_argument("action", nargs="?", help="Direct action, e.g. install-all, install-panel, diagnose, backup-panel")
     args = parser.parse_args(argv)
     ui = UI(animate=not args.no_animation, language=args.language or "en", plain=args.plain)
@@ -137,15 +134,26 @@ def main(argv=None):
                     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
                 except BlockingIOError as exc:
                     raise InstallerError("Another installer is already running.") from exc
+                # Upgrade an owned saved schedule before any interactive or mutating
+                # operation can leave its former game-data backup runtime active.
+                # Read-only diagnostics never change profiles or installed runtimes.
+                readonly = {"diagnose", "health", "firewall", "logs", "database-credentials", "backup-download"}
+                if args.action not in readonly and (installer.p.base / "backup-profile.json").exists():
+                    from .navigation import inventory
+                    if inventory(installer)["backup_profile"] == "ready":
+                        from .backups import ScheduledBackups
+                        ScheduledBackups(installer).migrate()
                 if args.action:
-                    from .navigation import inventory, prerequisite
-                    reason = prerequisite(args.action, inventory(installer))
-                    if reason:
-                        raise InstallerError(reason)
+                    from .navigation import inventory, prepare_action
                     ui.banner()
-                    installer.actions()[args.action]()
+                    ready = prepare_action(ui, args.action, inventory(installer),
+                                           lambda setup: installer.actions()[setup](), lambda: inventory(installer))
+                    if ready:
+                        installer.actions()[args.action]()
                     if ui.screen:
-                        ui.screen.result()
+                        ui.screen.result("Operation complete" if ready else "Before you continue")
+                    if not ready:
+                        return 1
                 else:
                     menu(installer)
     except (KeyboardInterrupt, EOFError):

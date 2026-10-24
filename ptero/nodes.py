@@ -53,7 +53,7 @@ def plan(installer):
 
 CREATE = r'''
 $location=Pterodactyl\Models\Location::query()->where('short',$data['location'])->first();
-if(!$location){$location=$app->make(Pterodactyl\Contracts\Locations\CreatesLocations::class)->create(['short'=>$data['location'],'long'=>'Managed by Ptero Installer']);}
+if(!$location){$location=$app->make(Pterodactyl\Contracts\Locations\CreatesLocations::class)->create(['short'=>$data['location'],'long'=>'Managed by Pterodactyl Installer']);}
 $node=Pterodactyl\Models\Node::query()->where('fqdn',$data['fqdn'])->where('daemonListen',$data['daemon_listen'])->first();
 $input=array_diff_key($data,array_flip(['location','allocation_ip','allocation_ports']));$input['location_id']=$location->id;
 if($node){foreach(['name','memory','disk','scheme','behind_proxy','location_id'] as $k){if($node->$k!=$input[$k]){throw new RuntimeException('An existing node has different settings.');}}

@@ -23,7 +23,7 @@ def capture(screen, target):
     rows, columns = screen.window.getmaxyx()
     cell, line, margin = 9, 20, 12
     elements = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{columns * cell + 2 * margin}" height="{rows * line + 2 * margin}" role="img">',
-                '<title>Ptero Installer — actual ncurses screen capture</title>',
+                '<title>Pterodactyl Installer — actual ncurses screen capture</title>',
                 '<rect width="100%" height="100%" fill="#1c1c1c"/>',
                 '<g font-family="DejaVu Sans Mono,Consolas,monospace" font-size="15" xml:space="preserve">']
     for row in range(rows):
@@ -52,7 +52,7 @@ def capture(screen, target):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--language", choices=("en", "es", "pt-BR"), default="es")
-    parser.add_argument("--scene", choices=("overview", "database", "password", "preview", "review"), default="overview")
+    parser.add_argument("--scene", choices=("overview", "database", "maintenance", "backups", "nodes", "remove", "password", "preview", "review"), default="overview")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     ui = UI(False, args.language)
@@ -67,8 +67,9 @@ def main():
             capture(screen, args.output)
             curses.unget_wch("\x1b")
         screen.refresh = snapshot
-        if args.scene == "database":
-            screen.navigation = ("Game databases", 0)
+        groups = {"database": "Game databases", "maintenance": "Maintenance", "backups": "Backups", "nodes": "Nodes", "remove": "Remove"}
+        if args.scene in groups:
+            screen.navigation = (groups[args.scene], 0)
         try:
             if args.scene == "preview":
                 from ptero.preview import show

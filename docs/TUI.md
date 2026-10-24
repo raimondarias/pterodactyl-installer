@@ -1,6 +1,6 @@
 # Terminal interface
 
-The default interactive interface is a full-screen **ncurses TUI**, using Python's
+**Pterodactyl Installer** opens a full-screen **ncurses TUI** by default, using Python's
 standard library. It needs no pip packages, Node runtime or browser.
 
 ![Actual Spanish dashboard](images/tui-es.svg)
@@ -35,11 +35,11 @@ The overview reports whether Panel, Wings and local game SQL are configured.
 service health. No live service commands run just to paint the menu.
 
 On a new machine, start from **Install Panel and Wings** or **Install Panel**.
-Maintenance and game SQL actions explain their prerequisites. Selecting action
+Every listed operation is implemented. Maintenance and game SQL actions explain their installation prerequisites; the status describes the current machine, rather than an unfinished feature. Selecting action
 20 before installing a Panel shows the instruction to install it first; it never
 tries to load a missing `panel/state.json`. Direct commands have the same guard.
 
-![Unavailable game SQL action with an explanation](images/tui-prerequisites-es.svg)
+![Game SQL action with an installation prerequisite](images/tui-prerequisites-es.svg)
 
 Fresh-machine diagnostics show architecture, disk space, system-manager detection
 and an installation suggestion. They do not install packages or modify firewalls.
@@ -109,8 +109,8 @@ python3 scripts/capture_tui.py --language es --scene overview --output docs/imag
 
 [Python ncurses documentation](https://docs.python.org/3.10/library/curses.html).
 
-The 1.2.0 preview now opens the full grouped operations menu and uses production setup forms with an in-memory simulation backend. See the [complete preview walkthrough](PREVIEW.md). All preview screens carry a persistent localized PREVIEW marker.
+The preview opens the full grouped operations menu and uses production setup forms with an in-memory simulation backend. See the [complete preview walkthrough](PREVIEW.md). All preview screens carry a persistent localized PREVIEW marker.
 
 ## Mouse selection
 
-Click an option to choose it, including startup languages, installation choices and Yes/No prompts. Click sidebar groups to switch sections; use the mouse wheel to move through options. On compact layouts, click the arrows beside the group name. Disabled actions still explain missing prerequisites. Typed confirmations and password fields require keyboard input. Mouse support depends on your terminal/SSH client; keyboard controls remain available. Mouse tracking is disabled when exiting or cancelling.
+Click an option to choose it, including startup languages, installation choices and Yes/No prompts. Click sidebar groups to switch sections; use the mouse wheel to move through options. On compact layouts, click the arrows beside the group name. Actions requiring setup explain the missing prerequisites. Typed confirmations and password fields require keyboard input. Mouse support depends on your terminal/SSH client; keyboard controls remain available. Mouse tracking is disabled when exiting or cancelling.

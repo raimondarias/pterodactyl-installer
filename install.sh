@@ -2,7 +2,7 @@
 # Online bootstrap: ask first, then fetch only the selected language package.
 set -Eeuo pipefail
 REPOSITORY="raimondarias/pterodactyl-installer"
-VERSION="1.2.0"
+VERSION="1.2.1"
 language=""
 plain_mode=0
 animations=1
@@ -37,9 +37,9 @@ while (($#)); do
         --plain) plain_mode=1; forwarded+=("$1"); shift ;;
         --no-animation) animations=0; forwarded+=("$1"); shift ;;
         --preview) preview_mode=1; forwarded+=("$1"); shift ;;
-        --version) printf 'ptero-installer %s\n' "$VERSION"; exit 0 ;;
+        --version) printf 'Pterodactyl Installer %s\n' "$VERSION"; exit 0 ;;
         --help|-h)
-            printf '%s\n' 'Ptero Installer — online language bootstrap' \
+            printf '%s\n' 'Pterodactyl Installer — online language bootstrap' \
                 'Usage: bash install.sh [--language en|es|pt-BR] [--preview] [--plain] [--no-animation] [action]' \
                 'Without --language, the first question selects a language before downloading runtime code.' \
                 'Offline source checkout: bash scripts/run_local.sh [options]'
@@ -60,7 +60,7 @@ choose_language_tui() {
         if [[ "$previous" != "$selected:$rows:$columns" ]]; then
             printf '\033[2J'
             if [[ -z "${NO_COLOR+x}" ]]; then printf '\033[1;36m'; fi
-            printf '\033[2;%sHPTERO / INSTALLER  %s' "$left" "$VERSION"
+            printf '\033[2;%sHPterodactyl Installer  %s' "$left" "$VERSION"
             printf '\033[0m\033[4;%sHWhich language would you like to use?' "$left"
             if (( rows < 18 || columns < 60 )); then
                 printf '\033[6;1HEnlarge the terminal (60 columns, 18 rows). Esc cancels.'
@@ -127,7 +127,7 @@ if [[ -z "$language" ]]; then
     fi
 fi
 if [[ -z "$language" ]]; then
-    printf '\n  P T E R O  /  I N S T A L L E R\n\n'
+    printf '\n  Pterodactyl Installer\n\n'
     printf '%s\n' '  Which language would you like to use?' '' \
         '  1. English' '  2. Español' '  3. Português (Brasil)' ''
     while true; do

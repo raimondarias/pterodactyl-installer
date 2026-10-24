@@ -6,7 +6,6 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-import tarfile
 import tempfile
 import time
 from unittest.mock import patch
@@ -208,8 +207,7 @@ class GameDatabaseTests(BaseTest):
         docker.assert_not_called()
         self.assertFalse(self.host.state_file.exists())
         self.assertTrue(self.settings["registered"])
-        with self.assertRaises(app.InstallerError):
-            self.host.backup()
+        self.assertFalse(hasattr(self.host, "backup"))
 
     def test_registration_failure_leaves_panel_ready_and_can_retry(self):
         self.runner.registration_output = "invalid output"
@@ -293,36 +291,6 @@ class GameDatabaseTests(BaseTest):
         self.assertTrue(self.host.data.is_dir())
         self.assertIn(["systemctl", "stop", "ptero-game-databases.service"], [args for args, _ in self.runner.calls])
         self.assertNotIn("database", self.runner.running)
-
-    def test_backup_contains_game_data_and_credentials_and_restores_running_state(self):
-        self.setup_local()
-        (self.host.data / "ibdata1").write_bytes(b"game-db-data")
-        target = self.host.backup()
-        with tarfile.open(target) as archive:
-            self.assertEqual(archive.extractfile("data/ibdata1").read(), b"game-db-data")
-            self.assertIn("root_password", json.load(archive.extractfile("state.json")))
-        self.assertTrue(Path(str(target) + ".sha256").is_file())
-        self.assertIn("database", self.runner.running)
-
-    def test_backup_failure_restarts_game_database(self):
-        self.setup_local()
-        (self.host.data / "ibdata1").write_bytes(b"game-db-data")
-        with patch("ptero.game_database.tarfile.open", side_effect=OSError("disk full")):
-            with self.assertRaises(OSError):
-                self.host.backup()
-        self.assertIn("database", self.runner.running)
-        self.assertEqual(list(self.paths.backups.glob("*.partial")), [])
-
-    def test_physical_backup_omits_mysql_runtime_socket_alias(self):
-        self.setup_local()
-        socket = self.host.data / 'mysql.sock'
-        socket.symlink_to('/var/run/mysqld/mysqld.sock')
-        (self.host.data / 'table.ibd').write_bytes(b'persistent table')
-        archive = self.host.backup()
-        with tarfile.open(archive) as source:
-            self.assertNotIn('data/mysql.sock', source.getnames())
-            self.assertEqual(source.extractfile('data/table.ibd').read(), b'persistent table')
-        self.assertTrue(socket.is_symlink())
 
     def test_panel_purge_preserves_game_database_project_and_data(self):
         self.state["method"] = "docker"

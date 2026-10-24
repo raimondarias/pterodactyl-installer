@@ -1,8 +1,7 @@
-"""Real node, game SQL, game process and verified backup smoke in disposable VMs."""
+"""Real node, game SQL provisioning and Panel/Wings-only backup smoke in disposable VMs."""
 import json
 from pathlib import Path
 import secrets
-import shutil
 import socket
 import tempfile
 import time
@@ -11,7 +10,7 @@ from ptero.nodes import create
 from ptero.panel_bridge import execute
 from ptero.game_database import GameDatabase
 from ptero.native_game_database import NativeGameDatabase
-from ptero.backups import restore_sql, backup_games, verified
+from ptero.backups import verified
 
 
 def run(i):
@@ -45,18 +44,8 @@ def run(i):
             stream.write(statement.encode());stream.seek(0)
             return sql.dc('exec','-T','database','sh','-c',command,input_file=stream)
     query("CREATE DATABASE installer_smoke; CREATE TABLE installer_smoke.world(id INT PRIMARY KEY); INSERT INTO installer_smoke.world VALUES(42);")
-    archive=sql.backup()
-    if backend is not None:
-        i.run.run(['systemctl','stop',backend.unit])
-        backend.data.rename(backend.data.with_name('game-sql-original'))
-    else:
-        i.run.run(['systemctl','stop','ptero-game-databases.service'])
-        sql.dc('down')
-        sql.data.rename(sql.data.with_name('data-original'))
-    sql.state_file.rename(sql.state_file.with_name('state-original.json'))
-    restore_sql(i,archive)
     _,rows=query('SELECT id FROM installer_smoke.world;')
-    if rows.strip()!='42':raise InstallerError('SQL restore lost game data')
+    if rows.strip()!='42':raise InstallerError('Game SQL provisioning did not preserve inserted data')
     source=Path(__file__).resolve().parent
     i.run.run(['docker','build','-t','ptero-integration-minetest:1','-f',source/'game.Dockerfile',source],timeout=900)
     code=r'''
@@ -78,7 +67,14 @@ fwrite(STDOUT,json_encode(['uuid'=>$server->uuid]));
         if status==0 and 'listening on' in logs:break
         time.sleep(1)
     else:raise InstallerError('The integration game did not start')
-    verified(backup_games(i))
-    _,status=i.run.run(['docker','inspect','--format','{{.State.Running}}',server['uuid']])
-    if status.strip()!='true':raise InstallerError('Game was not resumed after backup')
-    i.ui.say('INTEGRATION_WINGS_SQL_GAME_BACKUP_PASSED','ok')
+    # Installer backups concern only Panel and Wings configuration. A running
+    # hosted game and its SQL instance must not be stopped, paused or archived.
+    verified(i.backup_panel())
+    wings_backup=i.backup_wings()
+    if not (wings_backup/'config.yml').is_file():
+        raise InstallerError('Wings configuration backup is missing')
+    _,status=i.run.run(['docker','inspect','--format','{{.State.Running}} {{.State.Paused}}',server['uuid']])
+    if status.strip()!='true false':raise InstallerError('Panel/Wings backup changed the hosted game state')
+    _,rows=query('SELECT id FROM installer_smoke.world;')
+    if rows.strip()!='42':raise InstallerError('Panel/Wings backup changed game SQL')
+    i.ui.say('INTEGRATION_PANEL_WINGS_BACKUP_GAME_PRESERVATION_PASSED','ok')
