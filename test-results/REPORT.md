@@ -4,9 +4,9 @@
 
 | Coverage | Result |
 | --- | --- |
-| Regression suite | **201 passing tests**, including real PTYs, MariaDB socket lifecycle, PHP/NGINX parsers and encrypted Restic roundtrip |
+| Regression suite | **205 passing tests**, including real PTYs, MariaDB socket lifecycle, PHP/NGINX parsers and encrypted Restic roundtrip |
 | Static checks | Bash syntax, Python compilation and ShellCheck 0.11.0 passed |
-| Languages | **739 messages** in English, Spanish and Brazilian Portuguese; placeholders and reproducible language packages verified |
+| Languages | **740 messages** in English, Spanish and Brazilian Portuguese; placeholders and reproducible language packages verified |
 | Download bootstrap | English first question; only selected language fetched from an immutable commit; checksum and safe extraction enforced |
 | Public distribution | Real GitHub downloads and ncurses previews in all three languages; mouse selection, language switching and terminal restoration passed. [Exact snapshot and output](published-checks.txt) |
 | Terminal interface | Keyboard, mouse, categories, search, masked inputs, invalid-input correction, resize, animated progress and cancellation tested in actual pseudoterminals |
@@ -16,6 +16,9 @@
 | Recovery | Checksums, safe extraction, empty destinations, original SQL version/image and network identity enforced; failed backups resume paused games |
 | SSH | Strict host keys and batch key authentication; runtime checksum; credentials through encrypted stdin |
 | Upstream artifacts | Panel v2.0.0-beta.2 and Wings v1.13.4 release artifacts verified; official amd64/arm64 image manifests checked |
+
+| Fresh native-game-SQL matrix | **18/18 passed**, Ubuntu/Debian with both Panel methods and SQL engines; [immutable run and case records](ci-native-matrix.json) |
+| Additional Docker-game-SQL matrix | **10/10 passed**, Ubuntu/Debian with Docker Panel and both SQL engines; [immutable run and case records](ci-docker-matrix.json) |
 
 ## Real deployment on installer.xerosrv.com
 
@@ -28,6 +31,8 @@ A dedicated Ubuntu 24.04 KVM guest runs behind a separate host NGINX virtual hos
 - Isolated native game SQL with a separate operating-system account, Panel host registration, physical backup and restoration of original table data.
 - Private SQL provisioning over verified SSH with an explicit source allowlist, followed by Panel registration.
 - Docker Panel with MySQL, its authentication client, schema loading, administrator and container health.
+- Docker Wings with healthy API authentication and preservation of the running game, followed by restoration of the standalone daemon.
+- Docker game SQL with both MariaDB and MySQL: private account provisioning, original table data after physical restore and supervision held stopped until data copying completes.
 - A real Minetest server created through Panel contracts, started by Wings and listening on its game allocation; game-file restore preserves content and ownership, and the game starts again.
 - Encrypted scheduled systemd backup into a local Restic repository, snapshot download and archive checksum verification.
 - A separate encrypted SFTP repository roundtrip over verified SSH to the isolated guest.
@@ -38,7 +43,9 @@ A dedicated Ubuntu 24.04 KVM guest runs behind a separate host NGINX virtual hos
 
 ## Fresh-system matrix and limits
 
-The manually triggered [deployment workflow](https://github.com/raimondarias/pterodactyl-installer/actions/workflows/tests.yml) boots disposable official cloud images and performs install, restart, update redeployment, purge, restore, node linking, game SQL restoration and a real game smoke test. It covers 18 Ubuntu/Debian × deployment × SQL combinations. Its completion is recorded from actual CI results, independently of the regression suite.
+The manually triggered [deployment workflow](https://github.com/raimondarias/pterodactyl-installer/actions/workflows/tests.yml) boots disposable official cloud images and performs install, restart, update redeployment, purge, restore, node linking, game SQL restoration and a real game smoke test. It covers 18 Ubuntu/Debian × deployment × SQL combinations. All **18 cases passed** in [run 40054262242](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40054262242), using native game SQL and standalone Wings. [Exact source commit, image checksums and results](ci-native-matrix.json).
+
+An additional **10 Docker Panel + Docker game-SQL cases passed** in [run 40057444433](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40057444433) after the Docker provisioning/readiness/restore fixes. [Exact source commit, image checksums and results](ci-docker-matrix.json). These cases cover both engines on all five distributions. Docker Wings was exercised separately in the domain lab. The final regression run on this runtime commit also [passed](https://github.com/raimondarias/pterodactyl-installer/actions/runs/40057444721).
 
 Ubuntu 26.04 native installation needs a preconfigured PHP 8.3/8.4 source; the tested PHP repository does not currently publish that distribution. The installer detects this before package changes. Fresh Ubuntu 26.04 matrix jobs therefore use Docker.
 

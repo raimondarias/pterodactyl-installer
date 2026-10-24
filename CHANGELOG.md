@@ -13,6 +13,7 @@
 - Fix native Artisan working directories, HTTP readiness after restore, Docker MySQL authentication and internal SQL certificate handling.
 - Isolate native game SQL under a separate operating-system user and add scoped AppArmor rules.
 - Detect Docker/host network conflicts before choosing the Wings bridge.
+- Provision Docker game SQL through private stdin, check network readiness, omit its transient socket from backups and keep supervision stopped until physical restore finishes.
 - Enforce secure session cookies for HTTPS URLs and explain the fresh Ubuntu 26.04 native PHP limitation before package changes.
 
 ## 1.1.0 — 2026-10-23

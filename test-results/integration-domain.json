@@ -22,5 +22,10 @@
   "administrator_password_hash_after_restore": "passed",
   "native_migrations_queue_health_report": "passed",
   "docker_mysql_migrations_queue_health_report": "passed",
-  "debian13_official_cloud_image_vga_seed_ssh_boot": "passed"
+  "debian13_official_cloud_image_vga_seed_ssh_boot": "passed",
+  "docker_wings_health_api_game_preservation": "passed",
+  "docker_game_sql_mariadb_physical_restore": "passed",
+  "docker_game_sql_mysql_physical_restore": "passed",
+  "docker_sql_restore_supervision_stopped_until_data_copy": "passed",
+  "final_detailed_health_all_components": "passed"
 }

@@ -53,8 +53,8 @@ Ubuntu **22.04 / 24.04 / 26.04** or Debian **12 / 13**, amd64 or arm64, with sys
 - [Full preview](docs/PREVIEW.md) · [Terminal interface](docs/TUI.md)
 - [Testing](docs/TESTING.md) · [Verification report](test-results/REPORT.md)
 - [Changelog](CHANGELOG.md) · [Releases](https://github.com/raimondarias/pterodactyl-installer/releases)
-- [Publishing guide](docs/UPLOAD.md) · [Roadmap](docs/ROADMAP.md)
+- [Roadmap](docs/ROADMAP.md)
 
-A real Ubuntu 24.04 standalone deployment is tested at `installer.xerosrv.com`. See the verification report for the exact integration coverage and remaining matrix checks.
+A real Ubuntu 24.04 standalone deployment runs at [installer.xerosrv.com](https://installer.xerosrv.com). See the verification report for completed fresh-system tests and infrastructure limits.
 
 [MIT License](LICENSE)

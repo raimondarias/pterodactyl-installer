@@ -4,7 +4,7 @@ The 1.2.0 implementation adds all seven agreed areas: disposable integration too
 
 Remaining validation and expansion:
 
-1. Complete the full Ubuntu/Debian × standalone/Docker × MariaDB/MySQL integration matrix, including ARM64 runners. Keep failures visible and attach only redacted artifacts.
+1. Add ARM64 runners to the completed 18-case amd64 Ubuntu/Debian × standalone/Docker × MariaDB/MySQL matrix. Keep failures visible and attach only redacted artifacts.
 2. Test S3 and SFTP against independent off-server infrastructure; current encrypted repository roundtrips use isolated local storage.
 3. Test remote routing and firewall behavior between independent VPSes. Local SSH/VM tests do not prove provider networking.
 4. Add guided game-file restore for custom Wings daemon paths and more granular per-server backup selection.

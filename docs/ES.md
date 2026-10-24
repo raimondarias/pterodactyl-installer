@@ -6,7 +6,7 @@ Instala desde el repositorio publicado:
 curl -fsSL https://raw.githubusercontent.com/raimondarias/pterodactyl-installer/main/install.sh -o ptero-setup.sh && sudo bash ptero-setup.sh
 ```
 
-La primera pregunta estará en inglés: **Which language would you like to use?**. Después se descarga únicamente el paquete del idioma elegido, se verifica y comienza el asistente sin repetir esa pregunta. Esta ruta requiere haber subido el proyecto completo a `main`; consulta [cómo publicarlo](UPLOAD.md).
+La primera pregunta estará en inglés: **Which language would you like to use?**. Después se descarga únicamente el paquete del idioma elegido, se verifica y comienza el asistente sin repetir esa pregunta. El repositorio publicado incluye los tres paquetes de idioma.
 
 Al comenzar verás **1. English · 2. Español · 3. Português (Brasil)**. Selecciona 2 para usar todo el asistente en español. El idioma también se puede cambiar desde el menú.
 
@@ -20,9 +20,9 @@ Selecciona **Simple (Recomendado)** o **Avanzado**, y después:
 
 El modo avanzado también permite elegir versión, PHP 8.3/8.4 en standalone, puerto HTTP, IP de escucha y zona horaria. Las decisiones se muestran antes de instalar.
 
-El motor se elige una sola vez para Panel y juegos. El asistente también ofrece preparar un host SQL local aislado en Docker, registrar uno existente o dejarlo para después (por defecto). La opción local usa Docker incluso con Panel standalone y sirve para los juegos de esta máquina. El host se registra automáticamente en el Panel y entrega host, puerto, usuario y contraseña en pantalla y en un archivo privado. Avanzado permite personalizar las credenciales y asociar un nodo existente; 0 lo deja global. Cada servidor de juego necesita un límite de bases de datos mayor que cero.
+El motor se elige una sola vez para Panel y juegos. El asistente también ofrece preparar un host SQL local aislado, nativo (recomendado) o en Docker, registrar uno existente o dejarlo para después (por defecto). La opción nativa separa usuario del sistema, datos, puerto y servicio de la base del Panel. Docker sigue siendo necesario para los juegos y su red privada. El host se registra automáticamente en el Panel y entrega host, puerto, usuario y contraseña en pantalla y en un archivo privado. Avanzado permite personalizar las credenciales y asociar un nodo existente; 0 lo deja global. Cada servidor de juego necesita un límite de bases de datos mayor que cero.
 
-Los menús 20–22 configuran el host, muestran sus credenciales y crean una copia de las bases locales. El idioma cambia en la opción 23. Las bases de juegos y sus credenciales se conservan al purgar el Panel; sus datos SQL requieren su propia copia. El host remoto debe estar preparado y accesible; su instalación y sus copias no se hacen a distancia. La restauración de la copia física SQL sigue siendo manual con la imagen original. Consulta los detalles de redes, firewall y restauración en [la guía principal](OPERATIONS.md#game-database-hosts).
+Los menús 20–22 configuran el host, muestran sus credenciales y crean una copia de las bases locales. El idioma cambia en la opción 23. Las bases de juegos y sus credenciales se conservan al purgar el Panel; sus datos SQL requieren su propia copia. Puedes preparar SQL privado en otra máquina con la acción remota por SSH; las rutas privadas y claves verificadas deben estar listas. Las copias de ese SQL se ejecutan en su propia máquina. La restauración guiada verifica la versión o imagen original y requiere un destino vacío. Consulta los detalles de redes, firewall y restauración en [la guía principal](OPERATIONS.md#game-database-hosts).
 
 Vista previa sin root ni instalación:
 
@@ -32,7 +32,7 @@ bash scripts/run_local.sh --language es --preview
 
 Se aceptan Ubuntu 22.04/24.04/26.04 y Debian 12/13 con systemd. Se necesitan root, Python 3.10+, al menos 4 GiB libres y memoria suficiente. El arranque instala Python si falta. No se necesitan paquetes de pip. MySQL nativo en Debian requiere amd64; en Debian ARM64 usa MariaDB o Docker.
 
-Wings necesita Docker para ejecutar juegos, aunque el Panel sea standalone. Puedes usar Wings como servicio systemd (recomendado) o como contenedor oficial. Crea primero ubicación, nodo y allocations en el Panel, y vincúlalo con el token Auto-Deploy. El token se introduce oculto y no pasa por argumentos de proceso.
+Wings necesita Docker para ejecutar juegos, aunque el Panel sea standalone. Puedes usar Wings como servicio systemd (recomendado) o como contenedor oficial. Usa la creación automática de ubicación, nodo y allocations, o créalos en el Panel y vincula Wings con el token Auto-Deploy. El token se introduce oculto y no pasa por argumentos de proceso.
 
 El menú permite instalar/desinstalar ambos componentes juntos o separados, actualizar, emitir SSL para Wings, hacer copias, restaurar, consultar diagnósticos/registros y configurar correo/administradores.
 

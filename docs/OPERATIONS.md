@@ -59,10 +59,10 @@ The database engine is selected **once**. The Panel gets its own application dat
 Choose one of three options in either simple or advanced setup:
 
 1. **Local node (isolated game SQL):** choose an isolated native instance (recommended) or a separate, digest-pinned MariaDB/MySQL container. See [native SQL and recovery](ADVANCED.md). The Docker option installs its own project, even when the **Panel is standalone**. This explicit option installs Docker if needed. The privileged provisioning user cannot access the Panel SQL instance. Docker selects a private bridge subnet; SQL publishes only on that bridge's IPv4 gateway, on port 3307 by default. This address works for the native/Docker Panel and game containers on this machine. It does not use the public Panel IP and does not work for remote nodes.
-2. **Existing database host:** asks for its reachable hostname/IPv4, port and existing provisioning credentials, then registers it in the Panel. Remote SQL packages, grants, private routing and firewall must already be prepared; the installer does not remotely install software or alter that host. Use the selected MariaDB/MySQL engine there as well.
+2. **Existing database host:** asks for its reachable hostname/IPv4, port and existing provisioning credentials, then registers it in the Panel. Remote SQL packages, grants, private routing and firewall must already be prepared; this registration option does not alter that host. To provision a new private SQL host over verified SSH, use **Prepare remote game SQL** separately. Use the selected MariaDB/MySQL engine there as well.
 3. **Configure later (default):** installs the Panel without game SQL. Use menu option 20 later. A simple Panel installation does not acquire another SQL container without choosing it.
 
-The local SQL firewall admits host loopback, Docker's default bridge, standard `br-*` bridges and Wings' default `pterodactyl0` interface. It drops other incoming SQL traffic in both `DOCKER-USER` and `INPUT`, including traffic routed to the private gateway. It does not flush other rules or change SSH/firewall policy. It requires Docker's **iptables** backend with `DOCKER-USER`; setup stops before starting SQL if that backend is unavailable. Custom Wings bridge names need an explicit firewall adaptation. The dedicated `ptero-game-db-firewall.service` reapplies those rules after boot/Docker restart. SQL uses `ptero-game-databases.service`, ordered after the firewall, with Docker restart policy disabled so it cannot automatically start before those rules. Systemd supervises the attached Compose process and recovers a stopped SQL process.
+The local SQL firewall admits host loopback, Docker's default bridge, standard `br-*` bridges and Wings' default `pterodactyl0` interface. It drops other incoming SQL traffic in both `DOCKER-USER` and `INPUT`, including traffic routed to the private gateway. It does not flush other rules or change SSH/firewall policy. It requires Docker's **iptables** backend with `DOCKER-USER`; setup stops before starting SQL if that backend is unavailable. Custom Wings bridge names need an explicit firewall adaptation. The dedicated `ptero-game-db-firewall.service` reapplies those rules after boot/Docker restart. Docker SQL uses `ptero-game-databases.service`, ordered after the firewall, with Docker restart policy disabled so it cannot automatically start before those rules. Systemd supervises the attached Compose process and recovers a stopped SQL process. Native SQL instead uses `ptero-game-sql-native.service`, with its own data at `/var/lib/pterodactyl-installer/game-sql/`.
 
 Registration calls Panel v2's own `CreatesDatabaseHosts` contract: it checks the connection and encrypts the password. Repeating setup reuses the local password/image and matches an existing host's settings instead of creating duplicates. If registration fails, the Panel stays installed and the private SQL data remains; retry **Install Panel** or use the database menu. An engine/password change on an existing local instance requires a separate migration.
 
@@ -102,11 +102,16 @@ The node API is accessed over verified HTTPS without putting the Auto-Deploy tok
 | 17–19 | SMTP / administrator / ports and firewall |
 | 20–22 | Configure game SQL host / view its credentials / back up local game databases |
 | 23 | Change language |
+| 24 | Create node and allocations |
+| 25–27 | Restore game SQL / back up game files / restore game files |
+| 28–30 | Schedule encrypted backups / run backup now / download snapshot |
+| 31–32 | Detailed health / resume installation |
+| 33–34 | Install remote Wings / prepare remote game SQL |
 | 0 | Exit |
 
-In the TUI, these operations are grouped under **Install**, **Maintenance**, **Game databases**, **Backups**, **Remove** and **Preferences**. The numbers below are stable keyboard shortcuts and the layout used by `--plain`.
+In the TUI, these operations are grouped under **Install**, **Maintenance**, **Game databases**, **Backups**, **Remove**, **Nodes** and **Preferences**. The numbers below are stable keyboard shortcuts and the layout used by `--plain`.
 
-These operations are also available as direct commands: `install-all`, `install-panel`, `install-wings`, `uninstall-all`, `uninstall-panel`, `uninstall-wings`, `update-panel`, `update-wings`, `configure-wings`, `tls-wings`, `backup-panel`, `backup-wings`, `restore-panel`, `diagnose`, `restart`, `logs`, `smtp`, `admin`, `firewall`, `configure-database`, `database-credentials`, and `backup-game-database`. Confirmations still apply.
+These operations are also available as direct commands: `install-all`, `install-panel`, `install-wings`, `uninstall-all`, `uninstall-panel`, `uninstall-wings`, `update-panel`, `update-wings`, `configure-wings`, `tls-wings`, `backup-panel`, `backup-wings`, `restore-panel`, `diagnose`, `restart`, `logs`, `smtp`, `admin`, `firewall`, `configure-database`, `database-credentials`, `backup-game-database`, `create-node`, `restore-game-database`, `backup-games`, `restore-games`, `backup-schedule`, `backup-run`, `backup-download`, `health`, `resume`, `remote-node` and `remote-database`. Confirmations still apply.
 
 ## Backups, updates and removal
 
@@ -190,7 +195,7 @@ Full clean-VPS deployments, public certificates, email delivery and running a ga
 
 [Guía rápida en español](ES.md) · [Guia rápido em português brasileiro](PT-BR.md).
 
-Future priorities: [backup/restore, first-node automation, clean-VM CI and native game SQL](ROADMAP.md).
+Next priorities: [ARM64 execution, independent provider tests, notifications and guided rollback](ROADMAP.md).
 
 ## Upstream references
 
