@@ -46,6 +46,12 @@ and an installation suggestion. They do not install packages or modify firewalls
 Corrupt managed state is shown as requiring attention rather than being silently
 treated as a fresh machine.
 
+## Backup scope
+
+![Panel and Wings configuration backups](images/backups-es.svg)
+
+Only Panel and Wings configuration copies appear here. Option 28 schedules encrypted copies of the installed components, 29 runs the schedule and 30 downloads a verified snapshot. Hosted game files and game SQL data are excluded. The retired 22/25/26/27 shortcuts are not reused.
+
 ## Forms, review and progress
 
 Fields support Unicode input and editing. Passwords are masked; they are not
@@ -65,7 +71,7 @@ percentages for tasks of unknown duration. A legacy interactive subprocess
 temporarily suspends ncurses and restores it afterward.
 
 Results remain on screen for inspection and scrolling before returning to the
-overview. They are not immediately replaced by another 23-line menu. Private
+overview. They are not immediately replaced by the operations menu. Private
 installer logs remain separate from the UI.
 
 ## Compatibility and reduced motion

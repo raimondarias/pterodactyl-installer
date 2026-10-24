@@ -1,5 +1,5 @@
-OK published main commit: d2c99bfbe0b54ee70a2ec2dcc1ed4f19338bcba8
-OK published installer version: 1.2.0
+OK published main commit: 2a8c6c320f605196e52cc95429ab12b928c9ec38
+OK published installer version: 1.2.1
 OK real GitHub download and preview: en; one English language question
 OK published full-screen TUI: en; mouse language/action selection, wizard cancellation and terminal restoration
 OK real GitHub download and preview: es; one English language question
