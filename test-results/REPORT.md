@@ -16,7 +16,6 @@
 | Recovery | Checksums, safe extraction, empty destinations, original SQL version/image and network identity enforced; failed backups resume paused games |
 | SSH | Strict host keys and batch key authentication; runtime checksum; credentials through encrypted stdin |
 | Upstream artifacts | Panel v2.0.0-beta.2 and Wings v1.13.4 release artifacts verified; official amd64/arm64 image manifests checked |
-
 | Fresh native-game-SQL matrix | **18/18 passed**, Ubuntu/Debian with both Panel methods and SQL engines; [immutable run and case records](ci-native-matrix.json) |
 | Additional Docker-game-SQL matrix | **10/10 passed**, Ubuntu/Debian with Docker Panel and both SQL engines; [immutable run and case records](ci-docker-matrix.json) |
 
