@@ -3693,5 +3693,10 @@
     "en": "No free private Wings subnet was found. Configure the node network manually.",
     "es": "No se encontró una subred privada libre para Wings. Configura manualmente la red del nodo.",
     "pt-BR": "Nenhuma sub-rede privada livre foi encontrada para o Wings. Configure a rede do nó manualmente."
+  },
+  "Preparing the game SQL provisioning account": {
+    "en": "Preparing the game SQL provisioning account",
+    "es": "Preparando la cuenta de gestión SQL de juegos",
+    "pt-BR": "Preparando a conta de gerenciamento SQL de jogos"
   }
 }

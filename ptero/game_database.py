@@ -1,7 +1,7 @@
 """Optional game SQL host, independent of Panel data and its lifecycle.
 
-The local option deliberately uses a dedicated Docker database even for a native
-Panel: the privileged provisioning account must never share the Panel SQL server.
+Local SQL uses a dedicated native service or Docker database: the privileged
+provisioning account must never share the Panel SQL server.
 Its published port binds only to its own private Docker bridge IPv4 gateway.
 """
 import hashlib
@@ -181,14 +181,16 @@ class GameDatabase:
         prefix = "MYSQL" if mysql else "MARIADB"
         environment = {prefix + "_ROOT_PASSWORD": state["root_password"].replace("$", "$$"),
                        prefix + "_ROOT_HOST": "localhost"}
-        check = (["CMD-SHELL", 'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --host=127.0.0.1 --user=root --execute="SELECT 1" --silent']
+        # TCP ping excludes the temporary initialization server. The SQL query
+        # uses root's local socket, which works with skip-name-resolve enabled.
+        check = (["CMD-SHELL", 'mysqladmin --host=127.0.0.1 --user=root --silent ping >/dev/null 2>&1 && '
+                  'MYSQL_PWD="$$MYSQL_ROOT_PASSWORD" mysql --protocol=socket --user=root --execute="SELECT 1" --silent']
                  if mysql else ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"])
         return {"name": COMPOSE_PROJECT, "services": {"database": {
             "image": state["image"], "restart": "no", "stop_grace_period": "120s",
             "environment": environment,
             "ports": [f"{state['host']}:{state['port']}:3306"],
-            "volumes": [{"type": "bind", "source": str(self.data), "target": "/var/lib/mysql"},
-                        {"type": "bind", "source": str(self.init), "target": "/docker-entrypoint-initdb.d/10-provision.sql", "read_only": True}],
+            "volumes": [{"type": "bind", "source": str(self.data), "target": "/var/lib/mysql"}],
             "networks": ["games"], "healthcheck": {"test": check, "interval": "10s", "timeout": "5s",
                                                   "retries": 30, "start_period": "30s"}}},
             "networks": {"games": {"external": True, "name": NETWORK}}}
@@ -204,7 +206,27 @@ class GameDatabase:
                      "Restart=always\nRestartSec=5\nTimeoutStartSec=0\nTimeoutStopSec=150\n"
                      "[Install]\nWantedBy=docker.service\n", 0o644)
         self.run.run(["systemctl", "daemon-reload"])
-        self.run.run(["systemctl", "enable", "--now", "ptero-game-databases.service"])
+        self.run.run(["systemctl", "enable", "ptero-game-databases.service"])
+
+    def start(self, state=None):
+        # One Compose client creates/starts containers. The supervisor attaches
+        # afterward, avoiding concurrent startup during install and recovery.
+        self.run.run(["systemctl", "stop", "ptero-game-databases.service"], check=False)
+        self.dc("up", "-d", "--wait", "--wait-timeout", "420", "database", label="Starting the isolated game database")
+        if state is not None:
+            self.provision(state)
+        self.run.run(["systemctl", "start", "ptero-game-databases.service"])
+
+    def provision(self, state):
+        self.run.secrets.update((state["password"], state["root_password"]))
+        mysql = state["engine"] == "mysql"
+        variable = "MYSQL_ROOT_PASSWORD" if mysql else "MARIADB_ROOT_PASSWORD"
+        client = "mysql" if mysql else "mariadb"
+        command = 'MYSQL_PWD="$' + variable + '" exec ' + client + ' --user=root --batch'
+        with tempfile.TemporaryFile() as stream:
+            stream.write(self.init_sql(state).encode()); stream.seek(0)
+            self.dc("exec", "-T", "database", "sh", "-c", command, input_file=stream,
+                    label="Preparing the game SQL provisioning account")
 
     def init_sql(self, state):
         # A dedicated instance contains no Panel database. Its manager can create
@@ -212,7 +234,8 @@ class GameDatabase:
         quote = lambda value: "'" + value.replace("'", "''") + "'"
         account = quote(state["username"]) + "@'%'"
         return ("SET SESSION sql_mode='NO_BACKSLASH_ESCAPES';\n"
-                f"CREATE USER {account} IDENTIFIED BY {quote(state['password'])};\n"
+                f"CREATE USER IF NOT EXISTS {account} IDENTIFIED BY {quote(state['password'])};\n"
+                f"ALTER USER {account} IDENTIFIED BY {quote(state['password'])};\n"
                 f"GRANT ALL PRIVILEGES ON *.* TO {account} WITH GRANT OPTION;\n")
 
     def local(self, settings):
@@ -251,7 +274,7 @@ class GameDatabase:
             raise
         try:
             self.service_config()
-            self.dc("up", "-d", "--wait", "--wait-timeout", "420", "database", label="Starting the isolated game database")
+            self.start(state)
         except (InstallerError, OSError):
             self.run.run(["systemctl", "stop", "ptero-game-databases.service"], check=False)
             self.dc("stop", "database", check=False)
@@ -357,7 +380,10 @@ class GameDatabase:
             self.dc("stop", "database", label="Pausing game databases for a consistent physical backup")
             with tarfile.open(partial, "w:gz") as archive:
                 for path in (self.state_file, self.compose, self.init, self.data):
-                    archive.add(path, arcname=path.name)
+                    # MySQL's image recreates this runtime socket alias on boot.
+                    # It points outside the datadir and carries no persistent data.
+                    archive.add(path, arcname=path.name, filter=lambda member:
+                                None if member.name == 'data/mysql.sock' and member.issym() else member)
             partial.chmod(0o600)
             partial.replace(target)
             with target.open("rb") as stream:
@@ -366,8 +392,7 @@ class GameDatabase:
         finally:
             partial.unlink(missing_ok=True)
             if was_running:
-                self.run.run(["systemctl", "start", "ptero-game-databases.service"])
-                self.dc("up", "-d", "--wait", "--wait-timeout", "420", "database")
+                self.start()
         self.ui.say("Game database backup: {value}".format(value=target), "ok")
         self.ui.say("Physical backup: restore only with its original database image and private network; game queries pause during backup.")
         return target

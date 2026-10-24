@@ -127,7 +127,7 @@ def restore_sql(i, archive=None):
             write_json(manager.compose, manager.config(state))
             manager.firewall(state)
             manager.service_config()
-            manager.dc('up', '-d', '--wait', '--wait-timeout', '420', 'database')
+            manager.start(state)
         state['status'] = 'ready'
         write_json(manager.state_file, state)
     i.ui.say('Game databases restored with their original credentials.', 'ok')

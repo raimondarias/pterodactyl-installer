@@ -2215,5 +2215,8 @@
   },
   "No free private Wings subnet was found. Configure the node network manually.": {
     "en": "No free private Wings subnet was found. Configure the node network manually."
+  },
+  "Preparing the game SQL provisioning account": {
+    "en": "Preparing the game SQL provisioning account"
   }
 }

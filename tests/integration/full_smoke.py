@@ -4,6 +4,7 @@ from pathlib import Path
 import secrets
 import shutil
 import socket
+import tempfile
 import time
 from ptero.core import InstallerError
 from ptero.nodes import create
@@ -26,18 +27,35 @@ def run(i):
         'allocation_ip':address,'allocation_ports':['25565-25575']}
     result = create(i,data,link=True)
     panel=i.panel_state()
-    settings={'mode':'local','method':'standalone','engine':panel['database_engine'],'name':'Integration SQL','port':3307,
+    method = 'docker' if panel.get('method') == 'docker' else 'standalone'
+    settings={'mode':'local','method':method,'engine':panel['database_engine'],'name':'Integration SQL','port':3307,
         'username':'ptero_games','password':secrets.token_hex(32),'node_id':result['node_id'],'registered':False}
     panel['game_database']=settings;i.save_panel(panel)
     sql=GameDatabase(i);sql.setup(panel)
-    backend=NativeGameDatabase(sql);state=sql.load()
-    backend.client(state,"CREATE DATABASE installer_smoke; CREATE TABLE installer_smoke.world(id INT PRIMARY KEY); INSERT INTO installer_smoke.world VALUES(42);")
+    state=sql.load()
+    backend=NativeGameDatabase(sql) if method=='standalone' else None
+    def query(statement):
+        if backend is not None:
+            return backend.client(state,statement)
+        mysql=state['engine']=='mysql'
+        variable='MYSQL_ROOT_PASSWORD' if mysql else 'MARIADB_ROOT_PASSWORD'
+        client='mysql' if mysql else 'mariadb'
+        command='MYSQL_PWD="$'+variable+'" exec '+client+' --user=root --batch --skip-column-names'
+        with tempfile.TemporaryFile() as stream:
+            stream.write(statement.encode());stream.seek(0)
+            return sql.dc('exec','-T','database','sh','-c',command,input_file=stream)
+    query("CREATE DATABASE installer_smoke; CREATE TABLE installer_smoke.world(id INT PRIMARY KEY); INSERT INTO installer_smoke.world VALUES(42);")
     archive=sql.backup()
-    i.run.run(['systemctl','stop',backend.unit])
-    backend.data.rename(backend.data.with_name('game-sql-original'))
+    if backend is not None:
+        i.run.run(['systemctl','stop',backend.unit])
+        backend.data.rename(backend.data.with_name('game-sql-original'))
+    else:
+        i.run.run(['systemctl','stop','ptero-game-databases.service'])
+        sql.dc('down')
+        sql.data.rename(sql.data.with_name('data-original'))
     sql.state_file.rename(sql.state_file.with_name('state-original.json'))
     restore_sql(i,archive)
-    _,rows=backend.client(state,'SELECT id FROM installer_smoke.world;')
+    _,rows=query('SELECT id FROM installer_smoke.world;')
     if rows.strip()!='42':raise InstallerError('SQL restore lost game data')
     source=Path(__file__).resolve().parent
     i.run.run(['docker','build','-t','ptero-integration-minetest:1','-f',source/'game.Dockerfile',source],timeout=900)

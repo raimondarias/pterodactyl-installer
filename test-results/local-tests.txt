@@ -29,6 +29,7 @@ test_no_supported_firewall_backend_never_starts_database (test_game_database.Gam
 test_one_engine_selection_is_reused_by_game_host (test_game_database.GameDatabaseTests) ... ok
 test_panel_purge_preserves_game_database_project_and_data (test_game_database.GameDatabaseTests) ... ok
 test_passwords_are_not_localized_as_interface_labels (test_game_database.GameDatabaseTests) ... ok
+test_physical_backup_omits_mysql_runtime_socket_alias (test_game_database.GameDatabaseTests) ... ok
 test_private_credential_report_and_log_redaction (test_game_database.GameDatabaseTests) ... ok
 test_private_gateway_validation (test_game_database.GameDatabaseTests) ... ok
 test_registration_contract_php_passes_real_syntax_check (test_game_database.GameDatabaseTests) ... ok
@@ -36,6 +37,7 @@ test_registration_failure_leaves_panel_ready_and_can_retry (test_game_database.G
 test_remote_endpoint_validation_and_wizard (test_game_database.GameDatabaseTests) ... ok
 test_remote_registration_never_installs_docker_or_sql (test_game_database.GameDatabaseTests) ... ok
 test_skip_never_runs_package_or_service_commands (test_game_database.GameDatabaseTests) ... ok
+test_sql_credentials_use_private_stdin_after_readiness_and_before_supervision (test_game_database.GameDatabaseTests) ... ok
 test_unhealthy_database_stops_its_supervisor_and_preserves_data (test_game_database.GameDatabaseTests) ... ok
 test_unowned_network_and_files_are_refused (test_game_database.GameDatabaseTests) ... ok
 test_real_mariadb_provisioning_and_game_user_lifecycle_with_special_password (test_game_database.RealSQLTests) ... ok
@@ -201,6 +203,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 201 tests in 28.908s
+Ran 203 tests in 35.075s
 
 OK

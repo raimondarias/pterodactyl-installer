@@ -122,6 +122,28 @@ class GameDatabaseTests(BaseTest):
         for secret in (self.settings["password"], self.host.load()["root_password"]):
             self.assertNotIn(secret, self.runner.redact(secret))
 
+    def test_sql_credentials_use_private_stdin_after_readiness_and_before_supervision(self):
+        captured = []
+        original = self.runner.run
+        def command(args, **kwargs):
+            if kwargs.get('label') == 'Preparing the game SQL provisioning account':
+                captured.append((list(args), kwargs['input_file'].read().decode()))
+                kwargs['input_file'].seek(0)
+            return original(args, **kwargs)
+        with patch.object(self.runner, 'run', side_effect=command):
+            self.setup_local()
+        args, sql = captured[0]
+        self.assertNotIn(self.settings['password'], repr(args))
+        self.assertIn(self.settings['password'], sql)
+        self.assertIn('CREATE USER IF NOT EXISTS', sql)
+        self.assertIn('ALTER USER', sql)
+        self.assertNotIn('docker-entrypoint-initdb.d', self.host.compose.read_text())
+        self.assertEqual(self.host.init.stat().st_mode & 0o777, 0o600)
+        commands = [args for args, _ in self.runner.calls]
+        provision = next(index for index, args in enumerate(commands) if 'MYSQL_PWD=' in ' '.join(args))
+        supervisor = commands.index(['systemctl', 'start', 'ptero-game-databases.service'])
+        self.assertLess(provision, supervisor)
+
     def test_passwords_are_not_localized_as_interface_labels(self):
         self.settings.update(mode="existing", host="10.0.0.9", password="Standalone (Recommended)", registered=True, host_id=7)
         ui = app.UI(False, "es")
@@ -228,6 +250,9 @@ class GameDatabaseTests(BaseTest):
             self.assertEqual(service["ports"][0]["host_ip"], "172.25.0.1")
             self.assertNotIn("MYSQL_DATABASE", service["environment"])
             self.assertNotIn("MARIADB_DATABASE", service["environment"])
+            if engine == 'mysql':
+                self.assertIn('mysqladmin --host=127.0.0.1', service['healthcheck']['test'][1])
+                self.assertIn('--protocol=socket', service['healthcheck']['test'][1])
 
     def test_firewall_installed_before_database_and_does_not_flush_other_rules(self):
         self.setup_local()
@@ -287,6 +312,17 @@ class GameDatabaseTests(BaseTest):
                 self.host.backup()
         self.assertIn("database", self.runner.running)
         self.assertEqual(list(self.paths.backups.glob("*.partial")), [])
+
+    def test_physical_backup_omits_mysql_runtime_socket_alias(self):
+        self.setup_local()
+        socket = self.host.data / 'mysql.sock'
+        socket.symlink_to('/var/run/mysqld/mysqld.sock')
+        (self.host.data / 'table.ibd').write_bytes(b'persistent table')
+        archive = self.host.backup()
+        with tarfile.open(archive) as source:
+            self.assertNotIn('data/mysql.sock', source.getnames())
+            self.assertEqual(source.extractfile('data/table.ibd').read(), b'persistent table')
+        self.assertTrue(socket.is_symlink())
 
     def test_panel_purge_preserves_game_database_project_and_data(self):
         self.state["method"] = "docker"

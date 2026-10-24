@@ -99,6 +99,8 @@ def main():
     (results/'integration-result.json').write_text(json.dumps({'panel': 'passed', 'method': args.method, 'engine': args.engine,
         'url': args.url, 'backup': str(archive), 'update_purge_restore': 'passed' if args.cycle else 'not_run',
         'node_wings_sql_restore_real_game_backup': 'passed' if args.full else 'not_run',
+        'game_sql_method': ('docker' if args.method == 'docker' else 'standalone') if args.full else 'not_run',
+        'wings_method': 'standalone' if args.full else 'not_run',
         'secrets': 'stored privately in guest only'},indent=2)+'\n')
     print('INTEGRATION_PANEL_READY', flush=True)
 
