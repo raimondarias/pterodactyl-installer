@@ -7,12 +7,15 @@ permissions:
   contents: read
 jobs:
   regression:
-    timeout-minutes: 10
+    timeout-minutes: 15
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Install test clients
-        run: sudo apt-get update && sudo apt-get install -y shellcheck nginx mariadb-server php-cli restic
+        run: |
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y shellcheck nginx mariadb-server php-cli restic
       - name: Regression tests
         run: bash tests/run.sh
   live-deployment:
@@ -32,7 +35,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Install VM tooling
-        run: sudo apt-get update && sudo apt-get install -y qemu-system-x86 qemu-utils genisoimage
+        run: |
+          sudo sed -i 's|http://azure.archive.ubuntu.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' /etc/apt/sources.list.d/ubuntu.sources
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
+          sudo env DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 install -y qemu-system-x86 qemu-utils genisoimage
       - name: Deploy on disposable systemd VM
         env:
           PTERO_GITHUB_TOKEN: ${{ github.token }}
