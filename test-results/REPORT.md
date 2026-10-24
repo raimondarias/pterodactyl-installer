@@ -20,9 +20,9 @@
 
 ## Real isolated-domain check
 
-The existing Ubuntu 24.04 KVM lab at [installer.xerosrv.com](https://installer.xerosrv.com) executed the new runtime. An old profile with game-inclusion flags was migrated, then the persistent systemd backup service uploaded an encrypted Panel/Wings-only bundle to Restic. Download and Panel archive inspection passed. A temporary real Minetest container kept the same running/paused/PID values, the native game SQL service kept its PID, and Wings configuration bytes stayed unchanged. The temporary test container was removed afterward.
+The temporary Ubuntu 24.04 KVM lab previously served at `installer.xerosrv.com` executed the new runtime. An old profile with game-inclusion flags was migrated, then the persistent systemd backup service uploaded an encrypted Panel/Wings-only bundle to Restic. Download and Panel archive inspection passed. A temporary real Minetest container kept the same running/paused/PID values, the native game SQL service kept its PID, and Wings configuration bytes stayed unchanged. The temporary test container was removed afterward.
 
-[Structured scope result](1.2.1-domain-scope.json). Credentials remain private on the test server.
+[Structured scope result](1.2.1-domain-scope.json). The lab was retired on 24 October 2026 at the owner's request: its VM disk, credentials, certificates, dedicated services and domain proxy were deleted. The deployment results above are historical; no live demo remains.
 
 ## Fresh-system deployment checks
 

@@ -60,6 +60,6 @@ Ubuntu **22.04 / 24.04 / 26.04** or Debian **12 / 13**, amd64 or arm64, with sys
 - [Changelog](CHANGELOG.md) · [Releases](https://github.com/raimondarias/pterodactyl-installer/releases)
 - [Roadmap](docs/ROADMAP.md)
 
-A real Ubuntu 24.04 standalone deployment runs at [installer.xerosrv.com](https://installer.xerosrv.com). See the verification report for completed fresh-system tests and infrastructure limits.
+Standalone and Docker deployments were validated in isolated test machines. The temporary domain lab has been retired. See the verification report for completed tests and infrastructure limits.
 
 [MIT License](LICENSE)
