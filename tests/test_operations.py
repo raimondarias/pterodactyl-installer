@@ -163,6 +163,10 @@ class OperationsTests(BaseTest):
         self.assertIn('game-sql', config)
         self.assertEqual(backend.config.parent.stat().st_mode & 0o777, 0o755)
         self.assertEqual(backend.config.stat().st_mode & 0o777, 0o640)
+        initialization = [(args, kwargs) for args, kwargs in self.runner.calls
+                          if kwargs.get('label') == 'Initializing isolated native game SQL']
+        self.assertEqual(initialization[0][0][:4], ['runuser', '-u', 'ptero-game-sql', '--'])
+        self.assertEqual(initialization[0][1]['cwd'], str(backend.data))
         self.assertNotIn('ptero_panel', config)
         unit = self.paths.root / ('etc/systemd/system/' + backend.unit)
         self.assertIn('ExecStartPre=+', unit.read_text())

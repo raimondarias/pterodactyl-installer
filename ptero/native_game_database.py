@@ -100,7 +100,10 @@ class NativeGameDatabase:
                 raise InstallerError('Native game SQL data is incomplete; restore a backup into an empty destination.')
             args = [binary, '--no-defaults', '--initialize-insecure', '--user=' + self.user, '--datadir=' + str(self.data)] if state['engine'] == 'mysql' else [
                 'mariadb-install-db', '--no-defaults', '--user=' + self.user, '--datadir=' + str(self.data), '--auth-root-authentication-method=socket', '--skip-test-db']
-            self.run.run(args, label='Initializing isolated native game SQL')
+            # Initialize under the same account as the service. Modern MariaDB
+            # AppArmor profiles intentionally deny root's DAC/setuid bypasses.
+            self.run.run(['runuser', '-u', self.user, '--', *args], cwd=str(self.data),
+                         label='Initializing isolated native game SQL')
         firewall = self.firewall(state)
         atomic_write(self.p.root / ('etc/systemd/system/' + self.unit),
             '[Unit]\nDescription=Ptero isolated native game SQL\nAfter=network-online.target\nWants=network-online.target\n'
