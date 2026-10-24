@@ -116,6 +116,16 @@ def restore_sql(i, archive=None):
         else:
             if not re.fullmatch(r'[a-z0-9./_-]+@sha256:[0-9a-f]{64}', state.get('image', '')):
                 raise InstallerError('Physical SQL restore requires the original pinned database image.')
+            if manager.service.exists():
+                unit = manager.service.read_text()
+                if ('Description=Ptero isolated game SQL host' not in unit
+                        or str(manager.compose) not in unit):
+                    raise InstallerError('Unmanaged game database files exist; nothing was overwritten.')
+                # Starting Docker can activate enabled Wants units. Freeze this
+                # instance before ensuring Docker or copying its physical files.
+                i.run.run(['systemctl', 'disable', '--now', 'ptero-game-databases.service'])
+                if manager.compose.exists():
+                    manager.dc('down')
             i.docker()
             if manager.network(create=True, config=state.get('network_config')) != state['host']:
                 raise InstallerError('Restore the original private SQL network before importing its data.')

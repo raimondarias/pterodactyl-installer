@@ -213,6 +213,31 @@ class OperationsTests(BaseTest):
             restore_sql(self.installer, archive)
         self.assertEqual(self.runner.calls, [])
 
+    def test_sql_restore_disables_old_supervisor_before_docker_can_activate_it(self):
+        archive = self.make_sql_archive()
+        manager = GameDatabase(self.installer)
+        manager.service_config()
+        write_json(manager.compose, {})
+        seen = []
+        def docker():
+            seen.extend(args for args, _ in self.runner.calls)
+        with patch.object(self.installer, 'docker', side_effect=docker), \
+             patch.object(GameDatabase, 'network', return_value='172.25.0.1'), \
+             patch.object(GameDatabase, 'firewall'), patch.object(GameDatabase, 'service_config'):
+            restore_sql(self.installer, archive)
+        self.assertIn(['systemctl', 'disable', '--now', 'ptero-game-databases.service'], seen)
+        self.assertTrue(any(args[-1]=='down' for args in seen))
+
+    def test_sql_restore_preserves_an_unmanaged_supervisor(self):
+        archive = self.make_sql_archive()
+        manager = GameDatabase(self.installer)
+        manager.service.parent.mkdir(parents=True)
+        manager.service.write_text('[Service]\nExecStart=/usr/bin/foreign-sql\n')
+        with self.assertRaisesRegex(InstallerError, 'Unmanaged'):
+            restore_sql(self.installer, archive)
+        self.assertEqual(self.runner.calls, [])
+        self.assertIn('foreign-sql', manager.service.read_text())
+
     def test_game_file_roundtrip_preserves_content_and_rejects_nonempty_destination(self):
         self.wings()
         source = self.paths.root / 'var/lib/pterodactyl/volumes'

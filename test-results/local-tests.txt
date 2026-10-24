@@ -119,6 +119,8 @@ test_node_port_ranges_reject_system_ports_reverse_and_excessive_ranges (test_ope
 test_node_provisioning_uses_contracts_and_saves_tokens_privately (test_operations.OperationsTests) ... ok
 test_remote_database_requires_private_routed_ipv4 (test_operations.OperationsTests) ... ok
 test_sigterm_in_plain_scheduled_session_unpauses_games_before_exit (test_operations.OperationsTests) ... ok
+test_sql_restore_disables_old_supervisor_before_docker_can_activate_it (test_operations.OperationsTests) ... ok
+test_sql_restore_preserves_an_unmanaged_supervisor (test_operations.OperationsTests) ... ok
 test_sql_restore_refuses_existing_data_and_bad_checksum (test_operations.OperationsTests) ... ok
 test_sql_restore_verifies_hash_preserves_credentials_and_waits_for_health (test_operations.OperationsTests) ... ok
 test_ssh_provisioning_keeps_credentials_in_stdin_and_host_keys_enforced (test_operations.OperationsTests) ... ok
@@ -203,6 +205,6 @@ test_simple_plan_matrix_for_methods_engines_access_and_languages (test_v2.Wizard
 test_standalone_dispatch_does_not_install_docker (test_v2.WizardTests) ... ok
 
 ----------------------------------------------------------------------
-Ran 203 tests in 35.075s
+Ran 205 tests in 28.650s
 
 OK

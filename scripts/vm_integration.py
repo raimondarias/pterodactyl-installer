@@ -111,7 +111,8 @@ def main():
             save_report()
             if result.returncode:
                 subprocess.run([*ssh, 'tail -160 /var/log/pterodactyl-installer/installer.log'], check=False)
-                subprocess.run([*ssh, 'journalctl -u wings -u ptero-game-sql-native --no-pager -n 60'], check=False)
+                subprocess.run([*ssh, 'journalctl -u wings -u ptero-game-sql-native -u ptero-game-databases --no-pager -n 60'], check=False)
+                subprocess.run([*ssh, 'docker compose --project-name ptero-game-databases --file /opt/pterodactyl-installer/game-databases/compose.json logs --tail 35 database'], check=False)
                 subprocess.run([*ssh, 'journalctl -k --no-pager -n 100'], check=False)
                 raise RuntimeError('Real VM deployment failed')
         except Exception:

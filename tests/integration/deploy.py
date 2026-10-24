@@ -17,6 +17,11 @@ class LabUI(UI):
         super().__init__(False, 'en', plain=True)
     def confirm(self, phrase):
         self.say('Disposable-VM scenario approved: ' + self.tr(phrase))
+    def card(self, title, rows):
+        if title == 'Game database host is ready':
+            self.say('Game SQL credentials are stored privately in the disposable VM.')
+            return
+        return super().card(title, rows)
     def ask(self, label, default=None, validator=None, secret=False):
         if label == 'Ruta absoluta al backup .tar.gz' and getattr(self, 'restore_archive', None):
             return str(self.restore_archive)
